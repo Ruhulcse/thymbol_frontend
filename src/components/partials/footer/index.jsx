@@ -20,16 +20,6 @@ const Footer = ({ className = 'custom-class' }) => {
                     <div className="text-center ltr:md:text-start rtl:md:text-right text-sm">
                         COPYRIGHT &copy; 2022 THYMBOL, All rights Reserved
                     </div>
-                    <div className="ltr:md:text-right rtl:md:text-end text-center text-sm">
-                        Hand-crafted & Made by{' '}
-                        <a
-                            href="https://codeshaper.net"
-                            target="_blank"
-                            className="text-primary-500 font-semibold"
-                        >
-                            Codeshaper
-                        </a>
-                    </div>
                 </div>
             </div>
         </footer>

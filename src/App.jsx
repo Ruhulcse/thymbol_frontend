@@ -13,9 +13,9 @@ function App() {
     return (
         <main className="App  relative">
             <Routes>
-                {/* <Route path="/" element={<AuthLayout />}> */}
-                    <Route path="/login" element={<Login />} />
-                {/* </Route> */}
+                <Route path="/" element={<AuthLayout />}>
+                    <Route path="/" element={<Login />} />
+                </Route>
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
                 </Route>
