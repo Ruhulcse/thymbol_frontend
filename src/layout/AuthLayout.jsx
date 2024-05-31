@@ -1,18 +1,22 @@
-import React, { useEffect, Suspense } from "react";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import Loading from "@/components/Loading";
-const AuthLayout = () => {
-  const navigate = useNavigate();
+import React, { useEffect, Suspense } from 'react';
+import { Outlet, useNavigate, useLocation, Navigate } from 'react-router-dom';
 
-  return (
-    <>
-      <Suspense fallback={<Loading />}>
-        <ToastContainer />
-        {<Outlet />}
-      </Suspense>
-    </>
-  );
+import Loading from '@/components/Loading';
+import { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { selectCurrentToken } from '@/store/api/auth/authSlice';
+const AuthLayout = () => {
+    const navigate = useNavigate();
+    const token = useSelector(selectCurrentToken);
+
+    return (
+        <>
+            <Suspense fallback={<Loading />}>
+                <Toaster />
+                {token ? <Navigate to="/dashboard" replace /> : <Outlet />}
+            </Suspense>
+        </>
+    );
 };
 
 export default AuthLayout;
