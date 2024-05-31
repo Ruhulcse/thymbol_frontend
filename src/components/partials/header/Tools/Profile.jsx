@@ -4,9 +4,11 @@ import Icon from '@/components/ui/Icon';
 import { Menu, Transition } from '@headlessui/react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import LogoutLogo from '@/assets/images/auth/logout_logo.svg';
 
 import UserAvatar from '@/assets/images/all-img/user.png';
 import { logOut } from '@/store/api/auth/authSlice';
+import { swalConfirm } from '@/util/helpers';
 
 const profileLabel = (user) => {
     return (
@@ -35,7 +37,7 @@ const profileLabel = (user) => {
 const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.user);
+    const { user } = useSelector((state) => state.user);
 
     const handleLogout = () => {
         // Clear user data from local storage
@@ -50,20 +52,37 @@ const Profile = () => {
             icon: 'heroicons-outline:user',
 
             action: () => {
-                console.log('profile');
+                navigate(`/profile/user/edit/${user._id}`);
             },
         },
         {
             label: 'Logout',
             icon: 'heroicons-outline:login',
             action: () => {
-                handleLogout();
+                confirmLogout();
             },
         },
     ];
 
+    const confirmLogout = async () => {
+        const response = await swalConfirm(
+            'Are you sure you want to Logout?',
+            'Logout',
+            'Yes',
+            'No',
+            LogoutLogo
+        );
+
+        if(response.isConfirmed){
+            handleLogout();
+        }
+    };
+
     return (
-        <Dropdown label={profileLabel(user)} classMenuItems="w-[180px] top-[58px]">
+        <Dropdown
+            label={profileLabel(user)}
+            classMenuItems="w-[180px] top-[58px]"
+        >
             {ProfileMenu.map((item, index) => (
                 <Menu.Item key={index}>
                     {({ active }) => (

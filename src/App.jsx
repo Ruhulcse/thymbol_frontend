@@ -6,6 +6,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/auth/login'));
 const Signup = lazy(() => import('./pages/auth/register'));
+const EditProfile = lazy(() => import('./pages/user/editProfile'));
+const DeleteUserProfilePage = lazy(() => import('./pages/user/deleteUserProfile'));
+const ScanQRPage = lazy(() => import('./pages/scanQR'));
 
 import Layout from './layout/Layout';
 import AuthLayout from './layout/AuthLayout';
@@ -21,6 +24,9 @@ function App() {
                 </Route>
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="profile/user/edit/:id" element={<EditProfile />} />
+                    <Route path="delete-account" element={<DeleteUserProfilePage />} />
+                    <Route path="scan-qr" element={<ScanQRPage />} />
                 </Route>
             </Routes>
         </main>
