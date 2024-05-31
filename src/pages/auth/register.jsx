@@ -5,9 +5,9 @@ import RegForm from './common/reg-from';
 import Social from './common/social';
 // image import
 import LogoWhite from '@/assets/images/logo/logo-white.svg';
-import Logo from "@/assets/images/auth/logo_login.png";
+import Logo from '@/assets/images/auth/logo_login.png';
 // import Illustration from '@/assets/images/auth/ils1.svg';
-import Illustration from "@/assets/images/auth/ils1.png";
+import Illustration from '@/assets/images/auth/ils1.png';
 
 const register = () => {
     const [isDark] = useDarkMode();
@@ -68,15 +68,34 @@ const register = () => {
                                     Or continue with
                                 </div>
                             </div>
-                            <div className="max-w-[242px] mx-auto mt-8 w-full">
-                                <Social />
+                            <div className="mx-auto mt-8 w-full">
+                                <button className="px-4 py-4 flex gap-2 justify-center items-center text-slate-950 font-medium border-slate-200 dark:border-slate-700 text-center w-full rounded-lg bg-gray-50 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150 mb-5">
+                                    <img
+                                        className="w-6 h-6"
+                                        src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                        loading="lazy"
+                                        alt="google logo"
+                                    />
+                                    <span>Continue with Google</span>
+                                </button>
+
+                                <button className="px-4 py-4 flex gap-2 justify-center items-center text-slate-950 font-medium border-slate-200 dark:border-slate-700 text-center w-full rounded-lg bg-gray-50 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
+                                    <img
+                                        className="w-6 h-6"
+                                        src="https://www.svgrepo.com/show/511330/apple-173.svg"
+                                        loading="lazy"
+                                        alt="apple logo"
+                                    />
+                                    <span>Continue with Apple</span>
+                                </button>
                             </div>
-                            <div className="max-w-[215px] mx-auto font-normal text-slate-500 dark:text-slate-400 2xl:mt-12 mt-6 uppercase text-sm">
-                                Already registered?
+                            <div className="max-w-[260px] mx-auto font-medium text-slate-900 dark:text-slate-400 2xl:mt-12 mt-6 text-sm">
+                                Already have an account?
                                 <Link
-                                    to="/"
-                                    className="text-slate-900 dark:text-white font-medium hover:underline"
+                                    to="/login"
+                                    className="text-customBlue dark:text-white font-medium hover:underline"
                                 >
+                                    {' '}
                                     Sign In
                                 </Link>
                             </div>
