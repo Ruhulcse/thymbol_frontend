@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginForm from './common/login-form';
 import Social from './common/social';
 import useDarkMode from '@/hooks/useDarkMode';
@@ -16,15 +16,20 @@ import axios from 'axios';
 const login = () => {
     const [isDark] = useDarkMode();
     const [htmlContent, setHtmlContent] = useState('');
+    const navigate = useNavigate();
 
     const handleGooleLogin = async () => {
       try {
         const response = await axios.get('http://localhost:5000/google-login');
         console.log("handleGooleLogin == response:", response)
-        setHtmlContent(response.data);
+        window.location.href = "http://" + response.data.href
       } catch (error) {
         
       }
+    }
+
+    const redirect = () => {
+        console.log(htmlContent);
     }
     return (
         <div className="loginwrapper">
@@ -105,7 +110,7 @@ const login = () => {
                                 </button>
                             </div>
 
-                            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                            {/* <div dangerouslySetInnerHTML={{ __html: htmlContent }} onClick={redirect}/> */}
                             <div className="md:max-w-[345px] mx-auto font-medium text-slate-900 dark:text-slate-400 mt-12 uppercase text-sm">
                                 Don’t have an account?{' '}
                                 <Link

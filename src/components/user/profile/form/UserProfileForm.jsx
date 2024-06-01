@@ -69,7 +69,7 @@ const UserProfileForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 ">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-5">
             <h4>
                 <strong>Edit Profile</strong>
             </h4>

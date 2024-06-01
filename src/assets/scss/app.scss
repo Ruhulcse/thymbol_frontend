@@ -88,6 +88,11 @@
     // }
   }
 }
+
+.flatpickr-input{
+  background-color: white !important
+}
+
 @layer components {
   @import "components/table.scss";
   @import "components/map.scss";

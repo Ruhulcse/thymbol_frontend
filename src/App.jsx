@@ -10,6 +10,8 @@ const EditProfile = lazy(() => import('./pages/user/editProfile'));
 const DeleteUserProfilePage = lazy(() => import('./pages/user/deleteUserProfile'));
 const ScanQRPage = lazy(() => import('./pages/scanQR'));
 const AnalyticsPage = lazy(() => import('./pages/analytics'));
+const VouchersPage = lazy(() => import('./pages/vouchers'));
+const CreateVouchersPage = lazy(() => import('./pages/vouchers/create-vouchers'));
 
 import Layout from './layout/Layout';
 import AuthLayout from './layout/AuthLayout';
@@ -29,6 +31,8 @@ function App() {
                     <Route path="delete-account" element={<DeleteUserProfilePage />} />
                     <Route path="scan-qr" element={<ScanQRPage />} />
                     <Route path="analytics" element={<AnalyticsPage />} />
+                    <Route path="vouchers" element={<VouchersPage />} />
+                    <Route path="create-vouchers" element={<CreateVouchersPage />} />
                 </Route>
             </Routes>
         </main>

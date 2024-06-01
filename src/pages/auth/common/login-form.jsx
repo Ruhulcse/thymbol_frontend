@@ -47,15 +47,15 @@ const LoginForm = () => {
 
             console.log(response.data);
 
-            if (response.error) {
-                throw new Error(response.error.message);
-            }
+            // if (response.error) {
+            //     throw new Error(response.error.message);
+            // }
 
-            if (response.data.data.error) {
-                throw new Error(response.data.error);
-            }
+            // if (response.data.data.error) {
+            //     throw new Error(response.data.error);
+            // }
 
-            if (!response.data.data.token) {
+            if (!response?.data?.data?.token) {
                 throw new Error('Invalid credentials');
             }
 
