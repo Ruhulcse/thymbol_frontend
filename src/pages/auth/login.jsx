@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import useDarkMode from '@/hooks/useDarkMode';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginForm from './common/login-form';
-import Social from './common/social';
-import useDarkMode from '@/hooks/useDarkMode';
 
 // image import
 import LogoWhite from '@/assets/images/logo/logo-white.svg';
@@ -10,7 +9,6 @@ import LogoWhite from '@/assets/images/logo/logo-white.svg';
 // import Illustration from "@/assets/images/auth/ils1.svg";
 import Illustration from '@/assets/images/auth/ils1.png';
 import Logo from '@/assets/images/auth/logo_login.png';
-import fetchWrapper from '@/util/fetchWrapper';
 import axios from 'axios';
 
 const login = () => {
@@ -28,7 +26,7 @@ const login = () => {
         } catch (error) {}
     };
 
-    const redirect = () => {};
+
     return (
         <div className="loginwrapper">
             <div className="lg-inner-column">

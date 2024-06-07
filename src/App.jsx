@@ -1,5 +1,5 @@
-import React, { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 // home pages  & dashboard
 //import Dashboard from "./pages/dashboard";
@@ -16,8 +16,8 @@ const CreateVouchersPage = lazy(() => import('./pages/vouchers/create-vouchers')
 const CreateStorePage = lazy(() => import('./pages/stores/create-store')); 
 const Error = lazy(() => import('./pages/404')); 
 
-import Layout from './layout/Layout';
 import AuthLayout from './layout/AuthLayout';
+import Layout from './layout/Layout';
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
         <main className="App  relative">
             <Routes>
                 <Route path="/" element={<AuthLayout />}>
+                    <Route path="/" element={<Navigate to="/login" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="*" element={<Error />} />

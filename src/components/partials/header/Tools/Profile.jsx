@@ -23,7 +23,7 @@ const profileLabel = (user) => {
                 </div>
             </div>
             <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
-                <span className="text-white overflow-hidden text-ellipsis whitespace-nowrap w-[150px] block">
+                <span className="text-white overflow-hidden text-ellipsis whitespace-nowrap block">
                     {user.userName}
                 </span>
                 <span className="text-white text-base inline-block ltr:ml-[10px] rtl:mr-[10px]">
