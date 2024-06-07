@@ -9,6 +9,10 @@ export const humanDate = (timestamp) => {
     return moment(timestamp).format('dddd, MMMM Do, YYYY');
 };
 
+export const calenderDate = (date) => {
+    return !date ? '' : moment(date).format('MM/DD/YYYY')
+}
+
 export const moneyFormatter = (amount, currency = '', precision = 2) => {
     if (amount && !isNaN(amount)) {
         const number = parseFloat(amount).toFixed(precision);
@@ -71,7 +75,8 @@ export function swalError(msg, title = 'Oops...') {
 export function swalSuccess(
     $text = 'Your work has been saved!',
     title = 'Success!',
-    $html = false
+    $html = false,
+    confirmButtonText = 'Okay'
 ) {
     try {
         let result = '';
@@ -82,8 +87,12 @@ export function swalSuccess(
                 html: $html,
                 showCloseButton: true,
                 showConfirmButton: true,
+                confirmButtonText: confirmButtonText,
                 allowOutsideClick: true,
                 timer: 60000,
+                customClass: {
+                    confirmButton: 'w-40',
+                },
             });
         } else {
             result = Swal.fire({
@@ -92,8 +101,12 @@ export function swalSuccess(
                 text: $text,
                 showCloseButton: true,
                 showConfirmButton: true,
+                confirmButtonText: confirmButtonText,
                 allowOutsideClick: true,
                 timer: 60000,
+                customClass: {
+                    confirmButton: 'w-40',
+                },
             });
         }
         return result;

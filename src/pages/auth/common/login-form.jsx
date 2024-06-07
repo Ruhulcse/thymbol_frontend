@@ -31,21 +31,17 @@ const LoginForm = () => {
         register,
         formState: { errors },
         handleSubmit,
-        setValue
+        setValue,
     } = useForm({
         resolver: yupResolver(schema),
         //
         mode: 'all',
     });
 
-   
-
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
             const response = await login(data);
-
-            console.log(response.data);
 
             // if (response.error) {
             //     throw new Error(response.error.message);
@@ -92,7 +88,7 @@ const LoginForm = () => {
                 className="h-[48px]"
                 placeholder="Email"
                 onChange={(e) => {
-                  setValue('email', e.target.value);
+                    setValue('email', e.target.value);
                 }}
             />
             <Textinput
@@ -104,7 +100,7 @@ const LoginForm = () => {
                 className="h-[48px]"
                 placeholder="Password"
                 onChange={(e) => {
-                  setValue('password', e.target.value);
+                    setValue('password', e.target.value);
                 }}
             />
             <div className="flex justify-end">

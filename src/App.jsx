@@ -11,10 +11,14 @@ const DeleteUserProfilePage = lazy(() => import('./pages/user/deleteUserProfile'
 const ScanQRPage = lazy(() => import('./pages/scanQR'));
 const AnalyticsPage = lazy(() => import('./pages/analytics'));
 const VouchersPage = lazy(() => import('./pages/vouchers'));
+const StorePage = lazy(() => import('./pages/stores'));
 const CreateVouchersPage = lazy(() => import('./pages/vouchers/create-vouchers'));
+const CreateStorePage = lazy(() => import('./pages/stores/create-store')); 
+const Error = lazy(() => import('./pages/404')); 
 
 import Layout from './layout/Layout';
 import AuthLayout from './layout/AuthLayout';
+
 
 function App() {
    
@@ -24,6 +28,7 @@ function App() {
                 <Route path="/" element={<AuthLayout />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="*" element={<Error />} />
                 </Route>
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
@@ -32,7 +37,10 @@ function App() {
                     <Route path="scan-qr" element={<ScanQRPage />} />
                     <Route path="analytics" element={<AnalyticsPage />} />
                     <Route path="vouchers" element={<VouchersPage />} />
+                    <Route path="stores" element={<StorePage />} />
                     <Route path="create-vouchers" element={<CreateVouchersPage />} />
+                    <Route path="create-store" element={<CreateStorePage />} />
+                    <Route path="" element={<Error />} />
                 </Route>
             </Routes>
         </main>

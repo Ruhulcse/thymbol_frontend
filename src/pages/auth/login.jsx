@@ -19,18 +19,16 @@ const login = () => {
     const navigate = useNavigate();
 
     const handleGooleLogin = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/google-login');
-        console.log("handleGooleLogin == response:", response)
-        window.location.href = "http://" + response.data.href
-      } catch (error) {
-        
-      }
-    }
+        try {
+            const response = await axios.get(
+                'http://localhost:5000/google-login'
+            );
 
-    const redirect = () => {
-        console.log(htmlContent);
-    }
+            window.location.href = 'http://' + response.data.href;
+        } catch (error) {}
+    };
+
+    const redirect = () => {};
     return (
         <div className="loginwrapper">
             <div className="lg-inner-column">
@@ -89,7 +87,10 @@ const login = () => {
                                 </div>
                             </div>
                             <div className="mx-auto mt-8 w-full">
-                                <button className="px-4 py-4 flex gap-2 justify-center items-center text-slate-950 font-medium border-slate-200 dark:border-slate-700 text-center w-full rounded-lg bg-gray-50 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150 mb-5" onClick={handleGooleLogin}>
+                                <button
+                                    className="px-4 py-4 flex gap-2 justify-center items-center text-slate-950 font-medium border-slate-200 dark:border-slate-700 text-center w-full rounded-lg bg-gray-50 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150 mb-5"
+                                    onClick={handleGooleLogin}
+                                >
                                     <img
                                         className="w-6 h-6"
                                         src="https://www.svgrepo.com/show/475656/google-color.svg"

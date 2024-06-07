@@ -41,7 +41,7 @@ const UserProfileForm = () => {
         formState: { errors },
         handleSubmit,
         reset,
-        setValue
+        setValue,
     } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -54,7 +54,6 @@ const UserProfileForm = () => {
     const onSubmit = async (data) => {
         setIsLoading(true);
         try {
-            console.log(data);
             const response = await fetchWrapper.put(`user/${user?._id}`, data);
             if (response) {
                 setIsLoading(false);

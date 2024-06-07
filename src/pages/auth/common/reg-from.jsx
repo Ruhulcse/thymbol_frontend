@@ -63,8 +63,6 @@ const RegForm = () => {
             navigate('/login');
             toast.success('Signup Successful');
         } catch (error) {
-            console.log(error.response); // Log the error response to the console for debugging
-
             const errorMessage =
                 error.response?.data?.message ||
                 'An error occurred. Please try again later.';

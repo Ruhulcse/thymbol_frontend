@@ -93,6 +93,11 @@
   background-color: white !important
 }
 
+.swal2-modal .swal2-styled:focus {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 @layer components {
   @import "components/table.scss";
   @import "components/map.scss";
