@@ -40,9 +40,10 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
     const onSubmit = async (data) => {
+      
         try {
             const response = await login(data);
-
+           // console.log(response);
             // if (response.error) {
             //     throw new Error(response.error.message);
             // }
