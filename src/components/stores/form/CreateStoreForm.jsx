@@ -10,7 +10,6 @@ import { swalSuccess } from '@/util/helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import * as yup from 'yup';
@@ -52,7 +51,8 @@ const CreateStoreForm = () => {
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
 
     // redux
-    const [createStore, { isLoading: isCreating, error: createError }] = useCreateStoreMutation();
+    const [createStore, { isLoading: isCreating, error: createError }] =
+        useCreateStoreMutation();
 
     const {
         data: categories,
@@ -119,10 +119,10 @@ const CreateStoreForm = () => {
             formData.append('jsonData', parsedJson);
 
             // Append files
-            if(data.logo.length) {
+            if (data.logo.length) {
                 formData.append('logo', data.logo[0] || null);
-            } 
-            if(data.document.length) {
+            }
+            if (data.document.length) {
                 formData.append('documents', data.document[0] || null);
             }
 
@@ -134,7 +134,7 @@ const CreateStoreForm = () => {
             );
             navigate('/stores');
 
-            // console.log('Success:', response.data);
+            //
         } catch (error) {
             console.error('Error:', error);
         }
@@ -297,7 +297,9 @@ const CreateStoreForm = () => {
                         )}
                     />
                     {errors.country && (
-                        <p className="text-red-500 font-normal text-sm mt-1">{errors.country.message}</p>
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.country.message}
+                        </p>
                     )}
                 </div>
 
@@ -324,7 +326,9 @@ const CreateStoreForm = () => {
                         )}
                     />
                     {errors.city && (
-                        <p className="text-red-500 font-normal text-sm mt-1">{errors.city.message}</p>
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.city.message}
+                        </p>
                     )}
                 </div>
 
