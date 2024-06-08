@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import uploadSvgImage from '@/assets/images/svg/upload.svg';
 import { useDropzone } from 'react-dropzone';
 
-// image import
-import uploadSvgImage from '@/assets/images/svg/upload.svg';
-
-const DropZone = () => {
-    const [files, setFiles] = useState([]);
+const DropZone = ({ title, onDrop, files }) => {
     const { getRootProps, getInputProps, isDragAccept } = useDropzone({
         accept: {
             'image/*': [],
         },
         onDrop: (acceptedFiles) => {
-            setFiles(
+            onDrop(
                 acceptedFiles.map((file) =>
                     Object.assign(file, {
                         preview: URL.createObjectURL(file),
@@ -20,6 +16,7 @@ const DropZone = () => {
             );
         },
     });
+
     return (
         <div>
             <div className="w-full text-center border-dashed border-2 border-customBlue rounded-md py-[52px] flex flex-col justify-center items-center bg-white">
@@ -32,17 +29,17 @@ const DropZone = () => {
                             className="mx-auto mb-4"
                         />
                         {isDragAccept ? (
-                            <p className="text-sm text-slate-500 dark:text-slate-300 ">
-                                Upload pdf/jpeg
-                            </p>
+                            <div className="text-sm text-slate-500 dark:text-slate-300 ">
+                                {title}
+                            </div>
                         ) : (
-                            <p className="text-sm text-slate-500 dark:text-slate-300 f">
-                                <div className="font-bold">Upload pdf/jpeg</div>
-                                Drag & Drop or{' '}
+                            <div className="text-sm text-slate-950 dark:text-slate-300 f">
+                                <div className="font-semibold">{title}</div>
+                                <span className='text-gray-500'>Drag & Drop or{' '}</span>
                                 <span className="text-customBlue font-normal cursor-pointer">
                                     Browse
                                 </span>
-                            </p>
+                            </div>
                         )}
                     </div>
                 )}

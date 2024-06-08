@@ -3,9 +3,9 @@ import React from 'react';
 
 const CreateVouchersPage = () => {
     return (
-        <dv>
+        <>
             <CreateVouchersForm />
-        </dv>
+        </>
     );
 };
 

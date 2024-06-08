@@ -17,11 +17,11 @@
 }
 
 .input-group-control[readonly] {
-  @apply bg-slate-200 text-slate-400 dark:bg-slate-600;
+  @apply bg-slate-200 text-black-500 dark:bg-slate-600;
 }
 
 .input-group-control[disabled] {
-  @apply cursor-not-allowed bg-slate-50 text-slate-400 placeholder:text-opacity-60 dark:bg-slate-600;
+  @apply cursor-not-allowed bg-slate-50 text-black-500 placeholder:text-opacity-60 dark:bg-slate-600;
 }
 
 .input-group-text {

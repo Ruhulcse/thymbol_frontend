@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Textinput from '@/components/ui/Textinput';
 import Button from '@/components/ui/Button';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import Checkbox from '@/components/ui/Checkbox';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRegisterUserMutation } from '@/store/api/auth/authApiSlice';
-import toast from 'react-hot-toast';
-import Card from '@/components/ui/Card';
-import { getUser } from '@/store/api/user/userSlice';
-import fetchWrapper from '@/util/fetchWrapper';
-import Select from 'react-select';
-import Flatpickr from 'react-flatpickr';
+import Textinput from '@/components/ui/Textinput';
 import DropZone from '@/pages/form/file-input/DropZone';
+import { useGetStoresQuery } from '@/store/api/stores/storesApiSlice';
+import { useCreateVoucherMutation } from '@/store/api/vouchers/vouchersApiSlice';
+import { swalSuccess } from '@/util/helpers';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo } from 'react';
+import Flatpickr from 'react-flatpickr';
+import { Controller, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import * as yup from 'yup';
 
 const styles = {
     option: (provided, state) => ({
@@ -33,59 +30,67 @@ const discounts = Array.from({ length: 19 }, (_, index) => {
     return { value: discount.toString(), label: discount.toString() };
 });
 
+const offersReedem = Array.from({ length: 20 }, (_, index) => {
+    const offerCount = index + 1;
+    return { value: offerCount.toString(), label: offerCount.toString() };
+});
+
 const schema = yup
     .object({
-        businessName: yup.string().required('Business Name is required'),
-        userName: yup.string().required('Username is required'),
-        email: yup
-            .string()
-            .email('Invalid email')
-            .required('Email is required'),
-        phoneNumber: yup
-            .string()
-            .required('Phone Number is required')
-            .matches(
-                /^(\+?\d{1,3}[- ]?)?\d{10}$/,
-                'Phone Number must be a valid phone number'
-            ),
-        address: yup.string().required('Address is required'),
+        logo: yup.array().min(1, 'Logo is required'),
+        discount: yup.object().required('Discount is required'),
+        endDate: yup.date().required('Offer end date is required'),
+        voucherCode: yup.string().required('Voucher code is required'),
+        storeName: yup.object().required('Store name is required'),
+        redeemLimit: yup.object().required('Number of offers is required'),
+        condition: yup.string().required('Condition is required'),
     })
     .required();
 
 const CreateVouchersForm = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.user);
+    const discountsMemo = useMemo(() => discounts, []);
+    const offersReedemMemo = useMemo(() => offersReedem, []);
+    const { user_id } = useSelector((state) => state.auth);
+    const { data: stores, isLoading: loadingStores } =
+        useGetStoresQuery(user_id);
+    const [createVoucher, { isLoading: isCreating, error: createError }] =
+        useCreateVoucherMutation();
+
     const {
         register,
         formState: { errors },
         handleSubmit,
-        reset,
+        control,
         setValue,
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {
-            ...user,
-        },
         mode: 'onChange',
     });
 
     const navigate = useNavigate();
     const onSubmit = async (data) => {
-        setIsLoading(true);
-        try {
-            console.log(data);
-            const response = await fetchWrapper.put(`user/${user?._id}`, data);
-            if (response) {
-                setIsLoading(false);
-                toast.success('Profile updated successfully');
-                dispatch(getUser({ user_id: user?._id }));
-            }
-        } catch (error) {
-            toast.error(error);
-        } finally {
-            setIsLoading(false);
+        const formData = new FormData();
+        if (data?.logo?.length) {
+            formData.append('image', data.logo[0]);
         }
+
+        const jsonData = {
+            discount: data.discount.value,
+            creator: user_id,
+            endDate: data.endDate,
+            voucherCode: data.voucherCode,
+            store: data.storeName.value,
+            storeName: data.storeName.label,
+            redeemLimit: data.redeemLimit.value,
+            condition: data.condition,
+        };
+        formData.append('voucherData', JSON.stringify(jsonData));
+        await createVoucher({
+            voucherData: formData,
+        }).unwrap();
+
+        swalSuccess(`Voucher successfully added!`, 'Voucher Created!');
+        navigate('/vouchers');
     };
 
     return (
@@ -93,36 +98,71 @@ const CreateVouchersForm = () => {
             <h4>
                 <strong>Add Voucher</strong>
             </h4>
-            <div className="grid xl:grid-cols-2 grid-cols-1 gap-5 w-full xl:w-2/3">
-                <DropZone />
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
+                <Controller
+                    name="logo"
+                    control={control}
+                    render={({ field }) => (
+                        <DropZone
+                            title="Upload pdf/jpeg"
+                            onDrop={(files) => field.onChange(files)}
+                            files={field.value || []}
+                        />
+                    )}
+                />
+                {errors.logo && (
+                    <p className="text-red-500">{errors.logo.message}</p>
+                )}
             </div>
-            <div className="grid xl:grid-cols-2 grid-cols-1 gap-5 w-full xl:w-2/3">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <div>
-                    <label htmlFor=" discount" className="form-label ">
+                    <label htmlFor="discount" className="form-label ">
                         Discount %
                     </label>
-                    <Select
-                        className="react-select"
-                        classNamePrefix="select"
-                        // defaultValue={furits[0]}
-                        options={discounts}
-                        styles={styles}
-                        id="discount"
+                    <Controller
+                        name="discount"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={discountsMemo?.map((discount) => ({
+                                    value: discount.value,
+                                    label: discount.label,
+                                }))}
+                                styles={styles}
+                            />
+                        )}
                     />
+                    {errors.discount && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.discount.message}
+                        </p>
+                    )}
                 </div>
                 <div>
-                    <label htmlFor="default-picker" className=" form-label">
+                    <label htmlFor="endDate" className="form-label">
                         Offer end date
                     </label>
-
-                    <Flatpickr
-                        className="form-control py-3"
-                        // value={picker}
-                        // onChange={(date) => setPicker(date)}
-                        id="default-picker"
-                        disabled={false}
-                        readOnly={false}
+                    <Controller
+                        name="endDate"
+                        control={control}
+                        render={({ field }) => (
+                            <Flatpickr
+                                className="form-control py-3 text-black-500"
+                                id="endDate"
+                                {...field}
+                                disabled={false}
+                                readOnly={false}
+                            />
+                        )}
                     />
+                    {errors.endDate && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.endDate.message}
+                        </p>
+                    )}
                 </div>
                 <Textinput
                     name="voucherCode"
@@ -137,43 +177,57 @@ const CreateVouchersForm = () => {
                     }}
                 />
                 <div>
-                    <label htmlFor=" storeName" className="form-label ">
+                    <label htmlFor="storeName" className="form-label">
                         Store Name
                     </label>
-                    <Select
-                        className="react-select"
-                        classNamePrefix="select"
-                        // defaultValue={furits[0]}
-                        options={[]}
-                        styles={styles}
-                        id="storeName"
+                    <Controller
+                        name="storeName"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={stores?.map((store) => ({
+                                    value: store._id,
+                                    label: store.store_name,
+                                }))}
+                                isLoading={loadingStores}
+                                styles={styles}
+                                id="storeName"
+                            />
+                        )}
                     />
+                    {errors.storeName && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.storeName.message}
+                        </p>
+                    )}
                 </div>
+
                 <div>
-                    <label htmlFor=" subCategory" className="form-label ">
-                        Subcategory
-                    </label>
-                    <Select
-                        className="react-select"
-                        classNamePrefix="select"
-                        // defaultValue={furits[0]}
-                        options={[]}
-                        styles={styles}
-                        id="subCategory"
-                    />
-                </div>
-                <div>
-                    <label htmlFor=" reedemOffer" className="form-label ">
+                    <label htmlFor="redeemLimit" className="form-label">
                         Number of offers that can be redeemed
                     </label>
-                    <Select
-                        className="react-select"
-                        classNamePrefix="select"
-                        // defaultValue={furits[0]}
-                        options={[]}
-                        styles={styles}
-                        id="reedemOffer"
+                    <Controller
+                        name="redeemLimit"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={offersReedemMemo}
+                                styles={styles}
+                                id="redeemLimit"
+                            />
+                        )}
                     />
+                    {errors.redeemLimit && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.redeemLimit.message}
+                        </p>
+                    )}
                 </div>
                 <Textinput
                     name="condition"
@@ -185,14 +239,12 @@ const CreateVouchersForm = () => {
                     className="h-[48px]"
                 />
 
-                <div></div>
-
                 <Button
                     type="submit"
                     text="Create Voucher"
                     className="btn btn-primary block mt-5 text-center font-normal"
-                    isLoading={isLoading}
-                    disabled={isLoading}
+                    isLoading={isCreating}
+                    disabled={isCreating}
                 />
             </div>
         </form>
