@@ -19,7 +19,7 @@ const login = () => {
     const handleGooleLogin = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/google-login'
+                'http://localhost:5000/google'
             );
 
             window.location.href = 'http://' + response.data.href;
