@@ -15,6 +15,7 @@ const VouchersPage = lazy(() => import('./pages/vouchers'));
 const StorePage = lazy(() => import('./pages/stores'));
 const CreateVouchersPage = lazy(() => import('./pages/vouchers/create-vouchers'));
 const CreateStorePage = lazy(() => import('./pages/stores/create-store')); 
+const PaymentPage = lazy(() => import('./pages/payment')); 
 const Error = lazy(() => import('./pages/404')); 
 
 import AuthLayout from './layout/AuthLayout';
@@ -42,6 +43,7 @@ function App() {
                     <Route path="stores" element={<StorePage />} />
                     <Route path="create-vouchers" element={<CreateVouchersPage />} />
                     <Route path="create-store" element={<CreateStorePage />} />
+                    <Route path="payment" element={<PaymentPage />} />
                     <Route path="" element={<Error />} />
                 </Route>
             </Routes>
