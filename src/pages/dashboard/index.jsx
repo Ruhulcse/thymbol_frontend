@@ -1,5 +1,5 @@
 import PricingCard from "@/components/ui/PricingCard";
-// import { FaCheckCircle } from "react-icons/fa";
+//import { FaCheckCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const premium = [
@@ -20,9 +20,7 @@ const Dashboard = () => {
         onClick={() => navigate("/payment")}
       >
         <div className="flex items-center bg-gray-100 my-1   rounded-lg py-1">
-          <span className="text-blue-500 m-2">
-            {/* <FaCheckCircle /> */}
-          </span>
+         
           Create 2 digital coupons
         </div>
       </PricingCard>
@@ -40,9 +38,7 @@ const Dashboard = () => {
             key={i}
             className="flex items-center bg-gray-100 my-1   rounded-lg py-1"
           >
-            <span className="text-blue-500 m-2">
-              {/* <FaCheckCircle /> */}
-            </span>
+           
             {item}
           </div>
         ))}
