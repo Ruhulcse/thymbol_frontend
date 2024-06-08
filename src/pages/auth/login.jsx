@@ -32,15 +32,17 @@ const login = () => {
             <div className="lg-inner-column">
                 <div
                     className="left-column relative z-[1]"
-                    style={{
+                >
+                    <div style={{
                         backgroundImage: `url(${Illustration})`,
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
                         display: 'flex',
                         alignItems: 'center',
-                    }}
-                >
-                    <div className="max-w-[560px] pt-20 ltr:pl-20 rtl:pr-20">
+                    }} className='absolute left-0  h-full w-full z-[-1]'>
+
+                    </div>
+                    <div className="max-w-[560px] h-full flex flex-col justify-center pt-20 ltr:pl-20 rtl:pr-20">
                         <Link to="/">
                             <img
                                 src={isDark ? LogoWhite : Logo}
@@ -52,13 +54,7 @@ const login = () => {
                             Your Real-Time Digital Coupon Platform!
                         </h5>
                     </div>
-                    {/* <div className="absolute left-0 2xl:bottom-[-160px] bottom-[-130px] h-full w-full z-[-1]">
-            <img
-              src={Illustration}
-              alt=""
-              className="h-full w-full object-contain"
-            />
-          </div> */}
+                    
                 </div>
                 <div className="right-column relative">
                     <div className="inner-content h-full flex flex-col bg-white dark:bg-slate-800">
