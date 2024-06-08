@@ -14,7 +14,7 @@ const PricingCard = ({
   headerClass,
   paymentAmount,
   saveCost,
-
+onClick
   
 }) => {
   const [skin] = useSkin();
@@ -59,7 +59,7 @@ const PricingCard = ({
 
       <main className={`card-body mt-16 ${bodyClass}`}>{children}</main>
       <div className="absolute bottom-8 text-center w-full px-8 rounded-lg">
-        <button className="bg-[#0C9AD6] w-full rounded-lg text-white h-12" >Continue</button>
+        <button onClick={onClick} className="bg-[#0C9AD6] w-full rounded-lg text-white h-12" >Continue</button>
       </div>
     </div>
   );
