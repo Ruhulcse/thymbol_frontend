@@ -1,17 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Textinput from '@/components/ui/Textinput';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import Checkbox from '@/components/ui/Checkbox';
 import Button from '@/components/ui/Button';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import Textinput from '@/components/ui/Textinput';
 import { useLoginMutation } from '@/store/api/auth/authApiSlice';
 import { setUser } from '@/store/api/auth/authSlice';
-import toast from 'react-hot-toast';
 import { getUser } from '@/store/api/user/userSlice';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 const schema = yup
     .object({
         email: yup
@@ -40,10 +38,9 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
     const onSubmit = async (data) => {
-      
         try {
             const response = await login(data);
-           // console.log(response);
+            //
             // if (response.error) {
             //     throw new Error(response.error.message);
             // }

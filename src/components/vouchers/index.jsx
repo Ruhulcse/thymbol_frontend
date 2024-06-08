@@ -1,4 +1,5 @@
-import PageHeaderLinks from '../shared/pageHeaderLinks';
+
+import PageHeaderLinks from '@/components/shared/PageHeaderLinks';
 import VouchersDataTable from './dataTable';
 
 const Vouchers = () => {

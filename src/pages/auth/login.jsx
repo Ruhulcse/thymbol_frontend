@@ -19,7 +19,7 @@ const login = () => {
     const handleGooleLogin = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/google'
+                `${import.meta.env.VITE_API_APP_URL}/google`
             );
 
             window.location.href = 'http://' + response.data.href;
