@@ -26,7 +26,7 @@ const Dashboard = () => {
                 <div className="flex items-center bg-gray-100 my-2 p-3">
                     <Icon
                         icon="heroicons-solid:check-circle"
-                        className="me-2 rounded-full"
+                        className="me-2 rounded-full bg-customBlue text-white"
                     />{' '}
                     Create 2 digital coupons
                 </div>
@@ -46,8 +46,8 @@ const Dashboard = () => {
                         className="flex items-center bg-gray-100 my-2 p-3"
                     >
                         <Icon
-                            icon="heroicons:check"
-                            className="me-2 rounded-full"
+                            icon="heroicons-solid:check-circle"
+                            className="me-2 rounded-full bg-customBlue text-white"
                         />
                         {item}
                     </div>
