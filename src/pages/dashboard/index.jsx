@@ -19,7 +19,7 @@ const Dashboard = () => {
         paymentMethod="Free"
         onClick={() => navigate("/payment")}
       >
-        <div className="flex items-center bg-gray-100 my-1   rounded-lg py-1">
+        <div className="flex items-center bg-gray-100 my-1 px-5 rounded-lg py-3">
          
           Create 2 digital coupons
         </div>
@@ -36,7 +36,7 @@ const Dashboard = () => {
         {premium.map((item, i) => (
           <div
             key={i}
-            className="flex items-center bg-gray-100 my-1   rounded-lg py-1"
+            className="flex items-center bg-gray-100 my-1 px-5  rounded-lg py-2"
           >
            
             {item}
