@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import DeleteLogo from '@/assets/images/auth/trash_logo.svg';
-import { swalConfirm, swalError } from '@/util/helpers';
-import toast from 'react-hot-toast';
-import fetchWrapper from '@/util/fetchWrapper';
-import { useSelector } from 'react-redux';
 import { logOut } from '@/store/api/auth/authSlice';
+import fetchWrapper from '@/util/fetchWrapper';
+import { swalConfirm } from '@/util/helpers';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const DeleteUserProfilePage = () => {
@@ -35,11 +35,9 @@ const DeleteUserProfilePage = () => {
     const handleDeleteAccount = async () => {
         try {
             const response = await fetchWrapper.delete(`/user/${user._id}`);
-            if(response) {
-                localStorage.removeItem('auth');
-                dispatch(logOut());
-                navigate('/login');
-            }
+            localStorage.removeItem('auth');
+            dispatch(logOut());
+            navigate('/login');
         } catch (error) {}
     };
     return <></>;

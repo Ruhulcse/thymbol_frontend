@@ -7,4 +7,5 @@ import fashion from './Group 1000005948 (1).png'
 import music from './Group 1000005948 (2).png'
 import person from './Group 1000005948 (3).png'
 import food from './Group 1000005948 (4).png'
+
 export { topBarImage, morocco, soudia, usa, cover,fashion ,music,person,food};

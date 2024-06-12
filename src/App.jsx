@@ -17,6 +17,10 @@ const CreateVouchersPage = lazy(() => import('./pages/vouchers/create-vouchers')
 const CreateStorePage = lazy(() => import('./pages/stores/create-store')); 
 const PaymentPage = lazy(() => import('./pages/payment')); 
 const Error = lazy(() => import('./pages/404')); 
+const AdminUsersPage = lazy(() => import('./pages/adminUsers')); 
+const CreateAdminForm = lazy(() => import('./pages/adminUsers/CreateAdminForm'));  
+const SuccessPage = lazy(() => import('./pages/success')); 
+import Home from './pages/home/Home'
 
 import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
@@ -31,6 +35,7 @@ function App() {
                     <Route path="/" element={<Navigate to="/login" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/home" element={<Home/>}/>
                     <Route path="*" element={<Error />} />
                 </Route>
                 <Route path="/*" element={<Layout />}>
@@ -44,6 +49,9 @@ function App() {
                     <Route path="create-vouchers" element={<CreateVouchersPage />} />
                     <Route path="create-store" element={<CreateStorePage />} />
                     <Route path="payment" element={<PaymentPage />} />
+                    <Route path="admins" element={<AdminUsersPage />} />
+                    <Route path="create-admin" element={<CreateAdminForm />} />
+                    <Route path="success" element={<SuccessPage />} />
                     <Route path="" element={<Error />} />
                 </Route>
             </Routes>

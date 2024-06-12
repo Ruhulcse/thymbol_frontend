@@ -1,4 +1,8 @@
 import { cover, morocco, soudia, topBarImage, usa } from "@/assets/images/home";
+import SingleCard from "@/components/card/SingleCard";
+import FeaturedList from "@/components/featuredCategories/FeaturedList";
+import { spotlight } from "@/data/BusinessSpotlight!";
+//import { featured } from "@/data/featuredData";
 import { IoIosSearch } from "react-icons/io";
 import { IoOptionsOutline } from "react-icons/io5";
 const data = [
@@ -53,11 +57,22 @@ function Home() {
     {/* featured categories */}
     <div className="container mx-auto mt-24">
 
+      <div className="flex justify-between items-baseline">
       <div className="font-bold text-3xl text-black-500">Featured Categories</div>
-      <div>
-
+      <div>See all</div>
       </div>
+      <FeaturedList/>
     </div>
+    {/* Business Spotlight! */}
+    <div className="container mx-auto mt-24">
+      <div className="text-center font-bold text-3xl text-black-500">Business Spotlight!</div>
+     <div className="flex justify-around mt-12 gap-6">
+     {spotlight.map((item,i)=>(
+        <img src={item} key={i} className="lg:max-w-[195px] w-[75px] h-[75px] rounded-full sm:rounded-md sm:max-h-[185px] sm:max-w-[100px] sm:w-full sm:h-full"/>
+      ))}
+     </div>
+    </div>
+    <SingleCard/>
    </div>
   );
 }
