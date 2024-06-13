@@ -1,6 +1,6 @@
 
 
-function SingleFeatured({item}) {
+const SingleFeatured =({item})=> {
   return (
     <div className=" bg-white max-w-[209px] min-w-[88px] w-full max-h-[224px] min-h-[95px] h-full">
       <div className="flex items-center  justify-center flex-col m-12">

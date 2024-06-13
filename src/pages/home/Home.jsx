@@ -2,9 +2,10 @@ import { cover, morocco, soudia, topBarImage, usa } from "@/assets/images/home";
 import SingleCard from "@/components/card/SingleCard";
 import FeaturedList from "@/components/featuredCategories/FeaturedList";
 import { spotlight } from "@/data/BusinessSpotlight!";
+import { Icon } from "@iconify/react";
 //import { featured } from "@/data/featuredData";
-import { IoIosSearch } from "react-icons/io";
-import { IoOptionsOutline } from "react-icons/io5";
+// import { IoIosSearch } from "react-icons/io";
+// import { IoOptionsOutline } from "react-icons/io5";
 const data = [
   {
     name:"Morocco",
@@ -39,10 +40,18 @@ function Home() {
           </span>
           <div className="mt-10 flex space-x-4 font-normal">
             <div className="flex relative w-full">
-            <input type="text" placeholder="Search Location " className="w-full h-16 shadow-lg px-4 rounded-lg" />
-           <div className="absolute inset-0 flex justify-end items-center font-bold pr-2 text-xl text-blue-500"> <IoOptionsOutline /></div>
+            <input type="text" placeholder="Search Location " className="w-full h-16 shadow-lg px-4 rounded-lg z-[50]" />
+           <div className="absolute  top-[50%] -translate-y-[50%] right-0 font-bold pr-2 text-xl text-blue-500 z-[60]">
+            <Icon
+            icon={'heroicons:adjustments-horizontal'}
+            />
+           </div>
             </div>
-             <div className="bg-white shadow-lg h- w-16 flex items-center justify-center text-2xl text-blue-500 rounded-lg"><IoIosSearch /></div>
+             <div className="bg-white shadow-lg h- w-16 flex items-center justify-center text-2xl text-blue-500 rounded-lg">
+             <Icon
+            icon={'heroicons:magnifying-glass'}
+            />
+             </div>
           </div>
         </div>
         <div className="max-w-lg h-80">

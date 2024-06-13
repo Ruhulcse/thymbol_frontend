@@ -1,9 +1,8 @@
 import { Icon } from '@iconify/react'
-import React from 'react'
 import icon from './../../assets/images/home/Group 1000005429.png'
 import img from './../../assets/images/home/Rectangle 34626026 (1).png'
 
-function SingleCard() {
+const SingleCard =()=> {
   return (
     <div className='w-[345px] h-[185px] relative  mt-12 bottom-0'>
         
