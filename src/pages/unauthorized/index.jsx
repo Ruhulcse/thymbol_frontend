@@ -1,6 +1,6 @@
 const UnauthorizedPage = () => {
     return (
-        <div className="flex flex-col items-center justify-center w-screen h-screen gap-12 py-8 ">
+        <div className="app_height flex flex-col items-center justify-center">
             <svg
                 className="h-[50vh] aspect-video"
                 xmlns="http://www.w3.org/2000/svg"
