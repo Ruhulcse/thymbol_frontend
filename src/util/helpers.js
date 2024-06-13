@@ -46,7 +46,7 @@ export function swalConfirm(msg, title, cText, cancleText, icon) {
         return result;
     } catch (e) {
         // Fail!
-        console.error(e);
+
         return false;
     }
 }
@@ -66,7 +66,7 @@ export function swalError(msg, title = 'Oops...') {
         return result;
     } catch (e) {
         // Fail!
-        console.error(e);
+
         return false;
     }
 }
@@ -112,7 +112,7 @@ export function swalSuccess(
         return result;
     } catch (e) {
         // Fail!
-        console.error(e);
+
         return false;
     }
 }
@@ -143,6 +143,5 @@ export function formatTimeOrDate(dateInput) {
 }
 
 export const getFilteredMenuItems = (items, userType) => {
-    console.log("getFilteredMenuItems == items:", items)
     return items.filter((item) => item?.role?.includes(userType));
 };

@@ -1,14 +1,15 @@
 import Icon from '@/components/ui/Icon';
 import useMobileMenu from '@/hooks/useMobileMenu';
+import { selectCurrentUserRole } from '@/store/api/user/userSlice';
+import { getFilteredMenuItems } from '@/util/helpers';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import Submenu from './Submenu';
-import { getFilteredMenuItems } from '@/util/helpers';
 
 const Navmenu = ({ menus }) => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
-    const { userType } = useSelector((state) => state.user.user);
+    const userType = useSelector(selectCurrentUserRole);
     const toggleSubmenu = (i) => {
         if (activeSubmenu === i) {
             setActiveSubmenu(null);
@@ -75,7 +76,6 @@ const Navmenu = ({ menus }) => {
     }, [location]);
 
     const filteredMenuItems = getFilteredMenuItems(menus, userType);
-
 
     return (
         <>
