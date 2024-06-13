@@ -10,8 +10,8 @@ export const humanDate = (timestamp) => {
 };
 
 export const calenderDate = (date) => {
-    return !date ? '' : moment(date).format('MM/DD/YYYY')
-}
+    return !date ? '' : moment(date).format('MM/DD/YYYY');
+};
 
 export const moneyFormatter = (amount, currency = '', precision = 2) => {
     if (amount && !isNaN(amount)) {
@@ -141,3 +141,8 @@ export function formatTimeOrDate(dateInput) {
         return momentDate.format('MMM DD, YYYY');
     }
 }
+
+export const getFilteredMenuItems = (items, userType) => {
+    console.log("getFilteredMenuItems == items:", items)
+    return items.filter((item) => item?.role?.includes(userType));
+};

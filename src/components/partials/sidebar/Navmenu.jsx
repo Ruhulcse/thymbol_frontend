@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Collapse } from 'react-collapse';
 import Icon from '@/components/ui/Icon';
-import { useDispatch } from 'react-redux';
 import useMobileMenu from '@/hooks/useMobileMenu';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
 import Submenu from './Submenu';
+import { getFilteredMenuItems } from '@/util/helpers';
 
 const Navmenu = ({ menus }) => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
-
+    const { userType } = useSelector((state) => state.user.user);
     const toggleSubmenu = (i) => {
         if (activeSubmenu === i) {
             setActiveSubmenu(null);
@@ -63,7 +63,9 @@ const Navmenu = ({ menus }) => {
                 });
             }
         });
-        document.title = `THYMBOL  | ${locationName}`;
+        document.title = `THYMBOL  | ${
+            locationName?.charAt(0).toUpperCase() + locationName?.slice(1)
+        }`;
 
         setActiveSubmenu(submenuIndex);
         setMultiMenu(multiMenuIndex);
@@ -72,10 +74,13 @@ const Navmenu = ({ menus }) => {
         }
     }, [location]);
 
+    const filteredMenuItems = getFilteredMenuItems(menus, userType);
+
+
     return (
         <>
             <ul>
-                {menus.map((item, i) => (
+                {filteredMenuItems?.map((item, i) => (
                     <li
                         key={i}
                         className={` single-sidebar-menu my-3 
