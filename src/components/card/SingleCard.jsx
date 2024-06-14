@@ -4,9 +4,10 @@ import img from './../../assets/images/home/Rectangle 34626026 (1).png'
 
 const SingleCard =()=> {
   return (
-    <div className='w-[345px] h-[185px] relative  mt-12 bottom-0'>
+    <div className='w-[345px] h-[185px] relative  mt-12 bottom-0 shadow-lg'>
         
-        <div className='w-[345px] h-[185px] bg-white'>
+       <div className='h-full w-full'>
+       <div className='w-[345px] h-[185px] bg-white'>
         <img src={icon} alt="" className='absolute top-[-50%] right-5 transform translate-y-[150%]' />
         <div className='grid grid-cols-3 p-3'>
             <div className='w-[100px] h-[94px]'> <img src={img} alt="" className='w-full h-full'/></div>
@@ -25,6 +26,7 @@ const SingleCard =()=> {
             <div className='flex  items-center h-20 w-full justify-start  col-span-2 text-sm'>10 reviews</div>
         </div>
         </div>
+       </div>
 
     </div>
   )

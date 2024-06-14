@@ -1,11 +1,12 @@
 import { cover, morocco, soudia, topBarImage, usa } from "@/assets/images/home";
-import SingleCard from "@/components/card/SingleCard";
+import ViewMore from "@/components/button/viewMore";
+import CardList from "@/components/card/CardList";
 import FeaturedList from "@/components/featuredCategories/FeaturedList";
+import SalonsList from "@/components/salons/SalonsList";
 import { spotlight } from "@/data/BusinessSpotlight!";
+import UserLayout from "@/layout/UserLayout";
 import { Icon } from "@iconify/react";
-//import { featured } from "@/data/featuredData";
-// import { IoIosSearch } from "react-icons/io";
-// import { IoOptionsOutline } from "react-icons/io5";
+
 const data = [
   {
     name:"Morocco",
@@ -20,12 +21,23 @@ const data = [
     image:usa
   }
 ]
+const data1 =[
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  
+]
 
 function Home() {
   return (
-   <div className="bg-[#F3FCFF]">
+  <div className="bg-[#F3FCFF]">
+    <UserLayout/>
+     <div className="">
      <div className="container mx-auto">
-      <div className="  flex justify-between">
+      <div className="  md:flex justify-between ">
         <div className="max-w-lg h-80 font-bold">
           <div className=" text-2xl">
             <span className="text-blue-500">Thymbol</span> - Your One-Stop Stop
@@ -81,8 +93,18 @@ function Home() {
       ))}
      </div>
     </div>
-    <SingleCard/>
+    <div className="lg:container mx-auto mt-24 w-full">
+      <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">Great Deals Near Me</div>
+      <CardList data={data1}/>
+     <ViewMore/>
+    </div>
+    <div className="lg:container mx-auto mt-24 w-full">
+    <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">Restaurants Near Me</div>
+    <SalonsList/>
+    <ViewMore/>
+    </div>
    </div>
+  </div>
   );
 }
 
