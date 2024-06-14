@@ -40,14 +40,6 @@ const LoginForm = () => {
     const onSubmit = async (data) => {
         try {
             const response = await login(data);
-            //
-            // if (response.error) {
-            //     throw new Error(response.error.message);
-            // }
-
-            // if (response.data.data.error) {
-            //     throw new Error(response.data.error);
-            // }
 
             if (!response?.data?.data?.token) {
                 throw new Error('Invalid credentials');
@@ -57,6 +49,7 @@ const LoginForm = () => {
                 setUser({
                     token: response.data.data?.token,
                     user_id: response.data.data?._id,
+                    userType: response.data.data?.userType,
                 })
             );
             dispatch(getUser({ user_id: response.data.data?._id }));
@@ -65,6 +58,7 @@ const LoginForm = () => {
                 JSON.stringify({
                     accessToken: response.data.data?.token,
                     user_id: response.data.data?._id,
+                    userType: response.data.data?.userType,
                 })
             );
             navigate('/dashboard');

@@ -42,5 +42,3 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-
-export const selectCurrentUserRole = state => state.user.user.userType;

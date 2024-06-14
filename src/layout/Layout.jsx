@@ -54,13 +54,11 @@ const Layout = () => {
             setUser({
               token: auth.accessToken,
               user_id: auth.user_id,
-              isLoggedIn: true
+              isLoggedIn: true,
+              userType: auth.userType
             })
           );
           dispatch(getUser({ user_id: auth.user_id }));
-        } else {
-            dispatch(logOut());
-            navigate(0);
         }
       }
       
