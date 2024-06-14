@@ -21,7 +21,7 @@ const Dashboard = () => {
                 headerClass="bg-customBlue"
                 titleClass="text-white"
                 paymentMethod="Free"
-                onClick={() => navigate('/create-store')}
+                onClick={() => navigate('/stores/create-store')}
             >
                 <div className="flex items-center bg-gray-100 my-2 p-3">
                     <Icon

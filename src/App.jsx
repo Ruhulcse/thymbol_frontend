@@ -71,6 +71,8 @@ function App() {
                             path="stores/create-store"
                             element={<CreateStorePage />}
                         />
+                        <Route path="payment" element={<PaymentPage />} />
+                        <Route path="success" element={<SuccessPage />} />
                     </Route>
 
                     <Route
@@ -94,13 +96,11 @@ function App() {
                         />
                         <Route path="scan-qr" element={<ScanQRPage />} />
                         <Route path="analytics" element={<AnalyticsPage />} />
-                        <Route path="payment" element={<PaymentPage />} />
                         <Route path="admins" element={<AdminUsersPage />} />
                         <Route
                             path="admins/create-admin"
                             element={<CreateAdminForm />}
                         />
-                        <Route path="success" element={<SuccessPage />} />
                     </Route>
 
                     <Route path="unauthorized" element={<UnauthorizedPage />} />
