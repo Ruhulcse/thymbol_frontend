@@ -6,7 +6,7 @@ const AdminUsers = () => {
         <>
             <PageHeaderLinks
                 title={'Admins'}
-                link={'create-admin'}
+                link={'admins/create-admin'}
                 buttonText={'Add New Admin'}
             />
 

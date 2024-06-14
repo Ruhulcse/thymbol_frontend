@@ -7,7 +7,7 @@ const Vouchers = () => {
         <>
             <PageHeaderLinks
                 title={'Vouchers'}
-                link={'create-vouchers'}
+                link={'vouchers/create-vouchers'}
                 buttonText={'Create New Voucher'}
             />
 

@@ -64,11 +64,11 @@ function App() {
                         <Route path="vouchers" element={<VouchersPage />} />
                         <Route path="stores" element={<StorePage />} />
                         <Route
-                            path="create-vouchers"
+                            path="vouchers/create-vouchers"
                             element={<CreateVouchersPage />}
                         />
                         <Route
-                            path="create-store"
+                            path="stores/create-store"
                             element={<CreateStorePage />}
                         />
                     </Route>
@@ -97,7 +97,7 @@ function App() {
                         <Route path="payment" element={<PaymentPage />} />
                         <Route path="admins" element={<AdminUsersPage />} />
                         <Route
-                            path="create-admin"
+                            path="admins/create-admin"
                             element={<CreateAdminForm />}
                         />
                         <Route path="success" element={<SuccessPage />} />

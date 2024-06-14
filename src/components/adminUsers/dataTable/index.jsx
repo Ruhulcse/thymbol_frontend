@@ -49,7 +49,6 @@ const AdminUserDataTable = () => {
             Header: 'Enable/Disable',
             accessor: 'action',
             Cell: (row) => {
-                console.log(row?.cell?.row?.original);
                 const isEnable =
                     row?.cell?.row?.original?.userStatus === 'Active'
                         ? true

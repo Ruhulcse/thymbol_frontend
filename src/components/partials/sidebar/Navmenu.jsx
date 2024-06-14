@@ -1,11 +1,11 @@
 import Icon from '@/components/ui/Icon';
 import useMobileMenu from '@/hooks/useMobileMenu';
+import { selectCurrentUserRole } from '@/store/api/auth/authSlice';
 import { getFilteredMenuItems } from '@/util/helpers';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import Submenu from './Submenu';
-import { selectCurrentUserRole } from '@/store/api/auth/authSlice';
 
 const Navmenu = ({ menus }) => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -86,7 +86,7 @@ const Navmenu = ({ menus }) => {
                         className={` single-sidebar-menu my-3 
               ${item.child ? 'item-has-children' : ''}
               ${activeSubmenu === i ? 'open' : ''}
-              ${locationName === item.link ? 'menu-item-active' : ''}`}
+              ${locationName.includes(item.link) ? 'menu-item-active' : ''}`}
                     >
                         {/* single menu with no childred*/}
                         {!item.child && !item.isHeadr && (

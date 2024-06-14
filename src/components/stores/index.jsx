@@ -6,7 +6,7 @@ const Stores = () => {
         <>
             <PageHeaderLinks
                 title={'Stores'}
-                link={'create-store'}
+                link={'stores/create-store'}
                 buttonText={'Create New Store'}
             />
 
