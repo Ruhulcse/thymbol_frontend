@@ -130,15 +130,7 @@ const Layout = () => {
                                 }}
                             >
                                 {/* <Breadcrumbs /> */}
-                                {token ? (
-                                    <Outlet />
-                                ) : (
-                                    <Navigate
-                                        to="/login"
-                                        state={{ from: location }}
-                                        replace
-                                    />
-                                )}
+                                <Outlet />
                             </motion.div>
                         </Suspense>
                     </div>
