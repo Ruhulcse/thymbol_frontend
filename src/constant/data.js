@@ -71,6 +71,27 @@ export const menuItems = [
     // },
 ];
 
+export const navLink = [
+    {
+        name:"Home",
+        link:'/'
+    },
+    {
+        name:"Favourites",
+        link:'/favourites'
+    },
+    {
+        name:"Clipped Deals",
+        link:'/clippedDeals'
+    },
+    {
+        name:"Subscription",
+        link:'/subscription'
+    },
+]
+
+
+
 export const colors = {
     primary: '#4669FA',
     secondary: '#A0AEC0',
@@ -99,3 +120,5 @@ export const hexToRGB = (hex, alpha) => {
         return 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
 };
+
+

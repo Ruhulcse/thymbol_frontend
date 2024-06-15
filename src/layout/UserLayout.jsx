@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from './../assets/images/home/Thymbol Logo.png'
 import Profile from "@/components/partials/header/Tools/Profile";
-import { navLink } from "@/constant/navLink";
+import { navLink } from "@/constant/data";
 import { Icon } from "@iconify/react";
-
+import useCurrentWidth from "@/hooks/useCurrentWidth";
 function UserLayout() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [sidebar,setSidebar] = useState(true)
-  return (
+  const [sidebar,setSidebar] = useState(null)
+  const currentWidth = useCurrentWidth()
+
+  useEffect(()=>{
+    setSidebar(currentWidth>=1024?true:false)
+  },[currentWidth])
+  //console.log(sidebar);
+   return (
     <div className="bg-blue-400 relative">
       <span onClick={()=>setSidebar(!sidebar)}>
       <Icon className="absolute top-[50%] -translate-y-[50%] text-white text-2xl cursor-pointer left-5 lg:hidden"
@@ -27,10 +33,13 @@ function UserLayout() {
       <Link key={i}
       to={item.path}
       onClick={() => {setActiveIndex(i)}}
-       className={` px-6 rounded-md py-2 m-1 ${activeIndex===i?'bg-white text-black-500':'text-white'} `}>
+       className={` px-6 rounded-md hover:text-black-500 hover:bg-white py-2 m-1 ${activeIndex===i?'bg-white text-black-500':'text-white'} `}>
         {item.name}
       </Link>
     ))}
+    <Link to={'/'} 
+       className={` px-6 rounded-md py-2 m-1 hover:text-black-500 hover:bg-white text-white lg:hidden block`}>Profile</Link>
+    <Link to={'/'} className=" px-6 hover:text-black-500 hover:bg-white rounded-md py-2 m-1 text-white lg:hidden block">Log Out</Link>
   </div>
   <div className="hidden md:flex">
     <Profile />
