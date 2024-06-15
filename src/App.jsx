@@ -23,13 +23,13 @@ const AdminUsersPage = lazy(() => import('./pages/adminUsers'));
 const CreateAdminForm = lazy(() => import('./pages/adminUsers/CreateAdminForm'));  
 const SuccessPage = lazy(() => import('./pages/success')); 
 const UnauthorizedPage = lazy(() => import('./pages/unauthorized'));
-
+const Home = lazy(()=>import('./pages/home'))
 
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
 import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
-
+//import Home from '@/pages/home/Home';
 
 
 function App() {
@@ -37,9 +37,10 @@ function App() {
         <main className="App  relative">
             <Routes>
                 <Route path="/" element={<AuthLayout />}>
-                    <Route path="/" element={<Navigate to="/login" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/home" element={<Home/>}/>
                     <Route path="*" element={<Error />} />
                 </Route>
                 <Route path="/*" element={<Layout />}>
