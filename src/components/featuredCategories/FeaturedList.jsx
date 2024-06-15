@@ -4,7 +4,7 @@ import { featured } from "@/data/featuredData"
 
 const FeaturedList =() => {
   return (
-    <div className="flex justify-between gap-4 mt-12 overflow-x-auto">
+    <div className="flex  gap-4 mt-12 overflow-x-auto">
       {featured.map((item,i)=>(
         <SingleFeatured item={item} key={i}/>
       ))}

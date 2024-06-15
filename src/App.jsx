@@ -30,6 +30,8 @@ import { ROLES } from './constant/userRoles';
 import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
 
+import Home from '@/pages/home/Home';
+
 function App() {
     return (
         <main className="App  relative">
@@ -38,6 +40,7 @@ function App() {
                     <Route path="/" element={<Navigate to="/login" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/home" element={<Home/>}/>
                     <Route path="*" element={<Error />} />
                 </Route>
                 <Route path="/*" element={<Layout />}>

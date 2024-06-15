@@ -73,14 +73,14 @@ function Home() {
     <div className="container mx-auto mt-24">
 
       <div className="flex justify-between items-baseline">
-      <div className="font-bold text-3xl text-black-500">Featured Categories</div>
+      <div className="font-bold md:text-2xl lg:text-3xl text-black-500 text-xl ">Featured Categories</div>
       <div>See all</div>
       </div>
       <FeaturedList/>
     </div>
     {/* Business Spotlight! */}
     <div className="container mx-auto mt-24">
-      <div className="text-center font-bold text-3xl text-black-500">Business Spotlight!</div>
+      <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">Business Spotlight!</div>
      <div className="flex justify-around mt-12 gap-6">
      {spotlight.map((item,i)=>(
         <img src={item} key={i} className="lg:max-w-[195px] w-[75px] h-[75px] rounded-full sm:rounded-md sm:max-h-[185px] sm:max-w-[100px] sm:w-full sm:h-full"/>
