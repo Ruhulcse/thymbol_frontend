@@ -29,10 +29,10 @@ const schema = yup
     .object({
         store_name: yup.string().required('Store Name is required'),
         store_address: yup.string().required('Store Address is required'),
-        website_link: yup.string().required('Website Link is required'),
+        website_link: yup.string().url('Website Link must be a valid URL. https://example.com'),
         social_media_link: yup
             .string()
-            .required('Social Media Link is required'),
+            .url('Website Link must be a valid URL. https://example.com'),
         business_hours: yup.string().required('Business Hours is required'),
         postal_code: yup.string().required('Postal Code is required'),
         category: yup.object().required('Category is required').nullable(),
@@ -40,8 +40,7 @@ const schema = yup
             .object()
             .required('Sub-category is required')
             .nullable(),
-        // country: yup.object().required('Country is required').nullable(),
-        // city: yup.object().required('City is required').nullable(),
+       
     })
     .required();
 

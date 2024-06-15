@@ -25,8 +25,8 @@ const styles = {
     }),
 };
 
-const discounts = Array.from({ length: 19 }, (_, index) => {
-    const discount = (index + 1) * 5;
+const discounts = Array.from({ length: 16 }, (_, index) => {
+    const discount = (index + 1 + 3) * 5;
     return { value: discount.toString(), label: discount.toString() };
 });
 

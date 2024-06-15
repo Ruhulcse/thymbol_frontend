@@ -10,8 +10,8 @@ export const humanDate = (timestamp) => {
 };
 
 export const calenderDate = (date) => {
-    return !date ? '' : moment(date).format('MM/DD/YYYY')
-}
+    return !date ? '' : moment(date).format('MM/DD/YYYY');
+};
 
 export const moneyFormatter = (amount, currency = '', precision = 2) => {
     if (amount && !isNaN(amount)) {
@@ -46,7 +46,7 @@ export function swalConfirm(msg, title, cText, cancleText, icon) {
         return result;
     } catch (e) {
         // Fail!
-        console.error(e);
+
         return false;
     }
 }
@@ -66,7 +66,7 @@ export function swalError(msg, title = 'Oops...') {
         return result;
     } catch (e) {
         // Fail!
-        console.error(e);
+
         return false;
     }
 }
@@ -112,7 +112,7 @@ export function swalSuccess(
         return result;
     } catch (e) {
         // Fail!
-        console.error(e);
+
         return false;
     }
 }
@@ -141,3 +141,7 @@ export function formatTimeOrDate(dateInput) {
         return momentDate.format('MMM DD, YYYY');
     }
 }
+
+export const getFilteredMenuItems = (items, userType) => {
+    return items.filter((item) => item?.role?.includes(userType));
+};

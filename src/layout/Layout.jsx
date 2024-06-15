@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 import Loading from '@/components/Loading';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
-import { selectCurrentToken, setUser } from '@/store/api/auth/authSlice';
+import { logOut, selectCurrentToken, setUser } from '@/store/api/auth/authSlice';
 import { getUser } from '@/store/api/user/userSlice';
 import { useDispatch } from 'react-redux';
 const Layout = () => {
@@ -54,7 +54,8 @@ const Layout = () => {
             setUser({
               token: auth.accessToken,
               user_id: auth.user_id,
-              isLoggedIn: true
+              isLoggedIn: true,
+              userType: auth.userType
             })
           );
           dispatch(getUser({ user_id: auth.user_id }));
@@ -129,15 +130,7 @@ const Layout = () => {
                                 }}
                             >
                                 {/* <Breadcrumbs /> */}
-                                {token ? (
-                                    <Outlet />
-                                ) : (
-                                    <Navigate
-                                        to="/login"
-                                        state={{ from: location }}
-                                        replace
-                                    />
-                                )}
+                                <Outlet />
                             </motion.div>
                         </Suspense>
                     </div>

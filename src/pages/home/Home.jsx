@@ -5,7 +5,7 @@ import FeaturedList from "@/components/featuredCategories/FeaturedList";
 import SalonsList from "@/components/salons/SalonsList";
 import { spotlight } from "@/data/BusinessSpotlight!";
 import { greatDealsData } from "@/data/cardData";
-import UserLayout from "@/layout/UserLayout";
+//import UserLayout from "@/layout/UserLayout";
 import { Icon } from "@iconify/react";
 
 const data = [
@@ -26,8 +26,8 @@ const data = [
 
 function Home() {
   return (
-  <div className="bg-[#F3FCFF]">
-    <UserLayout/>
+  <div className="bg-[#F3FCFF] ">
+    
      <div className="">
      <div className="container mx-auto">
       <div className="  md:flex justify-between ">
@@ -93,7 +93,7 @@ function Home() {
       <div className="md:hidden">see all</div>
       </div>
       <CardList data={greatDealsData}/>
-     <ViewMore className={'hidden lg:flex'}/>
+     <ViewMore className={'hidden md:flex'}/>
     </div>
     <div className="lg:container mx-auto mt-24 w-full">
     <div className="flex md:flex-none justify-between md:block px-4">
@@ -101,7 +101,7 @@ function Home() {
       <div className="md:hidden">see all</div>
       </div>
     <SalonsList/>
-    <ViewMore className='hidden '/>
+    <ViewMore className='hidden md:flex'/>
     </div>
    </div>
   </div>

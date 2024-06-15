@@ -3,46 +3,53 @@ export const menuItems = [
         isHeadr: true,
         title: '',
     },
-
     {
         title: 'Packages',
         icon: 'heroicons-outline:gift',
         link: 'dashboard',
+        role: ['supperadmin', 'consumer', 'merchant'],
     },
     {
         title: 'Stores',
         icon: 'heroicons-outline:building-storefront',
         link: 'stores',
+        role: ['supperadmin', 'admin', 'consumer', 'merchant'],
     },
     {
         title: 'Vouchers',
         icon: 'heroicons-outline:ticket',
         link: 'vouchers',
+        role: ['supperadmin', 'admin', 'consumer', 'merchant'],
     },
     {
         title: 'Analytics',
         icon: 'heroicons-outline:arrow-trending-up',
         link: 'analytics',
+        role: ['supperadmin', 'consumer', 'merchant'],
     },
     {
         title: 'Notifications',
         icon: 'heroicons-outline:bell-alert',
         link: 'notifications',
+        role: ['supperadmin', 'consumer', 'merchant'],
     },
     {
         title: 'Admins',
         icon: 'heroicons-outline:users',
         link: 'admins',
+        role: ['supperadmin', 'consumer', 'merchant'],
     },
     {
         title: 'Scan QR Code',
         icon: 'heroicons-outline:qr-code',
         link: 'scan-qr',
+        role: ['supperadmin', 'consumer', 'merchant'],
     },
     {
         title: 'Delete Account',
         icon: 'heroicons-outline:trash',
         link: 'delete-account',
+        role: ['supperadmin', 'consumer', 'merchant'],
     },
     // {
     //   title: "Multi Level",

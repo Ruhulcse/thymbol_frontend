@@ -25,7 +25,6 @@ const schema = yup
                 /^(\+?\d{1,3}[- ]?)?\d{10}$/,
                 'Phone Number must be a valid phone number'
             ),
-        address: yup.string().required('Address is required'),
         password: yup
             .string()
             .min(8, 'Password must be at least 8 characters')
@@ -111,15 +110,6 @@ const RegForm = () => {
                 placeholder="Enter your Phone Number"
                 register={register}
                 error={errors.phoneNumber}
-                className="h-[48px]"
-            />
-            <Textinput
-                name="address"
-                label="Address"
-                type="text"
-                placeholder="Enter your Address"
-                register={register}
-                error={errors.address}
                 className="h-[48px]"
             />
             <Textinput

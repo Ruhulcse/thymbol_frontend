@@ -3,6 +3,7 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import rollupReplace from "@rollup/plugin-replace";
+import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -25,5 +26,17 @@ export default defineConfig({
     }),
     react(),
     reactRefresh(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: [],
+      manifest: {
+        name: 'My PWA App',
+        short_name: 'PWA App',
+        description: 'My awesome Progressive Web App!',
+        theme_color: '#ffffff',
+        icons: [
+        ]
+      }
+    })
   ],
 });

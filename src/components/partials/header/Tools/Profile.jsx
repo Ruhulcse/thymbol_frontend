@@ -40,8 +40,6 @@ const Profile = () => {
     const { user } = useSelector((state) => state.user);
 
     const handleLogout = () => {
-        // Clear user data from local storage
-        localStorage.removeItem('auth');
         dispatch(logOut());
         navigate('/login');
     };
