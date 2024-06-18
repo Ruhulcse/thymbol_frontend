@@ -17,28 +17,24 @@ const login = () => {
 
     const handleGooleLogin = async () => {
         try {
-            window.location.href = `${import.meta.env.VITE_API_APP_URL}/google`
-        } catch (error) {
-            
-        }
+            window.location.href = `${import.meta.env.VITE_API_APP_URL}/google`;
+        } catch (error) {}
     };
-    console.log('hello world!!!')
 
     return (
         <div className="loginwrapper">
             <div className="lg-inner-column">
-                <div
-                    className="left-column relative z-[1]"
-                >
-                    <div style={{
-                        backgroundImage: `url(${Illustration})`,
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        display: 'flex',
-                        alignItems: 'center',
-                    }} className='absolute left-0  h-full w-full z-[-1]'>
-
-                    </div>
+                <div className="left-column relative z-[1]">
+                    <div
+                        style={{
+                            backgroundImage: `url(${Illustration})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}
+                        className="absolute left-0  h-full w-full z-[-1]"
+                    ></div>
                     <div className="max-w-[560px] h-full flex flex-col justify-center pt-20 ltr:pl-20 rtl:pr-20">
                         <Link to="/">
                             <img
@@ -51,7 +47,6 @@ const login = () => {
                             Your Real-Time Digital Coupon Platform!
                         </h5>
                     </div>
-                    
                 </div>
                 <div className="right-column relative">
                     <div className="inner-content h-full flex flex-col bg-white dark:bg-slate-800">

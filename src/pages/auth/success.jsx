@@ -1,24 +1,44 @@
+import Loading from '@/components/Loading';
+import { setUser } from '@/store/api/auth/authSlice';
+import { getUser } from '@/store/api/user/userSlice';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 const AuthSuccess = () => {
-    const navigate = useNavigate ();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     useEffect(() => {
-        // Get the user data from the URL query parameters
         const params = new URLSearchParams(window.location.search);
-        const user = params.get('user');
-    
-        if (user) {
-          // Store the user data in local storage
-          localStorage.setItem('user', user);
-          // Redirect to the dashboard
-          navigate('/dashboard');
-        } else {
-          // Redirect to login if no user data is found
-          navigate('/login');
-        }
-      }, [navigate]);
+        const user = JSON.parse(params.get('user'));
 
-    return <div>Loading...</div>;
+        if (user) {
+            dispatch(
+                setUser({
+                    token: user?.token,
+                    user_id: user?._id,
+                    userType: user?.userType,
+                })
+            );
+            dispatch(getUser({ user_id: user?._id }));
+            localStorage.setItem(
+                'auth',
+                JSON.stringify({
+                    accessToken: user?.token,
+                    user_id: user?._id,
+                    userType: user?.userType,
+                })
+            );
+            navigate('/dashboard');
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
+
+    return (
+        <>
+            <Loading />
+        </>
+    );
 };
 
 export default AuthSuccess;
