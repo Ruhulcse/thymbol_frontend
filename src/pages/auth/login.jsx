@@ -9,7 +9,6 @@ import LogoWhite from '@/assets/images/logo/logo-white.svg';
 // import Illustration from "@/assets/images/auth/ils1.svg";
 import Illustration from '@/assets/images/auth/ils1.png';
 import Logo from '@/assets/images/auth/logo_login.png';
-import axios from 'axios';
 
 const login = () => {
     const [isDark] = useDarkMode();
@@ -18,14 +17,12 @@ const login = () => {
 
     const handleGooleLogin = async () => {
         try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_APP_URL}/google`
-            );
-
-            window.location.href = 'http://' + response.data.href;
-        } catch (error) {}
+            window.location.href = `${import.meta.env.VITE_API_APP_URL}/google`
+        } catch (error) {
+            
+        }
     };
-
+    console.log('hello world!!!')
 
     return (
         <div className="loginwrapper">

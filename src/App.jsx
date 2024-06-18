@@ -6,6 +6,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/auth/login'));
 const Signup = lazy(() => import('./pages/auth/register'));
+const GoogleLogInSuccess = lazy(()=> import ('./pages/auth/success'));
 const EditProfile = lazy(() => import('./pages/user/editProfile'));
 const DeleteUserProfilePage = lazy(() =>
     import('./pages/user/deleteUserProfile')
@@ -106,6 +107,7 @@ function App() {
                     <Route path="unauthorized" element={<UnauthorizedPage />} />
                     <Route path="*" element={<Error />} />
                 </Route>
+                <Route path='auth/success' element={<GoogleLogInSuccess/>}> </Route>
             </Routes>
         </main>
     );
