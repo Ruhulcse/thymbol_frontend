@@ -24,7 +24,7 @@ const data = [
 
 function SalonsList() {
   return (
-    <div className='overflow-x-auto flex gap-4 justify-around mt-12 m-12'>
+    <div className='overflow-x-auto flex gap-4 justify-around mt-12 mx-12'>
         {data.map((item,i)=>(
             <SalonsCard item={item} key={i}/>
         ))}
