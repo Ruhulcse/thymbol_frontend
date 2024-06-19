@@ -3,7 +3,7 @@ import logo from './../../assets/images/home/Group 1000005441.png'
 function SalonsCard({item}) {
   return (
    <div>
-    <div className='w-64 h-72 bg-white'>
+    <div className='w-[300px] h-72 bg-white'>
        <div className='flex justify-center  mx-auto content-center justify-items-center py-4'>
        <div className='h-36 w-36 rounded-full'><img src={item.image} className='h-full w-full rounded-full'/></div>
        </div>

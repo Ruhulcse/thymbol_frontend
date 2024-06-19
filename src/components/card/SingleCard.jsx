@@ -15,7 +15,7 @@ const SingleCard =({item})=> {
                 <div className='text-base font-bold'>{item.title}</div>
                 <div className='text-sm'>{item.body}</div>
             </div>
-            <div className='flex  items-center h-20 w-full justify-start px-4'>
+            <div className='flex  items-center h-20 w-full justify-start px-1'>
                 <Icon
                 icon="heroicons:star-solid"
                 className='text-yellow-500  text-xl'

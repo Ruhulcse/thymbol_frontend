@@ -5,6 +5,7 @@ import FeaturedList from "@/components/featuredCategories/FeaturedList";
 import SalonsList from "@/components/salons/SalonsList";
 import { spotlight } from "@/data/BusinessSpotlight!";
 import { greatDealsData } from "@/data/cardData";
+import UserLayout from "@/layout/UserLayout";
 //import UserLayout from "@/layout/UserLayout";
 import { Icon } from "@iconify/react";
 
@@ -27,8 +28,8 @@ const data = [
 function Home() {
   return (
   <div className="bg-[#F3FCFF] ">
-    
-     <div className="">
+    <UserLayout/>
+     <div className="mt-16">
      <div className="container mx-auto">
       <div className="  md:flex justify-between ">
         <div className="max-w-lg sm:h-80 font-bold ">
@@ -43,7 +44,7 @@ function Home() {
               <span className="flex gap-1 items-center"><img src={item.image}/>{item.name}</span>
             ))}
           </span>
-          <div className="sm:mt-10 flex space-x-4 font-normal mt-[-17px] sm:justify-start justify-center ">
+          <div className="sm:mt-10 flex space-x-4 font-normal mt-[-81px] sm:justify-start justify-center ">
             <div className="flex relative w-[60%] ">
             <input type="text" placeholder="Search Location " className="w-full sm:h-16 h-8 shadow-lg px-4 rounded-lg z-[50] " />
            <div className="absolute  top-[50%] -translate-y-[50%] right-0 font-bold pr-2 text-xl text-blue-500
@@ -88,7 +89,7 @@ function Home() {
      </div>
     </div>
     <div className="lg:container mx-auto mt-24 w-full">
-      <div className="flex md:flex-none justify-between md:block px-4">
+      <div className="flex md:flex-none justify-between md:block  mx-12">
       <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">Great Deals Near Me</div>
       <div className="md:hidden">see all</div>
       </div>
@@ -96,8 +97,16 @@ function Home() {
      <ViewMore className={'hidden md:flex'}/>
     </div>
     <div className="lg:container mx-auto mt-24 w-full">
-    <div className="flex md:flex-none justify-between md:block px-4">
+    <div className="flex md:flex-none justify-between md:block mx-12">
       <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">Restaurants Near Me</div>
+      <div className="md:hidden">see all</div>
+      </div>
+    <SalonsList/>
+    <ViewMore className='hidden md:flex'/>
+    </div>
+    <div className="lg:container mx-auto mt-24 w-full ">
+    <div className="flex md:flex-none justify-between md:block mx-12">
+      <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">Salons Near Me </div>
       <div className="md:hidden">see all</div>
       </div>
     <SalonsList/>

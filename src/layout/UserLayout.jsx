@@ -38,8 +38,8 @@ function UserLayout() {
       </Link>
     ))}
     <Link to={'/'} 
-       className={` px-6 rounded-md py-2 m-1 hover:text-black-500 hover:bg-white text-white lg:hidden block`}>Profile</Link>
-    <Link to={'/'} className=" px-6 hover:text-black-500 hover:bg-white rounded-md py-2 m-1 text-white lg:hidden block">Log Out</Link>
+       className={` px-6 rounded-md py-2 m-1 hover:text-black-500 hover:bg-white text-white md:hidden block`}>Profile</Link>
+    <Link to={'/'} className=" px-6 hover:text-black-500 hover:bg-white rounded-md py-2 m-1 text-white md:hidden block">Log Out</Link>
   </div>
   <div className="hidden md:flex">
     <Profile />
