@@ -128,4 +128,15 @@ export const hexToRGB = (hex, alpha) => {
     }
 };
 
+ export const infoIcon = [
+    {
+        icon:'heroicons:map-pin'
+    },
+    {
+        icon:'heroicons:phone'
+    },
+    {
+        icon:'heroicons:share'
+    },
+]
 

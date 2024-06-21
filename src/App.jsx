@@ -24,6 +24,7 @@ const CreateAdminForm = lazy(() => import('./pages/adminUsers/CreateAdminForm'))
 const SuccessPage = lazy(() => import('./pages/success')); 
 const UnauthorizedPage = lazy(() => import('./pages/unauthorized'));
 const Home = lazy(()=>import('./pages/home'))
+const Merchant = lazy(()=>import('./pages/merchant'))
 
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/home" element={<Home/>}/>
+                    <Route path="/merchant" element={<Merchant/>}/>
                     <Route path="*" element={<Error />} />
                 </Route>
                 <Route path="/*" element={<Layout />}>

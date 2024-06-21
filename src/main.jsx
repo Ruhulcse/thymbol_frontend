@@ -8,6 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 import 'react-data-grid/lib/styles.css';
 import { Provider } from 'react-redux';
 import store from './store';
+import 'react-modal-video/css/modal-video.min.css';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <>
