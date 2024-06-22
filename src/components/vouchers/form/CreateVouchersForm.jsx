@@ -30,12 +30,10 @@ const discounts = Array.from({ length: 16 }, (_, index) => {
     return { value: discount.toString(), label: discount.toString() };
 });
 
-const additionalDiscounts = [
+const offers = [
     { value: 'Buy One Get One Free', label: 'Buy One Get One Free' },
     { value: 'Buy One Get One Half Off', label: 'Buy One Get One Half Off' },
 ];
-
-const allDiscounts = [...additionalDiscounts, ...discounts];
 
 const offersReedem = Array.from({ length: 20 }, (_, index) => {
     const offerCount = index + 1;
@@ -55,8 +53,9 @@ const schema = yup
     .required();
 
 const CreateVouchersForm = () => {
-    const discountsMemo = useMemo(() => allDiscounts, []);
+    const discountsMemo = useMemo(() => discounts, []);
     const offersReedemMemo = useMemo(() => offersReedem, []);
+    const offersMemo = useMemo(() => offers, []);
     const { user_id } = useSelector((state) => state.auth);
     const { data: stores, isLoading: loadingStores } =
         useGetStoresQuery(user_id);
@@ -90,6 +89,7 @@ const CreateVouchersForm = () => {
             storeName: data.storeName.label,
             redeemLimit: data.redeemLimit.value,
             condition: data.condition,
+            offer: data.offer.value,
         };
         formData.append('voucherData', JSON.stringify(jsonData));
         await createVoucher({
@@ -122,6 +122,32 @@ const CreateVouchersForm = () => {
                 )}
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
+                <div>
+                    <label htmlFor="offer" className="form-label ">
+                        Offer
+                    </label>
+                    <Controller
+                        name="offer"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={offersMemo?.map((offer) => ({
+                                    value: offer.value,
+                                    label: offer.label,
+                                }))}
+                                styles={styles}
+                            />
+                        )}
+                    />
+                    {errors.offer && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.offer.message}
+                        </p>
+                    )}
+                </div>
                 <div>
                     <label htmlFor="discount" className="form-label ">
                         Discount %
@@ -245,6 +271,7 @@ const CreateVouchersForm = () => {
                     error={errors.condition}
                     className="h-[48px]"
                 />
+                <div></div>
 
                 <Button
                     type="submit"
