@@ -29,18 +29,19 @@ const schema = yup
     .object({
         store_name: yup.string().required('Store Name is required'),
         store_address: yup.string().required('Store Address is required'),
-        website_link: yup.string().url('Website Link must be a valid URL. https://example.com'),
+        website_link: yup
+            .string()
+            .url('Website Link must be a valid URL. https://example.com'),
         social_media_link: yup
             .string()
             .url('Website Link must be a valid URL. https://example.com'),
-        business_hours: yup.string().required('Business Hours is required'),
+        business_hours: yup.object().required('Business Hours is required').nullable(),
         postal_code: yup.string().required('Postal Code is required'),
         category: yup.object().required('Category is required').nullable(),
         sub_category: yup
             .object()
             .required('Sub-category is required')
             .nullable(),
-       
     })
     .required();
 
@@ -86,7 +87,7 @@ const CreateStoreForm = () => {
         setValue,
     } = useForm({
         resolver: yupResolver(schema),
-        mode: 'onChange',
+        mode: 'all',
     });
 
     const navigate = useNavigate();
@@ -106,7 +107,7 @@ const CreateStoreForm = () => {
                 },
                 website_link: data.website_link,
                 social_media_link: data.social_media_link,
-                business_hours: data.business_hours,
+                business_hours: data.business_hours.value,
                 location: {
                     type: 'Point',
                     coordinates: [105, 106],
@@ -355,7 +356,7 @@ const CreateStoreForm = () => {
                         setValue('social_media_link', e.target.value);
                     }}
                 />
-                <Textinput
+                {/* <Textinput
                     name="business_hours"
                     label="Business Hours"
                     type="text"
@@ -366,7 +367,35 @@ const CreateStoreForm = () => {
                     onChange={(e) => {
                         setValue('business_hours', e.target.value);
                     }}
-                />
+                /> */}
+                <div>
+                    <label htmlFor="business_hours" className="form-label ">
+                        business_hours
+                    </label>
+                    <Controller
+                        name="business_hours"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={[
+                                    {
+                                        label: 'Sunday - Friday 9am - 11pm',
+                                        value: 'sunday - friday 9am - 11pm',
+                                    },
+                                ]}
+                                styles={styles}
+                            />
+                        )}
+                    />
+                    {errors.business_hours && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.business_hours.message}
+                        </p>
+                    )}
+                </div>
                 <Textinput
                     name="postal_code"
                     label="Postal Code"

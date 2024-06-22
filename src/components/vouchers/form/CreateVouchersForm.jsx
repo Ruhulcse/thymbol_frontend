@@ -30,6 +30,13 @@ const discounts = Array.from({ length: 16 }, (_, index) => {
     return { value: discount.toString(), label: discount.toString() };
 });
 
+const additionalDiscounts = [
+    { value: 'Buy One Get One Free', label: 'Buy One Get One Free' },
+    { value: 'Buy One Get One Half Off', label: 'Buy One Get One Half Off' },
+];
+
+const allDiscounts = [...additionalDiscounts, ...discounts];
+
 const offersReedem = Array.from({ length: 20 }, (_, index) => {
     const offerCount = index + 1;
     return { value: offerCount.toString(), label: offerCount.toString() };
@@ -48,7 +55,7 @@ const schema = yup
     .required();
 
 const CreateVouchersForm = () => {
-    const discountsMemo = useMemo(() => discounts, []);
+    const discountsMemo = useMemo(() => allDiscounts, []);
     const offersReedemMemo = useMemo(() => offersReedem, []);
     const { user_id } = useSelector((state) => state.auth);
     const { data: stores, isLoading: loadingStores } =

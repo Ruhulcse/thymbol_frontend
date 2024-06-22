@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Textinput from '@/components/ui/Textinput';
 import Button from '@/components/ui/Button';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import Checkbox from '@/components/ui/Checkbox';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRegisterUserMutation } from '@/store/api/auth/authApiSlice';
-import toast from 'react-hot-toast';
-import Card from '@/components/ui/Card';
+import Textinput from '@/components/ui/Textinput';
 import { getUser } from '@/store/api/user/userSlice';
 import fetchWrapper from '@/util/fetchWrapper';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import * as yup from 'yup';
 
 const schema = yup
     .object({
@@ -32,33 +30,66 @@ const schema = yup
     })
     .required();
 
+const genderOptions = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+];
+
+const styles = {
+    option: (provided, state) => ({
+        ...provided,
+        fontSize: '14px',
+    }),
+    control: (provided, state) => ({
+        ...provided,
+        // fontSize: "14px",
+        padding: '4px 6px',
+    }),
+};
+
 const UserProfileForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.user);
+    const { user, loading } = useSelector((state) => state.user);
     const {
         register,
         formState: { errors },
         handleSubmit,
         reset,
         setValue,
+        control,
     } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             ...user,
         },
-        mode: 'onChange',
+        mode: 'all',
     });
+
+    useEffect(() => {
+        if (user) {
+            setValue('gender', genderOptions.find(option => option.value === user.gender));
+        }
+    }, [user, setValue]);
 
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         setIsLoading(true);
         try {
-            const response = await fetchWrapper.put(`user/${user?._id}`, data);
+            const payload = {
+                ...data,
+                gender: data.gender.value,
+            };
+            const response = await fetchWrapper.put(
+                `user/${user?._id}`,
+                payload
+            );
             if (response) {
                 setIsLoading(false);
                 toast.success('Profile updated successfully');
                 dispatch(getUser({ user_id: user?._id }));
+                navigate('/dashboard');
             }
         } catch (error) {
             toast.error(error);
@@ -134,7 +165,33 @@ const UserProfileForm = () => {
                     }}
                 />
 
-                <div></div>
+                <div>
+                    <label htmlFor="gender" className="form-label ">
+                        Gender
+                    </label>
+                    <Controller
+                        name="gender"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={genderOptions?.map((gender) => ({
+                                    value: gender.value,
+                                    label: gender.label,
+                                }))}
+                                isLoading={loading}
+                                styles={styles}
+                            />
+                        )}
+                    />
+                    {errors.gender && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.gender.message}
+                        </p>
+                    )}
+                </div>
 
                 <Button
                     type="submit"
