@@ -6,28 +6,32 @@ export const voucherData = [
         title:'Gourmet Aveny',
         body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat veritatis fugiat esse quijfjfj kfj quasi',
         sellOff:'25',
-        image:img
+        image:img,
+        user:'Diva noce'
 
     },
     {
         title:'Gourmet Aveny',
         body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat veritatis fugiat esse quijfjfj kfj quasi',
         sellOff:'25',
-        image:img1
+        image:img1,
+        user:'Diva noce'
 
     },
     {
         title:'Gourmet Aveny',
         body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat veritatis fugiat esse quijfjfj kfj quasi',
         sellOff:'25',
-        image:img2
+        image:img2,
+        user:'Diva noce'
 
     },
     {
         title:'Gourmet Aveny',
         body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat veritatis fugiat esse quijfjfj kfj quasi',
         sellOff:'25',
-        image:img
+        image:img,
+        user:'Diva noce'
 
     },
 ]

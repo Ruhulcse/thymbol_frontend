@@ -5,9 +5,9 @@ function SingleVoucher({item}) {
     <div className='lg:h-44 lg:w-[490px] h-[110px] w-[220px] bg-white shadow-lg sm:w-[270px] sm:h-[120px] md:h-[150px] md:w-[330px]'>
   <div className='w-full h-full relative'>
       {/* Right side circle */}
-      <div className='lg:h-8 h-3 lg:w-8 w-3 rounded-full bg-[#F3FCFF]  absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2'></div>
+      <div className='lg:h-8 h-3 lg:w-8 w-3 rounded-full bg-[#F3FCFF]  absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 overflow-hidden '></div>
       {/* Left side circle */}
-      <div className='lg:h-8 h-3 lg:w-8 w-3  rounded-full bg-[#F3FCFF]  absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2'></div>
+      <div className='lg:h-8 h-3 lg:w-8 w-3  rounded-full bg-[#F3FCFF]  absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 overflow-hidden'></div>
       <div className='flex flex-1 items-center px-4 h-full' >
 
         <div className=' p-2 border-r-4 border-dashed mr-4'>

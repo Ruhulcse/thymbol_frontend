@@ -25,6 +25,9 @@ const SuccessPage = lazy(() => import('./pages/success'));
 const UnauthorizedPage = lazy(() => import('./pages/unauthorized'));
 const Home = lazy(()=>import('./pages/home'))
 const Merchant = lazy(()=>import('./pages/merchant'))
+const ClippedDeals = lazy(()=>import('./pages/clippedDeals'))
+const RedeemDeal = lazy(()=>import('./pages/redeemDeal'))
+const RedeemDealDetails = lazy(()=>import('./pages/redeemDealDetails'))
 
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
@@ -43,6 +46,9 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/merchant" element={<Merchant/>}/>
+                    <Route path="/clippedDeals" element={<ClippedDeals/>}/>
+                    <Route path="/redeemDeal" element={<RedeemDeal/>}/>
+                    <Route path="/redeemDealDetails" element={<RedeemDealDetails/>}/>
                     <Route path="*" element={<Error />} />
                 </Route>
                 <Route path="/*" element={<Layout />}>
