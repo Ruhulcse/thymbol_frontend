@@ -49,7 +49,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/merchant" element={<Merchant />} />
-                    <Route path="/home" element={<Home />} />
+                     <Route path="/home" element={<Home />} />
                     <Route path="/clippedDeals" element={<ClippedDeals />} />
                     <Route path="/redeemDeal" element={<RedeemDeal />} />
                     <Route
@@ -59,6 +59,9 @@ function App() {
                     <Route path="*" element={<Error />} />
                 </Route>
 
+                <Route path="/" element={<UserLayout />}>
+                   
+                </Route>
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
 

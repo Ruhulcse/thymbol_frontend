@@ -80,19 +80,19 @@ export const menuItems = [
 
 export const navLink = [
     {
-        name:"Home",
+        title:"Home",
         link:'/'
     },
     {
-        name:"Favourites",
+        title:"Favourites",
         link:'/favourites'
     },
     {
-        name:"Clipped Deals",
+        title:"Clipped Deals",
         link:'/clippedDeals'
     },
     {
-        name:"Subscription",
+        title:"Subscription",
         link:'/subscription'
     },
 ]
