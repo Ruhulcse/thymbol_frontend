@@ -1,4 +1,4 @@
-const { food, fashion, music, person } = require("@/assets/images/home");
+import { food, fashion, music, person } from "@/assets/images/home";
 
 const featured = [
     {
@@ -22,3 +22,5 @@ const featured = [
         image:fashion
     }
 ]
+
+export {featured}

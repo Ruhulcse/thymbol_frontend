@@ -1,9 +1,15 @@
+import SingleFeatured from "@/components/featuredCategories/SingleFeatured"
 
 
-function featuredList() {
+
+const FeaturedList =({data}) => {
   return (
-    <div>featuredList</div>
+    <div className="flex justify-between  gap-4 mt-12 overflow-x-visible overflow-y-hidden">
+      {data.map((item,i)=>(
+        <SingleFeatured item={item} key={i}/>
+      ))}
+    </div>
   )
 }
 
-export default featuredList
+export default FeaturedList

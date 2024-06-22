@@ -78,6 +78,27 @@ export const menuItems = [
     // },
 ];
 
+export const navLink = [
+    {
+        title:"Home",
+        link:'/'
+    },
+    {
+        title:"Favourites",
+        link:'/favourites'
+    },
+    {
+        title:"Clipped Deals",
+        link:'/clippedDeals'
+    },
+    {
+        title:"Subscription",
+        link:'/subscription'
+    },
+]
+
+
+
 export const colors = {
     primary: '#4669FA',
     secondary: '#A0AEC0',
@@ -106,3 +127,16 @@ export const hexToRGB = (hex, alpha) => {
         return 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
 };
+
+ export const infoIcon = [
+    {
+        icon:'heroicons:map-pin'
+    },
+    {
+        icon:'heroicons:phone'
+    },
+    {
+        icon:'heroicons:share'
+    },
+]
+
