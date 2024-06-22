@@ -1,10 +1,8 @@
 import BusinessSpotlight from "@/components/businessSpotlight";
-import ViewMore from "@/components/button/viewMore";
 import Featured from "@/components/featured";
 import GreatDeals from "@/components/greatDeals";
 import Header from "@/components/header";
 import Restaurants from "@/components/restaurants";
-import SalonsList from "@/components/salons/SalonsList";
 import SalonsNear from "@/components/salonsNear";
 import { spotlight } from "@/data/BusinessSpotlight!";
 import { greatDealsData } from "@/data/cardData";
