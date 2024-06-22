@@ -370,7 +370,7 @@ const CreateStoreForm = () => {
                 /> */}
                 <div>
                     <label htmlFor="business_hours" className="form-label ">
-                        business_hours
+                        Business Hours
                     </label>
                     <Controller
                         name="business_hours"
