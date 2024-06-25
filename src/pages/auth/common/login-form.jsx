@@ -85,7 +85,7 @@ const LoginForm = () => {
             />
             <Textinput
                 name="password"
-                label="passwrod"
+                label="password"
                 type="password"
                 register={register}
                 error={errors.password}

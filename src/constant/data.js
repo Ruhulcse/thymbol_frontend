@@ -30,7 +30,7 @@ export const menuItems = [
     {
         title: 'Notifications',
         icon: 'heroicons-outline:bell-alert',
-        link: 'notifications',
+        link: 'push-notifications',
         role: ['supperadmin', 'consumer', 'merchant'],
     },
     {

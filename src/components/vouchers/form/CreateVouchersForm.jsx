@@ -33,6 +33,7 @@ const discounts = Array.from({ length: 16 }, (_, index) => {
 const offers = [
     { value: 'Buy One Get One Free', label: 'Buy One Get One Free' },
     { value: 'Buy One Get One Half Off', label: 'Buy One Get One Half Off' },
+    {value: 'custom', label: 'Custom'},
 ];
 
 const offersReedem = Array.from({ length: 20 }, (_, index) => {
@@ -68,6 +69,7 @@ const CreateVouchersForm = () => {
         handleSubmit,
         control,
         setValue,
+        watch,
     } = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
@@ -81,7 +83,7 @@ const CreateVouchersForm = () => {
         }
 
         const jsonData = {
-            discount: data.discount.value,
+            discount: data?.discount?.value,
             creator: user_id,
             endDate: data.endDate,
             voucherCode: data.voucherCode,
@@ -99,6 +101,8 @@ const CreateVouchersForm = () => {
         swalSuccess(`Voucher successfully added!`, 'Voucher Created!');
         navigate('/vouchers');
     };
+    
+    console.log(watch('offer'));
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-5">
@@ -124,7 +128,7 @@ const CreateVouchersForm = () => {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <div>
                     <label htmlFor="offer" className="form-label ">
-                        Offer
+                        Discount Templates
                     </label>
                     <Controller
                         name="offer"
@@ -148,9 +152,10 @@ const CreateVouchersForm = () => {
                         </p>
                     )}
                 </div>
-                <div>
+                {watch('offer')?.value === 'custom' && (
+                    <div>
                     <label htmlFor="discount" className="form-label ">
-                        Discount %
+                        Custom Discounts %
                     </label>
                     <Controller
                         name="discount"
@@ -174,6 +179,7 @@ const CreateVouchersForm = () => {
                         </p>
                     )}
                 </div>
+                )}
                 <div>
                     <label htmlFor="endDate" className="form-label">
                         Offer end date
@@ -271,7 +277,12 @@ const CreateVouchersForm = () => {
                     error={errors.condition}
                     className="h-[48px]"
                 />
-                <div></div>
+
+                {watch('offer')?.value === 'custom' ? (
+                    <div></div>
+                ): (
+                    null
+                )}
 
                 <Button
                     type="submit"

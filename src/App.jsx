@@ -33,6 +33,7 @@ const Merchant = lazy(() => import('./pages/merchant'));
 const ClippedDeals = lazy(() => import('./pages/clippedDeals'));
 const RedeemDeal = lazy(() => import('./pages/redeemDeal'));
 const RedeemDealDetails = lazy(() => import('./pages/redeemDealDetails'));
+const PushNotificationPage = lazy(() => import('./pages/PushNotification'));
 
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
@@ -121,6 +122,10 @@ function App() {
                         <Route
                             path="admins/create-admin"
                             element={<CreateAdminForm />}
+                        />
+                        <Route
+                            path="push-notifications"
+                            element={<PushNotificationPage />}
                         />
                     </Route>
 
