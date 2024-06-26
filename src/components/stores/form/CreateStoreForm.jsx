@@ -1,3 +1,4 @@
+import PlaceAutoComplete from '@/components/placeAutoComplete';
 import Button from '@/components/ui/Button';
 import Textinput from '@/components/ui/Textinput';
 import DropZone from '@/pages/form/file-input/DropZone';
@@ -35,9 +36,14 @@ const schema = yup
         social_media_link: yup
             .string()
             .url('Website Link must be a valid URL. https://example.com'),
-        business_hours: yup.object().required('Business Hours is required').nullable(),
+        business_hours: yup
+            .object()
+            .required('Business Hours is required')
+            .nullable(),
         postal_code: yup.string().required('Postal Code is required'),
         category: yup.object().required('Category is required').nullable(),
+        country: yup.string().required('Country is required'),
+        city: yup.string().required('City is required'),
         sub_category: yup
             .object()
             .required('Sub-category is required')
@@ -101,8 +107,8 @@ const CreateStoreForm = () => {
                 sub_category: data.sub_category.value,
                 address: {
                     street: data.store_address,
-                    city: data?.city?.label || '',
-                    country: data?.country?.label || '',
+                    city: data?.city || '',
+                    country: data?.country || '',
                     postal_code: data.postal_code,
                 },
                 website_link: data.website_link,
@@ -258,7 +264,7 @@ const CreateStoreForm = () => {
                 </div>
 
                 <div>
-                    <Textinput
+                    {/* <Textinput
                         name="store_address"
                         label="Store Address"
                         type="text"
@@ -269,14 +275,30 @@ const CreateStoreForm = () => {
                         onChange={(e) => {
                             setValue('store_address', e.target.value);
                         }}
+                    /> */}
+                    <PlaceAutoComplete
+                        setFormValue={setValue}
+                        register={register}
+                        errors={errors}
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="country" className="form-label ">
+                    {/* <label htmlFor="country" className="form-label ">
                         Country
-                    </label>
-                    <Controller
+                    </label> */}
+                    <Textinput
+                        name="city"
+                        label="City"
+                        type="text"
+                        placeholder="city"
+                        register={register}
+                        error={errors.city}
+                        className="h-[48px]"
+                        disabled={true}
+                    />
+
+                    {/* <Controller
                         name="country"
                         control={control}
                         render={({ field }) => (
@@ -284,10 +306,10 @@ const CreateStoreForm = () => {
                                 {...field}
                                 className="react-select"
                                 classNamePrefix="select"
-                                options={[
-                                    { label: 'United States', value: 'US' },
-                                ]}
+                                options={[]}
                                 styles={styles}
+                                disabled
+                                readOnly
                                 // onChange={(option) => {
                                 //     field.onChange(option);
                                 //     setSelectedCountry(option);
@@ -300,14 +322,26 @@ const CreateStoreForm = () => {
                         <p className="text-red-500 font-normal text-sm mt-1">
                             {errors.country.message}
                         </p>
-                    )}
+                    )} */}
                 </div>
 
                 <div>
-                    <label htmlFor="city" className="form-label ">
+                    {/* <label htmlFor="city" className="form-label ">
                         City
-                    </label>
-                    <Controller
+                    </label> */}
+
+                    <Textinput
+                        name="country"
+                        label="Country"
+                        type="text"
+                        placeholder="Country"
+                        register={register}
+                        error={errors.country}
+                        className="h-[48px]"
+                        disabled={true}
+                    />
+
+                    {/* <Controller
                         name="city"
                         control={control}
                         render={({ field }) => (
@@ -329,7 +363,7 @@ const CreateStoreForm = () => {
                         <p className="text-red-500 font-normal text-sm mt-1">
                             {errors.city.message}
                         </p>
-                    )}
+                    )} */}
                 </div>
 
                 <Textinput
