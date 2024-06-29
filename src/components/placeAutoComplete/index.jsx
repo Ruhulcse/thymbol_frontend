@@ -26,7 +26,6 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
     const handleSelect =
         ({ description }) =>
         () => {
-            console.table('🚀  ~ description:', description);
             setValue(description, false);
             setFormValue('store_address', description);
             const country = description.split(',').slice(-1)[0];
@@ -47,7 +46,6 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
 
     const renderSuggestions = () =>
         data.map((suggestion) => {
-            console.table('🚀  ~ suggestion:', suggestion);
             const {
                 place_id,
                 structured_formatting: { main_text, secondary_text },

@@ -9,7 +9,6 @@ import { logOut } from '@/store/api/auth/authSlice';
 import { swalConfirm } from '@/util/helpers';
 
 const profileLabel = (user) => {
-    console.table('🚀  ~ user:', user);
     return (
         <div className="flex items-center">
             <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
