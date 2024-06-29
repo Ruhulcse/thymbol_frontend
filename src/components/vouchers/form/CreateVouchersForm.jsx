@@ -33,7 +33,7 @@ const discounts = Array.from({ length: 16 }, (_, index) => {
 const offers = [
     { value: 'Buy One Get One Free', label: 'Buy One Get One Free' },
     { value: 'Buy One Get One Half Off', label: 'Buy One Get One Half Off' },
-    {value: 'custom', label: 'Custom'},
+    { value: 'custom', label: 'Custom' },
 ];
 
 const offersReedem = Array.from({ length: 20 }, (_, index) => {
@@ -101,8 +101,6 @@ const CreateVouchersForm = () => {
         swalSuccess(`Voucher successfully added!`, 'Voucher Created!');
         navigate('/vouchers');
     };
-    
-    console.log(watch('offer'));
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-5">
@@ -154,31 +152,31 @@ const CreateVouchersForm = () => {
                 </div>
                 {watch('offer')?.value === 'custom' && (
                     <div>
-                    <label htmlFor="discount" className="form-label ">
-                        Custom Discounts %
-                    </label>
-                    <Controller
-                        name="discount"
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                className="react-select"
-                                classNamePrefix="select"
-                                options={discountsMemo?.map((discount) => ({
-                                    value: discount.value,
-                                    label: discount.label,
-                                }))}
-                                styles={styles}
-                            />
+                        <label htmlFor="discount" className="form-label ">
+                            Custom Discounts %
+                        </label>
+                        <Controller
+                            name="discount"
+                            control={control}
+                            render={({ field }) => (
+                                <Select
+                                    {...field}
+                                    className="react-select"
+                                    classNamePrefix="select"
+                                    options={discountsMemo?.map((discount) => ({
+                                        value: discount.value,
+                                        label: discount.label,
+                                    }))}
+                                    styles={styles}
+                                />
+                            )}
+                        />
+                        {errors.discount && (
+                            <p className="text-red-500 font-normal text-sm mt-1">
+                                {errors.discount.message}
+                            </p>
                         )}
-                    />
-                    {errors.discount && (
-                        <p className="text-red-500 font-normal text-sm mt-1">
-                            {errors.discount.message}
-                        </p>
-                    )}
-                </div>
+                    </div>
                 )}
                 <div>
                     <label htmlFor="endDate" className="form-label">
@@ -278,11 +276,7 @@ const CreateVouchersForm = () => {
                     className="h-[48px]"
                 />
 
-                {watch('offer')?.value === 'custom' ? (
-                    <div></div>
-                ): (
-                    null
-                )}
+                {watch('offer')?.value === 'custom' ? <div></div> : null}
 
                 <Button
                     type="submit"

@@ -1,10 +1,13 @@
+import Loading from '@/components/Loading';
 import Profile from '@/components/partials/header/Tools/Profile';
 import { navLink } from '@/constant/data';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
 import { Icon } from '@iconify/react';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import logo from './../assets/images/home/Thymbol Logo.png';
+
 function UserLayout() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [sidebar, setSidebar] = useState(null);
@@ -13,7 +16,7 @@ function UserLayout() {
     useEffect(() => {
         setSidebar(currentWidth >= 1024 ? true : false);
     }, [currentWidth]);
-    //console.log(sidebar);
+    //
     return (
         <div className="bg-blue-400 relative">
             <span onClick={() => setSidebar(!sidebar)}>
@@ -26,16 +29,18 @@ function UserLayout() {
             </span>
             <nav className="px-6 md:px-24 mx-auto flex justify-between items-center md:h-24 h-44 ">
                 <div className="flex-1 md:flex-none flex justify-center md:justify-start   mx-auto md:mx-0">
-                    <div className="h-16 w-24">
-                        <img src={logo} className="h-full w-full" />
-                    </div>
+                    <Link to="/home">
+                        <div className="h-16 w-24 cursor-pointer">
+                            <img src={logo} className="h-full w-full" />
+                        </div>
+                    </Link>
                 </div>
                 <div
                     className={`flex absolute  lg:relative top-36 md:top-24 left-0 flex-col lg:flex-row lg:top-0 bg-blue-400 text-red-500 z-[100] rounded-lg shadow-lg lg:shadow-none  ${
                         sidebar ? '-translate-x-[0px]' : 'translate-x-[-9999px]'
-                    } transition`}
+                    }`}
                 >
-                    {navLink.map((item, i) => (
+                    {navLink?.map((item, i) => (
                         <Link
                             key={i}
                             to={item.link}
@@ -69,7 +74,36 @@ function UserLayout() {
                 </div>
             </nav>
 
-            <Outlet />
+            <Suspense fallback={<Loading />}>
+                <motion.div
+                    key={location.pathname}
+                    initial="pageInitial"
+                    animate="pageAnimate"
+                    exit="pageExit"
+                    variants={{
+                        pageInitial: {
+                            opacity: 0,
+                            y: 50,
+                        },
+                        pageAnimate: {
+                            opacity: 1,
+                            y: 0,
+                        },
+                        pageExit: {
+                            opacity: 0,
+                            y: -50,
+                        },
+                    }}
+                    transition={{
+                        type: 'tween',
+                        ease: 'easeInOut',
+                        duration: 0.5,
+                    }}
+                >
+                    {/* <Breadcrumbs /> */}
+                    <Outlet />
+                </motion.div>
+            </Suspense>
         </div>
     );
 }

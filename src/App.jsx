@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/auth/login'));
 const Signup = lazy(() => import('./pages/auth/register'));
-const GoogleLogInSuccess = lazy(()=> import ('./pages/auth/success'));
+const GoogleLogInSuccess = lazy(() => import('./pages/auth/success'));
 const EditProfile = lazy(() => import('./pages/user/editProfile'));
 const DeleteUserProfilePage = lazy(() =>
     import('./pages/user/deleteUserProfile')
@@ -34,6 +34,10 @@ const ClippedDeals = lazy(() => import('./pages/clippedDeals'));
 const RedeemDeal = lazy(() => import('./pages/redeemDeal'));
 const RedeemDealDetails = lazy(() => import('./pages/redeemDealDetails'));
 const PushNotificationPage = lazy(() => import('./pages/pushNotification'));
+const VerificationVideo = lazy(() => import('./components/verificationVideo'));
+const ConsumerSubscriptionPage = lazy(() =>
+    import('./pages/consumerSubscription')
+);
 
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
@@ -50,19 +54,28 @@ function App() {
                     <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
-                    <Route path="/merchant" element={<Merchant />} />
-                     <Route path="/home" element={<Home />} />
-                    <Route path="/clippedDeals" element={<ClippedDeals />} />
-                    <Route path="/redeemDeal" element={<RedeemDeal />} />
-                    <Route
-                        path="/redeemDealDetails"
-                        element={<RedeemDealDetails />}
-                    />
+
                     <Route path="*" element={<Error />} />
                 </Route>
 
                 <Route path="/" element={<UserLayout />}>
-                   
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/merchant" element={<Merchant />} />
+
+                    <Route path="/clipped-deals" element={<ClippedDeals />} />
+                    <Route path="/redeem-deal" element={<RedeemDeal />} />
+                    <Route
+                        path="/redeem-deal-details"
+                        element={<RedeemDealDetails />}
+                    />
+                    <Route
+                        path="/verification-intro"
+                        element={<VerificationVideo />}
+                    />
+                    <Route
+                        path="/consumer-subscription"
+                        element={<ConsumerSubscriptionPage />}
+                    />
                 </Route>
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
@@ -132,7 +145,9 @@ function App() {
                     <Route path="unauthorized" element={<UnauthorizedPage />} />
                     <Route path="*" element={<Error />} />
                 </Route>
-                <Route path='auth/success' element={<GoogleLogInSuccess/>}> </Route>
+                <Route path="auth/success" element={<GoogleLogInSuccess />}>
+                    {' '}
+                </Route>
             </Routes>
         </main>
     );

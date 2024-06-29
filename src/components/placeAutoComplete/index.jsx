@@ -29,14 +29,13 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
             setFormValue('store_address', description);
             const country = description.split(',').slice(-1)[0];
             const city = description.split(',').slice(-2)[0];
-            console.log('PlaceAutoComplete == country:', description);
+
             setFormValue('country', country);
             setFormValue('city', city);
             clearSuggestions();
 
             getGeocode({ address: description }).then((results) => {
                 const { lat, lng } = getLatLng(results[0]);
-                console.log('📍 Coordinates: ', { lat, lng });
             });
         };
 
