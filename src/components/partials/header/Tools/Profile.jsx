@@ -28,7 +28,7 @@ const profileLabel = (user) => {
             <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
                 <span className="text-white overflow-hidden text-ellipsis whitespace-nowrap block">
                     {user.userName ?? user?.displayName}
-                    <div className="text-white text-xs block mt-1">
+                    <div className="text-white text-xs text-start block mt-1">
                         {user.SubscriptionType}
                     </div>
                 </span>
