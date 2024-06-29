@@ -1,4 +1,4 @@
-import img from './../assets/images/home/wakame.png'
+import img from '@/assets/images/home/wakame.png'
 export const salonsData = [
     {
         title:'Gourmet Aveny',

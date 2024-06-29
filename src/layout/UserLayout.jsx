@@ -4,7 +4,7 @@ import useCurrentWidth from '@/hooks/useCurrentWidth';
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import logo from './../assets/images/home/ThymbolLogo.png';
+import logo from '@/assets/images/home/ThymbolLogo.png';
 function UserLayout() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [sidebar, setSidebar] = useState(null);

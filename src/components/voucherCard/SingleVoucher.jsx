@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './../../assets/images/home/Group 1000005441.png'
+import logo from '@/assets/images/home/icon1.png'
 function SingleVoucher({item}) {
   return (
     <div className='lg:h-44 lg:w-[490px] h-[110px] w-[220px] bg-white shadow-lg sm:w-[270px] sm:h-[120px] md:h-[150px] md:w-[330px]'>

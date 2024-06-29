@@ -1,7 +1,7 @@
 import ViewMore from '@/components/button/ViewMore'
 import CardList from '@/components/card/CardList'
 import Title from '@/components/title'
-import { greatDealsData } from '@/data/cardData'
+//import { greatDealsData } from '@/data/cardData'
 import React from 'react'
 
 function GreatDeals({data}) {

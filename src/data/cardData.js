@@ -1,4 +1,4 @@
-import img from './../assets/images/home/casaSvshi.png' 
+import img from '@/assets/images/home/casaSvshi.png' 
 export const greatDealsData = [
     {
         image:img,

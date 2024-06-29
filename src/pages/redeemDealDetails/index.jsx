@@ -3,8 +3,8 @@ import { voucherData } from '@/data/voucherData';
 
 import Button from '@/components/button/Button';
 import UserLayout from '@/layout/UserLayout';
-import qr from './../../assets/images/merchant/qr.png';
-import map from './../../assets/images/merchant/map.png';
+import qr from '@/assets/images/merchant/qr.png';
+import map from '@/assets/images/merchant/map.png';
 function RedeemDealDetails() {
     return (
         <>
@@ -61,7 +61,7 @@ function RedeemDealDetails() {
                                 premium package to enjoy more
                             </div>
                             <div>
-                                <Button className="text-[14px] mx-4 p-3">
+                                <Button className="">
                                     Upgrade Now
                                 </Button>
                             </div>
@@ -71,11 +71,11 @@ function RedeemDealDetails() {
                             <div>
                                 Please upload or record your video review.
                             </div>
-                            <div className="flex justify-between p-4">
+                            <div className="flex justify-between gap-6">
                                 <div>
                                     <Button
                                         icon="cloud-arrow-up"
-                                        className="text-[14px] mx-4 p-3"
+                                        className=""
                                     >
                                         Upload a video
                                     </Button>
@@ -83,7 +83,7 @@ function RedeemDealDetails() {
                                 <div>
                                     <Button
                                         icon="video-camera"
-                                        className="text-[14px] mx-4 p-3"
+                                        className=""
                                     >
                                         Record a video
                                     </Button>
