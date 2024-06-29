@@ -9,6 +9,7 @@ import { logOut } from '@/store/api/auth/authSlice';
 import { swalConfirm } from '@/util/helpers';
 
 const profileLabel = (user) => {
+    console.table('🚀  ~ user:', user);
     return (
         <div className="flex items-center">
             <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
@@ -27,7 +28,11 @@ const profileLabel = (user) => {
             <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
                 <span className="text-white overflow-hidden text-ellipsis whitespace-nowrap block">
                     {user.userName ?? user?.displayName}
+                    <div className="text-white text-xs block mt-1">
+                        {user.SubscriptionType}
+                    </div>
                 </span>
+
                 <span className="text-white text-base inline-block ltr:ml-[10px] rtl:mr-[10px]">
                     <Icon icon="heroicons-outline:chevron-down"></Icon>
                 </span>
