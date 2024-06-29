@@ -1,14 +1,12 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
-import 'react-modal-video/css/modal-video.min.css';
-import img1 from './../../assets/images/merchant/Ellipse 11216.png';
-import img from './../../assets/images/merchant/Group 1000007830.png';
-import img2 from './../../assets/images/merchant/Rectangle 34626035 (1).png';
 import ModalVideo from 'react-modal-video';
+import 'react-modal-video/css/modal-video.min.css';
 import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import img from './../../assets/images/merchant/Group 1000007830.png';
 
 const data = [
     { img: img, videoId: "L61p2uyiMSo" },
@@ -30,8 +28,8 @@ function ModalsVideo() {
             <Swiper
                 spaceBetween={50}
                 slidesPerView={1}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => 
+                onSwiper={(swiper) => 
                 navigation={true}
                 loop={true}
                 modules={[Navigation]}

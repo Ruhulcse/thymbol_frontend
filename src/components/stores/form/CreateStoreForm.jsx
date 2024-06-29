@@ -14,6 +14,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import * as yup from 'yup';
+import BusinessHoursModal from './BusinessHoursModal';
 
 const styles = {
     option: (provided, state) => ({
@@ -36,10 +37,7 @@ const schema = yup
         social_media_link: yup
             .string()
             .url('Website Link must be a valid URL. https://example.com'),
-        business_hours: yup
-            .object()
-            .required('Business Hours is required')
-            .nullable(),
+        
         postal_code: yup.string().required('Postal Code is required'),
         category: yup.object().required('Category is required').nullable(),
         country: yup.string().required('Country is required'),
@@ -55,6 +53,12 @@ const CreateStoreForm = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [subCategories, setSubCategories] = useState([]);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const [activeModal, setActiveModal] = useState(false);
+    const [businessHours, setBusinessHours] = useState({});
+
+    const onClose = () => {
+        setActiveModal(false);
+    };
 
     // redux
     const [createStore, { isLoading: isCreating, error: createError }] =
@@ -113,10 +117,10 @@ const CreateStoreForm = () => {
                 },
                 website_link: data.website_link,
                 social_media_link: data.social_media_link,
-                business_hours: data.business_hours.value,
+                business_hours: businessHours,
                 location: {
                     type: 'Point',
-                    coordinates: [105, 106],
+                    coordinates: [data.longitude, data.latitude],
                 },
             };
 
@@ -291,7 +295,7 @@ const CreateStoreForm = () => {
                         name="city"
                         label="City"
                         type="text"
-                        placeholder="city"
+                        placeholder="City"
                         register={register}
                         error={errors.city}
                         className="h-[48px]"
@@ -402,7 +406,7 @@ const CreateStoreForm = () => {
                         setValue('business_hours', e.target.value);
                     }}
                 /> */}
-                <div>
+                {/* <div>
                     <label htmlFor="business_hours" className="form-label ">
                         Business Hours
                     </label>
@@ -429,7 +433,7 @@ const CreateStoreForm = () => {
                             {errors.business_hours.message}
                         </p>
                     )}
-                </div>
+                </div> */}
                 <Textinput
                     name="postal_code"
                     label="Postal Code"
@@ -438,10 +442,18 @@ const CreateStoreForm = () => {
                     register={register}
                     error={errors.postal_code}
                     className="h-[48px]"
-                    onChange={(e) => {
-                        setValue('postal_code', e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //     setValue('postal_code', e.target.value);
+                    // }}
+                    disabled={true}
                 />
+                <div>
+                    <Button
+                        text="Add Business Hours"
+                        className="btn btn-primary mt-[30px] py-3  text-center font-normal w-full"
+                        onClick={() => setActiveModal(true)}
+                    />
+                </div>
 
                 <Button
                     type="submit"
@@ -451,6 +463,14 @@ const CreateStoreForm = () => {
                     disabled={isCreating}
                 />
             </div>
+
+            {activeModal && (
+                <BusinessHoursModal
+                    activeModal={activeModal}
+                    onclose={() => onClose()}
+                    setBusinessHoursForm={setBusinessHours}
+                />
+            )}
         </form>
     );
 };

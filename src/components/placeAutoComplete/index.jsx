@@ -1,6 +1,7 @@
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
+    getZipCode,
 } from 'use-places-autocomplete';
 import Textinput from '../ui/Textinput';
 
@@ -25,6 +26,7 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
     const handleSelect =
         ({ description }) =>
         () => {
+            console.table('🚀  ~ description:', description);
             setValue(description, false);
             setFormValue('store_address', description);
             const country = description.split(',').slice(-1)[0];
@@ -36,11 +38,16 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
 
             getGeocode({ address: description }).then((results) => {
                 const { lat, lng } = getLatLng(results[0]);
+                const zipCode = getZipCode(results[0], false);
+                setFormValue('postal_code', zipCode);
+                setFormValue('latitude', lat);
+                setFormValue('longitude', lng);
             });
         };
 
     const renderSuggestions = () =>
         data.map((suggestion) => {
+            console.table('🚀  ~ suggestion:', suggestion);
             const {
                 place_id,
                 structured_formatting: { main_text, secondary_text },
