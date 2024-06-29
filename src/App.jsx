@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 // home pages  & dashboard
@@ -45,9 +45,17 @@ import { ROLES } from './constant/userRoles';
 import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
 import UserLayout from './layout/UserLayout';
+import { useDispatch } from 'react-redux';
+import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
 //import Home from '@/pages/home/Home';
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+		dispatch(getUserGeoLocation());
+	}, [dispatch]);
+
     return (
         <main className="App  relative">
             <Routes>

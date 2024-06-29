@@ -8,8 +8,33 @@ import { spotlight } from '@/data/BusinessSpotlight!';
 import { greatDealsData } from '@/data/cardData';
 import { featured } from '@/data/featuredData';
 import { salonsData } from '@/data/salonsData';
+import { selectCurrentLatLng } from '@/store/api/GeoLocation/geoLocationSlice';
+import fetchWrapper from '@/util/fetchWrapper';
+import { swalError } from '@/util/helpers';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Home() {
+    const currentLocation = useSelector(selectCurrentLatLng);
+    const [storeData, setStoreData] = useState([]);
+
+    const getNearByStores = async () => {
+        try {
+            const payload = {
+                coordinates: [currentLocation.lat, currentLocation.lng],
+            };
+            const { data } = await fetchWrapper.post(`/store/nearme`, payload);
+            console.table('🚀  ~ data:', data);
+            setStoreData(data);
+        } catch (error) {
+            swalError(error);
+        }
+    };
+
+    useEffect(() => {
+        getNearByStores();
+    }, [currentLocation]);
+
     return (
         <div className="bg-[#F3FCFF] ">
             <div className="py-16">
@@ -19,11 +44,11 @@ function Home() {
                 {/* Business Spotlight! */}
                 <BusinessSpotlight data={spotlight} />
                 {/* Great Deals Near Me */}
-                <GreatDeals data={greatDealsData} />
+                {/* <GreatDeals data={greatDealsData} /> */}
                 {/* Restaurants Near Me */}
-                <Restaurants data={salonsData} />
+                <Restaurants data={storeData} />
                 {/* Salons Near Me */}
-                <SalonsNear data={salonsData} />
+                {/* <SalonsNear data={salonsData} /> */}
             </div>
         </div>
     );
