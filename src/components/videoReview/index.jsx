@@ -27,13 +27,7 @@ export const VideoReview = () => {
 
                 <div className="flex justify-around p-4">
                     <div>
-                        {/* <Button
-                        icon="cloud-arrow-up"
-                        className="text-[14px] bg-customBlue mx-4 p-3"
-                    >
-                        Upload a video
-                        <input type="file" name="" id=""  className='hidden'/>
-                    </Button> */}
+                        
 
                         <UploadVideo />
                     </div>

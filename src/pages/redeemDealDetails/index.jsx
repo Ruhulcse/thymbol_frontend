@@ -2,11 +2,15 @@ import SingleVoucher from '@/components/voucherCard/SingleVoucher';
 import { voucherData } from '@/data/voucherData';
 
 import Button from '@/components/button/Button';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import RecordVideo from '@/components/ui/RecordVideo';
+import UploadVideo from '@/components/ui/UploadVideo';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import qr from './../../assets/images/merchant/Group.png';
 import map from './../../assets/images/merchant/Screenshot 2024-04-27 at 11.38 1.png';
 function RedeemDealDetails() {
     const navigate = useNavigate();
+    const [showVideoCapture, setShowVideoCapture] = useState(false);
 
     const routerBack = () => {
         navigate(-1);
@@ -79,32 +83,36 @@ function RedeemDealDetails() {
                                 </Button>
                             </div>
                         </div>
-                        <div className="xl:w-[520px]  bg-white xl:h-364px  min-w-[300px] min-h-[250px]  flex flex-col text-center justify-center items-center space-y-4">
-                            <div className="font-bold text-black-500 text-base md:text-2xl mb-5">
-                                Rate the deal
+                        {showVideoCapture ? (
+                            <div className="xl:w-[520px]  bg-white xl:h-364px  min-w-[300px] min-h-[250px]  flex flex-col text-center justify-center items-center space-y-4">
+                                <RecordVideo />
                             </div>
-                            <div>
-                                Please upload or record your video review.
-                            </div>
-                            <div className="flex justify-between p-4">
-                                <div>
-                                    <Button
-                                        icon="cloud-arrow-up"
-                                        className="text-[14px] bg-customBlue mx-4 p-3"
-                                    >
-                                        Upload a video
-                                    </Button>
+                        ) : (
+                            <div className="xl:w-[520px]  bg-white xl:h-364px  min-w-[300px] min-h-[250px]  flex flex-col text-center justify-center items-center space-y-4">
+                                <div className="font-bold text-black-500 text-base md:text-2xl mb-5">
+                                    Rate the deal
                                 </div>
                                 <div>
-                                    <Button
-                                        icon="video-camera"
-                                        className="text-[14px] bg-customBlue mx-4 p-3"
-                                    >
-                                        Record a video
-                                    </Button>
+                                    Please upload or record your video review.
+                                </div>
+                                <div className="flex justify-between p-4">
+                                    <div>
+                                        <UploadVideo />
+                                    </div>
+                                    <div>
+                                        <Button
+                                            icon="video-camera"
+                                            className="text-[14px] bg-customBlue mx-4 p-3"
+                                            onClick={() =>
+                                                setShowVideoCapture(true)
+                                            }
+                                        >
+                                            Record a video
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
