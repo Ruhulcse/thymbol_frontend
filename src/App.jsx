@@ -50,6 +50,7 @@ function App() {
     return (
         <main className="App  relative">
             <Routes>
+                {/* public routes */}
                 <Route path="/" element={<AuthLayout />}>
                     <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/login" element={<Login />} />
@@ -58,25 +59,37 @@ function App() {
                     <Route path="*" element={<Error />} />
                 </Route>
 
+                {/* consumer layout */}
                 <Route path="/" element={<UserLayout />}>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/merchant" element={<Merchant />} />
+                    <Route
+                        element={
+                            <RequireAuth allowedRoles={[ROLES.CONSUMER]} />
+                        }
+                    >
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/merchant" element={<Merchant />} />
 
-                    <Route path="/clipped-deals" element={<ClippedDeals />} />
-                    <Route path="/redeem-deal" element={<RedeemDeal />} />
-                    <Route
-                        path="/redeem-deal-details"
-                        element={<RedeemDealDetails />}
-                    />
-                    <Route
-                        path="/verification-intro"
-                        element={<VerificationVideo />}
-                    />
-                    <Route
-                        path="/consumer-subscription"
-                        element={<ConsumerSubscriptionPage />}
-                    />
+                        <Route
+                            path="/clipped-deals"
+                            element={<ClippedDeals />}
+                        />
+                        <Route path="/redeem-deal" element={<RedeemDeal />} />
+                        <Route
+                            path="/redeem-deal-details"
+                            element={<RedeemDealDetails />}
+                        />
+                        <Route
+                            path="/verification-intro"
+                            element={<VerificationVideo />}
+                        />
+                        <Route
+                            path="/consumer-subscription"
+                            element={<ConsumerSubscriptionPage />}
+                        />
+                    </Route>
                 </Route>
+
+                {/* admin layout */}
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
 

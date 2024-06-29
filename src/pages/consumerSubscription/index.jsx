@@ -1,14 +1,12 @@
 import PricingCard from '@/components/ui/PricingCard';
 import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router-dom';
 
-const premium = [
-    'Premium monthly membership'
-];
+const premium = ['Premium monthly membership'];
 
-const annual = [
-    'Premium annual membership'
-];
+const annual = ['Premium annual membership'];
 const ConsumerSubscriptionPage = () => {
+    const navigate = useNavigate();
     return (
         <div className="flex flex-wrap justify-evenly gap-3 bg-[#f3fcff] pt-10">
             <PricingCard
