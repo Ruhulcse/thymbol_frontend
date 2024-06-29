@@ -35,6 +35,7 @@ const RedeemDeal = lazy(() => import('./pages/redeemDeal'));
 const RedeemDealDetails = lazy(() => import('./pages/redeemDealDetails'));
 const PushNotificationPage = lazy(() => import('./pages/pushNotification'));
 const VerificationVideo = lazy(() => import('./components/verificationVideo'));
+const VideoReviewPage = lazy(() => import('./pages/videoReview'));
 const ConsumerSubscriptionPage = lazy(() =>
     import('./pages/consumerSubscription')
 );
@@ -85,6 +86,10 @@ function App() {
                         <Route
                             path="/consumer-subscription"
                             element={<ConsumerSubscriptionPage />}
+                        />
+                        <Route
+                            path="/add-video-review"
+                            element={<VideoReviewPage />}
                         />
                     </Route>
                 </Route>
