@@ -69,6 +69,39 @@ const Profile = () => {
         },
     ];
 
+    if (user.userType === 'consumer') {
+        ProfileMenu.unshift(
+            {
+                label: 'Support',
+                icon: 'heroicons-outline:question-mark-circle',
+                action: () => {
+                    navigate('/support');
+                },
+            },
+            {
+                label: 'Help Center',
+                icon: 'heroicons-outline:information-circle',
+                action: () => {
+                    navigate('/help-center');
+                },
+            },
+            {
+                label: 'Tutorial Video',
+                icon: 'heroicons-outline:play',
+                action: () => {
+                    navigate('/tutorial-video');
+                },
+            },
+            {
+                label: 'About',
+                icon: 'heroicons-outline:information-circle',
+                action: () => {
+                    navigate('/about');
+                },
+            }
+        );
+    }
+
     const confirmLogout = async () => {
         const response = await swalConfirm(
             'Are you sure you want to Logout?',
