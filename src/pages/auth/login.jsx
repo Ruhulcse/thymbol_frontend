@@ -9,7 +9,6 @@ import LogoWhite from '@/assets/images/logo/logo-white.svg';
 // import Illustration from "@/assets/images/auth/ils1.svg";
 import Illustration from '@/assets/images/auth/ils1.png';
 import Logo from '@/assets/images/auth/logo_login.png';
-import axios from 'axios';
 
 const login = () => {
     const [isDark] = useDarkMode();
@@ -18,30 +17,24 @@ const login = () => {
 
     const handleGooleLogin = async () => {
         try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_APP_URL}/google`
-            );
-
-            window.location.href = 'http://' + response.data.href;
+            window.location.href = `${import.meta.env.VITE_API_APP_URL}/google`;
         } catch (error) {}
     };
-
 
     return (
         <div className="loginwrapper">
             <div className="lg-inner-column">
-                <div
-                    className="left-column relative z-[1]"
-                >
-                    <div style={{
-                        backgroundImage: `url(${Illustration})`,
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        display: 'flex',
-                        alignItems: 'center',
-                    }} className='absolute left-0  h-full w-full z-[-1]'>
-
-                    </div>
+                <div className="left-column relative z-[1]">
+                    <div
+                        style={{
+                            backgroundImage: `url(${Illustration})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}
+                        className="absolute left-0  h-full w-full z-[-1]"
+                    ></div>
                     <div className="max-w-[560px] h-full flex flex-col justify-center pt-20 ltr:pl-20 rtl:pr-20">
                         <Link to="/">
                             <img
@@ -54,7 +47,6 @@ const login = () => {
                             Your Real-Time Digital Coupon Platform!
                         </h5>
                     </div>
-                    
                 </div>
                 <div className="right-column relative">
                     <div className="inner-content h-full flex flex-col bg-white dark:bg-slate-800">

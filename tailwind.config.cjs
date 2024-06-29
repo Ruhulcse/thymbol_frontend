@@ -124,6 +124,7 @@ module.exports = {
           900: "#0F172A",
         },
         customBlue: '#0C9AD6',
+        customOrange: '#fd5728'
       },
 
       fontFamily: {

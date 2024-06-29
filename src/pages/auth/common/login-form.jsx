@@ -61,7 +61,10 @@ const LoginForm = () => {
                     userType: response.data.data?.userType,
                 })
             );
-            navigate('/dashboard');
+            // if(response.data.data?.userType === 'consumer') {
+            //     navigate('/home')
+            // }
+            // navigate('/dashboard');
         } catch (error) {
             toast.error(error.message);
         }
@@ -85,7 +88,7 @@ const LoginForm = () => {
             />
             <Textinput
                 name="password"
-                label="passwrod"
+                label="password"
                 type="password"
                 register={register}
                 error={errors.password}

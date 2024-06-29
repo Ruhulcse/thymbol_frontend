@@ -1,11 +1,18 @@
-import { Icon } from '@iconify/react'
-import React from 'react'
+import { Icon } from '@iconify/react';
 
-function Button({children,icon='',className='', onclick}) {
-  return (
-    <div onclick={onclick} className={`text-xs lg:text-xl lg:gap-2 flex justify-center items-center bg-blue-500 rounded-md px-2 py-1 text-white ${className}`}><span className='my-auto flex items-center '><Icon
-    icon={`heroicons:${icon}`} className={``}/></span>{children}</div>
-  )
+function Button({ children, icon = '', className = 'px-6 my-3', onClick }) {
+    return (
+        <div
+            onClick={onClick}
+            className={`bg-customBlue cursor-pointer rounded-md text-white flex items-center ${className}`}
+        >
+            <div className="my-auto flex items-center ">
+                <Icon icon={`heroicons:${icon}`} className={`pr-1 text-2xl`} />
+            </div>
+            <div>{children}</div>
+        </div>
+    );
+
 }
 
-export default Button
+export default Button;

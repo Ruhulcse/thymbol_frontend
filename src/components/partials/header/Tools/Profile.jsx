@@ -1,22 +1,25 @@
-import React from 'react';
+import LogoutLogo from '@/assets/images/auth/logout_logo.svg';
 import Dropdown from '@/components/ui/Dropdown';
 import Icon from '@/components/ui/Icon';
-import { Menu, Transition } from '@headlessui/react';
-import { useNavigate } from 'react-router-dom';
+import { Menu } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import LogoutLogo from '@/assets/images/auth/logout_logo.svg';
+import { useNavigate } from 'react-router-dom';
 
-import UserAvatar from '@/assets/images/all-img/user.png';
 import { logOut } from '@/store/api/auth/authSlice';
 import { swalConfirm } from '@/util/helpers';
 
 const profileLabel = (user) => {
+    console.table('🚀  ~ user:', user);
     return (
         <div className="flex items-center">
             <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
                 <div className="lg:h-8 lg:w-8 h-7 w-7 rounded-full">
                     <img
-                        src={UserAvatar}
+                        src={
+                            user.gender === 'male'
+                                ? 'https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg'
+                                : 'https://www.womensfestival.eu/wp-content/uploads/2016/04/image-placeholder.jpg'
+                        }
                         alt=""
                         className="block w-full h-full object-cover rounded-full"
                     />
@@ -24,8 +27,12 @@ const profileLabel = (user) => {
             </div>
             <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
                 <span className="text-white overflow-hidden text-ellipsis whitespace-nowrap block">
-                    {user.userName}
+                    {user.userName ?? user?.displayName}
+                    <div className="text-white text-xs block mt-1">
+                        {user.SubscriptionType}
+                    </div>
                 </span>
+
                 <span className="text-white text-base inline-block ltr:ml-[10px] rtl:mr-[10px]">
                     <Icon icon="heroicons-outline:chevron-down"></Icon>
                 </span>
@@ -71,7 +78,7 @@ const Profile = () => {
             LogoutLogo
         );
 
-        if(response.isConfirmed){
+        if (response.isConfirmed) {
             handleLogout();
         }
     };

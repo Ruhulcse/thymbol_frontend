@@ -1,3 +1,4 @@
+import PlaceAutoComplete from '@/components/placeAutoComplete';
 import Button from '@/components/ui/Button';
 import Textinput from '@/components/ui/Textinput';
 import DropZone from '@/pages/form/file-input/DropZone';
@@ -29,18 +30,24 @@ const schema = yup
     .object({
         store_name: yup.string().required('Store Name is required'),
         store_address: yup.string().required('Store Address is required'),
-        website_link: yup.string().url('Website Link must be a valid URL. https://example.com'),
+        website_link: yup
+            .string()
+            .url('Website Link must be a valid URL. https://example.com'),
         social_media_link: yup
             .string()
             .url('Website Link must be a valid URL. https://example.com'),
-        business_hours: yup.string().required('Business Hours is required'),
+        business_hours: yup
+            .object()
+            .required('Business Hours is required')
+            .nullable(),
         postal_code: yup.string().required('Postal Code is required'),
         category: yup.object().required('Category is required').nullable(),
+        country: yup.string().required('Country is required'),
+        city: yup.string().required('City is required'),
         sub_category: yup
             .object()
             .required('Sub-category is required')
             .nullable(),
-       
     })
     .required();
 
@@ -86,7 +93,7 @@ const CreateStoreForm = () => {
         setValue,
     } = useForm({
         resolver: yupResolver(schema),
-        mode: 'onChange',
+        mode: 'all',
     });
 
     const navigate = useNavigate();
@@ -100,13 +107,13 @@ const CreateStoreForm = () => {
                 sub_category: data.sub_category.value,
                 address: {
                     street: data.store_address,
-                    city: data?.city?.label || '',
-                    country: data?.country?.label || '',
+                    city: data?.city || '',
+                    country: data?.country || '',
                     postal_code: data.postal_code,
                 },
                 website_link: data.website_link,
                 social_media_link: data.social_media_link,
-                business_hours: data.business_hours,
+                business_hours: data.business_hours.value,
                 location: {
                     type: 'Point',
                     coordinates: [105, 106],
@@ -257,7 +264,7 @@ const CreateStoreForm = () => {
                 </div>
 
                 <div>
-                    <Textinput
+                    {/* <Textinput
                         name="store_address"
                         label="Store Address"
                         type="text"
@@ -268,14 +275,30 @@ const CreateStoreForm = () => {
                         onChange={(e) => {
                             setValue('store_address', e.target.value);
                         }}
+                    /> */}
+                    <PlaceAutoComplete
+                        setFormValue={setValue}
+                        register={register}
+                        errors={errors}
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="country" className="form-label ">
+                    {/* <label htmlFor="country" className="form-label ">
                         Country
-                    </label>
-                    <Controller
+                    </label> */}
+                    <Textinput
+                        name="city"
+                        label="City"
+                        type="text"
+                        placeholder="city"
+                        register={register}
+                        error={errors.city}
+                        className="h-[48px]"
+                        disabled={true}
+                    />
+
+                    {/* <Controller
                         name="country"
                         control={control}
                         render={({ field }) => (
@@ -283,10 +306,10 @@ const CreateStoreForm = () => {
                                 {...field}
                                 className="react-select"
                                 classNamePrefix="select"
-                                options={[
-                                    { label: 'United States', value: 'US' },
-                                ]}
+                                options={[]}
                                 styles={styles}
+                                disabled
+                                readOnly
                                 // onChange={(option) => {
                                 //     field.onChange(option);
                                 //     setSelectedCountry(option);
@@ -299,14 +322,26 @@ const CreateStoreForm = () => {
                         <p className="text-red-500 font-normal text-sm mt-1">
                             {errors.country.message}
                         </p>
-                    )}
+                    )} */}
                 </div>
 
                 <div>
-                    <label htmlFor="city" className="form-label ">
+                    {/* <label htmlFor="city" className="form-label ">
                         City
-                    </label>
-                    <Controller
+                    </label> */}
+
+                    <Textinput
+                        name="country"
+                        label="Country"
+                        type="text"
+                        placeholder="Country"
+                        register={register}
+                        error={errors.country}
+                        className="h-[48px]"
+                        disabled={true}
+                    />
+
+                    {/* <Controller
                         name="city"
                         control={control}
                         render={({ field }) => (
@@ -328,7 +363,7 @@ const CreateStoreForm = () => {
                         <p className="text-red-500 font-normal text-sm mt-1">
                             {errors.city.message}
                         </p>
-                    )}
+                    )} */}
                 </div>
 
                 <Textinput
@@ -355,7 +390,7 @@ const CreateStoreForm = () => {
                         setValue('social_media_link', e.target.value);
                     }}
                 />
-                <Textinput
+                {/* <Textinput
                     name="business_hours"
                     label="Business Hours"
                     type="text"
@@ -366,7 +401,35 @@ const CreateStoreForm = () => {
                     onChange={(e) => {
                         setValue('business_hours', e.target.value);
                     }}
-                />
+                /> */}
+                <div>
+                    <label htmlFor="business_hours" className="form-label ">
+                        Business Hours
+                    </label>
+                    <Controller
+                        name="business_hours"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                {...field}
+                                className="react-select"
+                                classNamePrefix="select"
+                                options={[
+                                    {
+                                        label: 'Sunday - Friday 9am - 11pm',
+                                        value: 'sunday - friday 9am - 11pm',
+                                    },
+                                ]}
+                                styles={styles}
+                            />
+                        )}
+                    />
+                    {errors.business_hours && (
+                        <p className="text-red-500 font-normal text-sm mt-1">
+                            {errors.business_hours.message}
+                        </p>
+                    )}
+                </div>
                 <Textinput
                     name="postal_code"
                     label="Postal Code"

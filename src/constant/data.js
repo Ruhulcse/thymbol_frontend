@@ -30,7 +30,7 @@ export const menuItems = [
     {
         title: 'Notifications',
         icon: 'heroicons-outline:bell-alert',
-        link: 'notifications',
+        link: 'push-notifications',
         role: ['supperadmin', 'consumer', 'merchant'],
     },
     {
@@ -81,7 +81,7 @@ export const menuItems = [
 export const navLink = [
     {
         title:"Home",
-        link:'/'
+        link:'/home'
     },
     {
         title:"Favourites",
@@ -89,11 +89,11 @@ export const navLink = [
     },
     {
         title:"Clipped Deals",
-        link:'/clippedDeals'
+        link:'/clipped-deals'
     },
     {
         title:"Subscription",
-        link:'/subscription'
+        link:'/consumer-subscription'
     },
 ]
 

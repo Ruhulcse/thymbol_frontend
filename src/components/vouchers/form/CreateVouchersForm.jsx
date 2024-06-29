@@ -30,6 +30,12 @@ const discounts = Array.from({ length: 16 }, (_, index) => {
     return { value: discount.toString(), label: discount.toString() };
 });
 
+const offers = [
+    { value: 'Buy One Get One Free', label: 'Buy One Get One Free' },
+    { value: 'Buy One Get One Half Off', label: 'Buy One Get One Half Off' },
+    { value: 'custom', label: 'Custom' },
+];
+
 const offersReedem = Array.from({ length: 20 }, (_, index) => {
     const offerCount = index + 1;
     return { value: offerCount.toString(), label: offerCount.toString() };
@@ -50,6 +56,7 @@ const schema = yup
 const CreateVouchersForm = () => {
     const discountsMemo = useMemo(() => discounts, []);
     const offersReedemMemo = useMemo(() => offersReedem, []);
+    const offersMemo = useMemo(() => offers, []);
     const { user_id } = useSelector((state) => state.auth);
     const { data: stores, isLoading: loadingStores } =
         useGetStoresQuery(user_id);
@@ -62,6 +69,7 @@ const CreateVouchersForm = () => {
         handleSubmit,
         control,
         setValue,
+        watch,
     } = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
@@ -75,7 +83,7 @@ const CreateVouchersForm = () => {
         }
 
         const jsonData = {
-            discount: data.discount.value,
+            discount: data?.discount?.value,
             creator: user_id,
             endDate: data.endDate,
             voucherCode: data.voucherCode,
@@ -83,6 +91,7 @@ const CreateVouchersForm = () => {
             storeName: data.storeName.label,
             redeemLimit: data.redeemLimit.value,
             condition: data.condition,
+            offer: data.offer.value,
         };
         formData.append('voucherData', JSON.stringify(jsonData));
         await createVoucher({
@@ -116,31 +125,59 @@ const CreateVouchersForm = () => {
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <div>
-                    <label htmlFor="discount" className="form-label ">
-                        Discount %
+                    <label htmlFor="offer" className="form-label ">
+                        Discount Templates
                     </label>
                     <Controller
-                        name="discount"
+                        name="offer"
                         control={control}
                         render={({ field }) => (
                             <Select
                                 {...field}
                                 className="react-select"
                                 classNamePrefix="select"
-                                options={discountsMemo?.map((discount) => ({
-                                    value: discount.value,
-                                    label: discount.label,
+                                options={offersMemo?.map((offer) => ({
+                                    value: offer.value,
+                                    label: offer.label,
                                 }))}
                                 styles={styles}
                             />
                         )}
                     />
-                    {errors.discount && (
+                    {errors.offer && (
                         <p className="text-red-500 font-normal text-sm mt-1">
-                            {errors.discount.message}
+                            {errors.offer.message}
                         </p>
                     )}
                 </div>
+                {watch('offer')?.value === 'custom' && (
+                    <div>
+                        <label htmlFor="discount" className="form-label ">
+                            Custom Discounts %
+                        </label>
+                        <Controller
+                            name="discount"
+                            control={control}
+                            render={({ field }) => (
+                                <Select
+                                    {...field}
+                                    className="react-select"
+                                    classNamePrefix="select"
+                                    options={discountsMemo?.map((discount) => ({
+                                        value: discount.value,
+                                        label: discount.label,
+                                    }))}
+                                    styles={styles}
+                                />
+                            )}
+                        />
+                        {errors.discount && (
+                            <p className="text-red-500 font-normal text-sm mt-1">
+                                {errors.discount.message}
+                            </p>
+                        )}
+                    </div>
+                )}
                 <div>
                     <label htmlFor="endDate" className="form-label">
                         Offer end date
@@ -238,6 +275,8 @@ const CreateVouchersForm = () => {
                     error={errors.condition}
                     className="h-[48px]"
                 />
+
+                {watch('offer')?.value === 'custom' ? <div></div> : null}
 
                 <Button
                     type="submit"

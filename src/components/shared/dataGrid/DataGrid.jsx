@@ -244,7 +244,7 @@ const DataGrid = ({ columns, data, isSearchable }) => {
                         onChange={(e) => setPageSize(Number(e.target.value))}
                         className="form-control py-2 flex items-end"
                     >
-                        {[10, 20, 50, 100, 200].map((pageSize) => (
+                        {[10, 20, 50, 100].map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
                                 Show {pageSize}
                             </option>
