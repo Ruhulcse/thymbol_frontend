@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react'
-import icon from './../../assets/images/home/Group 1000005429.png'
+import icon from './../../assets/images/home/icon1.png'
 
 
 const SingleCard =({item})=> {

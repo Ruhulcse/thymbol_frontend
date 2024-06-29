@@ -3,8 +3,8 @@ import { voucherData } from '@/data/voucherData';
 
 import Button from '@/components/button/Button';
 import UserLayout from '@/layout/UserLayout';
-import qr from './../../assets/images/merchant/Group.png';
-import map from './../../assets/images/merchant/Screenshot 2024-04-27 at 11.38 1.png';
+import qr from './../../assets/images/merchant/qr.png';
+import map from './../../assets/images/merchant/map.png';
 function RedeemDealDetails() {
     return (
         <>

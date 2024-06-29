@@ -1,6 +1,6 @@
-import img from './../assets/images/merchant/Rectangle 34626035 (1).png'
-import img1 from './../assets/images/merchant/Rectangle 34626035 (3).png'
-import img2 from './../assets/images/merchant/Rectangle 34626035 (2).png'
+import img from './../assets/images/merchant/colive.png'
+import img1 from './../assets/images/merchant/goldenview.png'
+import img2 from './../assets/images/merchant/alenciab.png'
 export const voucherData = [
     {
         title:'Gourmet Aveny',
