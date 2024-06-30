@@ -48,6 +48,7 @@ function Home() {
                 {/* Restaurants Near Me */}
                 <Restaurants data={storeData} />
                 {/* Salons Near Me */}
+                
                 {/* <SalonsNear data={salonsData} /> */}
             </div>
         </div>
