@@ -19,4 +19,5 @@ function Restaurants({ data }) {
     );
 }
 
+
 export default Restaurants;
