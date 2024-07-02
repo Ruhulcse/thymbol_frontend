@@ -1,11 +1,12 @@
 import { lazy, useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // home pages  & dashboard
 //import Dashboard from "./pages/dashboard";
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/auth/login'));
 const Signup = lazy(() => import('./pages/auth/register'));
+const RegisterConsumer = lazy(() => import('./pages/auth/register-consumer'));
 const GoogleLogInSuccess = lazy(() => import('./pages/auth/success'));
 const EditProfile = lazy(() => import('./pages/user/editProfile'));
 const DeleteUserProfilePage = lazy(() =>
@@ -36,16 +37,18 @@ const RedeemDealDetails = lazy(() => import('./pages/redeemDealDetails'));
 const PushNotificationPage = lazy(() => import('./pages/pushNotification'));
 const VerificationVideo = lazy(() => import('./components/verificationVideo'));
 const VideoReviewPage = lazy(() => import('./pages/videoReview'));
+const LoginHomePage = lazy(() => import('./pages/loginHome'));
+const LoginConsumer = lazy(() => import('./pages/auth/login-consumer'));
 const ConsumerSubscriptionPage = lazy(() =>
     import('./pages/consumerSubscription')
 );
 
+import { useDispatch } from 'react-redux';
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
 import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
 import UserLayout from './layout/UserLayout';
-import { useDispatch } from 'react-redux';
 import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
 //import Home from '@/pages/home/Home';
 
@@ -53,16 +56,18 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-		dispatch(getUserGeoLocation());
-	}, [dispatch]);
+        dispatch(getUserGeoLocation());
+    }, [dispatch]);
 
     return (
         <main className="App  relative">
             <Routes>
                 {/* public routes */}
                 <Route path="/" element={<AuthLayout />}>
-                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="/" element={<LoginHomePage />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/login-consumer" element={<LoginConsumer />} />
+                    <Route path="/signup-consumer" element={<RegisterConsumer />} />
                     <Route path="/signup" element={<Signup />} />
 
                     <Route path="*" element={<Error />} />
