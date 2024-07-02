@@ -44,7 +44,11 @@ const offersReedem = Array.from({ length: 20 }, (_, index) => {
 const schema = yup
     .object({
         logo: yup.array().min(1, 'Logo is required'),
-        discount: yup.object().required('Discount is required'),
+        discount: yup.object().when('offer', {
+            is: (offer) => offer?.value === 'custom',
+            then: yup.object().required('Custom discount is required'),
+            otherwise: yup.object().nullable(),
+        }),
         endDate: yup.date().required('Offer end date is required'),
         voucherCode: yup.string().required('Voucher code is required'),
         storeName: yup.object().required('Store name is required'),
