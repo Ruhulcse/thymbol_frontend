@@ -9,7 +9,7 @@ import * as yup from 'yup';
 
 const schema = yup
     .object({
-        businessName: yup.string().required('Business Name is required'),
+        // businessName: yup.string().required('Business Name is required'),
         userName: yup.string().required('Username is required'),
         email: yup
             .string()
@@ -77,7 +77,7 @@ const RegConsumerForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 ">
-            <Textinput
+            {/* <Textinput
                 name="businessName"
                 label="Business Name"
                 type="text"
@@ -85,7 +85,7 @@ const RegConsumerForm = () => {
                 register={register}
                 error={errors.businessName}
                 className="h-[48px]"
-            />
+            /> */}
             <Textinput
                 name="userName"
                 label="Username"
