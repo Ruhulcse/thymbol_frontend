@@ -8,16 +8,21 @@ function Restaurants({ data }) {
         <div className="lg:container mx-auto mt-24 w-full">
             {data?.length ? (
                 <>
-                    <Title>{data[0].category} Near Me</Title>
-                    <SalonsList data={data[0].stores} />
+                    {data?.map((item) => (
+                        <>
+                            <Title>{item?.category} Near Me</Title>
+                            <SalonsList data={item?.stores} />
+                            <div className="my-10">
+                                <ViewMore className="hidden md:flex" />
+                            </div>
+                        </>
+                    ))}
                 </>
             ) : (
                 <Loading />
             )}
-            <ViewMore className="hidden md:flex" />
         </div>
     );
 }
-
 
 export default Restaurants;
