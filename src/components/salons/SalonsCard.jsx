@@ -8,7 +8,7 @@ function SalonsCard({ item }) {
                 <div className="flex justify-center  mx-auto content-center justify-items-center py-4">
                     <div className="md:h-32 md:w-32 h-20 w-20 rounded-full">
                         <img
-                            src={item?.logo?.filePath}
+                            src={item?.logo?.filePath || 'https://cdn-icons-png.flaticon.com/512/2474/2474161.png'}
                             className="h-full w-full rounded-full"
                         />
                     </div>
