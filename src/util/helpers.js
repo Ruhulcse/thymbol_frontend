@@ -145,3 +145,8 @@ export function formatTimeOrDate(dateInput) {
 export const getFilteredMenuItems = (items, userType) => {
     return items.filter((item) => item?.role?.includes(userType));
 };
+
+
+export const formatAddress = (address) => {
+    return `${address.street}, ${address.city}, ${address.country} - ${address.postal_code}`;
+}

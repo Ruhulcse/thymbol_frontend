@@ -7,6 +7,11 @@ export const storesApi = apiSlice.injectEndpoints({
             providesTags: ['Stores'],
             transformResponse: (response) => response.data,
         }),
+        getStore: builder.query({
+            query: (storeId) => `store/${storeId}`,
+            providesTags: ['Store'],
+            transformResponse: (response) => response.data,
+        }),
         createStore: builder.mutation({
             query: ({ storeData }) => ({
                 url: 'store/create-store',
@@ -18,4 +23,4 @@ export const storesApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetStoresQuery, useCreateStoreMutation } = storesApi;
+export const { useGetStoresQuery, useCreateStoreMutation, useGetStoreQuery } = storesApi;

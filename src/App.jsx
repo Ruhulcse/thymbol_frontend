@@ -81,7 +81,7 @@ function App() {
                         }
                     >
                         <Route path="/home" element={<Home />} />
-                        <Route path="/merchant" element={<Merchant />} />
+                        <Route path="/store/:id" element={<Merchant />} />
 
                         <Route
                             path="/clipped-deals"

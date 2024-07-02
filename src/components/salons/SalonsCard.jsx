@@ -14,7 +14,7 @@ function SalonsCard({ item }) {
                     </div>
                 </div>
                 <div className="text-black-500 px-4 md:px-6">
-                    <Link to={`/redeem-deal`}>
+                    <Link to={`/store/${item._id}`}>
                         <div className="font-bold text-[12px] md:text-base">
                             {item?.store_name}
                         </div>
@@ -27,7 +27,7 @@ function SalonsCard({ item }) {
                     </div>
                     <div className="md:h-8 md:w-8 h-6 w-6 rounded-full">
                         <div className="h-5 w-5 md:h-7 md:w-7 bg-customOrange rounded-full cursor-pointer flex items-center justify-center">
-                            <Link to={`/redeem-deal`}>
+                            <Link to={`/store/${item._id}`}>
                                 <Icon
                                     icon="heroicons:arrow-right"
                                     className="text-white font-bold"
