@@ -18,7 +18,7 @@ export const storesApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: storeData,
             }),
-            invalidatesTags: (result, error, { userId }) => ['Stores'],
+            invalidatesTags: (result, error, { userId }) => ['Stores', 'Store'],
         }),
     }),
 });

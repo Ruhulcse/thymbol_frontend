@@ -1,16 +1,25 @@
 import SingleVoucher from '@/components/voucherCard/SingleVoucher';
-import { voucherData } from '@/data/voucherData';
 
+import Loading from '@/components/Loading';
 import Button from '@/components/button/Button';
 import RecordVideo from '@/components/ui/RecordVideo';
 import UploadVideo from '@/components/ui/UploadVideo';
+import { useGetVoucherQuery } from '@/store/api/vouchers/vouchersApiSlice';
+import { humanDate } from '@/util/helpers';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import qr from './../../assets/images/merchant/Group.png';
 import map from './../../assets/images/merchant/Screenshot 2024-04-27 at 11.38 1.png';
 function RedeemDealDetails() {
     const navigate = useNavigate();
     const [showVideoCapture, setShowVideoCapture] = useState(false);
+    const {id: voucherId} = useParams();
+
+    const {data: voucherData, isLoading: loadingVoucher} = useGetVoucherQuery(voucherId);
+    console.log("🚀  ~ voucherData:", voucherData)
+    
+
+    if(loadingVoucher) return <Loading />;
 
     const routerBack = () => {
         navigate(-1);
@@ -29,14 +38,14 @@ function RedeemDealDetails() {
                                 Back
                             </Button>
                             <div className="bg-[#e1f4fc] p-3 font-semibold text-black-500 rounded-md flex items-center">
-                                Remaining Vouchers: 27h
+                                Remaining Vouchers: {voucherData?.redeemLimit}
                             </div>
                         </div>
                         <div className="font-bold sm:text-base md:text-xl lg:text-2xl text-black-500 mt-8">
                             Your Redeemed Deal’s Details
                         </div>
                         <div className="flex justify-start ">
-                            <SingleVoucher item={voucherData[0]} />
+                            <SingleVoucher item={voucherData} link={`redeem-deal`}/>
                         </div>
 
                         <div className="flex md:gap-10  gap-5 lg:text-xl md:text-sm text-xs justify-around font-semibold">
@@ -44,7 +53,7 @@ function RedeemDealDetails() {
                                 Redeem Date: April 24,2024
                             </div>
                             <div className="bg-white px-3  w-44 py-2">
-                                Valid Till: 60 minutes
+                                Valid Till: {humanDate(voucherData?.endDate)}
                             </div>
                         </div>
                         <div className="font-bold text-xl">Location</div>

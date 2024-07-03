@@ -87,9 +87,9 @@ function App() {
                             path="/clipped-deals"
                             element={<ClippedDeals />}
                         />
-                        <Route path="/redeem-deal" element={<RedeemDeal />} />
+                        <Route path="/redeem-deal/:id" element={<RedeemDeal />} />
                         <Route
-                            path="/redeem-deal-details"
+                            path="/redeem-deal-details/:id"
                             element={<RedeemDealDetails />}
                         />
                         <Route

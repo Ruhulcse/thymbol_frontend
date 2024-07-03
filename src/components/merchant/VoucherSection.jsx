@@ -1,16 +1,15 @@
-import ViewMore from '@/components/button/ViewMore'
-import Title from '@/components/title'
-import VoucherList from '@/components/voucherCard/VoucherList'
-import React from 'react'
+import ViewMore from '@/components/button/ViewMore';
+import Title from '@/components/title';
+import VoucherList from '@/components/voucherCard/VoucherList';
 
-function VoucherSection({data}) {
-  return (
-    <div>
-        <Title>Our Lattest Coupons</Title>
-        <VoucherList data={data}/>
-        <ViewMore className={'hidden md:flex'}/>
-    </div>
-  )
+function VoucherSection() {
+    return (
+        <div>
+            <Title>Our Lattest Coupons</Title>
+            <VoucherList />
+            <ViewMore className={'hidden md:flex'} />
+        </div>
+    );
 }
 
-export default VoucherSection
+export default VoucherSection;

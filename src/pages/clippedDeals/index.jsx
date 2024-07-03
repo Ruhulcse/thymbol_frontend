@@ -1,7 +1,14 @@
 import SingleVoucher from '@/components/voucherCard/SingleVoucher';
 import { voucherData } from '@/data/voucherData';
+import { selectCurrentUser } from '@/store/api/auth/authSlice';
+import { useGetClippedVoucherQuery } from '@/store/api/vouchers/vouchersApiSlice';
+import { useSelector } from 'react-redux';
 
 function ClippedDeals() {
+    const userId = useSelector(selectCurrentUser);
+
+    const {data, isLoading} = useGetClippedVoucherQuery(userId)
+    console.log("🚀  ~ data:", data)
     return (
         <>
             <div className="min-h-screen h-full flex items-center bg-[#F3FCFF]">
