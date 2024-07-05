@@ -14,7 +14,7 @@ export const vouchersApi = apiSlice.injectEndpoints({
         getClippedVoucher: builder.query({
             query: (userId) => `voucher/clipped-details/${userId}`,
             providesTags: ['ClippedVoucher'],
-            // transformResponse: (response) => response.data,
+            transformResponse: (response) => response.data,
         }),
         getVoucherByStore: builder.query({
             query: (storeId) => `voucherbystore/${storeId}`,

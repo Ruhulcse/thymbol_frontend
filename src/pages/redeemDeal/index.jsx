@@ -22,7 +22,7 @@ function RedeemDeal() {
     const handleClipForLater = async () => {
         try {
             const payload = {
-                consumed_by: userId,
+                consume_by: userId,
                 clipped_vouchers: [voucherId],
             };
             const response = await fetchWrapper.post(
