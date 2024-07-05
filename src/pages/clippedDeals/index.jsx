@@ -8,7 +8,6 @@ function ClippedDeals() {
     const userId = useSelector(selectCurrentUser);
 
     const { data: voucherData, isLoading } = useGetClippedVoucherQuery(userId);
-    console.log("🚀  ~ voucherData:", voucherData)
 
     if (isLoading) <Loading />;
 
