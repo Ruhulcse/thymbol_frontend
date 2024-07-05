@@ -1,8 +1,10 @@
 import Loading from '@/components/Loading';
 import SingleVoucher from '@/components/voucherCard/SingleVoucher';
 import { selectCurrentUser } from '@/store/api/auth/authSlice';
-import { useGetVoucherQuery } from '@/store/api/vouchers/vouchersApiSlice';
-import fetchWrapper from '@/util/fetchWrapper';
+import {
+    useCreateClippedVoucherMutation,
+    useGetVoucherQuery
+} from '@/store/api/vouchers/vouchersApiSlice';
 import { swalError } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
@@ -12,9 +14,9 @@ import icon from './../../assets/images/icon/Icons.png';
 
 function RedeemDeal() {
     const navigate = useNavigate();
+    const [createClippedVoucher, { isLoading, isError, error, isSuccess }] = useCreateClippedVoucherMutation();
     const { id: voucherId } = useParams();
-    const { data: voucherData, isLoading: loadingVoucher } =
-        useGetVoucherQuery(voucherId);
+    const { data: voucherData, isLoading: loadingVoucher } = useGetVoucherQuery(voucherId);
     const userId = useSelector(selectCurrentUser);
 
     if (loadingVoucher) return <Loading />;
@@ -25,10 +27,11 @@ function RedeemDeal() {
                 consume_by: userId,
                 clipped_vouchers: [voucherId],
             };
-            const response = await fetchWrapper.post(
-                '/voucher/clipped-for-later',
-                payload
-            );
+            // const response = await fetchWrapper.post(
+            //     '/voucher/clipped-for-later',
+            //     payload
+            // );
+            const response = await createClippedVoucher({data: payload});
             console.log('🚀  ~ response:', response);
             toast.success('Successfully added to clipped list');
 

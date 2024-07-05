@@ -16,6 +16,14 @@ export const vouchersApi = apiSlice.injectEndpoints({
             providesTags: ['ClippedVoucher'],
             transformResponse: (response) => response.data,
         }),
+        createClippedVoucher: builder.mutation({
+            query: ({ data }) => ({
+                url: 'voucher/clipped-for-later',
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: (result, error, { userId }) => ['ClippedVoucher'],
+        }),
         getVoucherByStore: builder.query({
             query: (storeId) => `voucherbystore/${storeId}`,
             providesTags: ['Store'],
@@ -32,4 +40,4 @@ export const vouchersApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetVouchersQuery, useCreateVoucherMutation, useGetVoucherByStoreQuery, useGetVoucherQuery, useGetClippedVoucherQuery } = vouchersApi;
+export const { useGetVouchersQuery, useCreateVoucherMutation, useGetVoucherByStoreQuery, useGetVoucherQuery, useGetClippedVoucherQuery, useCreateClippedVoucherMutation } = vouchersApi;
