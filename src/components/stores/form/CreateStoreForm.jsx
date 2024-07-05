@@ -37,7 +37,7 @@ const schema = yup
         social_media_link: yup
             .string()
             .url('Website Link must be a valid URL. https://example.com'),
-        
+
         postal_code: yup.string().required('Postal Code is required'),
         category: yup.object().required('Category is required').nullable(),
         country: yup.string().required('Country is required'),
@@ -55,6 +55,16 @@ const CreateStoreForm = () => {
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
     const [activeModal, setActiveModal] = useState(false);
     const [businessHours, setBusinessHours] = useState({});
+    const [businessHoursData, setBusinessHoursData] = useState({
+        monday: { opening: '', closing: '' },
+        tuesday: { opening: '', closing: '' },
+        wednesday: { opening: '', closing: '' },
+        thursday: { opening: '', closing: '' },
+        friday: { opening: '', closing: '' },
+        saturday: { opening: '', closing: '' },
+        sunday: { opening: '', closing: '' },
+    });
+    
 
     const onClose = () => {
         setActiveModal(false);
@@ -461,6 +471,7 @@ const CreateStoreForm = () => {
                     className="btn btn-primary block mt-5 text-center font-normal"
                     isLoading={isCreating}
                     disabled={isCreating}
+                    
                 />
             </div>
 
@@ -469,6 +480,8 @@ const CreateStoreForm = () => {
                     activeModal={activeModal}
                     onclose={() => onClose()}
                     setBusinessHoursForm={setBusinessHours}
+                    businessHoursData={businessHoursData}
+                    setBusinessHoursData={setBusinessHoursData}
                 />
             )}
         </form>

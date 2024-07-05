@@ -3,7 +3,13 @@ import Textinput from '@/components/ui/Textinput';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const BusinessHoursModal = ({ activeModal, onclose, setBusinessHoursForm }) => {
+const BusinessHoursModal = ({
+    activeModal,
+    businessHoursData,
+    setBusinessHoursData,
+    onclose,
+    setBusinessHoursForm,
+}) => {
     const {
         register,
         handleSubmit,
@@ -48,6 +54,11 @@ const BusinessHoursModal = ({ activeModal, onclose, setBusinessHoursForm }) => {
                 ...prevHours,
                 [day]: { opening, closing },
             }));
+
+            setBusinessHoursData((prevHours) => ({
+                ...prevHours,
+                [day]: { opening, closing },
+            }));
         });
     };
 
@@ -62,6 +73,12 @@ const BusinessHoursModal = ({ activeModal, onclose, setBusinessHoursForm }) => {
                 ])
                 .filter(([, times]) => times.trim() !== 'to')
         );
+    
+        delete data.applyAllOpening;
+        delete data.applyAllClosing
+        
+
+        setBusinessHoursData((prev) => ({ ...prev, ...data }));
 
         setBusinessHoursForm(payload);
 
@@ -124,7 +141,7 @@ const BusinessHoursModal = ({ activeModal, onclose, setBusinessHoursForm }) => {
                         </button>
                     </div>
                 </div>
-                {Object.keys(businessHours).map((day) => (
+                {Object.keys(businessHoursData).map((day) => (
                     <div key={day} className="flex items-center space-x-2">
                         <label
                             className="text-sm font-medium capitalize w-20"
@@ -136,7 +153,7 @@ const BusinessHoursModal = ({ activeModal, onclose, setBusinessHoursForm }) => {
                             type="text"
                             id={`${day}-opening`}
                             name={`${day}.opening`}
-                            defaultValue={businessHours[day].opening}
+                            defaultValue={businessHoursData[day].opening}
                             register={register}
                             className="input"
                             placeholder="Opening time"
@@ -151,7 +168,7 @@ const BusinessHoursModal = ({ activeModal, onclose, setBusinessHoursForm }) => {
                             type="text"
                             id={`${day}-closing`}
                             name={`${day}.closing`}
-                            defaultValue={businessHours[day].closing}
+                            defaultValue={businessHoursData[day].closing}
                             register={register}
                             className="input"
                             placeholder="Closing time"
