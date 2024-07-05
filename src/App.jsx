@@ -1,5 +1,5 @@
 import { lazy, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 // home pages  & dashboard
 //import Dashboard from "./pages/dashboard";
@@ -64,10 +64,13 @@ function App() {
             <Routes>
                 {/* public routes */}
                 <Route path="/" element={<AuthLayout />}>
-                    <Route path="/" element={<LoginHomePage />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/login-consumer" element={<LoginConsumer />} />
-                    <Route path="/signup-consumer" element={<RegisterConsumer />} />
+                    <Route
+                        path="/signup-consumer"
+                        element={<RegisterConsumer />}
+                    />
                     <Route path="/signup" element={<Signup />} />
 
                     <Route path="*" element={<Error />} />
@@ -75,36 +78,33 @@ function App() {
 
                 {/* consumer layout */}
                 <Route path="/" element={<UserLayout />}>
-                    <Route
+                    {/* <Route
                         element={
                             <RequireAuth allowedRoles={[ROLES.CONSUMER]} />
                         }
-                    >
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/store/:id" element={<Merchant />} />
+                    > */}
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/store/:id" element={<Merchant />} />
 
-                        <Route
-                            path="/clipped-deals"
-                            element={<ClippedDeals />}
-                        />
-                        <Route path="/redeem-deal/:id" element={<RedeemDeal />} />
-                        <Route
-                            path="/redeem-deal-details/:id"
-                            element={<RedeemDealDetails />}
-                        />
-                        <Route
-                            path="/verification-intro"
-                            element={<VerificationVideo />}
-                        />
-                        <Route
-                            path="/consumer-subscription"
-                            element={<ConsumerSubscriptionPage />}
-                        />
-                        <Route
-                            path="/add-video-review"
-                            element={<VideoReviewPage />}
-                        />
-                    </Route>
+                    <Route path="/clipped-deals" element={<ClippedDeals />} />
+                    <Route path="/redeem-deal/:id" element={<RedeemDeal />} />
+                    <Route
+                        path="/redeem-deal-details/:id"
+                        element={<RedeemDealDetails />}
+                    />
+                    <Route
+                        path="/verification-intro"
+                        element={<VerificationVideo />}
+                    />
+                    <Route
+                        path="/consumer-subscription"
+                        element={<ConsumerSubscriptionPage />}
+                    />
+                    <Route
+                        path="/add-video-review"
+                        element={<VideoReviewPage />}
+                    />
+                    {/* </Route> */}
                 </Route>
 
                 {/* admin layout */}

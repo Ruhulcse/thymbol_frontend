@@ -1,10 +1,13 @@
 import Loading from '@/components/Loading';
 import Profile from '@/components/partials/header/Tools/Profile';
+import Button from '@/components/ui/Button';
 import { navLink } from '@/constant/data';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
+import { selectCurrentUser } from '@/store/api/auth/authSlice';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import { Suspense, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import logo from './../assets/images/home/Thymbol Logo.png';
 
@@ -12,6 +15,7 @@ function UserLayout() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [sidebar, setSidebar] = useState(null);
     const currentWidth = useCurrentWidth();
+    const user = useSelector(selectCurrentUser);
 
     useEffect(() => {
         setSidebar(currentWidth >= 1024 ? true : false);
@@ -73,7 +77,22 @@ function UserLayout() {
                         </Link>
                     </div>
                     <div className="hidden md:flex">
-                        <Profile />
+                        {user ? (
+                            <Profile />
+                        ) : (
+                            <>
+                                <Button
+                                    className="bg-white text-black me-2"
+                                    link={'/login-consumer'}
+                                    text={'Login as consumer'}
+                                />
+                                <Button
+                                    className="bg-white text-black"
+                                    link={'/login'}
+                                    text={'Login as Admin'}
+                                />
+                            </>
+                        )}
                     </div>
                 </nav>
             </div>
