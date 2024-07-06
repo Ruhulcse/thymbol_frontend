@@ -16,7 +16,7 @@ const ConsumerSubscriptionPage = () => {
                 paymentMethod="$2"
                 // paymentAmount={'$33/month'}
                 // saveCost={'SAVE 33%'}
-                onClick={() => navigate('/payment')}
+                onClick={() => navigate('/consumer-payment')}
             >
                 {premium.map((item, i) => (
                     <div
@@ -36,10 +36,10 @@ const ConsumerSubscriptionPage = () => {
                 title="Annual Premium"
                 headerClass="bg-customBlue"
                 titleClass="text-white"
-                paymentMethod="$2"
+                paymentMethod="$18"
                 // paymentAmount={'$33/month'}
                 // saveCost={'SAVE 33%'}
-                onClick={() => navigate('/payment')}
+                onClick={() => navigate('/consumer-payment')}
             >
                 {annual.map((item, i) => (
                     <div

@@ -39,6 +39,7 @@ const VerificationVideo = lazy(() => import('./components/verificationVideo'));
 const VideoReviewPage = lazy(() => import('./pages/videoReview'));
 const LoginHomePage = lazy(() => import('./pages/loginHome'));
 const LoginConsumer = lazy(() => import('./pages/auth/login-consumer'));
+const ConsumerPaymentPage = lazy(() => import('./pages/consumer-payment'));
 const ConsumerSubscriptionPage = lazy(() =>
     import('./pages/consumerSubscription')
 );
@@ -99,6 +100,10 @@ function App() {
                     <Route
                         path="/consumer-subscription"
                         element={<ConsumerSubscriptionPage />}
+                    />
+                    <Route
+                        path="/consumer-payment"
+                        element={<ConsumerPaymentPage />}
                     />
                     <Route
                         path="/add-video-review"
