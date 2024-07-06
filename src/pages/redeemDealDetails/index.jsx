@@ -2,6 +2,7 @@ import SingleVoucher from '@/components/voucherCard/SingleVoucher';
 
 import Loading from '@/components/Loading';
 import Button from '@/components/button/Button';
+import LocationMap from '@/components/locationMap';
 import RecordVideo from '@/components/ui/RecordVideo';
 import UploadVideo from '@/components/ui/UploadVideo';
 import { useGetVoucherQuery } from '@/store/api/vouchers/vouchersApiSlice';
@@ -9,17 +10,16 @@ import { humanDate } from '@/util/helpers';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import qr from './../../assets/images/merchant/Group.png';
-import map from './../../assets/images/merchant/Screenshot 2024-04-27 at 11.38 1.png';
 function RedeemDealDetails() {
     const navigate = useNavigate();
     const [showVideoCapture, setShowVideoCapture] = useState(false);
-    const {id: voucherId} = useParams();
+    const { id: voucherId } = useParams();
 
-    const {data: voucherData, isLoading: loadingVoucher} = useGetVoucherQuery(voucherId);
-    console.log("🚀  ~ voucherData:", voucherData)
-    
+    const { data: voucherData, isLoading: loadingVoucher } =
+        useGetVoucherQuery(voucherId);
+    console.log('🚀  ~ voucherData:', voucherData);
 
-    if(loadingVoucher) return <Loading />;
+    if (loadingVoucher) return <Loading />;
 
     const routerBack = () => {
         navigate(-1);
@@ -45,7 +45,10 @@ function RedeemDealDetails() {
                             Your Redeemed Deal’s Details
                         </div>
                         <div className="flex justify-start ">
-                            <SingleVoucher item={voucherData} link={`redeem-deal`}/>
+                            <SingleVoucher
+                                item={voucherData}
+                                link={`redeem-deal`}
+                            />
                         </div>
 
                         <div className="flex md:gap-10  gap-5 lg:text-xl md:text-sm text-xs justify-around font-semibold">
@@ -59,11 +62,12 @@ function RedeemDealDetails() {
                         <div className="font-bold text-xl">Location</div>
                         <div className="flex gap-7">
                             <div className="h-52 w-72">
-                                <img
+                                {/* <img
                                     src={map}
                                     alt=""
                                     className="w-full h-full"
-                                />
+                                /> */}
+                                <LocationMap />
                             </div>
                             <div className="h-40 w-40">
                                 <img
