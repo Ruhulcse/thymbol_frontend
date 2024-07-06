@@ -98,7 +98,7 @@ const RegConsumerForm = () => {
             <Textinput
                 name="email"
                 label="Email"
-                type="email"
+                type="text"
                 placeholder="Enter your Email Address"
                 register={register}
                 error={errors.email}

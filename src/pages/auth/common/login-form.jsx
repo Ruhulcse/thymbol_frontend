@@ -77,7 +77,7 @@ const LoginForm = () => {
             <Textinput
                 name="email"
                 label="email"
-                type="email"
+                type="text"
                 register={register}
                 error={errors.email}
                 className="h-[48px]"
