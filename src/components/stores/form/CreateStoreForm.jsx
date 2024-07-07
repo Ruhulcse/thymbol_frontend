@@ -1,3 +1,4 @@
+import BusinessHours from '@/components/businessHours';
 import PlaceAutoComplete from '@/components/placeAutoComplete';
 import Button from '@/components/ui/Button';
 import Textinput from '@/components/ui/Textinput';
@@ -14,7 +15,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import * as yup from 'yup';
-import BusinessHoursModal from './BusinessHoursModal';
 
 const styles = {
     option: (provided, state) => ({
@@ -55,15 +55,8 @@ const CreateStoreForm = () => {
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
     const [activeModal, setActiveModal] = useState(false);
     const [businessHours, setBusinessHours] = useState({});
-    const [businessHoursData, setBusinessHoursData] = useState({
-        monday: { opening: '', closing: '' },
-        tuesday: { opening: '', closing: '' },
-        wednesday: { opening: '', closing: '' },
-        thursday: { opening: '', closing: '' },
-        friday: { opening: '', closing: '' },
-        saturday: { opening: '', closing: '' },
-        sunday: { opening: '', closing: '' },
-    });
+    console.log("🚀  ~ businessHours:", businessHours)
+   
     
 
     const onClose = () => {
@@ -444,6 +437,7 @@ const CreateStoreForm = () => {
                         </p>
                     )}
                 </div> */}
+                <BusinessHours businessHours={businessHours} setBusinessHours={setBusinessHours}/>
                 <Textinput
                     name="postal_code"
                     label="Postal Code"
@@ -457,13 +451,13 @@ const CreateStoreForm = () => {
                     // }}
                     disabled={true}
                 />
-                <div>
+                {/* <div>
                     <Button
                         text="Add Business Hours"
                         className="btn btn-primary mt-[30px] py-3  text-center font-normal w-full"
                         onClick={() => setActiveModal(true)}
                     />
-                </div>
+                </div> */}
 
                 <Button
                     type="submit"
@@ -475,7 +469,7 @@ const CreateStoreForm = () => {
                 />
             </div>
 
-            {activeModal && (
+            {/* {activeModal && (
                 <BusinessHoursModal
                     activeModal={activeModal}
                     onclose={() => onClose()}
@@ -483,7 +477,7 @@ const CreateStoreForm = () => {
                     businessHoursData={businessHoursData}
                     setBusinessHoursData={setBusinessHoursData}
                 />
-            )}
+            )} */}
         </form>
     );
 };
