@@ -14,7 +14,8 @@ const initialState = {
 export const getUserGeoLocation = createAsyncThunk('geoLocation/location', async () => {
 	try {
 		const response = await axios.get(`https://ipinfo.io?token=${import.meta.env.VITE_IPINFO_TOKEN}`);
-		return response.data;
+		 return response.data;
+		//return true;
 	} catch (error) {
 		throw error.response ? error.response.data : error.message;
 	}
@@ -34,6 +35,8 @@ const geoLocationSlice = createSlice({
 				state.success = true;
 				const lat = action.payload?.loc?.split(',')[0]
 				const lng = action.payload?.loc?.split(',')[1]
+				//const lat = 24.7460;
+				//const lng = 90.4179;
 				state.geoLocationData.lat = lat;
 				state.geoLocationData.lng = lng;
 			})
