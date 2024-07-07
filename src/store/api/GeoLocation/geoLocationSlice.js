@@ -35,8 +35,8 @@ const geoLocationSlice = createSlice({
 				state.success = true;
 				const lat = action.payload?.loc?.split(',')[0]
 				const lng = action.payload?.loc?.split(',')[1]
-				//const lat = 24.7460;
-				//const lng = 90.4179;
+				// const lat = 24.7460;
+				// const lng = 90.4179;
 				state.geoLocationData.lat = lat;
 				state.geoLocationData.lng = lng;
 			})

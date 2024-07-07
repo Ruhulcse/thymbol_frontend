@@ -49,8 +49,8 @@ function ModalsVideo() {
                     modules={[Navigation]}
                 >
                     {data.map((item, index) => (
-                        <SwiperSlide key={index} className='flex items-center justify-center '>
-                            <div className="relative h-full max-w-32 sm:h-44 sm:w-48 md:h-80 md:w-72 lg:h-[536px] lg:w-[446px]">
+                        <SwiperSlide key={index} className='flex items-center  gap-3 justify-center '>
+                            <div className="relative h-full max-w-32 sm:h-full sm:max-w-48 md:h-full md:max-w-96 lg:h-[536px] lg:w-[446px] mx-2">
                                 <img src={item.img} alt="" className="h-full w-full" />
                                 <div
                                     className="absolute z-50 inset-0 flex items-center justify-center cursor-pointer"
