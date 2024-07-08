@@ -455,7 +455,7 @@ const CreateStoreForm = () => {
                     // onChange={(e) => {
                     //     setValue('postal_code', e.target.value);
                     // }}
-                    //disabled={true}
+                    disabled={true}
                 />
                 <div>
                     <Button
