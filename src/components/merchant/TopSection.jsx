@@ -13,7 +13,7 @@ function TopSection() {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 items-center md:h-96 h-40 w-full justify-center relative">
             {/* Centered image */}
-            <div className="lg:h-60 lg:w-60 h-28 w-28 rounded-full mx-auto flex items-center justify-center overflow-hidden absolute sm:relative sm:top-0 sm:translate-x-0 sm:transform-none top-0 left-1/2 transform -translate-x-1/2 -translate-y-[100%] sm:left-0 md:h-44 md:w-44">
+            <div className="lg:h-60 lg:w-60 h-28 w-28 rounded-full mx-auto flex items-center justify-center overflow-hidden absolute sm:relative sm:top-0 sm:translate-x-0 sm:transform-none top-0 left-1/2 transform -translate-x-1/2 -translate-y-[100%] sm:left-0 md:h-44 md:w-44 sm:justify-end">
                 <img
                     src={
                         store?.logo?.filePath ||
@@ -23,7 +23,7 @@ function TopSection() {
                     className="h-full w-full p-2 object-cover border-2 border-customBlue rounded-full"
                 />
             </div>
-            <div className="col-span-2 sm:text-start">
+            <div className="col-span-2 sm:text-start space-y-5">
                 <div className="font-bold hidden sm:block md:text-2xl">
                     {store?.store_name?.toUpperCase() || 'N/A'}
                 </div>
@@ -48,10 +48,11 @@ function TopSection() {
                     </div>
                 </div>
                 <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
-                    <div className="">
+                    <div className="flex items-center">
+                    <span className='inline-flex '><Icon icon='heroicons:map-pin' className='text-orange-500 mx-auto text-lg  mr-2'/></span>
                         Location ({formatAddress(store?.address)})
                     </div>
-                    <div className=" ">+1 35 84 56 8374</div>
+                    <div className="flex items-center"><span className='inline-flex'><Icon icon='heroicons:phone' className='text-orange-500 mx-auto text-lg '/></span> +1 35 84 56 8374</div>
                 </div>
                 <div className="flex justify-center gap-7 mt-2 sm:hidden">
                     {infoIcon.map((item, i) => (

@@ -14,7 +14,7 @@ function ClippedDeals() {
     return (
         <>
             <div className="min-h-screen h-full flex items-center bg-[#F3FCFF]">
-                <div className="mx-10 flex flex-wrap justify-center items-center gap-5 h-full">
+                <div className="mx-auto flex flex-wrap justify-center items-center gap-5 h-full container">
                     {voucherData?.map((item, i) => (
                         <div key={i} className="bg-white ">
                             {/* <div className="bg-white mx-6 text-lg font-semibold hidden sm:block py-3">
