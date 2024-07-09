@@ -1,155 +1,132 @@
-import { weekdays } from '@/constant/data';
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import Select from 'react-select';
+import React, { useEffect } from 'react';
+import Icon from '@/components/ui/Icon';
 import Flatpickr from 'react-flatpickr';
-import { useEffect } from 'react';
+import { useFieldArray, useForm, Controller } from 'react-hook-form';
+import moment from 'moment';
 
 const BusinessHours = ({ businessHours, setBusinessHours }) => {
-    const { control, handleSubmit, formState: { errors }, watch } = useForm();
-    const { fields, append, update } = useFieldArray({
-        control,
-        name: 'businessHours',
+    const { control, handleSubmit, register, watch, setValue } = useForm({
+        defaultValues: {
+            hours: [{ dayFrom: 'Monday', dayTo: 'Thursday', openAM: '', closePM: '' }],
+        },
     });
 
-    useEffect(() => {
-        const subscription = watch((value, { name, type }) => {
-            const newFields = [...fields];
-            const index = parseInt(name.match(/\d+/)[0]);
-            const key = name.split('.').pop();
-            newFields[index] = { ...newFields[index], [key]: value.businessHours[index][key] };
-            updateBusinessHours(newFields);
-        });
-        return () => subscription.unsubscribe();
-    }, [watch]);
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: 'hours',
+    });
 
-    const updateBusinessHours = (updatedFields) => {
-        const newPayload = updatedFields.reduce((acc, field) => {
-            if (field.weekdayFrom && field.weekdayTo && field.timeFrom && field.timeTo) {
-                const days = getDaysInRange(field.weekdayFrom.value, field.weekdayTo.value);
-                days.forEach(day => {
-                    acc[day] = `${field.timeFrom} to ${field.timeTo}`;
-                });
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    // Watch all form fields for changes
+    const watchFields = watch();
+
+    // Function to calculate business hours and update state
+    const updateBusinessHours = () => {
+        const updatedBusinessHours = {};
+
+        watchFields.hours.forEach(item => {
+            const { dayFrom, dayTo, openAM, closePM } = item;
+            const openTime = moment(openAM[0]).format('h:mm A'); // openAM is an array from Flatpickr, so use openAM[0]
+            const closeTime = moment(closePM[0]).format('h:mm A'); // closePM is an array from Flatpickr, so use closePM[0]
+            const timeRange = `${openTime} to ${closeTime}`;
+
+            const fromIndex = daysOfWeek.indexOf(dayFrom);
+            const toIndex = daysOfWeek.indexOf(dayTo);
+
+            for (let i = fromIndex; i <= toIndex; i++) {
+                updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
             }
-            return acc;
-        }, {});
-        setBusinessHours(newPayload);
+        });
+
+        // Update business hours state
+        setBusinessHours(updatedBusinessHours);
     };
 
-    const addBusinessHour = () => {
-        append({ weekdayFrom: '', weekdayTo: '', timeFrom: '', timeTo: '' });
-    };
+    // useEffect to update business hours on form data change
+    useEffect(() => {
+        updateBusinessHours();
+    }, []);
 
-    const getDaysInRange = (start, end) => {
-        const startIndex = weekdays.findIndex(day => day.value === start);
-        const endIndex = weekdays.findIndex(day => day.value === end);
-        if (startIndex <= endIndex) {
-            return weekdays.slice(startIndex, endIndex + 1).map(day => day.value);
-        } else {
-            return [
-                ...weekdays.slice(startIndex).map(day => day.value),
-                ...weekdays.slice(0, endIndex + 1).map(day => day.value),
-            ];
-        }
+    // Handle form submission (not using onSubmit directly to prevent infinite loops)
+    const handleFormChange = () => {
+        updateBusinessHours();
     };
 
     return (
-        <form>
-            <label htmlFor="business-hours" className="form-label">
-                Business Hours
-            </label>
-            {fields.map((item, index) => (
-                <div key={item.id} className="flex flex-wrap space-y-2 lg:space-y-0 lg:space-x-4 mb-2">
-                    <Controller
-                        name={`businessHours[${index}].weekdayFrom`}
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                value={field.value || null}
-                                className="react-select w-full lg:w-1/2"
-                                classNamePrefix="select"
-                                options={weekdays}
-                                placeholder="From"
-                                menuPlacement="top"
-                                onChange={(option) => field.onChange(option)}
+        <div>
+            <form onChange={handleFormChange}>
+                {fields.map((item, index) => (
+                    <div className="lg:grid-cols-5 md:grid-cols-2 grid-cols-1 grid gap-5 mb-5 last:mb-0" key={index}>
+                        <div className="flex-1">
+                            <label htmlFor={`dayFrom${index}`} className="block text-sm font-medium text-gray-700">Day From</label>
+                            <select
+                                id={`dayFrom${index}`}
+                                {...register(`hours[${index}].dayFrom`)}
+                                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                            >
+                                {daysOfWeek.map(day => (
+                                    <option key={day} value={day}>{day}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="flex-1">
+                            <label htmlFor={`dayTo${index}`} className="block text-sm font-medium text-gray-700">Day To</label>
+                            <select
+                                id={`dayTo${index}`}
+                                {...register(`hours[${index}].dayTo`)}
+                                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                            >
+                                {daysOfWeek.map(day => (
+                                    <option key={day} value={day}>{day}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="flex-1">
+                            <label htmlFor={`openAM${index}`} className="block text-sm font-medium text-gray-700">Open AM</label>
+                            <Controller
+                                name={`hours[${index}].openAM`}
+                                control={control}
+                                render={({ field }) => (
+                                    <Flatpickr
+                                        {...field}
+                                        options={{ enableTime: true, noCalendar: true, dateFormat: "h:i K" }}
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                    <Controller
-                        name={`businessHours[${index}].weekdayTo`}
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                value={field.value || null}
-                                className="react-select w-full lg:w-1/2"
-                                classNamePrefix="select"
-                                options={weekdays}
-                                placeholder="To"
-                                menuPlacement="top"
-                                onChange={(option) => field.onChange(option)}
+                        </div>
+
+                        <div className="flex-1">
+                            <label htmlFor={`closePM${index}`} className="block text-sm font-medium text-gray-700">Close PM</label>
+                            <Controller
+                                name={`hours[${index}].closePM`}
+                                control={control}
+                                render={({ field }) => (
+                                    <Flatpickr
+                                        {...field}
+                                        options={{ enableTime: true, noCalendar: true, dateFormat: "h:i K" }}
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                    <Controller
-                        name={`businessHours[${index}].timeFrom`}
-                        control={control}
-                        render={({ field }) => (
-                            <Flatpickr
-                                {...field}
-                                value={field.value}
-                                options={{
-                                    enableTime: true,
-                                    noCalendar: true,
-                                    dateFormat: 'h:i K', // 12-hour format
-                                    time_24hr: false,
-                                }}
-                                className="w-full lg:w-1/4 form-control py-2"
-                                onChange={(date) => {
-                                    if (date && date[0]) {
-                                        field.onChange(date[0].toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
-                                    }
-                                }}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name={`businessHours[${index}].timeTo`}
-                        control={control}
-                        render={({ field }) => (
-                            <Flatpickr
-                                {...field}
-                                value={field.value}
-                                options={{
-                                    enableTime: true,
-                                    noCalendar: true,
-                                    dateFormat: 'h:i K', // 12-hour format
-                                    time_24hr: false,
-                                }}
-                                className="w-full lg:w-1/4 form-control py-2"
-                                onChange={(date) => {
-                                    if (date && date[0]) {
-                                        field.onChange(date[0].toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
-                                    }
-                                }}
-                            />
-                        )}
-                    />
-                </div>
-            ))}
-            {errors.businessHours?.length > 0 && (
-                <p className="text-red-500 font-normal text-sm mt-1">
-                    Please fill in all fields correctly.
-                </p>
-            )}
-            <button
-                type="button"
-                onClick={addBusinessHour}
-                className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-            >
-                Add Business Hour
-            </button>
-        </form>
+                        </div>
+
+                        <div className="flex-none relative self-end">
+                            <button
+                                onClick={() => append({ dayFrom: 'Monday', dayTo: 'Monday', openAM: '', closePM: '' })}
+                                type="button"
+                                className="inline-flex items-center justify-center h-10 w-10 bg-primary-500 text-lg border rounded border-primary-500 text-white"
+                            >
+                                <Icon icon="heroicons-outline:plus" />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </form>
+        </div>
     );
 };
 

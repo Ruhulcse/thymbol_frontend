@@ -55,9 +55,7 @@ const CreateStoreForm = () => {
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
     const [activeModal, setActiveModal] = useState(false);
     const [businessHours, setBusinessHours] = useState({});
-    console.log("🚀  ~ businessHours:", businessHours)
-   
-    
+    console.log('🚀  ~ businessHours:', businessHours);
 
     const onClose = () => {
         setActiveModal(false);
@@ -126,6 +124,7 @@ const CreateStoreForm = () => {
                     coordinates: [data.longitude, data.latitude],
                 },
             };
+            console.log("🚀  ~ jsonData:", jsonData)
 
             const strinfigyJson = JSON.stringify(jsonData);
             const parsedJson = JSON.stringify(strinfigyJson);
@@ -139,7 +138,7 @@ const CreateStoreForm = () => {
                 formData.append('documents', data.document[0] || null);
             }
 
-            await createStore({ storeData: formData }).unwrap();
+            // await createStore({ storeData: formData }).unwrap();
 
             swalSuccess(
                 `Store ${data.store_name} successfully added!`,
@@ -271,18 +270,6 @@ const CreateStoreForm = () => {
                 </div>
 
                 <div>
-                    {/* <Textinput
-                        name="store_address"
-                        label="Store Address"
-                        type="text"
-                        placeholder="Store Address"
-                        register={register}
-                        error={errors.store_address}
-                        className="h-[48px]"
-                        onChange={(e) => {
-                            setValue('store_address', e.target.value);
-                        }}
-                    /> */}
                     <PlaceAutoComplete
                         setFormValue={setValue}
                         register={register}
@@ -291,9 +278,6 @@ const CreateStoreForm = () => {
                 </div>
 
                 <div>
-                    {/* <label htmlFor="country" className="form-label ">
-                        Country
-                    </label> */}
                     <Textinput
                         name="city"
                         label="City"
@@ -304,39 +288,9 @@ const CreateStoreForm = () => {
                         className="h-[48px]"
                         disabled={true}
                     />
-
-                    {/* <Controller
-                        name="country"
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                className="react-select"
-                                classNamePrefix="select"
-                                options={[]}
-                                styles={styles}
-                                disabled
-                                readOnly
-                                // onChange={(option) => {
-                                //     field.onChange(option);
-                                //     setSelectedCountry(option);
-                                //     setSelectedCity(null); // Clear selected city
-                                // }}
-                            />
-                        )}
-                    />
-                    {errors.country && (
-                        <p className="text-red-500 font-normal text-sm mt-1">
-                            {errors.country.message}
-                        </p>
-                    )} */}
                 </div>
 
                 <div>
-                    {/* <label htmlFor="city" className="form-label ">
-                        City
-                    </label> */}
-
                     <Textinput
                         name="country"
                         label="Country"
@@ -347,30 +301,6 @@ const CreateStoreForm = () => {
                         className="h-[48px]"
                         disabled={true}
                     />
-
-                    {/* <Controller
-                        name="city"
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                className="react-select"
-                                classNamePrefix="select"
-                                options={[{ label: 'New York', value: 'NY' }]}
-                                styles={styles}
-                                // value={selectedCity}
-                                // onChange={(option) => {
-                                //     field.onChange(option);
-                                //     setSelectedCity(option);
-                                // }}
-                            />
-                        )}
-                    />
-                    {errors.city && (
-                        <p className="text-red-500 font-normal text-sm mt-1">
-                            {errors.city.message}
-                        </p>
-                    )} */}
                 </div>
 
                 <Textinput
@@ -397,47 +327,7 @@ const CreateStoreForm = () => {
                         setValue('social_media_link', e.target.value);
                     }}
                 />
-                {/* <Textinput
-                    name="business_hours"
-                    label="Business Hours"
-                    type="text"
-                    placeholder="Add Business Hours"
-                    register={register}
-                    error={errors.business_hours}
-                    className="h-[48px]"
-                    onChange={(e) => {
-                        setValue('business_hours', e.target.value);
-                    }}
-                /> */}
-                {/* <div>
-                    <label htmlFor="business_hours" className="form-label ">
-                        Business Hours
-                    </label>
-                    <Controller
-                        name="business_hours"
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                className="react-select"
-                                classNamePrefix="select"
-                                options={[
-                                    {
-                                        label: 'Sunday - Friday 9am - 11pm',
-                                        value: 'sunday - friday 9am - 11pm',
-                                    },
-                                ]}
-                                styles={styles}
-                            />
-                        )}
-                    />
-                    {errors.business_hours && (
-                        <p className="text-red-500 font-normal text-sm mt-1">
-                            {errors.business_hours.message}
-                        </p>
-                    )}
-                </div> */}
-                <BusinessHours businessHours={businessHours} setBusinessHours={setBusinessHours}/>
+
                 <Textinput
                     name="postal_code"
                     label="Postal Code"
@@ -446,38 +336,27 @@ const CreateStoreForm = () => {
                     register={register}
                     error={errors.postal_code}
                     className="h-[48px]"
-                    // onChange={(e) => {
-                    //     setValue('postal_code', e.target.value);
-                    // }}
-                    disabled={true}
+                    onChange={(e) => {
+                        setValue('postal_code', e.target.value);
+                    }}
                 />
-                {/* <div>
-                    <Button
-                        text="Add Business Hours"
-                        className="btn btn-primary mt-[30px] py-3  text-center font-normal w-full"
-                        onClick={() => setActiveModal(true)}
-                    />
-                </div> */}
 
-                <Button
+               
+            </div>
+            <div className="grid grid-cols-1 gap-5 w-full md:w-2/3">
+            <label htmlFor="business_hours" className="form-label">Business Hours</label>
+                <BusinessHours businessHours={businessHours} setBusinessHours={setBusinessHours}/>
+            </div>
+
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
+            <Button
                     type="submit"
                     text="Add Store"
                     className="btn btn-primary block mt-5 text-center font-normal"
                     isLoading={isCreating}
                     disabled={isCreating}
-                    
                 />
             </div>
-
-            {/* {activeModal && (
-                <BusinessHoursModal
-                    activeModal={activeModal}
-                    onclose={() => onClose()}
-                    setBusinessHoursForm={setBusinessHours}
-                    businessHoursData={businessHoursData}
-                    setBusinessHoursData={setBusinessHoursData}
-                />
-            )} */}
         </form>
     );
 };
