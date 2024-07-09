@@ -5,57 +5,52 @@ import { useFieldArray, useForm, Controller } from 'react-hook-form';
 import moment from 'moment';
 
 const BusinessHours = ({ businessHours, setBusinessHours }) => {
-    const { control, handleSubmit, register, watch, setValue } = useForm({
+    const { control, handleSubmit, register, setValue, watch } = useForm({
         defaultValues: {
-            hours: [{ dayFrom: 'Monday', dayTo: 'Thursday', openAM: '', closePM: '' }],
+            hours: [{ dayFrom: 'Monday', dayTo: 'Thursday', openAM: null, closePM: null }],
         },
     });
 
-    const { fields, append, remove } = useFieldArray({
+    const { fields, append } = useFieldArray({
         control,
         name: 'hours',
     });
 
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    // Watch all form fields for changes
-    const watchFields = watch();
-
-    // Function to calculate business hours and update state
-    const updateBusinessHours = () => {
+    useEffect(() => {
+        // Watch changes in the form values and update business hours dynamically
+        const watchFields = watch('hours');
         const updatedBusinessHours = {};
 
-        watchFields.hours.forEach(item => {
+        watchFields.forEach(item => {
             const { dayFrom, dayTo, openAM, closePM } = item;
-            const openTime = moment(openAM[0]).format('h:mm A'); // openAM is an array from Flatpickr, so use openAM[0]
-            const closeTime = moment(closePM[0]).format('h:mm A'); // closePM is an array from Flatpickr, so use closePM[0]
-            const timeRange = `${openTime} to ${closeTime}`;
 
-            const fromIndex = daysOfWeek.indexOf(dayFrom);
-            const toIndex = daysOfWeek.indexOf(dayTo);
+            if (openAM && closePM) {
+                // Format times using moment.js
+                const openTime = moment(openAM[0]).format('h:mm A');
+                const closeTime = moment(closePM[0]).format('h:mm A');
+                const timeRange = `${openTime} to ${closeTime}`;
 
-            for (let i = fromIndex; i <= toIndex; i++) {
-                updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
+                const fromIndex = daysOfWeek.indexOf(dayFrom);
+                const toIndex = daysOfWeek.indexOf(dayTo);
+
+                for (let i = fromIndex; i <= toIndex; i++) {
+                    updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
+                }
             }
         });
 
-        // Update business hours state
         setBusinessHours(updatedBusinessHours);
-    };
+    }, [watch]);
 
-    // useEffect to update business hours on form data change
-    useEffect(() => {
-        updateBusinessHours();
-    }, []);
-
-    // Handle form submission (not using onSubmit directly to prevent infinite loops)
-    const handleFormChange = () => {
-        updateBusinessHours();
+    const handleAppend = () => {
+        append({ dayFrom: 'Monday', dayTo: 'Monday', openAM: null, closePM: null });
     };
 
     return (
         <div>
-            <form onChange={handleFormChange}>
+            <form>
                 {fields.map((item, index) => (
                     <div className="lg:grid-cols-5 md:grid-cols-2 grid-cols-1 grid gap-5 mb-5 last:mb-0" key={index}>
                         <div className="flex-1">
@@ -116,7 +111,7 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
 
                         <div className="flex-none relative self-end">
                             <button
-                                onClick={() => append({ dayFrom: 'Monday', dayTo: 'Monday', openAM: '', closePM: '' })}
+                                onClick={handleAppend}
                                 type="button"
                                 className="inline-flex items-center justify-center h-10 w-10 bg-primary-500 text-lg border rounded border-primary-500 text-white"
                             >
