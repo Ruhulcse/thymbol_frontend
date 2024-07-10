@@ -7,49 +7,49 @@ export const menuItems = [
         title: 'Packages',
         icon: 'heroicons-outline:gift',
         link: 'dashboard',
-        role: ['supperadmin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'merchant'],
     },
     {
         title: 'Stores',
         icon: 'heroicons-outline:building-storefront',
         link: 'stores',
-        role: ['supperadmin', 'admin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'admin', 'merchant'],
     },
     {
         title: 'Vouchers',
         icon: 'heroicons-outline:ticket',
         link: 'vouchers',
-        role: ['supperadmin', 'admin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'admin', 'merchant'],
     },
     {
         title: 'Analytics',
         icon: 'heroicons-outline:arrow-trending-up',
         link: 'analytics',
-        role: ['supperadmin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'merchant'],
     },
     {
         title: 'Notifications',
         icon: 'heroicons-outline:bell-alert',
         link: 'push-notifications',
-        role: ['supperadmin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'merchant'],
     },
     {
         title: 'Admins',
         icon: 'heroicons-outline:users',
         link: 'admins',
-        role: ['supperadmin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'merchant'],
     },
     {
         title: 'Scan QR Code',
         icon: 'heroicons-outline:qr-code',
         link: 'scan-qr',
-        role: ['supperadmin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'merchant'],
     },
     {
         title: 'Delete Account',
         icon: 'heroicons-outline:trash',
         link: 'delete-account',
-        role: ['supperadmin', 'consumer', 'merchant'],
+        role: ['supperadmin', 'merchant'],
     },
     // {
     //   title: "Multi Level",
@@ -80,20 +80,20 @@ export const menuItems = [
 
 export const navLink = [
     {
-        title:"Home",
-        link:'/home'
+        title: "Home",
+        link: '/home'
     },
     {
-        title:"Favourites",
-        link:'/favourites'
+        title: "Favourites",
+        link: '/favourites'
     },
     {
-        title:"Clipped Deals",
-        link:'/clipped-deals'
+        title: "Clipped Deals",
+        link: '/clipped-deals'
     },
     {
-        title:"Subscription",
-        link:'/consumer-subscription'
+        title: "Subscription",
+        link: '/consumer-subscription'
     },
 ]
 
@@ -128,15 +128,15 @@ export const hexToRGB = (hex, alpha) => {
     }
 };
 
- export const infoIcon = [
+export const infoIcon = [
     {
-        icon:'heroicons:map-pin'
+        icon: 'heroicons:map-pin'
     },
     {
-        icon:'heroicons:phone'
+        icon: 'heroicons:phone'
     },
     {
-        icon:'heroicons:share'
+        icon: 'heroicons:share'
     },
 ]
 
