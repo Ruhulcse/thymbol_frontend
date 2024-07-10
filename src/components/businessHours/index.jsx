@@ -20,9 +20,8 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
 
     const updateBusinessHours = () => {
         const watchFields = getValues('hours');
-        const updatedBusinessHours = {};
-
-        watchFields.forEach(item => {
+        const updatedBusinessHoursArray = watchFields.map(item => {
+            const updatedBusinessHours = {};
             const { dayFrom, dayTo, openAM, closePM } = item;
 
             if (openAM && closePM) {
@@ -33,19 +32,31 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                 const fromIndex = daysOfWeek.indexOf(dayFrom);
                 const toIndex = daysOfWeek.indexOf(dayTo);
 
-                for (let i = fromIndex; i <= toIndex; i++) {
-                    updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
+                // Handle wrapping of days across the end of the week
+                if (fromIndex <= toIndex) {
+                    for (let i = fromIndex; i <= toIndex; i++) {
+                        updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
+                    }
+                } else {
+                    for (let i = fromIndex; i < daysOfWeek.length; i++) {
+                        updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
+                    }
+                    for (let i = 0; i <= toIndex; i++) {
+                        updatedBusinessHours[daysOfWeek[i].toLowerCase()] = timeRange;
+                    }
                 }
             }
+            return updatedBusinessHours;
         });
 
-        console.log(updatedBusinessHours);
+        console.log(updatedBusinessHoursArray);
 
-        setBusinessHours(updatedBusinessHours);
+        setBusinessHours(updatedBusinessHoursArray);
     };
 
     const handleAppend = () => {
         append({ dayFrom: 'Monday', dayTo: 'Monday', openAM: null, closePM: null });
+        setTimeout(updateBusinessHours, 0); // Ensures state updates correctly after append
     };
 
     return (
@@ -60,7 +71,7 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                                 {...register(`hours[${index}].dayFrom`)}
                                 onChange={(e) => {
                                     setValue(`hours[${index}].dayFrom`, e.target.value);
-                                    updateBusinessHours();
+                                    setTimeout(updateBusinessHours, 0); // Ensures state updates correctly
                                 }}
                                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                             >
@@ -77,7 +88,7 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                                 {...register(`hours[${index}].dayTo`)}
                                 onChange={(e) => {
                                     setValue(`hours[${index}].dayTo`, e.target.value);
-                                    updateBusinessHours();
+                                    setTimeout(updateBusinessHours, 0); // Ensures state updates correctly
                                 }}
                                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                             >
@@ -98,7 +109,7 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                                         options={{ enableTime: true, noCalendar: true, dateFormat: "h:i K" }}
                                         onChange={(date) => {
                                             field.onChange(date);
-                                            updateBusinessHours();
+                                            setTimeout(updateBusinessHours, 0); // Ensures state updates correctly
                                         }}
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                                     />
@@ -117,7 +128,7 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                                         options={{ enableTime: true, noCalendar: true, dateFormat: "h:i K" }}
                                         onChange={(date) => {
                                             field.onChange(date);
-                                            updateBusinessHours();
+                                            setTimeout(updateBusinessHours, 0); // Ensures state updates correctly
                                         }}
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                                     />
