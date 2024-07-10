@@ -37,7 +37,7 @@ function SingleVoucher({ item, link = 'redeem-deal-details' }) {
                     <div className="lg:w-80 lg:h-36 sm:h-24 sm:w-52 h-20 w-44  my-auto lg:p-2">
                         <Link to={`/${link}/${item?._id}`}>
                             <img
-                                src={item?.image}
+                                src={item?.logo?.file_path}
                                 alt=""
                                 className="h-full w-full"
                             />
