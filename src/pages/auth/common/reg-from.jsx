@@ -53,7 +53,7 @@ const RegForm = () => {
         try {
             const payload = {
                 ...data,
-                userType: 'admin',
+                userType: 'merchant',
             };
             const response = await registerUser(payload);
             if (response.error) {

@@ -54,7 +54,7 @@ const CreateStoreForm = () => {
     const [subCategories, setSubCategories] = useState([]);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
     const [activeModal, setActiveModal] = useState(false);
-    const [businessHours, setBusinessHours] = useState({});
+    const [businessHours, setBusinessHours] = useState([]);
     console.log('🚀  ~ businessHours:', businessHours);
 
     const onClose = () => {
