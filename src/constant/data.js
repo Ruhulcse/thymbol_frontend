@@ -1,3 +1,4 @@
+import deals from '@/assets/images/svg/deal.svg'
 export const menuItems = [
     {
         isHeadr: true,
@@ -81,15 +82,18 @@ export const menuItems = [
 export const navLink = [
     {
         title:"Home",
-        link:'/home'
+        link:'/home',
+        icon:'heroicons:home'
     },
     {
         title:"Favourites",
-        link:'/favourites'
+        link:'/favourites',
+        icon:'heroicons:heart'
     },
     {
         title:"Clipped Deals",
-        link:'/clipped-deals'
+        link:'/clipped-deals',
+        icon:''
     },
     {
         title:"Subscription",

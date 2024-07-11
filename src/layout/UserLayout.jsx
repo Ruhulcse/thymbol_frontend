@@ -10,6 +10,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import logo from './../assets/images/home/Thymbol Logo.png';
+import { food } from '@/assets/images/home';
 
 function UserLayout() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -41,39 +42,46 @@ function UserLayout() {
                         </Link>
                     </div>
                     <div
-                        className={`flex absolute  lg:relative top-36 md:top-24 left-0 flex-col lg:flex-row lg:top-0 bg-blue-400 text-red-500 z-[100] rounded-lg shadow-lg lg:shadow-none  ${
+                        className={`flex absolute  lg:relative  left-0 flex-col lg:flex-row top-0 lg:bg-blue-400 bg-white  z-[100] rounded-lg shadow-lg lg:shadow-none w-64 h-screen lg:h-min lg:w-max ${
                             sidebar
                                 ? '-translate-x-[0px]'
                                 : 'translate-x-[-9999px]'
                         }`}
                     >
+                         <Icon
+                        className="absolute top-2 right-2 text-black-500 text-2xl cursor-pointer  lg:hidden"
+                        icon={`heroicons:x-mark`} onClick={()=>setSidebar(null)}
+                    />
+                        <div className='h-24 w-24 bg-green-500 rounded-full my-4 mx-4 lg:hidden'><img src={food} className='h-full w-full object-cover'/></div>
                         {navLink?.map((item, i) => (
                             <Link
                                 key={i}
                                 to={item.link}
                                 onClick={() => {
                                     setActiveIndex(i);
+                                    setSidebar(null)
                                 }}
-                                className={` px-6 rounded-md hover:text-black-500 hover:bg-white py-2 m-1 ${
+                                className={` px-6 rounded-md lg:hover:text-black-500 hover:text-white hover:bg-black-500 lg:hover:bg-white py-2 m-1 ${
                                     activeIndex === i
-                                        ? 'bg-white text-black-500'
-                                        : 'text-white'
+                                        ? 'lg:bg-white text-white bg-black-500  lg:text-black-500'
+                                        : 'lg:text-white'
                                 } `}
                             >
-                                {item.title}
+                              <span className='flex items-center '>{<Icon icon={item.icon} className='mx-2 text-xl'/>} {item.title}</span>  
                             </Link>
                         ))}
+                       
                         <Link
                             to={'/'}
-                            className={` px-6 rounded-md py-2 m-1 hover:text-black-500 hover:bg-white text-white md:hidden block`}
+                            className="px-6 hover:text-white hover:bg-black-500 rounded-md py-2 m-1 text-black-500 md:hidden block"
                         >
-                            Profile
+                            <span className='flex items-center'><Icon icon={'heroicons:user'} className='mx-2 text-xl'/>Profile</span>
                         </Link>
                         <Link
                             to={'/'}
-                            className=" px-6 hover:text-black-500 hover:bg-white rounded-md py-2 m-1 text-white md:hidden block"
+                            className="px-6 hover:text-white hover:bg-black-500 rounded-md py-2 m-1 text-black-500 md:hidden block"
                         >
-                            Log Out
+                            <span className='flex items-center'><Icon icon={'heroicons:arrow-right-start-on-rectangle'} className='mx-2 text-xl'/>Log Out</span>
                         </Link>
                     </div>
                     <div className="hidden md:flex">
