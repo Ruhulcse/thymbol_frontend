@@ -67,7 +67,7 @@ function UserLayout() {
                                         : 'lg:text-white'
                                 } `}
                             >
-                              <span className='flex items-center '>{<Icon icon={item.icon} className='mx-2 text-xl'/>} {item.title}</span>  
+                              <span className='flex items-center '>{<Icon icon={item.icon} className='mx-2 text-xl lg:hidden'/>} {item.title}</span>  
                             </Link>
                         ))}
                        
