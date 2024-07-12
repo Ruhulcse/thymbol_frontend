@@ -79,11 +79,6 @@ function App() {
 
                 {/* consumer layout */}
                 <Route path="/" element={<UserLayout />}>
-                    {/* <Route
-                        element={
-                            <RequireAuth allowedRoles={[ROLES.CONSUMER]} />
-                        }
-                    > */}
                     <Route path="/home" element={<Home />} />
                     <Route path="/store/:id" element={<Merchant />} />
 
@@ -109,13 +104,11 @@ function App() {
                         path="/add-video-review"
                         element={<VideoReviewPage />}
                     />
-                    {/* </Route> */}
                 </Route>
 
                 {/* admin layout */}
                 <Route path="/*" element={<Layout />}>
                     <Route path="dashboard" element={<Dashboard />} />
-
                     <Route
                         element={
                             <RequireAuth
@@ -132,6 +125,20 @@ function App() {
                             path="profile/user/edit/:id"
                             element={<EditProfile />}
                         />
+                    </Route>
+
+                    <Route
+                        element={
+                            <RequireAuth
+                                allowedRoles={[
+                                    ROLES.ADMIN,
+                                    ROLES.SUPER_ADMIN,
+                                    // ROLES.CONSUMER,
+                                    ROLES.MERCHANT,
+                                ]}
+                            />
+                        }
+                    >
                         <Route path="vouchers" element={<VouchersPage />} />
                         <Route path="stores" element={<StorePage />} />
                         <Route
@@ -151,7 +158,7 @@ function App() {
                             <RequireAuth
                                 allowedRoles={[
                                     ROLES.SUPER_ADMIN,
-                                    ROLES.CONSUMER,
+                                    // ROLES.CONSUMER,
                                     ROLES.MERCHANT,
                                 ]}
                             />

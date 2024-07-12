@@ -97,7 +97,7 @@ function UserLayout() {
                                 <Button
                                     className="bg-white text-black"
                                     link={'/login'}
-                                    text={'Login as Admin'}
+                                    text={'Login as Business'}
                                 />
                             </>
                         )}

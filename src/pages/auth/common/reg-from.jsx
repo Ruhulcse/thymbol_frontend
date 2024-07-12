@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Textinput from '@/components/ui/Textinput';
 import Button from '@/components/ui/Button';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import Checkbox from '@/components/ui/Checkbox';
-import { useDispatch, useSelector } from 'react-redux';
+import Textinput from '@/components/ui/Textinput';
 import { useRegisterUserMutation } from '@/store/api/auth/authApiSlice';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
 const schema = yup
     .object({
@@ -54,7 +51,11 @@ const RegForm = () => {
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
-            const response = await registerUser(data);
+            const payload = {
+                ...data,
+                userType: 'merchant',
+            };
+            const response = await registerUser(payload);
             if (response.error) {
                 throw new Error(response.error.message);
             }

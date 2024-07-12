@@ -1,6 +1,5 @@
 import { infoIcon } from '@/constant/data';
 import { useGetStoreQuery } from '@/store/api/stores/storesApiSlice';
-import { formatAddress } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
@@ -49,10 +48,23 @@ function TopSection() {
                 </div>
                 <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
                     <div className="flex items-center">
-                    <span className='inline-flex '><Icon icon='heroicons:map-pin' className='text-orange-500 mx-auto text-lg  mr-2'/></span>
-                        Location ({formatAddress(store?.address)})
+                        <span className="inline-flex ">
+                            <Icon
+                                icon="heroicons:map-pin"
+                                className="text-orange-500 mx-auto text-lg  mr-2"
+                            />
+                        </span>
+                        Location ({store?.address?.street ?? 'N/A'})
                     </div>
-                    <div className="flex items-center"><span className='inline-flex'><Icon icon='heroicons:phone' className='text-orange-500 mx-auto text-lg '/></span> +1 35 84 56 8374</div>
+                    <div className="flex items-center">
+                        <span className="inline-flex">
+                            <Icon
+                                icon="heroicons:phone"
+                                className="text-orange-500 mx-auto text-lg "
+                            />
+                        </span>{' '}
+                        +1 35 84 56 8374
+                    </div>
                 </div>
                 <div className="flex justify-center gap-7 mt-2 sm:hidden">
                     {infoIcon.map((item, i) => (

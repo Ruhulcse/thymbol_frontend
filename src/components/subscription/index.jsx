@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router-dom';
 import PricingCard from '../ui/PricingCard';
 
 const premium = [
@@ -11,6 +12,7 @@ const premium = [
 ];
 
 const Subscription = () => {
+    const navigate = useNavigate();
     return (
         <>
             <PricingCard

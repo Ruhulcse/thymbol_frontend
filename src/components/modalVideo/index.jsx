@@ -67,7 +67,7 @@ function ModalsVideo() {
                 </Swiper>
                 <ModalVideo
                     channel="youtube"
-                    youtube={{ mute: 0, autoplay: 0 }}
+                    youtube={{ mute: 1, autoplay: 1 }}
                     isOpen={isOpen}
                     videoId={currentVideoId}
                     onClose={() => setOpen(false)}

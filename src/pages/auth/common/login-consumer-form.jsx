@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 const schema = yup
     .object({
@@ -99,12 +99,17 @@ const LoginConsumerForm = () => {
                 }}
             />
             <div className="flex justify-end">
-                <Link
+                <div
                     to="/forgot-password"
-                    className="text-sm text-customBlue dark:text-slate-400 leading-6 font-medium"
+                    className="text-sm cursor-pointer text-customBlue dark:text-slate-400 leading-6 font-medium"
+                    onClick={() =>
+                        (window.location.href = `${
+                            import.meta.env.VITE_API_APP_URL
+                        }/reset`)
+                    }
                 >
                     Forgot Password?{' '}
-                </Link>
+                </div>
             </div>
 
             <Button
