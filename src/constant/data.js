@@ -1,4 +1,3 @@
-import deals from '@/assets/images/svg/deal.svg'
 export const menuItems = [
     {
         isHeadr: true,
@@ -81,26 +80,25 @@ export const menuItems = [
 
 export const navLink = [
     {
-        title:"Home",
-        link:'/home',
-        icon:'heroicons:home'
+        title: "Home",
+        link: '/home',
+        icon: 'heroicons:home'
     },
     {
-        title:"Favourites",
-        link:'/favourites',
-        icon:'heroicons:heart'
+        title: "Favourites",
+        link: '/favourites',
+        icon: 'heroicons:heart'
     },
     {
-        title:"Clipped Deals",
-        link:'/clipped-deals',
-        icon:''
+        title: "Clipped Deals",
+        link: '/clipped-deals',
+        icon: ''
     },
     {
         title: "Subscription",
         link: '/consumer-subscription'
     },
 ]
-
 
 
 export const colors = {
@@ -144,12 +142,4 @@ export const infoIcon = [
     },
 ]
 
-export const weekdays = [
-    { value: 'monday', label: 'Monday' },
-    { value: 'tuesday', label: 'Tuesday' },
-    { value: 'wednesday', label: 'Wednesday' },
-    { value: 'thursday', label: 'Thursday' },
-    { value: 'friday', label: 'Friday' },
-    { value: 'saturday', label: 'Saturday' },
-    { value: 'sunday', label: 'Sunday' },
-];
+export const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];

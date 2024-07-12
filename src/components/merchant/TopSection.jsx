@@ -3,6 +3,7 @@ import { useGetStoreQuery } from '@/store/api/stores/storesApiSlice';
 import { Icon } from '@iconify/react';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
+import BusinessHoursClient from './BusinessHoursClient';
 function TopSection() {
     const { id: store_id } = useParams();
     const { data: store, isLoading: loadingStore } = useGetStoreQuery(store_id);
@@ -63,9 +64,53 @@ function TopSection() {
                                 className="text-orange-500 mx-auto text-lg "
                             />
                         </span>{' '}
-                        +1 35 84 56 8374
+                        <span className="ms-2">{'N/A'}</span>
                     </div>
                 </div>
+                <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
+                    <div className="flex items-center">
+                        <span className="inline-flex ">
+                            <Icon
+                                icon="heroicons:globe-asia-australia"
+                                className="text-blue-400 mx-auto text-lg  mr-2"
+                            />
+                        </span>
+                        <a
+                            className="text-blue-400"
+                            target="_blank"
+                            href={store?.website_link}
+                        >
+                            {store?.website_link}
+                        </a>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="inline-flex">
+                            <Icon
+                                icon="eva:facebook-fill"
+                                className="text-blue-400 mx-auto text-lg "
+                            />
+                        </span>{' '}
+                        <a
+                            className="text-blue-400"
+                            target="_blank"
+                            href={store?.social_media_link}
+                        >
+                            {store?.social_media_link}
+                        </a>
+                    </div>
+                </div>
+                <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
+                    <div className="flex items-center">
+                        <span className="inline-flex ">
+                            <Icon
+                                icon="heroicons:clock"
+                                className="text-blue-400 mx-auto text-lg  mr-2"
+                            />
+                        </span>
+                        <span>Business Hours:</span>
+                    </div>
+                </div>
+                <BusinessHoursClient business_hours={store?.business_hours} />
                 <div className="flex justify-center gap-7 mt-2 sm:hidden">
                     {infoIcon.map((item, i) => (
                         <div

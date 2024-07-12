@@ -62,6 +62,10 @@ export function swalError(msg, title = 'Oops...') {
             showConfirmButton: true,
             allowOutsideClick: true,
             timer: 60000,
+            customClass: {
+                confirmButton: 'w-40',
+            },
+            confirmButtonColor: '#0c9ad6',
         });
         return result;
     } catch (e) {
@@ -92,7 +96,9 @@ export function swalSuccess(
                 timer: 60000,
                 customClass: {
                     confirmButton: 'w-40',
+
                 },
+                confirmButtonColor: '#0c9ad6',
             });
         } else {
             result = Swal.fire({
@@ -107,6 +113,7 @@ export function swalSuccess(
                 customClass: {
                     confirmButton: 'w-40',
                 },
+                confirmButtonColor: '#0c9ad6',
             });
         }
         return result;

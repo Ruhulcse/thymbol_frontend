@@ -2,8 +2,11 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import Textarea from '@/components/ui/Textarea';
 import Textinput from '@/components/ui/Textinput';
+import { useCreatePushNotifiationMutation } from '@/store/api/pushNotifications/pushNotificationsApiSlice';
+import { swalError, swalSuccess } from '@/util/helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 const schema = yup
@@ -14,6 +17,9 @@ const schema = yup
     .required();
 
 const NotificationForm = () => {
+    const navigate = useNavigate();
+    const [createPushNotifiation, { isLoading, error }] =
+        useCreatePushNotifiationMutation();
     const {
         register,
         formState: { errors },
@@ -24,7 +30,17 @@ const NotificationForm = () => {
         mode: 'all',
     });
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        try {
+            const response = await createPushNotifiation({ data }).unwrap();
+            swalSuccess(
+                'Notification created successfully',
+                'Notification Created!'
+            );
+            navigate('/push-notifications');
+        } catch (error) {
+            swalError(error);
+        }
         console.log(data);
         // Perform your form submission logic here
     };
@@ -69,8 +85,8 @@ const NotificationForm = () => {
                             type="submit"
                             text="Create Notification"
                             className="btn btn-primary block mt-5 text-center "
-                            // isLoading={isLoading}
-                            // disabled={isLoading}
+                            isLoading={isLoading}
+                            disabled={isLoading}
                         />
                     </div>
                 </Card>

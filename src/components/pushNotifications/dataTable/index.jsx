@@ -1,10 +1,10 @@
-
 import { useMemo } from 'react';
 // import { advancedTable } from '../../../constant/table-data';
 // import Loading from '@/components/Loading';
 import DataGrid from '@/components/shared/dataGrid/DataGrid';
 // import { useGetVouchersQuery } from '@/store/api/vouchers/vouchersApiSlice';
-import { calenderDate } from '@/util/helpers';
+import { useGetPushNotificationsQuery } from '@/store/api/pushNotifications/pushNotificationsApiSlice';
+import { calenderDate, dateTime } from '@/util/helpers';
 
 const COLUMNS = [
     {
@@ -23,30 +23,29 @@ const COLUMNS = [
     },
     {
         Header: 'Message',
-        accessor: 'message',
+        accessor: 'description',
         Cell: (row) => {
-            return <span>{(row?.cell?.value)}</span>;
+            return <span>{row?.cell?.value}</span>;
         },
     },
 
     {
         Header: 'Creation Date & Time',
-        accessor: 'createAt',
+        accessor: 'createdAt',
         Cell: (row) => {
-            return <span>{calenderDate(row?.cell?.value)}</span>;
+            return <span>{dateTime(row?.cell?.value)}</span>;
         },
     },
-   
 ];
 
-
 const PushNotificationDataTable = () => {
+    const { data: pushNotifications } = useGetPushNotificationsQuery();
     const columns = useMemo(() => COLUMNS, []);
-    // const data = useMemo(() => vouchers ?? [], [vouchers]);
+    const data = useMemo(() => pushNotifications ?? [], [pushNotifications]);
 
     // if (loadingVouchers) return <Loading />;
 
-    return <DataGrid columns={columns} data={[]} />;
+    return <DataGrid columns={columns} data={data} />;
 };
 
 export default PushNotificationDataTable;

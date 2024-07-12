@@ -8,7 +8,7 @@ import {
     useLazyGetSubCategoryQuery,
 } from '@/store/api/masterdata/masterdataApiSlice';
 import { useCreateStoreMutation } from '@/store/api/stores/storesApiSlice';
-import { swalSuccess } from '@/util/helpers';
+import { swalError, swalSuccess } from '@/util/helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -124,7 +124,7 @@ const CreateStoreForm = () => {
                     coordinates: [data.longitude, data.latitude],
                 },
             };
-            console.log("🚀  ~ jsonData:", jsonData)
+            console.log('🚀  ~ jsonData:', jsonData);
 
             const strinfigyJson = JSON.stringify(jsonData);
             const parsedJson = JSON.stringify(strinfigyJson);
@@ -148,7 +148,7 @@ const CreateStoreForm = () => {
 
             //
         } catch (error) {
-            console.error('Error:', error);
+            swalError(error?.data?.message);
         }
     };
 
@@ -340,16 +340,19 @@ const CreateStoreForm = () => {
                         setValue('postal_code', e.target.value);
                     }}
                 />
-
-               
             </div>
             <div className="grid grid-cols-1 gap-5 w-full md:w-2/3">
-            <label htmlFor="business_hours" className="form-label">Business Hours</label>
-                <BusinessHours businessHours={businessHours} setBusinessHours={setBusinessHours}/>
+                <label htmlFor="business_hours" className="form-label">
+                    Business Hours
+                </label>
+                <BusinessHours
+                    businessHours={businessHours}
+                    setBusinessHours={setBusinessHours}
+                />
             </div>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
-            <Button
+                <Button
                     type="submit"
                     text="Add Store"
                     className="btn btn-primary block mt-5 text-center font-normal"

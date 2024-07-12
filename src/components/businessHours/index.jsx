@@ -3,6 +3,7 @@ import Icon from '@/components/ui/Icon';
 import Flatpickr from 'react-flatpickr';
 import { useFieldArray, useForm, Controller } from 'react-hook-form';
 import moment from 'moment';
+import { daysOfWeek } from '@/constant/data';
 
 const BusinessHours = ({ businessHours, setBusinessHours }) => {
     const { control, register, setValue, getValues } = useForm({
@@ -16,7 +17,7 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
         name: 'hours',
     });
 
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    
 
     const updateBusinessHours = () => {
         const watchFields = getValues('hours');
@@ -55,8 +56,8 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
     };
 
     const handleAppend = () => {
-        append({ dayFrom: 'Monday', dayTo: 'Monday', openAM: null, closePM: null });
-        setTimeout(updateBusinessHours, 0); // Ensures state updates correctly after append
+        append({ dayFrom: 'Monday', dayTo: 'Thursday', openAM: null, closePM: null });
+        setTimeout(updateBusinessHours, 0);
     };
 
     return (
