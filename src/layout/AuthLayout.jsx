@@ -6,7 +6,6 @@ import {
     selectCurrentToken,
     selectCurrentUserRole,
 } from '@/store/api/auth/authSlice';
-import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 const AuthLayout = () => {
     const navigate = useNavigate();
@@ -18,7 +17,6 @@ const AuthLayout = () => {
     return (
         <>
             <Suspense fallback={<Loading />}>
-                <Toaster />
                 {token ? <Navigate to={`/${route}`} replace /> : <Outlet />}
             </Suspense>
         </>

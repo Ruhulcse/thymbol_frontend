@@ -56,8 +56,6 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
             return updatedBusinessHours;
         });
 
-        console.log(updatedBusinessHoursArray);
-
         setBusinessHours(updatedBusinessHoursArray);
     };
 

@@ -24,6 +24,14 @@ export const vouchersApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { userId }) => ['ClippedVoucher'],
         }),
+        redeemVoucher: builder.mutation({
+            query: ({ data }) => ({
+                url: 'qrcodedata',
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: (result, error, { userId }) => ['Vouchers', 'Voucher', 'Store', 'ClippedVoucher'],
+        }),
         getVoucherByStore: builder.query({
             query: (storeId) => `voucherbystore/${storeId}`,
             providesTags: ['Store'],
@@ -40,4 +48,4 @@ export const vouchersApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetVouchersQuery, useCreateVoucherMutation, useGetVoucherByStoreQuery, useGetVoucherQuery, useGetClippedVoucherQuery, useCreateClippedVoucherMutation } = vouchersApi;
+export const { useGetVouchersQuery, useCreateVoucherMutation, useGetVoucherByStoreQuery, useGetVoucherQuery, useGetClippedVoucherQuery, useCreateClippedVoucherMutation, useRedeemVoucherMutation } = vouchersApi;

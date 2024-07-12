@@ -2,8 +2,6 @@ import { daysOfWeek } from '@/constant/data';
 import { Icon } from '@iconify/react';
 
 const BusinessHoursClient = ({ business_hours }) => {
-    console.log('🚀  ~ business_hours:', business_hours);
-
     const formatBusinessHours = (hours) => {
         let formattedHours = [];
         let currentHours = '';

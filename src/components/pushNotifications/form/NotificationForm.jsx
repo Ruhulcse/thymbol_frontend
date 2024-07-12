@@ -41,7 +41,7 @@ const NotificationForm = () => {
         } catch (error) {
             swalError(error);
         }
-        console.log(data);
+
         // Perform your form submission logic here
     };
 

@@ -30,8 +30,7 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
             setFormValue('store_address', description);
             const country = description.split(',').slice(-1)[0];
             const city = description.split(',').slice(-3)[0];
-            console.log(country);
-            console.log(city);
+
             setFormValue('country', country);
             setFormValue('city', city);
             clearSuggestions();

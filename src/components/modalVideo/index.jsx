@@ -42,8 +42,6 @@ function ModalsVideo() {
                 <Swiper
                     spaceBetween={space}
                     slidesPerView={slider}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
                     navigation={true}
                     loop={true}
                     modules={[Navigation]}

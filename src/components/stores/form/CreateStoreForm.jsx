@@ -55,7 +55,6 @@ const CreateStoreForm = () => {
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
     const [activeModal, setActiveModal] = useState(false);
     const [businessHours, setBusinessHours] = useState([]);
-    console.log('🚀  ~ businessHours:', businessHours);
 
     const onClose = () => {
         setActiveModal(false);
@@ -124,7 +123,6 @@ const CreateStoreForm = () => {
                     coordinates: [data.longitude, data.latitude],
                 },
             };
-            console.log('🚀  ~ jsonData:', jsonData);
 
             const strinfigyJson = JSON.stringify(jsonData);
             const parsedJson = JSON.stringify(strinfigyJson);

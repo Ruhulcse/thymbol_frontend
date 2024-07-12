@@ -1,26 +1,22 @@
-import React, { useEffect, Suspense, Fragment, useRef } from 'react';
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import Footer from '@/components/partials/footer';
+import MobileFooter from '@/components/partials/footer/MobileFooter';
 import Header from '@/components/partials/header';
 import Sidebar from '@/components/partials/sidebar';
-import Settings from '@/components/partials/settings';
-import useWidth from '@/hooks/useWidth';
-import useSidebar from '@/hooks/useSidebar';
 import useContentWidth from '@/hooks/useContentWidth';
-import useMenulayout from '@/hooks/useMenulayout';
 import useMenuHidden from '@/hooks/useMenuHidden';
-import Footer from '@/components/partials/footer';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import MobileMenu from '../components/partials/sidebar/MobileMenu';
+import useMenulayout from '@/hooks/useMenulayout';
 import useMobileMenu from '@/hooks/useMobileMenu';
-import MobileFooter from '@/components/partials/footer/MobileFooter';
+import useSidebar from '@/hooks/useSidebar';
+import useWidth from '@/hooks/useWidth';
+import { Suspense, useEffect, useRef } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import MobileMenu from '../components/partials/sidebar/MobileMenu';
 
-import { useSelector } from 'react-redux';
 import Loading from '@/components/Loading';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
-import { logOut, selectCurrentToken, setUser } from '@/store/api/auth/authSlice';
+import { selectCurrentToken, setUser } from '@/store/api/auth/authSlice';
 import { getUser } from '@/store/api/user/userSlice';
-import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
 const Layout = () => {
     const { width, breakpoints } = useWidth();
     const [collapsed] = useSidebar();
@@ -46,27 +42,25 @@ const Layout = () => {
     const token = useSelector(selectCurrentToken);
 
     useEffect(() => {
-      const localAuth = localStorage?.getItem('auth');
-      if (localAuth) {
-        const auth = JSON.parse(localAuth);
-        if (auth?.accessToken) {
-          dispatch(
-            setUser({
-              token: auth.accessToken,
-              user_id: auth.user_id,
-              isLoggedIn: true,
-              userType: auth.userType
-            })
-          );
-          dispatch(getUser({ user_id: auth.user_id }));
+        const localAuth = localStorage?.getItem('auth');
+        if (localAuth) {
+            const auth = JSON.parse(localAuth);
+            if (auth?.accessToken) {
+                dispatch(
+                    setUser({
+                        token: auth.accessToken,
+                        user_id: auth.user_id,
+                        isLoggedIn: true,
+                        userType: auth.userType,
+                    })
+                );
+                dispatch(getUser({ user_id: auth.user_id }));
+            }
         }
-      }
-      
     }, [dispatch]);
 
     return (
         <>
-            <Toaster />
             <Header
                 className={width > breakpoints.xl ? switchHeaderClass() : ''}
             />

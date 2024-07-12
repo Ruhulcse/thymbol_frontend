@@ -17,7 +17,6 @@ function RedeemDealDetails() {
 
     const { data: voucherData, isLoading: loadingVoucher } =
         useGetVoucherQuery(voucherId);
-    console.log('🚀  ~ voucherData:', voucherData);
 
     if (loadingVoucher) return <Loading />;
 
@@ -44,24 +43,25 @@ function RedeemDealDetails() {
                         <div className="font-bold sm:text-base md:text-xl lg:text-2xl text-black-500 mt-8">
                             Your Redeemed Deal’s Details
                         </div>
-                      {/* <div className=''> */}
-                      <div className="flex justify-start ">
-                           <div className='min-w-24'>
-                           <SingleVoucher
-                                item={voucherData}
-                                link={`redeem-deal`}
-                            />
-                        <div className="flex justify-between py-10 md:text-sm text-xs  font-semibold">
-                            <div className="bg-white px-3  w-44 py-2">
-                                Redeem Date: April 24,2024
-                            </div>
-                            <div className="bg-white px-3  w-44 py-2">
-                                Valid Till: {humanDate(voucherData?.endDate)}
+                        {/* <div className=''> */}
+                        <div className="flex justify-start ">
+                            <div className="min-w-24">
+                                <SingleVoucher
+                                    item={voucherData}
+                                    link={`redeem-deal`}
+                                />
+                                <div className="flex justify-between py-10 md:text-sm text-xs  font-semibold">
+                                    <div className="bg-white px-3  w-44 py-2">
+                                        Redeem Date: April 24,2024
+                                    </div>
+                                    <div className="bg-white px-3  w-44 py-2">
+                                        Valid Till:{' '}
+                                        {humanDate(voucherData?.endDate)}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                           </div>
-                        </div>
-                      {/* </div> */}
+                        {/* </div> */}
 
                         {/* <div className="flex md:gap-10  gap-5 lg:text-xl md:text-sm text-xs justify-around font-semibold">
                             <div className="bg-white px-3  w-44 py-2">
