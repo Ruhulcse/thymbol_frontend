@@ -37,7 +37,7 @@ const Subscription = () => {
                 paymentMethod="$10"
                 paymentAmount={'$33/month'}
                 saveCost={'SAVE 33%'}
-                onClick={() => navigate('/payment')}
+                onClick={() => navigate('/dashboard/payment')}
             >
                 {premium.map((item, i) => (
                     <div

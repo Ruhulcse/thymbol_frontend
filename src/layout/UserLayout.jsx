@@ -3,7 +3,7 @@ import Profile from '@/components/partials/header/Tools/Profile';
 import Button from '@/components/ui/Button';
 import { navLink } from '@/constant/data';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
-import { selectCurrentUser } from '@/store/api/auth/authSlice';
+import { selectCurrentUser, setUser } from '@/store/api/auth/authSlice';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import { Suspense, useEffect, useState } from 'react';
@@ -11,12 +11,35 @@ import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import logo from './../assets/images/home/Thymbol Logo.png';
 import { food } from '@/assets/images/home';
+import { useDispatch } from 'react-redux';
+import { getUser } from '@/store/api/user/userSlice';
 
 function UserLayout() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [sidebar, setSidebar] = useState(null);
     const currentWidth = useCurrentWidth();
     const user = useSelector(selectCurrentUser);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const localAuth = localStorage?.getItem('auth');
+        if (localAuth) {
+          const auth = JSON.parse(localAuth);
+          if (auth?.accessToken) {
+            dispatch(
+              setUser({
+                token: auth.accessToken,
+                user_id: auth.user_id,
+                isLoggedIn: true,
+                userType: auth.userType
+              })
+            );
+            dispatch(getUser({ user_id: auth.user_id }));
+          }
+        }
+        
+      }, [dispatch]);
 
     useEffect(() => {
         setSidebar(currentWidth >= 1024 ? true : false);

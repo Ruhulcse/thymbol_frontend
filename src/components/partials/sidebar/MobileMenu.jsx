@@ -11,8 +11,8 @@ import useMobileMenu from '@/hooks/useMobileMenu';
 import Icon from '@/components/ui/Icon';
 
 // import images
-import MobileLogo from '@/assets/images/logo/logo-c.svg';
-import MobileLogoWhite from '@/assets/images/logo/logo-c-white.svg';
+import MobileLogo from '@/assets/images/logo/logo-c.png';
+import MobileLogoWhite from '@/assets/images/logo/logo-c-white.png';
 import svgRabitImage from '@/assets/images/svg/rabit.svg';
 
 const MobileMenu = ({ className = 'custom-class' }) => {
@@ -48,11 +48,11 @@ const MobileMenu = ({ className = 'custom-class' }) => {
                                 <img src={MobileLogoWhite} alt="" />
                             )}
                         </div>
-                        <div>
+                        {/* <div>
                             <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
                                 THYMBOL
                             </h1>
-                        </div>
+                        </div> */}
                     </div>
                 </Link>
                 <button

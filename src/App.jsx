@@ -149,7 +149,7 @@ function App() {
                             path="stores/create-store"
                             element={<CreateStorePage />}
                         />
-                        <Route path="payment" element={<PaymentPage />} />
+                        <Route path="dashboard/payment" element={<PaymentPage />} />
                         <Route path="success" element={<SuccessPage />} />
                     </Route>
 

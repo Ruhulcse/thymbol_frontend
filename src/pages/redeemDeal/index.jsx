@@ -3,20 +3,22 @@ import SingleVoucher from '@/components/voucherCard/SingleVoucher';
 import { selectCurrentUser } from '@/store/api/auth/authSlice';
 import {
     useCreateClippedVoucherMutation,
-    useGetVoucherQuery
+    useGetVoucherQuery,
 } from '@/store/api/vouchers/vouchersApiSlice';
 import { swalError } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import icon from './../../assets/images/icon/Icons.png';
 
 function RedeemDeal() {
     const navigate = useNavigate();
-    const [createClippedVoucher, { isLoading, isError, error, isSuccess }] = useCreateClippedVoucherMutation();
+    const [createClippedVoucher, { isLoading, isError, error, isSuccess }] =
+        useCreateClippedVoucherMutation();
     const { id: voucherId } = useParams();
-    const { data: voucherData, isLoading: loadingVoucher } = useGetVoucherQuery(voucherId);
+    const { data: voucherData, isLoading: loadingVoucher } =
+        useGetVoucherQuery(voucherId);
     const userId = useSelector(selectCurrentUser);
 
     if (loadingVoucher) return <Loading />;
@@ -31,11 +33,22 @@ function RedeemDeal() {
             //     '/voucher/clipped-for-later',
             //     payload
             // );
-            const response = await createClippedVoucher({data: payload});
+            const response = await createClippedVoucher({ data: payload });
             console.log('🚀  ~ response:', response);
             toast.success('Successfully added to clipped list');
 
             navigate('/clipped-deals');
+        } catch (error) {
+            swalError(error);
+        }
+    };
+
+    const handleRedeemDeal = async () => {
+        try {
+            if (userId) {
+            } else {
+                navigate('/login');
+            }
         } catch (error) {
             swalError(error);
         }
@@ -66,19 +79,21 @@ function RedeemDeal() {
                             Clip for later
                         </button>
                         {/* </Link> */}
-                        <Link to={`/redeem-deal-details`}>
-                            <button className="bg-customBlue text-white p-2 rounded-md flex items-center">
-                                {' '}
-                                <span className="mx-1 h-4 w-4">
-                                    <img
-                                        src={icon}
-                                        alt=""
-                                        className="h-full w-full z-10"
-                                    />
-                                </span>
-                                Redeem Deal
-                            </button>
-                        </Link>
+
+                        <button
+                            onClick={handleRedeemDeal}
+                            className="bg-customBlue text-white p-2 rounded-md flex items-center"
+                        >
+                            {' '}
+                            <span className="mx-1 h-4 w-4">
+                                <img
+                                    src={icon}
+                                    alt=""
+                                    className="h-full w-full z-10"
+                                />
+                            </span>
+                            Redeem Deal
+                        </button>
                     </div>
                 </div>
             </div>

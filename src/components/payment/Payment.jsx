@@ -1,9 +1,10 @@
+import cashPlus from '@/assets/images/payment/cash_plus.svg';
 import { loadStripe } from '@stripe/stripe-js';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Loading from '../Loading';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
-import { useState } from 'react';
 
 const Payment = () => {
     const { email } = useSelector((state) => state.user.user);
@@ -11,15 +12,17 @@ const Payment = () => {
     const buttons = [
         {
             text: 'Credit/Debit Card',
-            className: 'btn-md bg-white rounded-full me-2',
+            className: 'btn-md bg-white h-[47px] rounded-full me-2',
             action: () => {
                 handleStripePayment();
             },
+            img: null,
         },
         {
-            text: 'Cash Plus',
-            className: 'btn-md bg-white rounded-full',
+            text: null,
+            className: 'btn-md bg-white h-[47px] rounded-full',
             action: () => handleCashPlusPayment(),
+            img: cashPlus,
         },
     ];
 
@@ -29,7 +32,9 @@ const Payment = () => {
         );
         setLoading(true);
         const response = await fetch(
-            `${import.meta.env.VITE_API_APP_URL}/create-stripe-session-subscription`,
+            `${
+                import.meta.env.VITE_API_APP_URL
+            }/create-stripe-session-subscription`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'Application/JSON' },
@@ -61,7 +66,6 @@ const Payment = () => {
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'Application/JSON' },
-                
             }
         );
 
@@ -86,14 +90,25 @@ const Payment = () => {
                     Secure Checkout: Your payment information is fully protected
                 </p>
 
-                <div className="bg-gray-300 rounded-md p-3">
+                <div className="bg-gray-300 rounded-md p-3 flex items-center">
                     {buttons.map((button) => (
                         <Button
                             key={button.text}
                             className={button.className}
-                            text={button.text}
                             onClick={button.action}
-                        />
+                        >
+                            {button.text ? (
+                                button.text
+                            ) : (
+                                <div className="flex items-center justify-center w-full h-full">
+                                    <img
+                                        src={button.img}
+                                        alt="payment"
+                                        className="object-fill flex items-center justify-center"
+                                    />
+                                </div>
+                            )}
+                        </Button>
                     ))}
                 </div>
             </Card>
