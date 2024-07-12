@@ -1,13 +1,9 @@
 import BusinessSpotlight from '@/components/businessSpotlight';
 import Featured from '@/components/featured';
-import GreatDeals from '@/components/greatDeals';
 import Header from '@/components/header';
 import Restaurants from '@/components/restaurants';
-import SalonsNear from '@/components/salonsNear';
 import { spotlight } from '@/data/BusinessSpotlight!';
-import { greatDealsData } from '@/data/cardData';
 import { featured } from '@/data/featuredData';
-import { salonsData } from '@/data/salonsData';
 import { selectCurrentLatLng } from '@/store/api/GeoLocation/geoLocationSlice';
 import fetchWrapper from '@/util/fetchWrapper';
 import { swalError } from '@/util/helpers';
@@ -20,12 +16,17 @@ function Home() {
 
     const getNearByStores = async () => {
         try {
-            const payload = {
-                coordinates: [currentLocation.lat, currentLocation.lng],
-            };
-            const { data } = await fetchWrapper.post(`/store/nearme`, payload);
-            console.table('🚀  ~ data:', data);
-            setStoreData(data);
+            if (currentLocation.lat && currentLocation.lng) {
+                const payload = {
+                    coordinates: [currentLocation.lat, currentLocation.lng],
+                };
+                const { data } = await fetchWrapper.post(
+                    `/store/nearme`,
+                    payload
+                );
+
+                setStoreData(data);
+            }
         } catch (error) {
             swalError(error);
         }
@@ -48,7 +49,7 @@ function Home() {
                 {/* Restaurants Near Me */}
                 <Restaurants data={storeData} />
                 {/* Salons Near Me */}
-                
+
                 {/* <SalonsNear data={salonsData} /> */}
             </div>
         </div>
