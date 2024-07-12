@@ -21,6 +21,7 @@ const CreateVouchersPage = lazy(() =>
     import('./pages/vouchers/create-vouchers')
 );
 const CreateStorePage = lazy(() => import('./pages/stores/create-store'));
+const CreatePushNotificationPage = lazy(() => import('./pages/pushNotification/create-push-notification'));
 const PaymentPage = lazy(() => import('./pages/payment'));
 const Error = lazy(() => import('./pages/404'));
 const AdminUsersPage = lazy(() => import('./pages/adminUsers'));
@@ -144,6 +145,10 @@ function App() {
                         <Route
                             path="vouchers/create-vouchers"
                             element={<CreateVouchersPage />}
+                        />
+                        <Route
+                            path="push-notifications/create-push-notification"
+                            element={<CreatePushNotificationPage />}
                         />
                         <Route
                             path="stores/create-store"

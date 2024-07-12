@@ -19,7 +19,7 @@ const Textarea = ({
   msgTooltip,
   description,
   cols,
-  row = 3,
+  row = 5,
   onChange,
   ...rest
 }) => {

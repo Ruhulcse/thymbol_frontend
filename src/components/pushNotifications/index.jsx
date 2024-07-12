@@ -6,7 +6,7 @@ const PushNotification = () => {
         <>
             <PageHeaderLinks
                 title={'Push Notifications'}
-                link={'vouchers/create-vouchers'}
+                link={'push-notifications/create-push-notification'}
                 buttonText={'Create New Notification'}
             />
 
