@@ -75,13 +75,17 @@ function TopSection() {
                                 className="text-blue-400 mx-auto text-lg  mr-2"
                             />
                         </span>
-                        <a
-                            className="text-blue-400"
-                            target="_blank"
-                            href={store?.website_link}
-                        >
-                            {store?.website_link}
-                        </a>
+                        {store?.website_link ? (
+                            <a
+                                className="text-blue-400"
+                                target="_blank"
+                                href={store?.website_link}
+                            >
+                                {store?.website_link}
+                            </a>
+                        ) : (
+                            <span>N/A</span>
+                        )}
                     </div>
                     <div className="flex items-center">
                         <span className="inline-flex">
@@ -90,13 +94,17 @@ function TopSection() {
                                 className="text-blue-400 mx-auto text-lg "
                             />
                         </span>{' '}
-                        <a
-                            className="text-blue-400"
-                            target="_blank"
-                            href={store?.social_media_link}
-                        >
-                            {store?.social_media_link}
-                        </a>
+                        {store?.social_media_link ? (
+                            <a
+                                className="text-blue-400"
+                                target="_blank"
+                                href={store?.social_media_link}
+                            >
+                                {store?.social_media_link}
+                            </a>
+                        ) : (
+                            <span>N/A</span>
+                        )}
                     </div>
                 </div>
                 <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
