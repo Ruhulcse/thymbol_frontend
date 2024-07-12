@@ -34,7 +34,7 @@ const NotificationForm = () => {
             <h4>
                 <strong>Create New Push Notification</strong>
             </h4>
-            <div className="flex justify-center items-center mt-16 md:mt-44">
+            <div className="flex justify-center items-center mt-10 md:mt-40">
                 <Card className="w-2/5 px-5">
                     <h6 className="my-5 font-semibold">
                         New Push Notification
