@@ -20,7 +20,11 @@ function SingleVoucher({ item, link = 'redeem-deal-details' }) {
                         </div>
                         <div className="flex justify-between px-0 md:px-0 md:mt-4 mt-2 items-center">
                             <div className="md:text-sm text-[9px] sm:text-[11px] font-semibold text-orange-600 lg:text-[16px]">
-                                {item?.discount}% off
+                                {item?.discount ? (
+                                    <>{item?.discount}% off</>
+                                ) : (
+                                    item.offer
+                                )}
                             </div>
                             <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center  rounded-full lg:h-10 lg:w-10">
                                 <Link to={`/${link}/${item?._id}`}>

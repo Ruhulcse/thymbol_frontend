@@ -1,5 +1,4 @@
 import fetchWrapper from '@/util/fetchWrapper';
-import { swalError } from '@/util/helpers';
 import { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import Button from '../ui/Button';
@@ -9,6 +8,7 @@ const VerifyScanQR = () => {
     const [startScan, setStartScan] = useState(false);
     const [loadingScan, setLoadingScan] = useState(false);
     const [scannedResult, setScannedResult] = useState('');
+    const [errorResult, setErrorResult] = useState('');
     let handleScan = (data) => {
         setLoadingScan(true);
         const parsedQrData = JSON.parse(data);
@@ -30,11 +30,12 @@ const VerifyScanQR = () => {
 
             setScannedResult(data.message);
         } catch (error) {
-            swalError(error);
+            setErrorResult(error.response.data.message);
         }
     };
 
     let handleError = (err) => {
+        console.log('🚀  ~ err:', err);
         // alert(err);
     };
     return (
@@ -90,6 +91,11 @@ const VerifyScanQR = () => {
             {scannedResult !== '' && (
                 <p className="text-center text-base md:text-xl font-semibold text-green-600 my-4">
                     {scannedResult}
+                </p>
+            )}
+            {errorResult !== '' && (
+                <p className="text-center text-base md:text-xl font-semibold text-red-600 my-4">
+                    {errorResult}
                 </p>
             )}
         </div>

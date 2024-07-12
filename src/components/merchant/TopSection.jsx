@@ -27,10 +27,10 @@ function TopSection() {
                 <div className="font-bold hidden sm:block md:text-2xl">
                     {store?.store_name?.toUpperCase() || 'N/A'}
                 </div>
-                <div className="text-sm text-center sm:text-start md:text-lg">
+                {/* <div className="text-sm text-center sm:text-start md:text-lg">
                     {' '}
                     Lorem Ipsum is simply dummy text
-                </div>
+                </div> */}
                 <div className="text-center sm:text-start sm:justify-start flex justify-center gap-10 text-xs md:text-[14px]">
                     <div className=" flex items-center gap-3">
                         Make Us Your Favorite{' '}

@@ -188,6 +188,13 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                         </div>
 
                         <div className="flex-none relative self-end flex space-x-2">
+                            <button
+                                onClick={handleAppend}
+                                type="button"
+                                className="inline-flex items-center justify-center h-10 w-10 bg-primary-500 text-lg border rounded border-primary-500 text-white"
+                            >
+                                <Icon icon="heroicons-outline:plus" />
+                            </button>
                             {index > 0 && (
                                 <button
                                     onClick={() => {
@@ -200,13 +207,6 @@ const BusinessHours = ({ businessHours, setBusinessHours }) => {
                                     <Icon icon="heroicons-outline:minus" />
                                 </button>
                             )}
-                            <button
-                                onClick={handleAppend}
-                                type="button"
-                                className="inline-flex items-center justify-center h-10 w-10 bg-primary-500 text-lg border rounded border-primary-500 text-white"
-                            >
-                                <Icon icon="heroicons-outline:plus" />
-                            </button>
                         </div>
                     </div>
                 ))}
