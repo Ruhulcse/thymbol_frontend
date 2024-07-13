@@ -1,10 +1,52 @@
-import { defineConfig } from "vite";
-import reactRefresh from "@vitejs/plugin-react-refresh";
-import react from "@vitejs/plugin-react";
-import path from "path";
 import rollupReplace from "@rollup/plugin-replace";
+import react from "@vitejs/plugin-react";
+import reactRefresh from "@vitejs/plugin-react-refresh";
+import path from "path";
+import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
+
+const manifestForPlugIn = {
+  registerType: 'prompt',
+  includeAssests: ['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
+  manifest: {
+    name: "Thymbol",
+    short_name: "Thymbol",
+    description: "Thymbol",
+    icons: [{
+      src: '/android-chrome-192x192.png',
+      sizes: '192x192',
+      type: 'image/png',
+      purpose: 'favicon'
+    },
+    {
+      src: '/android-chrome-512x512.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'favicon'
+    },
+    {
+      src: '/apple-touch-icon.png',
+      sizes: '180x180',
+      type: 'image/png',
+      purpose: 'apple touch icon',
+    },
+    {
+      src: '/maskable_icon.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'any maskable',
+    }
+    ],
+    theme_color: '#ffffff',
+    background_color: '#0C9AD6',
+    display: "standalone",
+    scope: '/',
+    start_url: "/",
+    orientation: 'portrait'
+  }
+}
+
 export default defineConfig({
   resolve: {
     alias: [
@@ -26,17 +68,6 @@ export default defineConfig({
     }),
     react(),
     reactRefresh(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: [],
-      manifest: {
-        name: 'My PWA App',
-        short_name: 'PWA App',
-        description: 'My awesome Progressive Web App!',
-        theme_color: '#ffffff',
-        icons: [
-        ]
-      }
-    })
+    VitePWA(manifestForPlugIn)
   ],
 });
