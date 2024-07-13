@@ -27,11 +27,11 @@ export function swalConfirm(msg, title, cText, cancleText, icon) {
     try {
         const result = Swal.fire({
             title: title || 'Are you sure',
-            text: msg || 'you want to proceed?',
-            // icon: icon || 'warning',
-            iconHtml: `<img src="${icon}">`,
+            text: msg || 'You want to proceed?',
+            icon: icon ? undefined : 'warning',
+            iconHtml: icon ? `<img src="${icon}" />` : undefined,
             customClass: {
-                icon: 'no-border',
+                icon: icon ? 'no-border' : '',
                 cancelButton: 'order-1 right-gap mx-5 w-40',
                 confirmButton: 'order-2 mx-5 w-40',
             },
@@ -46,7 +46,6 @@ export function swalConfirm(msg, title, cText, cancleText, icon) {
         return result;
     } catch (e) {
         // Fail!
-
         return false;
     }
 }

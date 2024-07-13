@@ -1,9 +1,11 @@
 import Loading from '@/components/Loading';
 import DataGrid from '@/components/shared/dataGrid/DataGrid';
 import Switch from '@/components/ui/Switch';
-import { getAllUsers } from '@/store/api/users/usersSlice';
+import Tooltip from '@/components/ui/Tooltip';
+import { deleteUser, getAllUsers } from '@/store/api/users/usersSlice';
 import fetchWrapper from '@/util/fetchWrapper';
-import { swalError } from '@/util/helpers';
+import { swalConfirm, swalError, swalSuccess } from '@/util/helpers';
+import { Icon } from '@iconify/react';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,7 +49,7 @@ const AdminUserDataTable = () => {
         },
         {
             Header: 'Enable/Disable',
-            accessor: 'action',
+            accessor: 'enable_or_disable',
             Cell: (row) => {
                 const isEnable =
                     row?.cell?.row?.original?.userStatus === 'Active'
@@ -70,7 +72,62 @@ const AdminUserDataTable = () => {
                 );
             },
         },
+        {
+            Header: 'action',
+            accessor: 'action',
+            Cell: (row) => {
+                return (
+                    <div className="flex space-x-3 rtl:space-x-reverse">
+                        {/* <Tooltip content="View" placement="top" arrow animation="shift-away">
+                    <button className="action-btn" type="button">
+                      <Icon icon="heroicons:eye" />
+                    </button>
+                  </Tooltip>
+                  <Tooltip content="Edit" placement="top" arrow animation="shift-away">
+                    <button className="action-btn" type="button">
+                      <Icon icon="heroicons:pencil-square" />
+                    </button>
+                  </Tooltip> */}
+                        <Tooltip
+                            content="Delete"
+                            placement="top"
+                            arrow
+                            animation="shift-away"
+                            theme="danger"
+                        >
+                            <button
+                                className="action-btn"
+                                type="button"
+                                onClick={() =>
+                                    handleDeleteUser({
+                                        id: row?.cell?.row?.original._id,
+                                    })
+                                }
+                            >
+                                <Icon icon="heroicons:trash" />
+                            </button>
+                        </Tooltip>
+                    </div>
+                );
+            },
+        },
     ];
+
+    const handleDeleteUser = ({ id }) => {
+        console.log("🚀  ~ id:", id)
+        swalConfirm(
+            'Are you sure you want to delete this user?'
+        ).then(async (result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteUser({ id }))
+                    .unwrap()
+                    .then(() => {
+                        swalSuccess('User deleted successfully');
+                        dispatch(getAllUsers({ user_id }));
+                    });
+            }
+        });
+    };
 
     const toggleUserRole = async ({ id, status }) => {
         const payload = {

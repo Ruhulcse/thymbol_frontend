@@ -45,7 +45,15 @@ export const vouchersApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { userId }) => ['Vouchers', 'Voucher', 'Store', 'ClippedVoucher'],
         }),
+        deleteVoucher: builder.mutation({
+            query: ({ id }) => ({
+                url: `voucher/${id}`,
+                method: 'DELETE',
+
+            }),
+            invalidatesTags: (result, error, { userId }) => ['Vouchers', 'Voucher', 'Store', 'ClippedVoucher'],
+        }),
     }),
 });
 
-export const { useGetVouchersQuery, useCreateVoucherMutation, useGetVoucherByStoreQuery, useGetVoucherQuery, useGetClippedVoucherQuery, useCreateClippedVoucherMutation, useRedeemVoucherMutation } = vouchersApi;
+export const { useGetVouchersQuery, useCreateVoucherMutation, useGetVoucherByStoreQuery, useGetVoucherQuery, useGetClippedVoucherQuery, useCreateClippedVoucherMutation, useRedeemVoucherMutation, useDeleteVoucherMutation } = vouchersApi;

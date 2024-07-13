@@ -20,7 +20,14 @@ export const storesApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { userId }) => ['Stores', 'Store'],
         }),
+        deleteStore: builder.mutation({
+            query: ({ id }) => ({
+                url: `store/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: (result, error, { userId }) => ['Stores', 'Store'],
+        }),
     }),
 });
 
-export const { useGetStoresQuery, useCreateStoreMutation, useGetStoreQuery } = storesApi;
+export const { useGetStoresQuery, useCreateStoreMutation, useGetStoreQuery, useDeleteStoreMutation } = storesApi;

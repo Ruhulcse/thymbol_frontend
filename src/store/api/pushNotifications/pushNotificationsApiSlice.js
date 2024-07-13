@@ -16,7 +16,16 @@ export const pushNotificationsApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { userId }) => ['PushNotifications'],
         }),
+
+        deletePushNotifiation: builder.mutation({
+            query: ({ id }) => ({
+                url: `push-notificaton/delete`,
+                method: 'DELETE',
+                body: { ids: [id] },
+            }),
+            invalidatesTags: (result, error, { userId }) => ['PushNotifications'],
+        }),
     }),
 });
 
-export const { useGetPushNotificationsQuery, useCreatePushNotifiationMutation } = pushNotificationsApi;
+export const { useGetPushNotificationsQuery, useCreatePushNotifiationMutation, useDeletePushNotifiationMutation } = pushNotificationsApi;
