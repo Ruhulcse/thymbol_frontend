@@ -1,4 +1,4 @@
-import { cover, morocco, soudia, topBarImage, usa } from '@/assets/images/home';
+import { cover, morocco, soudia, topBarImage, uae } from '@/assets/images/home';
 import { Icon } from '@iconify/react';
 
 const data = [
@@ -11,8 +11,8 @@ const data = [
         image: soudia,
     },
     {
-        name: 'USA',
-        image: usa,
+        name: 'UAE',
+        image: uae,
     },
 ];
 
