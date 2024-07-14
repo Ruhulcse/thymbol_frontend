@@ -1,7 +1,6 @@
 import ViewMore from '@/components/button/ViewMore';
 import SalonsList from '@/components/salons/SalonsList';
 import Title from '@/components/title';
-import Loading from '../Loading';
 
 function Restaurants({ data }) {
     return (
@@ -19,7 +18,9 @@ function Restaurants({ data }) {
                     ))}
                 </>
             ) : (
-                <Loading />
+                <p className="text:base md:text-xl text-red-500 font-semibold text-center">
+                    No Stores Found
+                </p>
             )}
         </div>
     );

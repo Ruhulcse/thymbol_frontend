@@ -1,6 +1,7 @@
 import 'flatpickr/dist/themes/light.css';
 import 'react-data-grid/lib/styles.css';
 import ReactDOM from 'react-dom/client';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 import 'react-modal-video/css/modal-video.min.css';
 import { Provider } from 'react-redux';
@@ -13,16 +14,22 @@ import 'swiper/css/scrollbar';
 import '../src/assets/scss/app.scss';
 import App from './App';
 import ScrollToTop from './components/ScrollToTop';
+import ErrorFallback from './pages/error';
 import store from './store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <>
         <BrowserRouter>
-            <ScrollToTop />
-            <Toaster />
-            <Provider store={store}>
-                <App />
-            </Provider>
+            <ErrorBoundary
+                FallbackComponent={ErrorFallback}
+                onError={console.error('Error fallback')}
+            >
+                <ScrollToTop />
+                <Toaster />
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </ErrorBoundary>
         </BrowserRouter>
     </>
 );

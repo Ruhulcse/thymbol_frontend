@@ -1,6 +1,7 @@
 import BusinessSpotlight from '@/components/businessSpotlight';
 import Featured from '@/components/featured';
 import Header from '@/components/header';
+import Loading from '@/components/Loading';
 import Restaurants from '@/components/restaurants';
 import { spotlight } from '@/data/BusinessSpotlight!';
 import { featured } from '@/data/featuredData';
@@ -13,8 +14,10 @@ import { useSelector } from 'react-redux';
 function Home() {
     const currentLocation = useSelector(selectCurrentLatLng);
     const [storeData, setStoreData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const getNearByStores = async () => {
+        setLoading(true);
         try {
             if (currentLocation.lat && currentLocation.lng) {
                 const payload = {
@@ -29,12 +32,16 @@ function Home() {
             }
         } catch (error) {
             swalError(error);
+        } finally {
+            setLoading(false);
         }
     };
 
     useEffect(() => {
         getNearByStores();
     }, [currentLocation]);
+
+    if (loading) return <Loading />;
 
     return (
         <div className="bg-[#F3FCFF] ">
