@@ -4,7 +4,7 @@ import VoucherList from '@/components/voucherCard/VoucherList';
 function VoucherSection() {
     return (
         <div>
-            <Title>Our Lattest Coupons</Title>
+            <Title>Our Latest Coupons</Title>
             <VoucherList />
         </div>
     );
