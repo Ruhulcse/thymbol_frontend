@@ -53,7 +53,7 @@ const manifestForPlugIn = {
         options: {
           cacheName: 'documents',
           expiration: {
-            maxEntries: 1000,
+            maxEntries: 10,
             maxAgeSeconds: 7 * 24 * 60 * 60, // 1 week
           },
         },
@@ -64,39 +64,38 @@ const manifestForPlugIn = {
         options: {
           cacheName: 'images',
           expiration: {
-            maxEntries: 500,
+            maxEntries: 50,
             maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
           },
         },
       },
       {
         urlPattern: ({ request }) => request.destination === 'script' ||
-          request.destination === 'style' ||
-          request.destination === 'worker',
+                                      request.destination === 'style' ||
+                                      request.destination === 'worker',
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'assets',
           expiration: {
-            maxEntries: 300,
+            maxEntries: 30,
             maxAgeSeconds: 7 * 24 * 60 * 60, // 1 week
           },
         },
       },
       {
-        urlPattern: new RegExp('/api/v1/'),
+        urlPattern: /^\/api\/v1\//,
         handler: 'NetworkFirst',
         options: {
           cacheName: 'api-responses',
           expiration: {
-            maxEntries: 500,
-            maxAgeSeconds: 5 * 60,
+            maxEntries: 50,
+            maxAgeSeconds: 5 * 60, // 5 minutes
           },
-          networkTimeoutSeconds: 10,
+          networkTimeoutSeconds: 10, // If it doesn't respond within 10 seconds, fallback to cache.
         },
       },
     ],
-  }
-
+  },
 }
 
 export default defineConfig({
