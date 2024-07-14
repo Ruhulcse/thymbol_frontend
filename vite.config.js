@@ -48,6 +48,18 @@ const manifestForPlugIn = {
   workbox: {
     runtimeCaching: [
       {
+        urlPattern: ({ url }) => {
+          return url.pathname.startsWith("/api");
+        },
+        handler: "CacheFirst",
+        options: {
+          cacheName: "api-cache",
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
+      },
+      {
         urlPattern: ({ request }) => request.destination === 'document',
         handler: 'NetworkFirst',
         options: {
@@ -71,8 +83,8 @@ const manifestForPlugIn = {
       },
       {
         urlPattern: ({ request }) => request.destination === 'script' ||
-                                      request.destination === 'style' ||
-                                      request.destination === 'worker',
+          request.destination === 'style' ||
+          request.destination === 'worker',
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'assets',
