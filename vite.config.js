@@ -84,7 +84,7 @@ const manifestForPlugIn = {
       },
       {
         urlPattern: /^\/api\/v1\//,
-        handler: 'NetworkFirst',
+        handler: 'CacheFirst',
         options: {
           cacheName: 'api-responses',
           expiration: {
