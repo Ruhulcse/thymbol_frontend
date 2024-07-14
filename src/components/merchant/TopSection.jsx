@@ -1,12 +1,39 @@
 import { infoIcon } from '@/constant/data';
-import { useGetStoreQuery } from '@/store/api/stores/storesApiSlice';
+import {
+    useFavoriteStoreMutation,
+    useGetStoreQuery,
+} from '@/store/api/stores/storesApiSlice';
+import { swalError } from '@/util/helpers';
 import { Icon } from '@iconify/react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import BusinessHoursClient from './BusinessHoursClient';
 function TopSection() {
     const { id: store_id } = useParams();
     const { data: store, isLoading: loadingStore } = useGetStoreQuery(store_id);
+
+    const [
+        favoriteStore,
+        { isLoading: loadingFavoriteStore, isSuccess, data, isError, error },
+    ] = useFavoriteStoreMutation();
+    console.log('🚀  ~ isSuccess:', isSuccess);
+    console.log('🚀  ~ data:', data);
+
+    const handleAddToFavoriteStore = async () => {
+        const response = await favoriteStore({
+            favourite_stores: { favourite_stores: store._id },
+        }).unwrap();
+    };
+
+    if (isSuccess) {
+        toast.success(data.message);
+    }
+
+    if (isError) {
+        console.log('🚀  ~ error:', error);
+        swalError(error?.data?.message);
+    }
 
     if (loadingStore) return <Loading />;
 
@@ -34,10 +61,13 @@ function TopSection() {
                 <div className="text-center sm:text-start sm:justify-start flex justify-center gap-10 text-xs md:text-[14px]">
                     <div className=" flex items-center gap-3">
                         Make Us Your Favorite{' '}
-                        <span className="inline-flex">
+                        <span
+                            className="inline-flex cursor-pointer"
+                            onClick={handleAddToFavoriteStore}
+                        >
                             <Icon
                                 icon="heroicons:heart"
-                                className="text-blue-600 mx-auto text-sm"
+                                className="text-blue-600 mx-auto text-base"
                             />
                         </span>
                     </div>

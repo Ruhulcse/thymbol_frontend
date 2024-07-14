@@ -1,8 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-// home pages  & dashboard
-//import Dashboard from "./pages/dashboard";
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/auth/login'));
 const Signup = lazy(() => import('./pages/auth/register'));
@@ -16,12 +14,15 @@ const ScanQRPage = lazy(() => import('./pages/scanQR'));
 const AnalyticsPage = lazy(() => import('./pages/analytics'));
 const VouchersPage = lazy(() => import('./pages/vouchers'));
 const StorePage = lazy(() => import('./pages/stores'));
+const FavoriteStores = lazy(() => import('./pages/favoriteStores'));
 
 const CreateVouchersPage = lazy(() =>
     import('./pages/vouchers/create-vouchers')
 );
 const CreateStorePage = lazy(() => import('./pages/stores/create-store'));
-const CreatePushNotificationPage = lazy(() => import('./pages/pushNotification/create-push-notification'));
+const CreatePushNotificationPage = lazy(() =>
+    import('./pages/pushNotification/create-push-notification')
+);
 const PaymentPage = lazy(() => import('./pages/payment'));
 const Error = lazy(() => import('./pages/404'));
 const AdminUsersPage = lazy(() => import('./pages/adminUsers'));
@@ -38,7 +39,6 @@ const RedeemDealDetails = lazy(() => import('./pages/redeemDealDetails'));
 const PushNotificationPage = lazy(() => import('./pages/pushNotification'));
 const VerificationVideo = lazy(() => import('./components/verificationVideo'));
 const VideoReviewPage = lazy(() => import('./pages/videoReview'));
-const LoginHomePage = lazy(() => import('./pages/loginHome'));
 const LoginConsumer = lazy(() => import('./pages/auth/login-consumer'));
 const ConsumerPaymentPage = lazy(() => import('./pages/consumer-payment'));
 const ConsumerSubscriptionPage = lazy(() =>
@@ -105,6 +105,7 @@ function App() {
                         path="/add-video-review"
                         element={<VideoReviewPage />}
                     />
+                    <Route path="/favourites" element={<FavoriteStores />} />
                 </Route>
 
                 {/* admin layout */}
@@ -154,7 +155,10 @@ function App() {
                             path="stores/create-store"
                             element={<CreateStorePage />}
                         />
-                        <Route path="dashboard/payment" element={<PaymentPage />} />
+                        <Route
+                            path="dashboard/payment"
+                            element={<PaymentPage />}
+                        />
                         <Route path="success" element={<SuccessPage />} />
                     </Route>
 

@@ -27,7 +27,20 @@ export const storesApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { userId }) => ['Stores', 'Store'],
         }),
+        getFavoriteStores: builder.query({
+            query: () => `get_favourite`,
+            providesTags: ['Favorite_Store'],
+            transformResponse: (response) => response.data,
+        }),
+        favoriteStore: builder.mutation({
+            query: ({ favourite_stores }) => ({
+                url: 'add_favourite',
+                method: 'POST',
+                body: favourite_stores,
+            }),
+            invalidatesTags: (result, error, { userId }) => ['Favorite_Store'],
+        }),
     }),
 });
 
-export const { useGetStoresQuery, useCreateStoreMutation, useGetStoreQuery, useDeleteStoreMutation } = storesApi;
+export const { useGetStoresQuery, useCreateStoreMutation, useGetStoreQuery, useDeleteStoreMutation, useFavoriteStoreMutation, useGetFavoriteStoresQuery } = storesApi;
