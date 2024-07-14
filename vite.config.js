@@ -48,17 +48,55 @@ const manifestForPlugIn = {
   workbox: {
     runtimeCaching: [
       {
-        urlPattern: ({ url, sameOrigin }) => sameOrigin && url.pathname.includes('https://thymbol-backend.onrender.com'),
-        handler: "CacheFirst",
+        urlPattern: ({ request }) => request.destination === 'document',
+        handler: 'NetworkFirst',
         options: {
-          cacheName: "api-cache",
-          cacheableResponse: {
-            statuses: [0, 200]
-          }
-        }
+          cacheName: 'documents',
+          expiration: {
+            maxEntries: 1000,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 1 week
+          },
+        },
+      },
+      {
+        urlPattern: ({ request }) => request.destination === 'image',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'images',
+          expiration: {
+            maxEntries: 500,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
+          },
+        },
+      },
+      {
+        urlPattern: ({ request }) => request.destination === 'script' ||
+          request.destination === 'style' ||
+          request.destination === 'worker',
+        handler: 'StaleWhileRevalidate',
+        options: {
+          cacheName: 'assets',
+          expiration: {
+            maxEntries: 300,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 1 week
+          },
+        },
+      },
+      {
+        urlPattern: new RegExp('/api/v1/'),
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'api-responses',
+          expiration: {
+            maxEntries: 500,
+            maxAgeSeconds: 5 * 60,
+          },
+          networkTimeoutSeconds: 10,
+        },
       },
     ],
-  },
+  }
+
 }
 
 export default defineConfig({
