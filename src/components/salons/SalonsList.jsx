@@ -1,7 +1,6 @@
 import SalonsCard from '@/components/salons/SalonsCard';
 
 function SalonsList({ data }) {
-    console.table("🚀  ~ data:", data)
     return (
         <div className="overflow-x-auto flex gap-4 justify-around mt-12 mx-8 overflow-y-hidden">
             {data?.map((item, i) => (
