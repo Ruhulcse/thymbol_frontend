@@ -94,18 +94,6 @@ const manifestForPlugIn = {
           },
         },
       },
-      {
-        urlPattern: /^\/api\/v1\//,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'api-responses',
-          expiration: {
-            maxEntries: 50,
-            maxAgeSeconds: 5 * 60, // 5 minutes
-          },
-          networkTimeoutSeconds: 10, // If it doesn't respond within 10 seconds, fallback to cache.
-        },
-      },
     ],
   },
 }
