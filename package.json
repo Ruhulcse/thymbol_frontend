@@ -71,6 +71,7 @@
     "swiper": "^8.4.5",
     "use-places-autocomplete": "^4.0.1",
     "uuidv4": "^6.2.13",
+    "vite-plugin-preload": "^0.4.0",
     "vite-plugin-pwa": "^0.20.0",
     "yarn": "^1.22.19",
     "yup": "^0.32.11"

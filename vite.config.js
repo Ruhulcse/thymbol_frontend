@@ -4,6 +4,8 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 import path from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import preload from "vite-plugin-preload";
+
 // https://vitejs.dev/config/
 
 const manifestForPlugIn = {
@@ -68,6 +70,7 @@ export default defineConfig({
     }),
     react(),
     reactRefresh(),
-    VitePWA(manifestForPlugIn)
+    VitePWA(manifestForPlugIn),
+    preload()
   ],
 });
