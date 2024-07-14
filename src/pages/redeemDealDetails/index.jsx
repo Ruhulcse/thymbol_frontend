@@ -52,7 +52,7 @@ function RedeemDealDetails() {
                                 />
                                 <div className="flex justify-between py-10 md:text-sm text-xs  font-semibold">
                                     <div className="bg-white px-3  w-44 py-2">
-                                        Redeem Date: April 24,2024
+                                        Redeem Date: {'N/A'}
                                     </div>
                                     <div className="bg-white px-3  w-44 py-2">
                                         Valid Till:{' '}
@@ -73,7 +73,7 @@ function RedeemDealDetails() {
                         </div> */}
                         <div className="font-bold text-xl">Location</div>
                         <div className="flex gap-7">
-                            <div className="h-52 w-72">
+                            <div className="h-52 w-full">
                                 {/* <img
                                     src={map}
                                     alt=""
@@ -81,13 +81,13 @@ function RedeemDealDetails() {
                                 /> */}
                                 <LocationMap />
                             </div>
-                            <div className="h-40 w-40">
+                            {/* <div className="h-40 w-40">
                                 <img
                                     src={qr}
                                     alt=""
                                     className="h-full w-full"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                         <div className="bg-gray-200 p-2 md:hidden w-[50%]">
                             Remaining Vouchers: 27h
