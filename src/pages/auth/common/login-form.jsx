@@ -4,6 +4,7 @@ import { useLoginMutation } from '@/store/api/auth/authApiSlice';
 import { setUser } from '@/store/api/auth/authSlice';
 import { getUser } from '@/store/api/user/userSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { t } from 'i18next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -15,8 +16,8 @@ const schema = yup
         email: yup
             .string()
             .email('Invalid email')
-            .required('Email is Required'),
-        password: yup.string().required('Password is Required'),
+            .required(`${t('Email')} is Required`),
+        password: yup.string().required(`${t('Password')} is Required`),
     })
     .required();
 const LoginForm = () => {
@@ -76,24 +77,24 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
             <Textinput
                 name="email"
-                label="email"
+                label={t('Email')}
                 type="text"
                 register={register}
                 error={errors.email}
                 className="h-[48px]"
-                placeholder="Email"
+                placeholder={t('Email')}
                 onChange={(e) => {
                     setValue('email', e.target.value);
                 }}
             />
             <Textinput
                 name="password"
-                label="password"
+                label={t('Password')}
                 type="password"
                 register={register}
                 error={errors.password}
                 className="h-[48px]"
-                placeholder="Password"
+                placeholder={t('Password')}
                 onChange={(e) => {
                     setValue('password', e.target.value);
                 }}
@@ -108,13 +109,13 @@ const LoginForm = () => {
                         }/reset`)
                     }
                 >
-                    Forgot Password?{' '}
+                    {t('Forgot Password?')}{' '}
                 </div>
             </div>
 
             <Button
                 type="submit"
-                text="Sign in"
+                text={t('Sign In')}
                 className="btn btn-primary block w-full text-center "
                 isLoading={isLoading}
             />

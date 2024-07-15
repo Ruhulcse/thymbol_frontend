@@ -52,14 +52,31 @@ import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
 import UserLayout from './layout/UserLayout';
 import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { handleRtl } from './store/layout';
+
 //import Home from '@/pages/home/Home';
 
 function App() {
+    const { i18n } = useTranslation();
     const dispatch = useDispatch();
+    const savedLanguage = useSelector((state) => state.layout.language);
 
     useEffect(() => {
         dispatch(getUserGeoLocation());
     }, [dispatch]);
+
+    
+    useEffect(() => {
+        if(savedLanguage === 'ar') {
+            dispatch(handleRtl(true))
+        } else {
+            dispatch(handleRtl(false))
+        }
+        i18n.changeLanguage(savedLanguage);
+        console.log("🚀  ~ savedLanguage:", savedLanguage)
+    }, [savedLanguage, dispatch])
 
     return (
         <main className="App  relative">
@@ -83,29 +100,49 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/store/:id" element={<Merchant />} />
 
-                    <Route path="/clipped-deals" element={<ClippedDeals />} />
                     <Route path="/redeem-deal/:id" element={<RedeemDeal />} />
                     <Route
                         path="/redeem-deal-details/:id"
                         element={<RedeemDealDetails />}
                     />
+
                     <Route
-                        path="/verification-intro"
-                        element={<VerificationVideo />}
-                    />
-                    <Route
-                        path="/consumer-subscription"
-                        element={<ConsumerSubscriptionPage />}
-                    />
-                    <Route
-                        path="/consumer-payment"
-                        element={<ConsumerPaymentPage />}
-                    />
-                    <Route
-                        path="/add-video-review"
-                        element={<VideoReviewPage />}
-                    />
-                    <Route path="/favourites" element={<FavoriteStores />} />
+                        element={
+                            <RequireAuth
+                                allowedRoles={[
+                                    ROLES.ADMIN,
+                                    ROLES.SUPER_ADMIN,
+                                    ROLES.CONSUMER,
+                                    ROLES.MERCHANT,
+                                ]}
+                            />
+                        }
+                    >
+                        <Route
+                            path="/verification-intro"
+                            element={<VerificationVideo />}
+                        />
+                        <Route
+                            path="/add-video-review"
+                            element={<VideoReviewPage />}
+                        />
+                        <Route
+                            path="/consumer-subscription"
+                            element={<ConsumerSubscriptionPage />}
+                        />
+                        <Route
+                            path="/consumer-payment"
+                            element={<ConsumerPaymentPage />}
+                        />
+                        <Route
+                            path="/clipped-deals"
+                            element={<ClippedDeals />}
+                        />
+                        <Route
+                            path="/favourites"
+                            element={<FavoriteStores />}
+                        />
+                    </Route>
                 </Route>
 
                 {/* admin layout */}

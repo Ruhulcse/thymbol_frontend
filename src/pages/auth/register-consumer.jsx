@@ -1,13 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import useDarkMode from '@/hooks/useDarkMode';
-import RegForm from './common/reg-from';
-import Social from './common/social';
+import { Link } from 'react-router-dom';
 // image import
-import LogoWhite from '@/assets/images/logo/logo-white.svg';
 import Logo from '@/assets/images/auth/logo_login.png';
+import LogoWhite from '@/assets/images/logo/logo-white.svg';
 // import Illustration from '@/assets/images/auth/ils1.svg';
 import Illustration from '@/assets/images/auth/login-consumer.png';
+import { t } from 'i18next';
 import RegConsumerForm from './common/reg-consumer-form';
 
 const RegisterConsumer = () => {
@@ -15,23 +13,24 @@ const RegisterConsumer = () => {
     return (
         <div className="loginwrapper">
             <div className="lg-inner-column">
-                <div
-                    className="left-column relative z-[1]"
-                    style={{
-                        backgroundImage: `url(${Illustration})`,
+                <div className="left-column relative z-[1]">
+                    <div
+                        style={{
+                            backgroundImage: `url(${Illustration})`,
                             backgroundSize: 'cover',
                             backgroundPosition: '90% 100%',
                             backgroundRepeat: 'no-repeat',
                             display: 'flex',
                             alignItems: 'center',
-                    }}
-                >
-                    <div className="max-w-[560px] pt-20 ltr:pl-20 rtl:pr-20">
+                        }}
+                        className="absolute left-0  h-full w-full z-[-1]"
+                    ></div>
+                    <div className="max-w-full h-full flex flex-col mt-32 items-center pt-20 ltr:px-16 rtl:px-16">
                         <Link to="/">
                             <img
                                 src={isDark ? LogoWhite : Logo}
                                 alt=""
-                                className="mb-5"
+                                className="mb-5 w-80"
                             />
                         </Link>
                         <h5 className="text-white text-[2rem] leading-[3rem]">
@@ -54,7 +53,7 @@ const RegisterConsumer = () => {
                                     <img
                                         src={isDark ? LogoWhite : Logo}
                                         alt=""
-                                        className="mx-auto"
+                                        className="mx-auto w-48"
                                     />
                                 </Link>
                             </div>
@@ -67,7 +66,7 @@ const RegisterConsumer = () => {
                             <RegConsumerForm />
                             <div className=" relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6">
                                 <div className=" absolute inline-block  bg-white dark:bg-slate-800 left-1/2 top-1/2 transform -translate-x-1/2 px-4 min-w-max text-sm  text-slate-500  dark:text-slate-400font-normal ">
-                                    Or continue with
+                                    {t('Or continue with')}
                                 </div>
                             </div>
                             <div className="mx-auto mt-8 w-full">
@@ -78,7 +77,7 @@ const RegisterConsumer = () => {
                                         loading="lazy"
                                         alt="google logo"
                                     />
-                                    <span>Continue with Google</span>
+                                    <span>{t('Continue with Google')}</span>
                                 </button>
 
                                 <button className="px-4 py-4 flex gap-2 justify-center items-center text-slate-950 font-medium border-slate-200 dark:border-slate-700 text-center w-full rounded-lg bg-gray-50 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
@@ -88,7 +87,7 @@ const RegisterConsumer = () => {
                                         loading="lazy"
                                         alt="apple logo"
                                     />
-                                    <span>Continue with Apple</span>
+                                    <span>{t('Continue with Apple')}</span>
                                 </button>
                             </div>
                             <div className="max-w-[260px] mx-auto font-medium text-slate-900 dark:text-slate-400 2xl:mt-12 mt-6 text-sm">
@@ -98,7 +97,7 @@ const RegisterConsumer = () => {
                                     className="text-customBlue dark:text-white font-medium hover:underline"
                                 >
                                     {' '}
-                                    Sign In
+                                    {t('Sign In')}
                                 </Link>
                             </div>
                         </div>

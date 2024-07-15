@@ -1,5 +1,6 @@
 import { food } from '@/assets/images/home';
 import Loading from '@/components/Loading';
+import Language from '@/components/partials/header/Tools/Language';
 import Profile from '@/components/partials/header/Tools/Profile';
 import Button from '@/components/ui/Button';
 import { navLink } from '@/constant/data';
@@ -133,6 +134,10 @@ function UserLayout() {
                         </Link>
                     </div>
                     <div className="hidden md:flex">
+                        <div className="nav-tools px-5 flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse">
+                            <Language />
+                        </div>
+
                         {user ? (
                             <Profile />
                         ) : (

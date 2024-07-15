@@ -2,6 +2,7 @@ import Button from '@/components/ui/Button';
 import Textinput from '@/components/ui/Textinput';
 import { useRegisterUserMutation } from '@/store/api/auth/authApiSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { t } from 'i18next';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -97,9 +98,9 @@ const RegForm = () => {
             />
             <Textinput
                 name="email"
-                label="Email"
+                label={t('Email')}
                 type="text"
-                placeholder="Enter your Email Address"
+                placeholder={t('Email')}
                 register={register}
                 error={errors.email}
                 className="h-[48px]"
@@ -115,9 +116,9 @@ const RegForm = () => {
             />
             <Textinput
                 name="password"
-                label="Password"
+                label={t('Password')}
                 type="password"
-                placeholder="Enter your Password"
+                placeholder={t('Password')}
                 register={register}
                 error={errors.password}
                 className="h-[48px]"

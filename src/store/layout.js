@@ -8,6 +8,12 @@ const initialDarkMode = () => {
   return item ? JSON.parse(item) : themeConfig.layout.darkMode;
 };
 
+const initialLanguage = () => {
+  const item = window.localStorage.getItem('language');
+  return item ? item: themeConfig.layout.language;
+};
+
+
 const initialSidebarCollapsed = () => {
   const item = window.localStorage.getItem("sidebarCollapsed");
   return item ? JSON.parse(item) : themeConfig.layout.menu.isCollapsed;
@@ -39,6 +45,7 @@ const initialMonochrome = () => {
 };
 const initialState = {
   isRTL: initialRtl(),
+  language: initialLanguage(),
   darkMode: initialDarkMode(),
   isCollapsed: initialSidebarCollapsed(),
   customizer: themeConfig.layout.customizer,
@@ -61,6 +68,10 @@ export const layoutSlice = createSlice({
     handleDarkMode: (state, action) => {
       state.darkMode = action.payload;
       window.localStorage.setItem("darkMode", action.payload);
+    },
+    handleChangeLanguage: (state, action) => {
+      state.language = action.payload;
+      window.localStorage.setItem("language", action.payload);
     },
     // handle sidebar collapsed
     handleSidebarCollapsed: (state, action) => {
@@ -119,6 +130,7 @@ export const layoutSlice = createSlice({
 
 export const {
   handleDarkMode,
+  handleChangeLanguage,
   handleSidebarCollapsed,
   handleCustomizer,
   handleSemiDarkMode,

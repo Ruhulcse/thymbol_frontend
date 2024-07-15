@@ -10,6 +10,7 @@ import LogoWhite from '@/assets/images/logo/logo-white.svg';
 // import Illustration from '@/assets/images/auth/ils1.png';
 import Illustration from '@/assets/images/auth/login-consumer.png';
 import Logo from '@/assets/images/auth/logo_login.png';
+import { t } from 'i18next';
 
 const LoginConsumer = () => {
     const [isDark] = useDarkMode();
@@ -34,20 +35,25 @@ const LoginConsumer = () => {
                             backgroundRepeat: 'no-repeat',
                             display: 'flex',
                             alignItems: 'center',
+                            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                            opacity: 0.9,
                         }}
                         className="absolute left-0  h-full w-full z-[-1]"
                     ></div>
-                    <div className="max-w-[560px] h-full flex flex-col justify-center pt-20 ltr:pl-20 rtl:pr-20">
+                    <div className="max-w-full h-full flex flex-col mt-32 items-center pt-20 ltr:px-16 rtl:px-16">
                         <Link to="/">
                             <img
                                 src={isDark ? LogoWhite : Logo}
                                 alt=""
-                                className="mb-5"
+                                className="mb-5 w-80"
                             />
                         </Link>
                         <h5 className="text-white text-[2rem] leading-[3rem]">
-                            The World of Deals!
+                            Your Gateway to Great Deals!
                         </h5>
+                        <h6 className="text-white text-[1.8rem] leading-[3rem] mt-24">
+                            Consumer Login
+                        </h6>
                     </div>
                 </div>
                 <div className="right-column relative">
@@ -58,20 +64,20 @@ const LoginConsumer = () => {
                                     <img
                                         src={isDark ? LogoWhite : Logo}
                                         alt=""
-                                        className="mx-auto"
+                                        className="mx-auto w-48"
                                     />
                                 </Link>
                             </div>
                             <div className="text-center 2xl:mb-10 mb-4">
-                                <h4 className="font-medium">Welcome Back!</h4>
+                                <h4 className="font-medium">{t('Welcome Back!')}</h4>
                                 <h5 className="text-slate-500 text-base">
-                                    Sign In to your account
+                                    {t('Sign In to your account')}
                                 </h5>
                             </div>
                             <LoginForm />
                             <div className="relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6">
                                 <div className="absolute inline-block bg-white dark:bg-slate-800 dark:text-slate-400 left-1/2 top-1/2 transform -translate-x-1/2 px-4 min-w-max text-sm text-slate-500 font-normal">
-                                    Or continue with
+                                    {t('Or continue with')}
                                 </div>
                             </div>
                             <div className="mx-auto mt-8 w-full">
@@ -85,7 +91,7 @@ const LoginConsumer = () => {
                                         loading="lazy"
                                         alt="google logo"
                                     />
-                                    <span>Continue with Google</span>
+                                    <span>{t('Continue with Google')}</span>
                                 </button>
 
                                 <button className="px-4 py-4 flex gap-2 justify-center items-center text-slate-950 font-medium border-slate-200 dark:border-slate-700 text-center w-full rounded-lg bg-gray-50 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
@@ -95,7 +101,7 @@ const LoginConsumer = () => {
                                         loading="lazy"
                                         alt="apple logo"
                                     />
-                                    <span>Continue with Apple</span>
+                                    <span>{t('Continue with Apple')}</span>
                                 </button>
                             </div>
 

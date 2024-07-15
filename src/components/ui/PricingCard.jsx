@@ -1,4 +1,5 @@
 import useSkin from '@/hooks/useSkin';
+import { t } from 'i18next';
 
 const PricingCard = ({
     children,
@@ -55,7 +56,7 @@ const PricingCard = ({
                                         </div>
                                     )}
                                     {paymentMethod && (
-                                        <div className="font-bold text-5xl">
+                                        <div className="font-bold text-3xl">
                                             {paymentMethod}
                                         </div>
                                     )}
@@ -80,7 +81,7 @@ const PricingCard = ({
                     onClick={onClick}
                     className="bg-[#0C9AD6] w-full rounded-lg text-white h-12"
                 >
-                    Continue
+                    {t('Continue')}
                 </button>
             </div>
         </div>

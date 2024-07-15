@@ -14,6 +14,7 @@ import 'swiper/css/scrollbar';
 import '../src/assets/scss/app.scss';
 import App from './App';
 import ScrollToTop from './components/ScrollToTop';
+import './i18n';
 import ErrorFallback from './pages/error';
 import store from './store';
 

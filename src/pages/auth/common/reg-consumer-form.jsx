@@ -2,6 +2,7 @@ import Button from '@/components/ui/Button';
 import Textinput from '@/components/ui/Textinput';
 import { useRegisterUserMutation } from '@/store/api/auth/authApiSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { t } from 'i18next';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,7 @@ const schema = yup
         email: yup
             .string()
             .email('Invalid email')
-            .required('Email is required'),
+            .required(`${t('Email')} is required`),
         phoneNumber: yup
             .string()
             .required('Phone Number is required')
@@ -24,9 +25,9 @@ const schema = yup
             ),
         password: yup
             .string()
-            .min(8, 'Password must be at least 8 characters')
-            .max(20, "Password shouldn't be more than 20 characters")
-            .required('Password is required'),
+            .min(8, `${t('Password')} must be at least 8 characters`)
+            .max(20, `${t('Password')} shouldn't be more than 20 characters`)
+            .required(`${t('Password')} is required`),
         confirmPassword: yup
             .string()
             .oneOf([yup.ref('password'), null], 'Passwords must match')
@@ -97,9 +98,9 @@ const RegConsumerForm = () => {
             />
             <Textinput
                 name="email"
-                label="Email"
+                label={t('Email')}
                 type="text"
-                placeholder="Enter your Email Address"
+                placeholder={t('Email')}
                 register={register}
                 error={errors.email}
                 className="h-[48px]"
@@ -115,9 +116,9 @@ const RegConsumerForm = () => {
             />
             <Textinput
                 name="password"
-                label="Password"
+                label={t('Password')}
                 type="password"
-                placeholder="Enter your Password"
+                placeholder={t('Password')}
                 register={register}
                 error={errors.password}
                 className="h-[48px]"

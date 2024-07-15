@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import Submenu from './Submenu';
+import { t } from 'i18next';
 
 const Navmenu = ({ menus }) => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -95,7 +96,7 @@ const Navmenu = ({ menus }) => {
                                     <Icon icon={item.icon} />
                                 </span>
                                 <div className="text-box flex-grow">
-                                    {item.title}
+                                    {t(item.title)}
                                 </div>
                                 {item.badge && (
                                     <span className="menu-badge">
@@ -106,7 +107,7 @@ const Navmenu = ({ menus }) => {
                         )}
                         {/* only for menulabel */}
                         {item.isHeadr && !item.child && (
-                            <div className="menulabel">{item.title}</div>
+                            <div className="menulabel">{t(item.title)}</div>
                         )}
                         {/*    !!sub menu parent   */}
                         {item.child && (
@@ -122,7 +123,7 @@ const Navmenu = ({ menus }) => {
                                     <span className="menu-icon">
                                         <Icon icon={item.icon} />
                                     </span>
-                                    <div className="text-box">{item.title}</div>
+                                    <div className="text-box">{t(item.title)}</div>
                                 </div>
                                 <div className="flex-0">
                                     <div

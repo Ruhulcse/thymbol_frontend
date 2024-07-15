@@ -1,6 +1,7 @@
 import BusinessSpotlight from '@/components/businessSpotlight';
 import Featured from '@/components/featured';
 import Header from '@/components/header';
+import HomeBanner from '@/components/homeBanner';
 import Loading from '@/components/Loading';
 import Restaurants from '@/components/restaurants';
 import { spotlight } from '@/data/BusinessSpotlight!';
@@ -45,6 +46,7 @@ function Home() {
 
     return (
         <div className="bg-[#F3FCFF] ">
+            <HomeBanner />
             <div className="py-16">
                 <Header />
                 {/* featured categories */}

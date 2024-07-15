@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { logOut } from '@/store/api/auth/authSlice';
 import { swalConfirm } from '@/util/helpers';
+import { useTranslation } from 'react-i18next';
 
 const profileLabel = (user) => {
     return (
@@ -43,6 +44,7 @@ const profileLabel = (user) => {
 const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {t} = useTranslation();
     const { user } = useSelector((state) => state.user);
 
     const handleLogout = () => {
@@ -141,7 +143,7 @@ const Profile = () => {
                                         <Icon icon={item.icon} />
                                     </span>
                                     <span className="block text-sm">
-                                        {item.label}
+                                        {t(item.label)}
                                     </span>
                                 </div>
                             </div>

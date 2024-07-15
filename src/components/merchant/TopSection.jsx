@@ -1,4 +1,5 @@
 import { infoIcon } from '@/constant/data';
+import { selectCurrentUser } from '@/store/api/auth/authSlice';
 import {
     useFavoriteStoreMutation,
     useGetStoreQuery,
@@ -6,6 +7,7 @@ import {
 import { swalError } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import BusinessHoursClient from './BusinessHoursClient';
@@ -17,13 +19,16 @@ function TopSection() {
         favoriteStore,
         { isLoading: loadingFavoriteStore, isSuccess, data, isError, error },
     ] = useFavoriteStoreMutation();
-    console.log('🚀  ~ isSuccess:', isSuccess);
-    console.log('🚀  ~ data:', data);
+    const currentUser = useSelector(selectCurrentUser);
 
     const handleAddToFavoriteStore = async () => {
-        const response = await favoriteStore({
-            favourite_stores: { favourite_stores: store._id },
-        }).unwrap();
+        if (currentUser) {
+            await favoriteStore({
+                favourite_stores: { favourite_stores: store._id },
+            }).unwrap();
+        } else {
+            toast.error('Please login first');
+        }
     };
 
     if (isSuccess) {

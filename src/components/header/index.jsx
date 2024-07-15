@@ -22,13 +22,12 @@ function Header() {
             <div className="container mx-auto">
                 <div className="  md:flex justify-between ">
                     <div className="max-w-lg sm:h-80 font-bold ">
-                        <div className=" text-2xl hidden sm:block">
-                            <span className="text-blue-500">Thymbol</span> -
-                            Your One-Stop Stop for Voucher and Discounts
+                        <div className=" text-2xl hidden sm:block mb-2">
+                            <span className="text-customBlue">Thymbol </span> <span>Your World of Deals!</span>
                         </div>
-                        <p className="hidden sm:block py-4">
-                            Your World of Deals!
-                        </p>
+                        {/* <p className="hidden sm:block py-4">
+                            
+                        </p> */}
                         <p className="hidden sm:block py-4">Serving:</p>
                         <span className=" gap-2 hidden sm:flex">
                             {data.map((item, i) => (
