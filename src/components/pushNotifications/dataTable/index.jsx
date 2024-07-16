@@ -27,7 +27,7 @@ const PushNotificationDataTable = () => {
             Header: t('TITLE'),
             accessor: 'title',
             Cell: (row) => {
-                return <span>{row?.cell?.value} %</span>;
+                return <span>{row?.cell?.value}</span>;
             },
         },
         {

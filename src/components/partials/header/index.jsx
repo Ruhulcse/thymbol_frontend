@@ -11,6 +11,7 @@ import Profile from "./Tools/Profile";
 import useRtl from "@/hooks/useRtl";
 import useMobileMenu from "@/hooks/useMobileMenu";
 import Language from "./Tools/Language";
+// import Notification from "./Tools/Notification";
 
 
 const Header = ({ className = "custom-class" }) => {
