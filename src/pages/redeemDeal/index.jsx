@@ -12,11 +12,13 @@ import { humanDate, swalError } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import icon from './../../assets/images/icon/Icons.png';
 
 function RedeemDeal() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [qrAPIData, setqrAPIData] = useState(null);
     const [
@@ -90,7 +92,7 @@ function RedeemDeal() {
                     <SingleVoucher item={voucherData} />
                     <div className="text-center mt-4 space-y-4">
                         <div className="font-bold text-sm sm:text-base md:text-xl">
-                            Thymbol Exclusive Deal
+                            {t('Thymbol Exclusive Deal')}
                         </div>
                         <div className="font-semibold text-sm sm:text-base">
                             {/* All deals will expire after 1 hour */}
@@ -107,7 +109,7 @@ function RedeemDeal() {
                             <span className="mx-1">
                                 <Icon icon="heroicons:bookmark" />
                             </span>
-                            Clip for later
+                            {t('Clip for later')}
                         </Button>
 
                         <Button
@@ -123,7 +125,7 @@ function RedeemDeal() {
                                     className="h-full w-full z-10"
                                 />
                             </span>
-                            Redeem Deal
+                            {t('Redeem Deal')}
                         </Button>
                     </div>
                 </div>

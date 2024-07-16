@@ -10,6 +10,7 @@ import { swalConfirm } from '@/util/helpers';
 import { useTranslation } from 'react-i18next';
 
 const profileLabel = (user) => {
+    const { t } = useTranslation();
     return (
         <div className="flex items-center">
             <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
@@ -29,7 +30,7 @@ const profileLabel = (user) => {
                 <span className="text-white overflow-hidden text-ellipsis whitespace-nowrap block">
                     {user.userName ?? user?.displayName}
                     <div className="text-white text-xs text-start block mt-1">
-                        {user.SubscriptionType}
+                        {t(user.SubscriptionType)}
                     </div>
                 </span>
 
@@ -105,10 +106,10 @@ const Profile = () => {
 
     const confirmLogout = async () => {
         const response = await swalConfirm(
-            'Are you sure you want to Logout?',
-            'Logout',
-            'Yes',
-            'No',
+            t('Are you sure you want to Logout?'),
+            t('Logout'),
+            t('Yes'),
+            t('No'),
             LogoutLogo
         );
 

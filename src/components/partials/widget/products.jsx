@@ -5,6 +5,7 @@ import products3 from "@/assets/images/all-img/p-3.png";
 import products4 from "@/assets/images/all-img/p-4.png";
 import products5 from "@/assets/images/all-img/p-5.png";
 import products6 from "@/assets/images/all-img/p-6.png";
+import { useTranslation } from "react-i18next";
 const products = [
   {
     img: products1,
@@ -38,6 +39,7 @@ const products = [
   },
 ];
 const Products = () => {
+  const { t } = useTranslation();
   return (
     <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
       {products.map((item, i) => (
@@ -58,7 +60,7 @@ const Products = () => {
             href="#"
             className="btn btn-secondary dark:bg-slate-800 dark:hover:bg-slate-600 block w-full text-center btn-sm"
           >
-            View More
+             {t('View More')}
           </a>
         </div>
       ))}

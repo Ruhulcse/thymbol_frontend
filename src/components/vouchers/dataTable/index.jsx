@@ -9,51 +9,49 @@ import {
 } from '@/store/api/vouchers/vouchersApiSlice';
 import { calenderDate, swalConfirm, swalSuccess } from '@/util/helpers';
 import { Icon } from '@iconify/react';
-
-
-
-
+import { useTranslation } from 'react-i18next';
 
 const VoucherDataTable = () => {
+    const {t} = useTranslation()
     const COLUMNS = [
         {
-            Header: 'index',
+            Header: t('INDEX'),
             accessor: 'index',
             Cell: (row) => {
                 return <span>{parseInt(row?.cell?.row?.id) + 1}</span>;
             },
         },
         {
-            Header: 'Discount %',
+            Header: t('DISCOUNT %'),
             accessor: 'discount',
             Cell: (row) => {
                 return <span>{row?.cell?.value} %</span>;
             },
         },
         {
-            Header: 'Offer End Date',
+            Header: t('OFFER END DATE'),
             accessor: 'endDate',
             Cell: (row) => {
                 return <span>{calenderDate(row?.cell?.value)}</span>;
             },
         },
-    
+
         {
-            Header: 'Voucher Code',
+            Header: t('VOUCHER CODE'),
             accessor: 'voucherCode',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
             },
         },
         {
-            Header: 'Store Name',
+            Header: t('STORE NAME'),
             accessor: 'storeName',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
             },
         },
         {
-            Header: 'action',
+            Header: t('ACTION'),
             accessor: 'action',
             Cell: (row) => {
                 return (
@@ -106,7 +104,7 @@ const VoucherDataTable = () => {
             async (result) => {
                 if (result.isConfirmed) {
                     const { data } = await deleteVoucher({ id });
-    
+
                     swalSuccess(data?.message, 'Success!');
                 }
             }

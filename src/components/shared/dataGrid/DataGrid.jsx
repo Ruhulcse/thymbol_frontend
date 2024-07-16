@@ -1,5 +1,6 @@
 import Icon from '@/components/ui/Icon';
 import { forwardRef, useEffect, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     useGlobalFilter,
     usePagination,
@@ -28,6 +29,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 });
 
 const DataGrid = ({ columns, data, isSearchable }) => {
+    const { t } = useTranslation();
     const memoizedColumns = useMemo(() => columns, [columns]);
     const memoizedData = useMemo(() => data, [data]);
 
@@ -176,7 +178,7 @@ const DataGrid = ({ columns, data, isSearchable }) => {
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="flex space-x-2 rtl:space-x-reverse items-center">
                         <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
-                            Go
+                            {t('Go')}
                         </span>
                         <span>
                             <input
@@ -194,7 +196,11 @@ const DataGrid = ({ columns, data, isSearchable }) => {
                         </span>
                     </span>
                     <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
-                        Page {pageIndex + 1} of {pageOptions.length}
+                        {/* Page {pageIndex + 1} of {pageOptions.length} */}
+                        {t('Page 1 of 1', {
+                            start: pageIndex + 1,
+                            end: pageOptions.length,
+                        })}
                     </span>
                 </div>
                 <ul className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -246,7 +252,8 @@ const DataGrid = ({ columns, data, isSearchable }) => {
                     >
                         {[10, 20, 50, 100].map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
+                                {/* Show {pageSize} */}
+                                {t('Show 10', {pageSize})}
                             </option>
                         ))}
                     </select>

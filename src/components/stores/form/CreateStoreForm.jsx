@@ -12,6 +12,7 @@ import { swalError, swalSuccess } from '@/util/helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import * as yup from 'yup';
@@ -50,6 +51,7 @@ const schema = yup
     .required();
 
 const CreateStoreForm = () => {
+    const { t } = useTranslation();
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [subCategories, setSubCategories] = useState([]);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -153,7 +155,7 @@ const CreateStoreForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-5">
             <h4>
-                <strong>Add Store</strong>
+                <strong>{t('Add Store')}</strong>
             </h4>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <Controller
@@ -161,7 +163,7 @@ const CreateStoreForm = () => {
                     control={control}
                     render={({ field }) => (
                         <DropZone
-                            title="Add Logo"
+                            title={t('Add Logo')}
                             onDrop={(files) => field.onChange(files)}
                             files={field.value || []}
                         />
@@ -175,7 +177,7 @@ const CreateStoreForm = () => {
                     control={control}
                     render={({ field }) => (
                         <DropZone
-                            title="Upload pdf/jpeg"
+                            title={t("Upload pdf/jpeg")}
                             onDrop={(files) => field.onChange(files)}
                             files={field.value || []}
                         />
@@ -188,9 +190,9 @@ const CreateStoreForm = () => {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <Textinput
                     name="store_name"
-                    label="Store Name"
+                    label={t('Store Name')}
                     type="text"
-                    placeholder="Store Name"
+                    placeholder={t('Store Name')}
                     register={register}
                     error={errors.store_name}
                     className="h-[48px]"
@@ -201,7 +203,7 @@ const CreateStoreForm = () => {
 
                 <div>
                     <label htmlFor="category" className="form-label ">
-                        Category
+                        {t('Category')}
                     </label>
                     <Controller
                         name="category"
@@ -222,6 +224,7 @@ const CreateStoreForm = () => {
                                     setSelectedCategory(option);
                                     setSelectedSubCategory(null);
                                 }}
+                                placeholder={t('Select...')}
                             />
                         )}
                     />
@@ -234,7 +237,7 @@ const CreateStoreForm = () => {
 
                 <div>
                     <label htmlFor="sub_category" className="form-label ">
-                        Sub-category
+                        {t('Sub-Category')}
                     </label>
                     <Controller
                         name="sub_category"
@@ -257,6 +260,7 @@ const CreateStoreForm = () => {
                                     field.onChange(option);
                                     setSelectedSubCategory(option);
                                 }}
+                                placeholder={t('Select...')}
                             />
                         )}
                     />
@@ -278,9 +282,9 @@ const CreateStoreForm = () => {
                 <div>
                     <Textinput
                         name="city"
-                        label="City"
+                        label={t("City")}
                         type="text"
-                        placeholder="City"
+                        placeholder={t("City")}
                         register={register}
                         error={errors.city}
                         className="h-[48px]"
@@ -291,9 +295,9 @@ const CreateStoreForm = () => {
                 <div>
                     <Textinput
                         name="country"
-                        label="Country"
+                        label={t("Country")}
                         type="text"
-                        placeholder="Country"
+                        placeholder={t("Country")}
                         register={register}
                         error={errors.country}
                         className="h-[48px]"
@@ -303,9 +307,9 @@ const CreateStoreForm = () => {
 
                 <Textinput
                     name="website_link"
-                    label="Website Link"
+                    label={t("Website Link")}
                     type="text"
-                    placeholder="Add Website Link"
+                    placeholder={t("Add Website Link")}
                     register={register}
                     error={errors.website_link}
                     className="h-[48px]"
@@ -315,9 +319,9 @@ const CreateStoreForm = () => {
                 />
                 <Textinput
                     name="social_media_link"
-                    label="Social Media Link"
+                    label={t("Social Media Link")}
                     type="text"
-                    placeholder="Add Social Media Link"
+                    placeholder={t("Add Social Media Link")}
                     register={register}
                     error={errors.social_media_link}
                     className="h-[48px]"
@@ -328,9 +332,9 @@ const CreateStoreForm = () => {
 
                 <Textinput
                     name="postal_code"
-                    label="Postal Code"
+                    label={t("Postal Code")}
                     type="text"
-                    placeholder="Postal Code"
+                    placeholder={t("Postal Code")}
                     register={register}
                     error={errors.postal_code}
                     className="h-[48px]"
@@ -341,7 +345,7 @@ const CreateStoreForm = () => {
             </div>
             <div className="grid grid-cols-1 gap-5 w-full md:w-2/3">
                 <label htmlFor="business_hours" className="form-label">
-                    Business Hours
+                    {t('Add Business Hours')}
                 </label>
                 <BusinessHours
                     businessHours={businessHours}
@@ -352,7 +356,7 @@ const CreateStoreForm = () => {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <Button
                     type="submit"
-                    text="Add Store"
+                    text={t('Add Store')}
                     className="btn btn-primary block mt-5 text-center font-normal"
                     isLoading={isCreating}
                     disabled={isCreating}

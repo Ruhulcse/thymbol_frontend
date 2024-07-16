@@ -5,24 +5,23 @@ import Profile from '@/components/partials/header/Tools/Profile';
 import Button from '@/components/ui/Button';
 import { navLink } from '@/constant/data';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
-import { selectCurrentUser, setUser } from '@/store/api/auth/authSlice';
-import { getUser } from '@/store/api/user/userSlice';
+import { selectCurrentUser } from '@/store/api/auth/authSlice';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import { Suspense, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import logo from './../assets/images/home/Thymbol Logo.png';
 
 function UserLayout() {
+    const { t } = useTranslation();
     const [activeIndex, setActiveIndex] = useState(0);
     const [sidebar, setSidebar] = useState(null);
     const currentWidth = useCurrentWidth();
     const user = useSelector(selectCurrentUser);
 
     const dispatch = useDispatch();
-
-    
 
     useEffect(() => {
         setSidebar(currentWidth >= 1024 ? true : false);
@@ -85,7 +84,7 @@ function UserLayout() {
                                             className="mx-2 text-xl lg:hidden"
                                         />
                                     }{' '}
-                                    {item.title}
+                                    {t(item.title)}
                                 </span>
                             </Link>
                         ))}

@@ -4,10 +4,12 @@ import fetchWrapper from '@/util/fetchWrapper';
 import { swalConfirm } from '@/util/helpers';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const DeleteUserProfilePage = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.user);
     useEffect(() => {
@@ -17,10 +19,10 @@ const DeleteUserProfilePage = () => {
     const deleteUserProfile = async () => {
         try {
             const resp = await swalConfirm(
-                'Are you sure you want to delete the account?',
-                'Delete Account',
-                'Yes',
-                'No',
+                t('Are you sure you want to delete the account?'),
+                t('Delete Account'),
+                t('Yes'),
+                t('No'),
                 DeleteLogo
             );
 

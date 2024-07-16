@@ -9,10 +9,12 @@ import {
 } from '@/store/api/stores/storesApiSlice';
 import { swalConfirm, swalError, swalSuccess } from '@/util/helpers';
 import { Icon } from '@iconify/react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const StoreDataTable = () => {
+    const { t } = useTranslation();
     const [deleteStore, { isLoading, isError, error, isSuccess, success }] =
         useDeleteStoreMutation();
     const COLUMNS = [
@@ -24,7 +26,7 @@ const StoreDataTable = () => {
             },
         },
         {
-            Header: 'Store Name',
+            Header: t('Store Name'),
             accessor: 'store_name',
             Cell: (row) => {
                 return (

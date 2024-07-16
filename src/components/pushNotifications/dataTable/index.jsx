@@ -11,25 +11,27 @@ import {
 import { dateTime, swalConfirm, swalSuccess } from '@/util/helpers';
 import Loading from '@/components/Loading';
 import { Icon } from '@iconify/react';
+import { useTranslation } from 'react-i18next';
 
 const PushNotificationDataTable = () => {
+    const { t } = useTranslation();
     const COLUMNS = [
         {
-            Header: 'index',
+            Header: t('INDEX'),
             accessor: 'index',
             Cell: (row) => {
                 return <span>{parseInt(row?.cell?.row?.id) + 1}</span>;
             },
         },
         {
-            Header: 'title',
+            Header: t('TITLE'),
             accessor: 'title',
             Cell: (row) => {
                 return <span>{row?.cell?.value} %</span>;
             },
         },
         {
-            Header: 'Message',
+            Header: t('MESSAGE'),
             accessor: 'description',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
@@ -37,14 +39,14 @@ const PushNotificationDataTable = () => {
         },
 
         {
-            Header: 'Creation Date & Time',
+            Header: t('CREATION DATE & TIME'),
             accessor: 'createdAt',
             Cell: (row) => {
                 return <span>{dateTime(row?.cell?.value)}</span>;
             },
         },
         {
-            Header: 'action',
+            Header: t('ACTION'),
             accessor: 'action',
             Cell: (row) => {
                 return (

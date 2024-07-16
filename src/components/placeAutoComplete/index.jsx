@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -6,6 +7,7 @@ import usePlacesAutocomplete, {
 import Textinput from '../ui/Textinput';
 
 const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
+    const { t } = useTranslation();
     const {
         ready,
         value,
@@ -66,9 +68,9 @@ const PlaceAutoComplete = ({ register, errors, setFormValue }) => {
         <>
             <Textinput
                 name="store_address"
-                label="Store Address"
+                label={t('Store Address')}
                 type="text"
-                placeholder="Store Address"
+                placeholder={t('Store Address')}
                 register={register}
                 error={errors.store_address}
                 className="h-[48px]"

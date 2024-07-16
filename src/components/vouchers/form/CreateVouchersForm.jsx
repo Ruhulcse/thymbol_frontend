@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useMemo } from 'react';
 import Flatpickr from 'react-flatpickr';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
@@ -58,6 +59,7 @@ const schema = yup
     .required();
 
 const CreateVouchersForm = () => {
+    const { t } = useTranslation();
     const discountsMemo = useMemo(() => discounts, []);
     const offersReedemMemo = useMemo(() => offersReedem, []);
     const offersMemo = useMemo(() => offers, []);
@@ -109,7 +111,7 @@ const CreateVouchersForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-5">
             <h4>
-                <strong>Add Voucher</strong>
+                <strong>{t('Add Voucher')}</strong>
             </h4>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <Controller
@@ -117,7 +119,7 @@ const CreateVouchersForm = () => {
                     control={control}
                     render={({ field }) => (
                         <DropZone
-                            title="Upload pdf/jpeg"
+                            title={t('Upload pdf/jpeg')}
                             onDrop={(files) => field.onChange(files)}
                             files={field.value || []}
                         />
@@ -130,7 +132,7 @@ const CreateVouchersForm = () => {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full md:w-2/3">
                 <div>
                     <label htmlFor="offer" className="form-label ">
-                        Discount Templates
+                        {t('Discount Templates')}
                     </label>
                     <Controller
                         name="offer"
@@ -184,7 +186,7 @@ const CreateVouchersForm = () => {
                 )}
                 <div>
                     <label htmlFor="endDate" className="form-label">
-                        Offer end date
+                        {t('Offer End Date')}
                     </label>
                     <Controller
                         name="endDate"
@@ -207,9 +209,9 @@ const CreateVouchersForm = () => {
                 </div>
                 <Textinput
                     name="voucherCode"
-                    label="Voucher Code"
+                    label={t('Voucher Code')}
                     type="text"
-                    placeholder="Enter Voucher Code"
+                    placeholder={t('Enter Voucher Code')}
                     register={register}
                     error={errors.voucherCode}
                     className="h-[48px]"
@@ -219,7 +221,7 @@ const CreateVouchersForm = () => {
                 />
                 <div>
                     <label htmlFor="storeName" className="form-label">
-                        Store Name
+                        {t('Store Name')}
                     </label>
                     <Controller
                         name="storeName"
@@ -248,7 +250,7 @@ const CreateVouchersForm = () => {
 
                 <div>
                     <label htmlFor="redeemLimit" className="form-label">
-                        Number of offers that can be redeemed
+                        {t('Number Of Offers That Can Be Redeemed')}
                     </label>
                     <Controller
                         name="redeemLimit"
@@ -272,9 +274,9 @@ const CreateVouchersForm = () => {
                 </div>
                 <Textinput
                     name="condition"
-                    label="Condition"
+                    label={t("Condition")}
                     type="text"
-                    placeholder="Write condition"
+                    placeholder={t("Write condition")}
                     register={register}
                     error={errors.condition}
                     className="h-[48px]"
@@ -284,7 +286,7 @@ const CreateVouchersForm = () => {
 
                 <Button
                     type="submit"
-                    text="Create Voucher"
+                    text={t("Create Voucher")}
                     className="btn btn-primary block mt-5 text-center font-normal"
                     isLoading={isCreating}
                     disabled={isCreating}

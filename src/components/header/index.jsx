@@ -1,5 +1,6 @@
 import { cover, morocco, soudia, topBarImage, uae } from '@/assets/images/home';
 import { Icon } from '@iconify/react';
+import { useTranslation } from 'react-i18next';
 
 const data = [
     {
@@ -17,6 +18,7 @@ const data = [
 ];
 
 function Header() {
+    const { t } = useTranslation();
     return (
         <>
             <div className="container mx-auto">
@@ -28,7 +30,7 @@ function Header() {
                         {/* <p className="hidden sm:block py-4">
                             
                         </p> */}
-                        <p className="hidden sm:block py-4">Serving:</p>
+                        <p className="hidden sm:block py-4">{t('Serving')}:</p>
                         <span className=" gap-2 hidden sm:flex">
                             {data.map((item, i) => (
                                 <span
@@ -36,7 +38,7 @@ function Header() {
                                     className="flex gap-1 items-center"
                                 >
                                     <img src={item.image} />
-                                    {item.name}
+                                    {t(item.name)}
                                 </span>
                             ))}
                         </span>
@@ -44,7 +46,7 @@ function Header() {
                             <div className="flex relative w-[60%] ">
                                 <input
                                     type="text"
-                                    placeholder="Search Location "
+                                    placeholder={t("Search Location")}
                                     className="w-full sm:h-16 h-12 shadow-lg px-4 rounded-lg z-[50]  focus:outline-none"
                                 />
                                 <div className="absolute  top-[50%] -translate-y-[50%] right-0 font-bold pr-2 text-xl text-blue-500 z-[60]">

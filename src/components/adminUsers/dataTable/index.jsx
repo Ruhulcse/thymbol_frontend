@@ -8,9 +8,11 @@ import { swalConfirm, swalError, swalSuccess } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 const AdminUserDataTable = () => {
+    const { t } = useTranslation();
     const [userToggleLoading, setUserToggleLoading] = useState(false);
     const dispatch = useDispatch();
     const { users, loading: loadingUsers } = useSelector(
@@ -19,21 +21,21 @@ const AdminUserDataTable = () => {
     const { user_id } = useSelector((state) => state.auth);
     const COLUMNS = [
         {
-            Header: 'index',
+            Header: t('INDEX'),
             accessor: 'index',
             Cell: (row) => {
                 return <span>{parseInt(row?.cell?.row?.id) + 1}</span>;
             },
         },
         {
-            Header: 'First Name',
+            Header: t('FIRST NAME'),
             accessor: 'firstName',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
             },
         },
         {
-            Header: 'Last Name',
+            Header: t('LAST NAME'),
             accessor: 'lastName',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
@@ -41,14 +43,14 @@ const AdminUserDataTable = () => {
         },
 
         {
-            Header: 'Email',
+            Header: t('EMAIL'),
             accessor: 'email',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
             },
         },
         {
-            Header: 'Enable/Disable',
+            Header: t('ENABLE/DISABLE'),
             accessor: 'enable_or_disable',
             Cell: (row) => {
                 const isEnable =
@@ -73,7 +75,7 @@ const AdminUserDataTable = () => {
             },
         },
         {
-            Header: 'action',
+            Header: t('ACTION'),
             accessor: 'action',
             Cell: (row) => {
                 return (
@@ -114,19 +116,19 @@ const AdminUserDataTable = () => {
     ];
 
     const handleDeleteUser = ({ id }) => {
-        console.log("🚀  ~ id:", id)
-        swalConfirm(
-            'Are you sure you want to delete this user?'
-        ).then(async (result) => {
-            if (result.isConfirmed) {
-                dispatch(deleteUser({ id }))
-                    .unwrap()
-                    .then(() => {
-                        swalSuccess('User deleted successfully');
-                        dispatch(getAllUsers({ user_id }));
-                    });
+        console.log('🚀  ~ id:', id);
+        swalConfirm('Are you sure you want to delete this user?').then(
+            async (result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteUser({ id }))
+                        .unwrap()
+                        .then(() => {
+                            swalSuccess('User deleted successfully');
+                            dispatch(getAllUsers({ user_id }));
+                        });
+                }
             }
-        });
+        );
     };
 
     const toggleUserRole = async ({ id, status }) => {
