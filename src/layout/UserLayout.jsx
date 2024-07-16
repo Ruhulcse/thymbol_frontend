@@ -22,23 +22,7 @@ function UserLayout() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const localAuth = localStorage?.getItem('auth');
-        if (localAuth) {
-            const auth = JSON.parse(localAuth);
-            if (auth?.accessToken) {
-                dispatch(
-                    setUser({
-                        token: auth.accessToken,
-                        user_id: auth.user_id,
-                        isLoggedIn: true,
-                        userType: auth.userType,
-                    })
-                );
-                dispatch(getUser({ user_id: auth.user_id }));
-            }
-        }
-    }, [dispatch]);
+    
 
     useEffect(() => {
         setSidebar(currentWidth >= 1024 ? true : false);

@@ -55,6 +55,8 @@ import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { handleRtl } from './store/layout';
+import { getUser } from './store/api/user/userSlice';
+import { setUser } from './store/api/auth/authSlice';
 
 //import Home from '@/pages/home/Home';
 
@@ -65,6 +67,24 @@ function App() {
 
     useEffect(() => {
         dispatch(getUserGeoLocation());
+    }, [dispatch]);
+
+    useEffect(() => {
+        const localAuth = localStorage?.getItem('auth');
+        if (localAuth) {
+            const auth = JSON.parse(localAuth);
+            if (auth?.accessToken) {
+                dispatch(
+                    setUser({
+                        token: auth.accessToken,
+                        user_id: auth.user_id,
+                        isLoggedIn: true,
+                        userType: auth.userType,
+                    })
+                );
+                dispatch(getUser({ user_id: auth.user_id }));
+            }
+        }
     }, [dispatch]);
 
     
