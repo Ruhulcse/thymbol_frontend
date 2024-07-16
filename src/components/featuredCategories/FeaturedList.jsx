@@ -1,5 +1,5 @@
 import SingleFeatured from '@/components/featuredCategories/SingleFeatured';
-import { useGetCategoriesQuery } from '@/store/api/masterdata/masterdataApiSlice';
+import { useGetAllConsumerCategoriesQuery, useGetCategoriesQuery } from '@/store/api/masterdata/masterdataApiSlice';
 import Loading from '../Loading';
 
 const FeaturedList = () => {
@@ -9,7 +9,7 @@ const FeaturedList = () => {
         isLoading,
         error,
         isError,
-    } = useGetCategoriesQuery();
+    } = useGetAllConsumerCategoriesQuery();
 
     if (isError) {
         return (

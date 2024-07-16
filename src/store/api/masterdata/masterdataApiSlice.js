@@ -12,8 +12,12 @@ export const masterdataApi = apiSlice.injectEndpoints({
                 { type: 'SubCategory', id: subCatId },
             ],
         }),
+        getAllConsumerCategories: builder.query({
+            query: () => 'category/get-all-categories',
+            providesTags: ['ConsumerCategory'],
+        }),
     }),
 });
 
-export const { useGetCategoriesQuery, useLazyGetSubCategoryQuery } =
+export const { useGetCategoriesQuery, useLazyGetSubCategoryQuery, useGetAllConsumerCategoriesQuery } =
     masterdataApi;

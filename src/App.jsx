@@ -41,22 +41,24 @@ const VerificationVideo = lazy(() => import('./components/verificationVideo'));
 const VideoReviewPage = lazy(() => import('./pages/videoReview'));
 const LoginConsumer = lazy(() => import('./pages/auth/login-consumer'));
 const ConsumerPaymentPage = lazy(() => import('./pages/consumer-payment'));
+const NotificationPage = lazy(() =>
+    import('./pages/notification')
+);
 const ConsumerSubscriptionPage = lazy(() =>
     import('./pages/consumerSubscription')
 );
 
-import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import RequireAuth from './components/RequireAuth';
 import { ROLES } from './constant/userRoles';
 import AuthLayout from './layout/AuthLayout';
 import Layout from './layout/Layout';
 import UserLayout from './layout/UserLayout';
-import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { handleRtl } from './store/layout';
-import { getUser } from './store/api/user/userSlice';
 import { setUser } from './store/api/auth/authSlice';
+import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
+import { getUser } from './store/api/user/userSlice';
+import { handleRtl } from './store/layout';
 
 //import Home from '@/pages/home/Home';
 
@@ -87,16 +89,15 @@ function App() {
         }
     }, [dispatch]);
 
-    
     useEffect(() => {
-        if(savedLanguage === 'ar') {
-            dispatch(handleRtl(true))
+        if (savedLanguage === 'ar') {
+            dispatch(handleRtl(true));
         } else {
-            dispatch(handleRtl(false))
+            dispatch(handleRtl(false));
         }
         i18n.changeLanguage(savedLanguage);
-        console.log("🚀  ~ savedLanguage:", savedLanguage)
-    }, [savedLanguage, dispatch])
+        console.log('🚀  ~ savedLanguage:', savedLanguage);
+    }, [savedLanguage, dispatch]);
 
     return (
         <main className="App  relative">
@@ -141,6 +142,10 @@ function App() {
                         <Route
                             path="/verification-intro"
                             element={<VerificationVideo />}
+                        />
+                        <Route
+                            path="/notifications"
+                            element={<NotificationPage />}
                         />
                         <Route
                             path="/add-video-review"
