@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
+import rollupReplace from "@rollup/plugin-replace";
 // import reactRefresh from "@vitejs/plugin-react-refresh";
-import path, { resolve } from "path";
+import path from "path";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -59,13 +60,13 @@ export default defineConfig({
   },
 
   plugins: [
-    // rollupReplace({
-    //   preventAssignment: true,
-    //   values: {
-    //     __DEV__: JSON.stringify(true),
-    //     "process.env.NODE_ENV": JSON.stringify("development"),
-    //   },
-    // }),
+    rollupReplace({
+      preventAssignment: true,
+      values: {
+        __DEV__: JSON.stringify(true),
+        "process.env.NODE_ENV": JSON.stringify("development"),
+      },
+    }),
     react(),
     // reactRefresh(),
     splitVendorChunkPlugin(),
@@ -80,27 +81,6 @@ export default defineConfig({
           }
         }
       }
-      // input: {
-      //   AdminUsers: resolve(__dirname, 'src/components/adminUsers/index.jsx'),
-      //   Analytics: resolve(__dirname, 'src/components/analytics/index.jsx'),
-      //   BusinessHours: resolve(__dirname, 'src/components/businessHours/index.jsx'),
-      //   BuninessSpotlight: resolve(__dirname, 'src/components/businessSpotlight/index.jsx'),
-      //   ViewMore: resolve(__dirname, 'src/components/button/ViewMore.jsx'),
-      //   CardList: resolve(__dirname, 'src/components/card/CardList.jsx'),
-      //   SingleCard: resolve(__dirname, 'src/components/card/SingleCard.jsx'),
-      //   Featured: resolve(__dirname, 'src/components/featured/index.jsx'),
-      //   FeaturedList: resolve(__dirname, 'src/components/featuredCategories/FeaturedList.jsx'),
-      //   SingleFeatured: resolve(__dirname, 'src/components/featuredCategories/SingleFeatured.jsx'),
-      //   GenerateQR: resolve(__dirname, 'src/components/generateQR/index.jsx'),
-      //   GreatDeals: resolve(__dirname, 'src/components/greatDeals/index.jsx'),
-      //   Header: resolve(__dirname, 'src/components/header/index.jsx'),
-      //   HomeBanner: resolve(__dirname, 'src/components/homeBanner/index.jsx'),
-      //   LocationMap: resolve(__dirname, 'src/components/locationMap/index.jsx'),
-      //   ModalVideo: resolve(__dirname, 'src/components/modalVideo/index.jsx'),
-      //   Notification: resolve(__dirname, 'src/components/partials/header/Tools/Notification.jsx'),
-      //   Profile: resolve(__dirname, 'src/components/partials/header/Tools/Profile.jsx'),
-      //   SwitchDark: resolve(__dirname, 'src/components/partials/header/Tools/switchDark.jsx'),
-      // }
     }
   },
 });
