@@ -73,7 +73,6 @@ export default defineConfig({
     VitePWA(manifestForPlugIn),
   ],
   build: {
-    minify: true,
     rollupOptions: {
       output: {
         manualChunks(id) {
