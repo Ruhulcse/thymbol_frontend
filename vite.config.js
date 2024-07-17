@@ -1,8 +1,7 @@
-import rollupReplace from "@rollup/plugin-replace";
 import react from "@vitejs/plugin-react";
 // import reactRefresh from "@vitejs/plugin-react-refresh";
-import path from "path";
-import { defineConfig } from "vite";
+import path, { resolve } from "path";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
@@ -60,15 +59,48 @@ export default defineConfig({
   },
 
   plugins: [
-    rollupReplace({
-      preventAssignment: true,
-      values: {
-        __DEV__: JSON.stringify(true),
-        "process.env.NODE_ENV": JSON.stringify("development"),
-      },
-    }),
+    // rollupReplace({
+    //   preventAssignment: true,
+    //   values: {
+    //     __DEV__: JSON.stringify(true),
+    //     "process.env.NODE_ENV": JSON.stringify("development"),
+    //   },
+    // }),
     react(),
     // reactRefresh(),
+    splitVendorChunkPlugin(),
     VitePWA(manifestForPlugIn),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        }
+      }
+      // input: {
+      //   AdminUsers: resolve(__dirname, 'src/components/adminUsers/index.jsx'),
+      //   Analytics: resolve(__dirname, 'src/components/analytics/index.jsx'),
+      //   BusinessHours: resolve(__dirname, 'src/components/businessHours/index.jsx'),
+      //   BuninessSpotlight: resolve(__dirname, 'src/components/businessSpotlight/index.jsx'),
+      //   ViewMore: resolve(__dirname, 'src/components/button/ViewMore.jsx'),
+      //   CardList: resolve(__dirname, 'src/components/card/CardList.jsx'),
+      //   SingleCard: resolve(__dirname, 'src/components/card/SingleCard.jsx'),
+      //   Featured: resolve(__dirname, 'src/components/featured/index.jsx'),
+      //   FeaturedList: resolve(__dirname, 'src/components/featuredCategories/FeaturedList.jsx'),
+      //   SingleFeatured: resolve(__dirname, 'src/components/featuredCategories/SingleFeatured.jsx'),
+      //   GenerateQR: resolve(__dirname, 'src/components/generateQR/index.jsx'),
+      //   GreatDeals: resolve(__dirname, 'src/components/greatDeals/index.jsx'),
+      //   Header: resolve(__dirname, 'src/components/header/index.jsx'),
+      //   HomeBanner: resolve(__dirname, 'src/components/homeBanner/index.jsx'),
+      //   LocationMap: resolve(__dirname, 'src/components/locationMap/index.jsx'),
+      //   ModalVideo: resolve(__dirname, 'src/components/modalVideo/index.jsx'),
+      //   Notification: resolve(__dirname, 'src/components/partials/header/Tools/Notification.jsx'),
+      //   Profile: resolve(__dirname, 'src/components/partials/header/Tools/Profile.jsx'),
+      //   SwitchDark: resolve(__dirname, 'src/components/partials/header/Tools/switchDark.jsx'),
+      // }
+    }
+  },
 });
