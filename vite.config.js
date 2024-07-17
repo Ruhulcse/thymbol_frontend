@@ -74,10 +74,6 @@ export default defineConfig({
   ],
   build: {
     minify: true,
-    watch: {
-      include: 'src/**',
-      exclude: 'node_modules/**, .git/**, dist/**, .vscode/**',
-    },
     rollupOptions: {
       treeshake: true,
       output: {
