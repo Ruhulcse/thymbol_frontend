@@ -75,7 +75,6 @@ export default defineConfig({
   build: {
     minify: true,
     rollupOptions: {
-      treeshake: true,
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
