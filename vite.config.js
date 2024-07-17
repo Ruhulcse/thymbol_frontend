@@ -73,7 +73,13 @@ export default defineConfig({
     VitePWA(manifestForPlugIn),
   ],
   build: {
+    minify: true,
+    watch: {
+      include: 'src/**',
+      exclude: 'node_modules/**, .git/**, dist/**, .vscode/**',
+    },
     rollupOptions: {
+      treeshake: true,
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
