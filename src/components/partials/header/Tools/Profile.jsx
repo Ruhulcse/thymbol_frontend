@@ -50,7 +50,7 @@ const Profile = () => {
 
     const handleLogout = () => {
         dispatch(logOut());
-        navigate('/login');
+        navigate('/home');
     };
 
     const ProfileMenu = [

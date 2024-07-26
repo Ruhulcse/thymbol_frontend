@@ -1,23 +1,29 @@
-import React, { useRef, useEffect, useState } from 'react';
-
-import Navmenu from './Navmenu';
+import LogoutLogo from '@/assets/images/auth/logout_logo.svg';
+import Icon from '@/components/ui/Icon';
 import { menuItems } from '@/constant/data';
-import SimpleBar from 'simplebar-react';
+import useDarkMode from '@/hooks/useDarkMode';
+import useMobileMenu from '@/hooks/useMobileMenu';
 import useSemiDark from '@/hooks/useSemiDark';
 import useSkin from '@/hooks/useSkin';
-import useDarkMode from '@/hooks/useDarkMode';
-import { Link } from 'react-router-dom';
-import useMobileMenu from '@/hooks/useMobileMenu';
-import Icon from '@/components/ui/Icon';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import SimpleBar from 'simplebar-react';
+import Navmenu from './Navmenu';
 
 // import images
-import MobileLogo from '@/assets/images/logo/logo-c.png';
 import MobileLogoWhite from '@/assets/images/logo/logo-c-white.png';
-import svgRabitImage from '@/assets/images/svg/rabit.svg';
+import MobileLogo from '@/assets/images/logo/logo-c.png';
+import Icons from '@/components/ui/Icon';
+import { logOut } from '@/store/api/auth/authSlice';
+import { swalConfirm } from '@/util/helpers';
+import { t } from 'i18next';
+import { useDispatch } from 'react-redux';
 
 const MobileMenu = ({ className = 'custom-class' }) => {
     const scrollableNodeRef = useRef();
     const [scroll, setScroll] = useState(false);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     useEffect(() => {
         const handleScroll = () => {
             if (scrollableNodeRef.current.scrollTop > 0) {
@@ -34,6 +40,27 @@ const MobileMenu = ({ className = 'custom-class' }) => {
     const [skin] = useSkin();
     const [isDark] = useDarkMode();
     const [mobileMenu, setMobileMenu] = useMobileMenu();
+
+    const confirmLogout = async () => {
+        setMobileMenu(false);
+        const response = await swalConfirm(
+            t('Are you sure you want to Logout?'),
+            t('Logout'),
+            t('Yes'),
+            t('No'),
+            LogoutLogo
+        );
+
+        if (response.isConfirmed) {
+            handleLogout();
+        }
+    };
+
+    const handleLogout = () => {
+        dispatch(logOut());
+        navigate('/home');
+    };
+
     return (
         <div
             className={`${className} fixed  top-0 bg-white dark:bg-slate-800 shadow-lg  h-full   w-[248px]`}
@@ -74,6 +101,19 @@ const MobileMenu = ({ className = 'custom-class' }) => {
                 scrollableNodeProps={{ ref: scrollableNodeRef }}
             >
                 <Navmenu menus={menuItems} />
+
+                <div className="single-sidebar-menu my-3">
+                    <div className="menu-link">
+                        <div className="flex-1 flex items-start">
+                            <span className="menu-icon">
+                                <Icons icon={'heroicons-outline:login'} />
+                            </span>
+                            <div className="text-box" onClick={confirmLogout}>
+                                {t('Logout')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </SimpleBar>
         </div>
     );
