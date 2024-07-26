@@ -36,7 +36,7 @@ const Layout = () => {
     const [contentWidth] = useContentWidth();
     const [menuType] = useMenulayout();
     const [menuHidden] = useMenuHidden();
-    // mobile menu
+    // mobile menu option
     const [mobileMenu, setMobileMenu] = useMobileMenu();
     const nodeRef = useRef(null);
     const token = useSelector(selectCurrentToken);
