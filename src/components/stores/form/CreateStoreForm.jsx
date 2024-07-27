@@ -134,7 +134,7 @@ const CreateStoreForm = () => {
             if (data.logo.length) {
                 formData.append('logo', data.logo[0] || null);
             }
-            if (data.document.length) {
+            if (data?.document?.length) {
                 formData.append('documents', data.document[0] || null);
             }
 
@@ -145,10 +145,9 @@ const CreateStoreForm = () => {
                 'Store Added!'
             );
             navigate('/stores');
-
-            //
         } catch (error) {
-            swalError(error?.data?.message);
+            console.log('🚀  ~ error:', error);
+            swalError(error);
         }
     };
 
@@ -177,7 +176,7 @@ const CreateStoreForm = () => {
                     control={control}
                     render={({ field }) => (
                         <DropZone
-                            title={t("Upload pdf/jpeg")}
+                            title={'Showcase your store image / menu'}
                             onDrop={(files) => field.onChange(files)}
                             files={field.value || []}
                         />
@@ -282,9 +281,9 @@ const CreateStoreForm = () => {
                 <div>
                     <Textinput
                         name="city"
-                        label={t("City")}
+                        label={t('City')}
                         type="text"
-                        placeholder={t("City")}
+                        placeholder={t('City')}
                         register={register}
                         error={errors.city}
                         className="h-[48px]"
@@ -295,9 +294,9 @@ const CreateStoreForm = () => {
                 <div>
                     <Textinput
                         name="country"
-                        label={t("Country")}
+                        label={t('Country')}
                         type="text"
-                        placeholder={t("Country")}
+                        placeholder={t('Country')}
                         register={register}
                         error={errors.country}
                         className="h-[48px]"
@@ -307,9 +306,9 @@ const CreateStoreForm = () => {
 
                 <Textinput
                     name="website_link"
-                    label={t("Website Link")}
+                    label={t('Website Link')}
                     type="text"
-                    placeholder={t("Add Website Link")}
+                    placeholder={t('Add Website Link')}
                     register={register}
                     error={errors.website_link}
                     className="h-[48px]"
@@ -319,9 +318,9 @@ const CreateStoreForm = () => {
                 />
                 <Textinput
                     name="social_media_link"
-                    label={t("Social Media Link")}
+                    label={t('Social Media Link')}
                     type="text"
-                    placeholder={t("Add Social Media Link")}
+                    placeholder={t('Add Social Media Link')}
                     register={register}
                     error={errors.social_media_link}
                     className="h-[48px]"
@@ -332,9 +331,9 @@ const CreateStoreForm = () => {
 
                 <Textinput
                     name="postal_code"
-                    label={t("Postal Code")}
+                    label={t('Postal Code')}
                     type="text"
-                    placeholder={t("Postal Code")}
+                    placeholder={t('Postal Code')}
                     register={register}
                     error={errors.postal_code}
                     className="h-[48px]"
