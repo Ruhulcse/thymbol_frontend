@@ -75,7 +75,7 @@
   "Write condition": "Write condition",
   "Create Voucher": "Create Voucher",
   "Active Coupons": "Active Coupons",
-  "5 Coupons": "5 Coupons",
+  "N Coupons": "{{couponNo}} Coupons",
   "Expired Coupons": "Expired Coupons",
   "12 Coupons": "12 Coupons",
   "Push Notifications": "Push Notifications",

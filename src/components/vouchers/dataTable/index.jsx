@@ -96,7 +96,7 @@ const VoucherDataTable = () => {
 
     const { data: vouchers, isLoading: loadingVouchers } =
         useGetVouchersQuery();
-    const columns = useMemo(() => COLUMNS, []);
+    const columns = useMemo(() => COLUMNS, [t]);
     const data = useMemo(() => vouchers ?? [], [vouchers]);
 
     const handleDeleteVoucher = ({ id }) => {

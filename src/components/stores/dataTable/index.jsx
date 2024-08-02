@@ -42,7 +42,7 @@ const StoreDataTable = () => {
             },
         },
         {
-            Header: 'category',
+            Header: t('Category'),
             accessor: 'category_name',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
@@ -50,7 +50,7 @@ const StoreDataTable = () => {
         },
 
         {
-            Header: 'store address',
+            Header: t('Store Address'),
             accessor: 'store_address',
             Cell: (row) => {
                 return <span>{row?.cell?.value}</span>;
@@ -114,7 +114,7 @@ const StoreDataTable = () => {
     const { data: stores, isLoading: loadingStores } =
         useGetStoresQuery(user_id);
 
-    const columns = useMemo(() => COLUMNS, []);
+    const columns = useMemo(() => COLUMNS, [t]);
     const data = useMemo(() => stores ?? [], [user_id, stores]);
 
     if (loadingStores) return <Loading />;

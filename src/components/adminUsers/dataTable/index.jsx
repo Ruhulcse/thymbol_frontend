@@ -151,7 +151,7 @@ const AdminUserDataTable = () => {
         dispatch(getAllUsers({ user_id }));
     }, [dispatch]);
 
-    const columns = useMemo(() => COLUMNS, []);
+    const columns = useMemo(() => COLUMNS, [t]);
     const data = useMemo(() => users ?? [], [users]);
 
     if (loadingUsers) return <Loading />;

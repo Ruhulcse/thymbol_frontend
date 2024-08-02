@@ -75,7 +75,7 @@
     "Write condition": "اكتب الشرط",
     "Create Voucher": "إنشاء القسيمة",
     "Active Coupons": "القسائم النشطة",
-    "5 Coupons": "5 قسائم",
+    "N Coupons": "{{couponNo}} قسائم",
     "Expired Coupons": "القسائم المنتهية",
     "12 Coupons": "12 قسيمة",
     "Push Notifications": "إشعارات الدفع",

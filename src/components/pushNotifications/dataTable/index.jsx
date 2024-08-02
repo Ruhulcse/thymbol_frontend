@@ -92,7 +92,7 @@ const PushNotificationDataTable = () => {
     ] = useDeletePushNotifiationMutation();
 
     const { data: pushNotifications, isLoading } = useGetPushNotificationsQuery();
-    const columns = useMemo(() => COLUMNS, []);
+    const columns = useMemo(() => COLUMNS, [t]);
     const data = useMemo(() => pushNotifications ?? [], [pushNotifications]);
 
     const handleDeletePushNotification = ({ id }) => {
