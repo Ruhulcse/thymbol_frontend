@@ -1,10 +1,12 @@
 import PricingCard from '@/components/ui/PricingCard';
+import {
+    premiumAnnualPricingConsumer,
+    premiumMonthlyPricingConsumer,
+} from '@/constant/data';
 import { Icon } from '@iconify/react';
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const premium = ['Premium monthly membership'];
-
-const annual = ['Premium annual membership'];
 const ConsumerSubscriptionPage = () => {
     const navigate = useNavigate();
     return (
@@ -18,7 +20,7 @@ const ConsumerSubscriptionPage = () => {
                 // saveCost={'SAVE 33%'}
                 onClick={() => navigate('/consumer-payment')}
             >
-                {premium.map((item, i) => (
+                {premiumMonthlyPricingConsumer.map((item, i) => (
                     <div
                         key={i}
                         className="flex items-center bg-gray-100 my-2 p-3"
@@ -41,7 +43,7 @@ const ConsumerSubscriptionPage = () => {
                 // saveCost={'SAVE 33%'}
                 onClick={() => navigate('/consumer-payment')}
             >
-                {annual.map((item, i) => (
+                {premiumAnnualPricingConsumer.map((item, i) => (
                     <div
                         key={i}
                         className="flex items-center bg-gray-100 my-2 p-3"
@@ -58,4 +60,4 @@ const ConsumerSubscriptionPage = () => {
     );
 };
 
-export default ConsumerSubscriptionPage;
+export default memo(ConsumerSubscriptionPage);

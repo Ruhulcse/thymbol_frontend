@@ -45,6 +45,9 @@ const register = () => {
                         <h5 className="text-white text-[2rem] leading-[3rem]">
                             {t('Your Real-Time Digital Coupon Platform!')}
                         </h5>
+                        <h6 className="text-white text-[1.8rem] leading-[3rem] mt-24">
+                            Business Portal
+                        </h6>
                     </div>
                     {/* <div className="absolute left-0 2xl:bottom-[-160px] bottom-[-130px] h-full w-full z-[-1]">
             <img
@@ -71,6 +74,7 @@ const register = () => {
                                 <div className="text-slate-500 dark:text-slate-400 text-base">
                                     Create an account to start using THYMBOL
                                 </div>
+                                
                             </div>
                             <RegForm />
                             <div className=" relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6">

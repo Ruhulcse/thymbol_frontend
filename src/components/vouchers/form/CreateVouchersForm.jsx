@@ -108,7 +108,8 @@ const CreateVouchersForm = () => {
             swalSuccess(`Voucher successfully added!`, 'Voucher Created!');
             navigate('/vouchers');
         } catch (error) {
-            swalError(error.message);
+            console.log("🚀  ~ error:", error)
+            swalError(error?.data?.message);
         }
     };
 

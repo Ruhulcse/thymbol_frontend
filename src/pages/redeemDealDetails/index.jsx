@@ -23,6 +23,8 @@ function RedeemDealDetails() {
     const routerBack = () => {
         navigate(-1);
     };
+
+    
     return (
         <>
             <div className="bg-[#F3FCFF] py-10">
@@ -49,6 +51,7 @@ function RedeemDealDetails() {
                                 <SingleVoucher
                                     item={voucherData}
                                     link={`redeem-deal`}
+                                    canRedeem={voucherData.discount}
                                 />
                                 <div className="flex justify-between py-10 md:text-sm text-xs  font-semibold">
                                     <div className="bg-white px-3  w-44 py-2">
@@ -94,7 +97,7 @@ function RedeemDealDetails() {
                         </div>
                     </div>
                     <div className="space-y-10 hidden md:block">
-                        <div className="xl:w-[520px]  bg-white lg:h-364px  min-w-[300px] min-h-[250px] flex flex-col text-center justify-center items-center space-y-4 py-10">
+                        {/* <div className="xl:w-[520px]  bg-white lg:h-364px  min-w-[300px] min-h-[250px] flex flex-col text-center justify-center items-center space-y-4 py-10">
                             <div className="font-bold text-black-500 text-base md:text-2xl mb-5">
                                 4 Redemptions Left
                             </div>
@@ -107,7 +110,7 @@ function RedeemDealDetails() {
                                     Upgrade Now
                                 </Button>
                             </div>
-                        </div>
+                        </div> */}
                         {showVideoCapture ? (
                             <div className="xl:w-[520px]  bg-white xl:h-364px  min-w-[300px] min-h-[250px]  flex flex-col text-center justify-center items-center space-y-4">
                                 <RecordVideo />

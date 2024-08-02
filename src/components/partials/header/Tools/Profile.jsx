@@ -55,7 +55,7 @@ const Profile = () => {
 
     const ProfileMenu = [
         {
-            label: 'Edit Profile',
+            label: 'My Portal',
             icon: 'heroicons-outline:user',
 
             action: () => {

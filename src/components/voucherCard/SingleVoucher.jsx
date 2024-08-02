@@ -1,6 +1,10 @@
+import { swalError } from '@/util/helpers';
 import { Link } from 'react-router-dom';
 import logo from './../../assets/images/home/Group 1000005441.png';
-function SingleVoucher({ item, link = 'redeem-deal-details' }) {
+function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
+    const redeemValidation = () => {
+        swalError('Please upgrade your package!');
+    };
     return (
         <div className="lg:h-44 lg:w-[490px] h-[110px] w-[220px] bg-white shadow-lg sm:w-[270px] sm:h-[120px] md:h-[150px] md:w-[330px]">
             <div className="w-full h-full relative">
@@ -27,12 +31,20 @@ function SingleVoucher({ item, link = 'redeem-deal-details' }) {
                                 )}
                             </div>
                             <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center  rounded-full lg:h-10 lg:w-10">
-                                <Link to={`/${link}/${item?._id}`}>
+                                {canRedeem > 25 ? (
                                     <img
                                         src={logo}
-                                        className="h-full w-full rounded-full"
+                                        className="h-full w-full rounded-full cursor-pointer"
+                                        onClick={redeemValidation}
                                     />
-                                </Link>
+                                ) : (
+                                    <Link to={`/${link}/${item?._id}`}>
+                                        <img
+                                            src={logo}
+                                            className="h-full w-full rounded-full"
+                                        />
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

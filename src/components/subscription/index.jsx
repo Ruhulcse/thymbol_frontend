@@ -36,7 +36,7 @@ const Subscription = () => {
                 headerClass="bg-customBlue"
                 titleClass="text-white"
                 paymentMethod="$10"
-                paymentAmount={t('$33/month')}
+                paymentAmount={t('$50/month')}
                 saveCost={t('SAVE 33%')}
                 onClick={() => navigate('/dashboard/payment')}
             >

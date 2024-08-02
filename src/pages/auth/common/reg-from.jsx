@@ -1,6 +1,7 @@
 import Button from '@/components/ui/Button';
 import Textinput from '@/components/ui/Textinput';
 import { useRegisterUserMutation } from '@/store/api/auth/authApiSlice';
+import { swalError } from '@/util/helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { t } from 'i18next';
 import { useForm } from 'react-hook-form';
@@ -12,16 +13,18 @@ const schema = yup
     .object({
         businessName: yup.string().required('Business Name is required'),
         userName: yup.string().required('Username is required'),
-        email: yup
-            .string()
-            .email('Invalid email')
-            .required('Email is required'),
+        email: yup.string().email('Invalid email'),
         phoneNumber: yup
             .string()
-            .required('Phone Number is required')
-            .matches(
-                /^(\+?\d{1,3}[- ]?)?\d{10}$/,
-                'Phone Number must be a valid phone number'
+            .test(
+                'is-valid-phone',
+                'Phone Number must be a valid phone number',
+                function (value) {
+                    if (value) {
+                        return /^(\+?\d{1,3}[- ]?)?\d{10}$/.test(value);
+                    }
+                    return true; // Skip validation if the field is empty
+                }
             ),
         password: yup
             .string()
@@ -33,6 +36,13 @@ const schema = yup
             .oneOf([yup.ref('password'), null], 'Passwords must match')
             .required('Confirm Password is required'),
     })
+    .test(
+        'email-or-phone',
+        'Either Email or Phone Number is required',
+        function (value) {
+            return value.email || value.phoneNumber;
+        }
+    )
     .required();
 
 const RegForm = () => {
@@ -64,17 +74,13 @@ const RegForm = () => {
             navigate('/login');
             toast.success('Signup Successful');
         } catch (error) {
-            const errorMessage =
-                error.response?.data?.message ||
-                'An error occurred. Please try again later.';
-
-            if (errorMessage === 'Email is already registered') {
-                toast.error(errorMessage);
-            } else {
-                toast.warning(errorMessage);
-            }
+            console.log('🚀  ~ error:', error);
         }
     };
+
+    if (isError && !isLoading) {
+        swalError(error.data.message);
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 ">
@@ -105,6 +111,7 @@ const RegForm = () => {
                 error={errors.email}
                 className="h-[48px]"
             />
+            <p className="text-center">OR</p>
             <Textinput
                 name="phoneNumber"
                 label="Phone Number"

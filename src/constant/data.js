@@ -143,3 +143,19 @@ export const infoIcon = [
 ]
 
 export const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+export const premiumMonthlyPricingConsumer = [
+    'Premium monthly membership',
+    'Access to unlimited vouchers',
+    '25% -75% vouchers',
+    'BOGO Free Vouchers',
+    'BOGO ½ OFF Vouchers',
+]
+
+export const premiumAnnualPricingConsumer = [
+    'Premium annual membership',
+    'Access to unlimited vouchers',
+    '25% -75% vouchers',
+    'BOGO Free Vouchers',
+    'BOGO ½ OFF Vouchers',
+]

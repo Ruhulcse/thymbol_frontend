@@ -102,7 +102,8 @@ const RegisterConsumer = () => {
                             </div>
                         </div>
                         <div className="auth-footer text-center">
-                            Copyright 2021, THYMBOL All Rights Reserved.
+                            Copyright {new Date().getFullYear()}, THYMBOL All
+                            Rights Reserved.
                         </div>
                     </div>
                 </div>
