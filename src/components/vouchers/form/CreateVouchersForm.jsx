@@ -3,7 +3,7 @@ import Textinput from '@/components/ui/Textinput';
 import DropZone from '@/pages/form/file-input/DropZone';
 import { useGetStoresQuery } from '@/store/api/stores/storesApiSlice';
 import { useCreateVoucherMutation } from '@/store/api/vouchers/vouchersApiSlice';
-import { swalSuccess } from '@/util/helpers';
+import { swalError, swalSuccess } from '@/util/helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMemo } from 'react';
 import Flatpickr from 'react-flatpickr';
@@ -83,29 +83,33 @@ const CreateVouchersForm = () => {
 
     const navigate = useNavigate();
     const onSubmit = async (data) => {
-        const formData = new FormData();
-        if (data?.logo?.length) {
-            formData.append('image', data.logo[0]);
+        try {
+            const formData = new FormData();
+            if (data?.logo?.length) {
+                formData.append('image', data.logo[0]);
+            }
+
+            const jsonData = {
+                discount: data?.discount?.value,
+                creator: user_id,
+                endDate: data.endDate,
+                voucherCode: data.voucherCode,
+                store: data.storeName.value,
+                storeName: data.storeName.label,
+                redeemLimit: data.redeemLimit.value,
+                condition: data.condition,
+                offer: data.offer.value,
+            };
+            formData.append('voucherData', JSON.stringify(jsonData));
+            await createVoucher({
+                voucherData: formData,
+            }).unwrap();
+
+            swalSuccess(`Voucher successfully added!`, 'Voucher Created!');
+            navigate('/vouchers');
+        } catch (error) {
+            swalError(error.message);
         }
-
-        const jsonData = {
-            discount: data?.discount?.value,
-            creator: user_id,
-            endDate: data.endDate,
-            voucherCode: data.voucherCode,
-            store: data.storeName.value,
-            storeName: data.storeName.label,
-            redeemLimit: data.redeemLimit.value,
-            condition: data.condition,
-            offer: data.offer.value,
-        };
-        formData.append('voucherData', JSON.stringify(jsonData));
-        await createVoucher({
-            voucherData: formData,
-        }).unwrap();
-
-        swalSuccess(`Voucher successfully added!`, 'Voucher Created!');
-        navigate('/vouchers');
     };
 
     return (
@@ -274,9 +278,9 @@ const CreateVouchersForm = () => {
                 </div>
                 <Textinput
                     name="condition"
-                    label={t("Condition")}
+                    label={t('Condition')}
                     type="text"
-                    placeholder={t("Write condition")}
+                    placeholder={t('Write condition')}
                     register={register}
                     error={errors.condition}
                     className="h-[48px]"
@@ -286,7 +290,7 @@ const CreateVouchersForm = () => {
 
                 <Button
                     type="submit"
-                    text={t("Create Voucher")}
+                    text={t('Create Voucher')}
                     className="btn btn-primary block mt-5 text-center font-normal"
                     isLoading={isCreating}
                     disabled={isCreating}
