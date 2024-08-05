@@ -9,7 +9,6 @@ import { useGetVoucherQuery } from '@/store/api/vouchers/vouchersApiSlice';
 import { humanDate } from '@/util/helpers';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import qr from './../../assets/images/merchant/Group.png';
 function RedeemDealDetails() {
     const navigate = useNavigate();
     const [showVideoCapture, setShowVideoCapture] = useState(false);
@@ -17,6 +16,7 @@ function RedeemDealDetails() {
 
     const { data: voucherData, isLoading: loadingVoucher } =
         useGetVoucherQuery(voucherId);
+    console.log('🚀  ~ voucherData:', voucherData);
 
     if (loadingVoucher) return <Loading />;
 
@@ -24,7 +24,6 @@ function RedeemDealDetails() {
         navigate(-1);
     };
 
-    
     return (
         <>
             <div className="bg-[#F3FCFF] py-10">
@@ -125,7 +124,9 @@ function RedeemDealDetails() {
                                 </div>
                                 <div className="flex justify-between p-4">
                                     <div>
-                                        <UploadVideo />
+                                        <UploadVideo
+                                            store_id={voucherData.store}
+                                        />
                                     </div>
                                     <div>
                                         <Button
