@@ -38,7 +38,7 @@ export const storesApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: favourite_stores,
             }),
-            invalidatesTags: (result, error, { userId }) => ['Favorite_Store'],
+            invalidatesTags: (result, error, { userId }) => ['Favorite_Store', 'Store'],
         }),
     }),
 });

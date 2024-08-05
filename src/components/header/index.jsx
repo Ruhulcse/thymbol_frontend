@@ -1,6 +1,11 @@
 import { cover, morocco, soudia, topBarImage, uae } from '@/assets/images/home';
+import {
+    setSearchTerm,
+    setSearchTrigger,
+} from '@/store/api/storeSearch/storeSearchSlice';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 const data = [
     {
@@ -19,13 +24,23 @@ const data = [
 
 function Header() {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+
+    const handleChange = (event) => {
+        dispatch(setSearchTerm(event.target.value));
+    };
+
+    const handleTriggerSearch = (event) => {
+        dispatch(setSearchTrigger(true));
+    };
     return (
         <>
             <div className="container mx-auto">
                 <div className="  md:flex justify-between ">
                     <div className="max-w-lg sm:h-80 font-bold ">
                         <div className=" text-2xl hidden sm:block mb-2">
-                            <span className="text-customBlue">Thymbol </span> <span>Your World of Deals!</span>
+                            <span className="text-customBlue">Thymbol </span>{' '}
+                            <span>Your World of Deals!</span>
                         </div>
                         {/* <p className="hidden sm:block py-4">
                             
@@ -46,8 +61,9 @@ function Header() {
                             <div className="flex relative w-[60%] ">
                                 <input
                                     type="text"
-                                    placeholder={t("Search Location")}
+                                    placeholder={t('Search Location')}
                                     className="w-full sm:h-16 h-12 shadow-lg px-4 rounded-lg z-[50]  focus:outline-none"
+                                    onChange={handleChange}
                                 />
                                 <div className="absolute  top-[50%] -translate-y-[50%] right-0 font-bold pr-2 text-xl text-blue-500 z-[60]">
                                     <Icon
@@ -58,7 +74,10 @@ function Header() {
                                     />
                                 </div>
                             </div>
-                            <div className="bg-white shadow-lg h-12 w-12 sm:h-16 sm:w-16 flex items-center justify-center text-2xl text-blue-500 rounded-lg z-[60] cursor-pointer">
+                            <div
+                                className="bg-white shadow-lg h-12 w-12 sm:h-16 sm:w-16 flex items-center justify-center text-2xl text-blue-500 rounded-lg z-[60] cursor-pointer"
+                                onClick={handleTriggerSearch}
+                            >
                                 <Icon icon={'heroicons:magnifying-glass'} />
                             </div>
                         </div>

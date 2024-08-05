@@ -23,17 +23,14 @@ function TopSection() {
 
     const handleAddToFavoriteStore = async () => {
         if (currentUser) {
-            await favoriteStore({
+            const response = await favoriteStore({
                 favourite_stores: { favourite_stores: store._id },
             }).unwrap();
+            toast.success(response.message);
         } else {
             toast.error('Please login first');
         }
     };
-
-    if (isSuccess) {
-        toast.success(data.message);
-    }
 
     if (isError) {
         console.log('🚀  ~ error:', error);
@@ -78,7 +75,9 @@ function TopSection() {
                     </div>
                     <div className="">
                         Favorited by{' '}
-                        <span className="text-blue-400 font-bold">123</span>{' '}
+                        <span className="text-blue-400 font-bold">
+                            {store?.favouriteStoreCount}{' '}
+                        </span>
                         Users{' '}
                     </div>
                 </div>

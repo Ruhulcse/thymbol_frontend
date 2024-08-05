@@ -1,12 +1,21 @@
+import { selectCurrentUser } from '@/store/api/auth/authSlice';
+import { usePostReviewVideoMutation } from '@/store/api/uploadReviewVideo/uploadReviewVideoApiSlice';
+import { swalError, swalSuccess } from '@/util/helpers';
 import { Icon } from '@iconify/react';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Webcam from 'react-webcam';
 
 const RecordVideo = () => {
+    const userId = useSelector(selectCurrentUser);
+    const { id: store_id } = useParams();
     const webcamRef = React.useRef(null);
     const mediaRecorderRef = React.useRef(null);
     const [capturing, setCapturing] = React.useState(false);
     const [recordedChunks, setRecordedChunks] = React.useState([]);
+
+    const [postReviewVideo, { isLoading }] = usePostReviewVideoMutation();
 
     const handleStartCaptureClick = React.useCallback(() => {
         setCapturing(true);
@@ -51,6 +60,28 @@ const RecordVideo = () => {
         }
     }, [recordedChunks]);
 
+    const handleUpload = React.useCallback(async () => {
+        if (recordedChunks.length) {
+            const blob = new Blob(recordedChunks, {
+                type: 'video/webm',
+            });
+
+            const formData = new FormData();
+            formData.append('video', blob, `review-video-${Date.now()}.webm`);
+            formData.append('store', store_id);
+            formData.append('creator', userId);
+
+            try {
+                await postReviewVideo(formData).unwrap();
+                swalSuccess('Video uploaded successfully');
+            } catch (error) {
+                swalError('Failed to upload video:', error);
+            } finally {
+                setRecordedChunks([]);
+            }
+        }
+    }, [recordedChunks, postReviewVideo]);
+
     return (
         <>
             <Webcam audio={false} ref={webcamRef} />
@@ -72,7 +103,7 @@ const RecordVideo = () => {
             {recordedChunks.length > 0 && (
                 <button
                     className="text-[14px] my-10 text-center  p-3  justify-center bg-customBlue cursor-pointer rounded-md text-white flex items-center w-full"
-                    onClick={handleDownload}
+                    onClick={handleUpload}
                 >
                     <div className="my-auto flex items-center ">
                         <Icon
