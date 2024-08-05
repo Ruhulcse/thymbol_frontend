@@ -14,10 +14,16 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
                 <div className="lg:h-8 h-3 lg:w-8 w-3  rounded-full bg-[#f9f9f9]  absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 overflow-hidden"></div>
                 <div className="flex flex-1 items-center px-4 h-full">
                     <div className=" p-4 border-r-4 w-full border border-t-0 border-l-0 border-b-0 border-dotted mr-4">
-                        <div className="font-bold text-xs lg:text-sm">
-                            <Link to={`/${link}/${item?._id}`}>
-                                {item?.storeName}
-                            </Link>
+                        <div className="font-bold text-xs lg:text-sm cursor-pointer">
+                            {canRedeem > 25 ? (
+                                <div onClick={redeemValidation}>
+                                    {item?.storeName}
+                                </div>
+                            ) : (
+                                <Link to={`/${link}/${item?._id}`}>
+                                    {item?.storeName}
+                                </Link>
+                            )}
                         </div>
                         <div className="text-[8px] sm:text-[10px] md:text-xs lg:text-[14px]">
                             {item?.condition}
@@ -49,8 +55,8 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
                         </div>
                     </div>
 
-                    <div className="lg:w-80 lg:h-36 sm:h-24 sm:w-52 h-20 w-44  my-auto lg:p-2">
-                        <Link to={`/${link}/${item?._id}`}>
+                    <div className="lg:w-80 lg:h-36 sm:h-24 sm:w-52 h-20 w-44  my-auto lg:p-2 cursor-pointer">
+                        {canRedeem > 25 ? (
                             <img
                                 src={
                                     item?.logo?.filePath ??
@@ -58,8 +64,20 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
                                 }
                                 alt=""
                                 className="h-full w-full object-cover"
+                                onClick={redeemValidation}
                             />
-                        </Link>
+                        ) : (
+                            <Link to={`/${link}/${item?._id}`}>
+                                <img
+                                    src={
+                                        item?.logo?.filePath ??
+                                        'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='
+                                    }
+                                    alt=""
+                                    className="h-full w-full object-cover"
+                                />
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
