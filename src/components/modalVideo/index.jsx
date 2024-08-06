@@ -1,4 +1,5 @@
 import crown from '@/assets/images/icon/crown.svg';
+import img from '@/assets/images/merchant/Group 1000007830.png';
 import Button from '@/components/button/Button';
 import RecordVideo from '@/components/ui/RecordVideo';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
@@ -14,7 +15,6 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Loading from '../Loading';
 import Modal from '../ui/Modal';
-import img from '@/assets/images/merchant/Group 1000007830.png';
 
 const data = [
     // { img: img, videoId: 'L61p2uyiMSo' },
@@ -100,19 +100,20 @@ function ModalsVideo() {
                     title="Our Satisfied Customer Review"
                     centered
                 >
-                    <ReactPlayer
-                        url={currentVideoId}
-                        width="100%"
-                        height="100%"
-                        controls={true}
-                        playing={true}
-
-                    />
+                    {currentVideoId && (
+                        <ReactPlayer
+                            url={currentVideoId}
+                            width="100%"
+                            height="100%"
+                            controls={true}
+                            playing={true}
+                        />
+                    )}
                 </Modal>
             </div>
             {showVideoCapture ? (
                 <div>
-                    <RecordVideo />
+                    <RecordVideo setShowVideoCapture={setShowVideoCapture} />
                 </div>
             ) : (
                 <div className="w-[50%]  md:flex h-full items-center ">

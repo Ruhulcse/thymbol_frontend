@@ -8,7 +8,7 @@ export const VideoReview = () => {
     const [showVideoCapture, setShowVideoCapture] = useState(false);
     return showVideoCapture ? (
         <div className="w-1/3 mx-auto pt-16 md:pt-36">
-            <RecordVideo />
+            <RecordVideo setShowVideoCapture={setShowVideoCapture}/>
         </div>
     ) : (
         <div className="w-1/3 mx-auto pt-16 md:pt-36">

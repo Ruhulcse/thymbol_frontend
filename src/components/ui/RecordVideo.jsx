@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Webcam from 'react-webcam';
 
-const RecordVideo = () => {
+const RecordVideo = ({ setShowVideoCapture }) => {
     const userId = useSelector(selectCurrentUser);
     const { id: store_id } = useParams();
     const webcamRef = React.useRef(null);
@@ -78,6 +78,7 @@ const RecordVideo = () => {
                 swalError('Failed to upload video:', error);
             } finally {
                 setRecordedChunks([]);
+                setShowVideoCapture(false);
             }
         }
     }, [recordedChunks, postReviewVideo]);
