@@ -6,7 +6,7 @@ import useCurrentWidth from '@/hooks/useCurrentWidth';
 import { useGetReviewVideosQuery } from '@/store/api/uploadReviewVideo/uploadReviewVideoApiSlice';
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
-import 'react-modal-video/css/modal-video.min.css';
+// import 'react-modal-video/css/modal-video.min.css';
 
 import ReactPlayer from 'react-player';
 import { useParams } from 'react-router-dom';
@@ -100,6 +100,7 @@ function ModalsVideo() {
                     onClose={() => setOpen(false)}
                     title="Our Satisfied Customer Review"
                     id={currentVideoId}
+                    centered
                 >
                     {currentVideoId && (
                         <ReactPlayer
