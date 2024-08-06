@@ -1,10 +1,11 @@
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
+    console.log("🚀  ~ error:", error)
     return (
         <section className="py-26 md:py-48 min-h-screen md:min-h-0 bg-[#f1f5f9]">
             <div className="container px-4 mx-auto">
                 <div className="max-w-xl mx-auto text-center">
                     <p className="text-xl font-extrabold leading-7 mb-6">
-                        Something went wrong! {error}
+                        Something went wrong!
                     </p>
                     <div className="flex flex-wrap items-center justify-center">
                         <a
