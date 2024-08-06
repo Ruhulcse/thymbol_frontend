@@ -6,9 +6,7 @@ import useCurrentWidth from '@/hooks/useCurrentWidth';
 import { useGetReviewVideosQuery } from '@/store/api/uploadReviewVideo/uploadReviewVideoApiSlice';
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
-// import 'react-modal-video/css/modal-video.min.css';
 
-import ReactPlayer from 'react-player';
 import { useParams } from 'react-router-dom';
 import { Navigation } from 'swiper';
 import 'swiper/css';
@@ -102,7 +100,7 @@ function ModalsVideo() {
                     id={currentVideoId}
                     centered
                 >
-                    {currentVideoId && (
+                    {/* {currentVideoId && (
                         <ReactPlayer
                             url={currentVideoId}
                             width="100%"
@@ -110,7 +108,10 @@ function ModalsVideo() {
                             controls={true}
                             playing={true}
                         />
-                    )}
+                    )} */}
+                    <video width="100%" height="100%" controls autoPlay>
+                        <source src={currentVideoId} />
+                    </video>
                 </Modal>
             </div>
             {showVideoCapture ? (
