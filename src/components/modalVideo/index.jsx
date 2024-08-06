@@ -24,7 +24,7 @@ import Modal from '../ui/Modal';
 
 function ModalsVideo() {
     const { id: store_id } = useParams();
-    console.log('🚀  ~ store_id:', store_id);
+
     const {
         data: videos,
         isLoading,
@@ -33,7 +33,7 @@ function ModalsVideo() {
     } = useGetReviewVideosQuery({
         store_id,
     });
-    console.log('🚀  ~ data:', videos);
+
     const [isOpen, setOpen] = useState(false);
     const [showVideoCapture, setShowVideoCapture] = useState(false);
     const [currentVideoId, setCurrentVideoId] = useState('');
