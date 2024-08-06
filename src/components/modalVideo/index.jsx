@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
 import 'react-modal-video/css/modal-video.min.css';
 
+import ReactPlayer from 'react-player';
 import { useParams } from 'react-router-dom';
 import { Navigation } from 'swiper';
 import 'swiper/css';
@@ -15,7 +16,6 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Loading from '../Loading';
 import Modal from '../ui/Modal';
-import ReactPlayer from 'react-player';
 
 // const data = [
 //     // { img: img, videoId: 'L61p2uyiMSo' },
@@ -99,14 +99,14 @@ function ModalsVideo() {
                     activeModal={isOpen}
                     onClose={() => setOpen(false)}
                     title="Our Satisfied Customer Review"
-                    centered
+                    id={currentVideoId}
                 >
                     {currentVideoId && (
                         <ReactPlayer
                             url={currentVideoId}
                             width="100%"
-                            // height="100%"
-                            // controls={true}
+                            height="100%"
+                            controls={true}
                             playing={true}
                         />
                     )}
