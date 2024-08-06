@@ -100,7 +100,7 @@ function ModalsVideo() {
                     title="Our Satisfied Customer Review"
                     centered
                 >
-                    {/* {currentVideoId && (
+                    {currentVideoId.length && (
                         <ReactPlayer
                             url={currentVideoId}
                             width="100%"
@@ -108,7 +108,7 @@ function ModalsVideo() {
                             controls={true}
                             playing={true}
                         />
-                    )} */}
+                    )}
                 </Modal>
             </div>
             {showVideoCapture ? (
