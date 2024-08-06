@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter>
             <ErrorBoundary
                 FallbackComponent={ErrorFallback}
-                onError={console.error('Error fallback')}
+                onError={console.log('Error fallback')}
             >
                 <ScrollToTop />
                 <Toaster />
