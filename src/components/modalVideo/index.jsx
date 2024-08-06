@@ -1,5 +1,5 @@
 import crown from '@/assets/images/icon/crown.svg';
-import img from '@/assets/images/merchant/Group 1000007830.png';
+import img from '@/assets/images/merchant/thumbnail_video.png';
 import Button from '@/components/button/Button';
 import RecordVideo from '@/components/ui/RecordVideo';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
@@ -16,11 +16,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Loading from '../Loading';
 import Modal from '../ui/Modal';
 
-const data = [
-    // { img: img, videoId: 'L61p2uyiMSo' },
-    // { img: img, videoId: 'K4TOrB7at0Y' },
-    // { img: img, videoId: 'q3J0BqkZgNM' },
-];
+// const data = [
+//     // { img: img, videoId: 'L61p2uyiMSo' },
+//     // { img: img, videoId: 'K4TOrB7at0Y' },
+//     // { img: img, videoId: 'q3J0BqkZgNM' },
+// ];
 
 function ModalsVideo() {
     const { id: store_id } = useParams();
