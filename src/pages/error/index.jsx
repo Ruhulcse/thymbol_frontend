@@ -4,7 +4,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
             <div className="container px-4 mx-auto">
                 <div className="max-w-xl mx-auto text-center">
                     <p className="text-xl font-extrabold leading-7 mb-6">
-                        Something went wrong!
+                        Something went wrong! {error}
                     </p>
                     <div className="flex flex-wrap items-center justify-center">
                         <a
