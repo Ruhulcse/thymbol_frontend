@@ -7,7 +7,7 @@ import { useGetReviewVideosQuery } from '@/store/api/uploadReviewVideo/uploadRev
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
 import 'react-modal-video/css/modal-video.min.css';
-import ReactPlayer from 'react-player';
+
 import { useParams } from 'react-router-dom';
 import { Navigation } from 'swiper';
 import 'swiper/css';
@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Loading from '../Loading';
 import Modal from '../ui/Modal';
+import ReactPlayer from 'react-player';
 
 // const data = [
 //     // { img: img, videoId: 'L61p2uyiMSo' },
@@ -36,7 +37,7 @@ function ModalsVideo() {
 
     const [isOpen, setOpen] = useState(false);
     const [showVideoCapture, setShowVideoCapture] = useState(false);
-    const [currentVideoId, setCurrentVideoId] = useState('');
+    const [currentVideoId, setCurrentVideoId] = useState(null);
     const currentWidth = useCurrentWidth();
     const [slider, setSlider] = useState(1);
     const [space, setSpace] = useState(50);
@@ -100,11 +101,11 @@ function ModalsVideo() {
                     title="Our Satisfied Customer Review"
                     centered
                 >
-                    {currentVideoId.length && (
+                    {currentVideoId && (
                         <ReactPlayer
                             url={currentVideoId}
                             width="100%"
-                            height="100%"
+                            // height="100%"
                             controls={true}
                             playing={true}
                         />
