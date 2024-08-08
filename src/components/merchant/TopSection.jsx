@@ -39,6 +39,15 @@ function TopSection() {
 
     if (loadingStore) return <Loading />;
 
+    const showInMapClicked = () => {
+        window.open(
+            'https://maps.google.com?q=' +
+                store?.location.coordinates[1] +
+                ',' +
+                store?.location.coordinates[0]
+        );
+    };
+
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 items-center md:h-96 h-40 w-full justify-center relative">
             {/* Centered image */}
@@ -89,7 +98,13 @@ function TopSection() {
                                 className="text-orange-500 mx-auto text-lg  mr-2"
                             />
                         </span>
-                        Location ({store?.address?.street ?? 'N/A'})
+                        Location{' '}
+                        <span
+                            onClick={showInMapClicked}
+                            className="cursor-pointer text-blue-400"
+                        >
+                            ({store?.address?.street ?? 'N/A'})
+                        </span>
                     </div>
                     <div className="flex items-center">
                         <span className="inline-flex">
