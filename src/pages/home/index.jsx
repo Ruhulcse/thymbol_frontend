@@ -21,7 +21,7 @@ function Home() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const dispatch = useDispatch();
-    const { search_term, search_trigger, search_category } = useSelector(
+    const { search_term, search_trigger, search_category, page_count } = useSelector(
         (state) => state.searchStore
     );
 
@@ -29,7 +29,7 @@ function Home() {
         setLoading(true);
         const payload = {
             coordinates: [currentLocation.lat, currentLocation.lng],
-            page: 1,
+            page: page_count,
         };
         try {
             if (currentLocation.lat && currentLocation.lng) {
@@ -50,7 +50,7 @@ function Home() {
     const searchCategoryByStore = async () => {
         const payload = {
             coordinates: [currentLocation.lat, currentLocation.lng],
-            page: 1,
+            page: page_count,
             category: search_category,
         };
         try {
@@ -77,7 +77,7 @@ function Home() {
         setLoading(true);
         const payload = {
             coordinates: [currentLocation.lat, currentLocation.lng],
-            page: 1,
+            page: page_count,
         };
         try {
             if (search_trigger && search_term.length > 0) {
