@@ -82,7 +82,7 @@ function Home() {
         try {
             if (search_trigger && search_term.length > 0) {
                 setError('');
-                payload.searcItem = search_term;
+                payload.searchTerm = search_term;
 
                 const { data } = await fetchWrapper.post(
                     `/store/nearme`,
