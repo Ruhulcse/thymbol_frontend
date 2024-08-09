@@ -18,28 +18,38 @@ function Home() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const dispatch = useDispatch();
-    const { search_term, search_trigger } = useSelector(
+    const { search_term, search_trigger, search_category } = useSelector(
         (state) => state.searchStore
     );
 
     const getNearByStores = async () => {
         setLoading(true);
+        const payload = {
+            coordinates: [currentLocation.lat, currentLocation.lng],
+            page: 1,
+        };
         try {
             if (search_trigger) {
                 setError('');
-                const payload = {
-                    searcItem: search_term,
-                };
+                payload.searcItem = search_term;
+
                 const { data } = await fetchWrapper.post(
-                    `/store/search`,
+                    `/store/nearme`,
+                    payload
+                );
+                dispatch(setSearchTrigger(false));
+                setStoreData(data);
+            } else if (search_category) {
+                setError('');
+                payload.category = search_category;
+
+                const { data } = await fetchWrapper.post(
+                    `/store/nearme`,
                     payload
                 );
 
                 setStoreData(data);
             } else if (currentLocation.lat && currentLocation.lng) {
-                const payload = {
-                    coordinates: [currentLocation.lat, currentLocation.lng],
-                };
                 const { data } = await fetchWrapper.post(
                     `/store/nearme`,
                     payload
@@ -50,14 +60,14 @@ function Home() {
         } catch (error) {
             setError(error.response.data.message);
         } finally {
-            dispatch(setSearchTrigger(false));
+            // dispatch(setSearchTrigger(false));
             setLoading(false);
         }
     };
 
     useEffect(() => {
         getNearByStores();
-    }, [currentLocation, search_trigger]);
+    }, [currentLocation, search_trigger,search_category]);
 
     if (loading) return <Loading />;
 
