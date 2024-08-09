@@ -1,10 +1,10 @@
-import { food } from '@/assets/images/home';
 import Loading from '@/components/Loading';
+import DesktopMenu from '@/components/navs/DesktopMenu';
+import MobileMenuUser from '@/components/navs/MobileMenuUser';
 import Language from '@/components/partials/header/Tools/Language';
 import Notification from '@/components/partials/header/Tools/Notification';
 import Profile from '@/components/partials/header/Tools/Profile';
 import Button from '@/components/ui/Button';
-import { navLink } from '@/constant/data';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
 import useWidth from '@/hooks/useWidth';
 import { selectCurrentUser, setUser } from '@/store/api/auth/authSlice';
@@ -14,22 +14,19 @@ import { motion } from 'framer-motion';
 import { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import logo from './../assets/images/home/Thymbol Logo.png';
 
 function UserLayout() {
     const { t } = useTranslation();
     const [activeIndex, setActiveIndex] = useState(0);
-    const [sidebar, setSidebar] = useState(null);
+    const [sidebar, setSidebar] = useState(false);
     const currentWidth = useCurrentWidth();
+
     const { width, breakpoints } = useWidth();
     const user = useSelector(selectCurrentUser);
-
+    const location = useLocation();
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setSidebar(currentWidth >= 1024 ? true : false);
-    }, [currentWidth]);
 
     useEffect(() => {
         const localAuth = localStorage?.getItem('auth');
@@ -48,7 +45,7 @@ function UserLayout() {
             }
         }
     }, [dispatch]);
-    //
+
     return (
         <>
             <div className="bg-blue-400 relative">
@@ -60,7 +57,7 @@ function UserLayout() {
                         }`}
                     />
                 </span>
-                <nav className="px-6 md:px-24 mx-auto flex justify-between items-center md:h-24 h-44">
+                <nav className="px-6 md:px-12 mx-auto flex items-center justify-between md:h-24 h-44">
                     <div className="flex-1 flex justify-center md:justify-start mx-auto md:mx-0">
                         <Link to="/home">
                             <div className="h-16 w-24 cursor-pointer">
@@ -68,74 +65,19 @@ function UserLayout() {
                             </div>
                         </Link>
                     </div>
-                    <div className="flex-1 flex justify-center">
-                        <div
-                            className={`flex absolute lg:relative left-0 flex-col lg:flex-row top-0 lg:bg-blue-400 bg-white z-[100] rounded-lg shadow-lg lg:shadow-none w-64 h-screen lg:h-min lg:w-max ${
-                                sidebar && '-translate-x-[0px]'
-                            }`}
-                        >
-                            <Icon
-                                className="absolute top-2 right-2 text-black-500 text-2xl cursor-pointer lg:hidden"
-                                icon={`heroicons:x-mark`}
-                                onClick={() => setSidebar(null)}
+                    <div className="flex-1 flex">
+                        <DesktopMenu
+                            activeIndex={activeIndex}
+                            setActiveIndex={setActiveIndex}
+                        />
+                        {currentWidth <= 1024 && (
+                            <MobileMenuUser
+                                sidebar={sidebar}
+                                setSidebar={setSidebar}
+                                activeIndex={activeIndex}
+                                setActiveIndex={setActiveIndex}
                             />
-                            <div className="h-24 w-24 bg-green-500 rounded-full my-4 mx-4 lg:hidden">
-                                <img
-                                    src={food}
-                                    className="h-full w-full object-cover"
-                                />
-                            </div>
-                            {navLink?.map((item, i) => (
-                                <Link
-                                    key={i}
-                                    to={item.link}
-                                    onClick={() => {
-                                        setActiveIndex(i);
-                                        setSidebar(null);
-                                    }}
-                                    className={`px-6 rounded-md lg:hover:text-black-500 hover:text-white hover:bg-black-500 lg:hover:bg-white py-2 m-1 ${
-                                        activeIndex === i
-                                            ? 'lg:bg-white text-white bg-black-500 lg:text-black-500'
-                                            : 'lg:text-white'
-                                    }`}
-                                >
-                                    <span className="flex items-center">
-                                        <Icon
-                                            icon={item.icon}
-                                            className="mx-2 text-xl lg:hidden"
-                                        />
-                                        {t(item.title)}
-                                    </span>
-                                </Link>
-                            ))}
-
-                            <Link
-                                to={'/'}
-                                className="px-6 hover:text-white hover:bg-black-500 rounded-md py-2 m-1 text-black-500 md:hidden block"
-                            >
-                                <span className="flex items-center">
-                                    <Icon
-                                        icon={'heroicons:user'}
-                                        className="mx-2 text-xl"
-                                    />
-                                    Profile
-                                </span>
-                            </Link>
-                            <Link
-                                to={'/'}
-                                className="px-6 hover:text-white hover:bg-black-500 rounded-md py-2 m-1 text-black-500 md:hidden block"
-                            >
-                                <span className="flex items-center">
-                                    <Icon
-                                        icon={
-                                            'heroicons:arrow-right-start-on-rectangle'
-                                        }
-                                        className="mx-2 text-xl"
-                                    />
-                                    Log Out
-                                </span>
-                            </Link>
-                        </div>
+                        )}
                     </div>
                     <div className="flex-1 flex justify-center md:justify-end">
                         <div className="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse">
@@ -194,7 +136,6 @@ function UserLayout() {
                         duration: 0.5,
                     }}
                 >
-                    {/* <Breadcrumbs /> */}
                     <Outlet />
                 </motion.div>
             </Suspense>
