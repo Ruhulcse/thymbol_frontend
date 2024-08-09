@@ -9,7 +9,7 @@ function Featured() {
                 <div className="font-bold md:text-2xl lg:text-3xl text-black-500 text-xl ">
                     {t('Featured Categories')}
                 </div>
-                <div>{t('See all')}</div>
+                {/* <div>{t('See all')}</div> */}
             </div>
             <FeaturedList />
         </div>

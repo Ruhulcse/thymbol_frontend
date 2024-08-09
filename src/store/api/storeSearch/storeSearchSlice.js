@@ -4,7 +4,9 @@ const initialState = {
     search_term: null,
     search_trigger: false,
     search_category: null,
-    page_count: 1
+    pagination_category: null,
+    page_count: 1,
+    isLoading: false
 };
 
 
@@ -24,9 +26,17 @@ const storeSearchSlice = createSlice({
         setPageCount: (state, action) => {
             state.page_count = action.payload;
         },
+
+        setPaginationCategory: (state, action) => {
+            state.pagination_category = action.payload;
+        },
+
+        setLoader: (state, action) => {
+            state.isLoading = action.payload;
+        }
     },
 
 });
 
-export const { setSearchTerm, setSearchTrigger, setSearchCategory, setPageCount } = storeSearchSlice.actions;
+export const { setSearchTerm, setSearchTrigger, setSearchCategory, setPageCount, setPaginationCategory, setLoader } = storeSearchSlice.actions;
 export default storeSearchSlice.reducer;

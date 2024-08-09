@@ -8,6 +8,7 @@ import { spotlight } from '@/data/BusinessSpotlight!';
 import { featured } from '@/data/featuredData';
 import { selectCurrentLatLng } from '@/store/api/GeoLocation/geoLocationSlice';
 import {
+    setLoader,
     setSearchCategory,
     setSearchTrigger,
 } from '@/store/api/storeSearch/storeSearchSlice';
@@ -21,15 +22,19 @@ function Home() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const dispatch = useDispatch();
-    const { search_term, search_trigger, search_category, page_count } = useSelector(
-        (state) => state.searchStore
-    );
+    const {
+        search_term,
+        search_trigger,
+        search_category,
+        page_count,
+        pagination_category,
+    } = useSelector((state) => state.searchStore);
 
     const getNearByStores = async () => {
         setLoading(true);
         const payload = {
             coordinates: [currentLocation.lat, currentLocation.lng],
-            page: page_count,
+            page: 1,
         };
         try {
             if (currentLocation.lat && currentLocation.lng) {
@@ -50,7 +55,7 @@ function Home() {
     const searchCategoryByStore = async () => {
         const payload = {
             coordinates: [currentLocation.lat, currentLocation.lng],
-            page: page_count,
+            page: 1,
             category: search_category,
         };
         try {
@@ -77,7 +82,7 @@ function Home() {
         setLoading(true);
         const payload = {
             coordinates: [currentLocation.lat, currentLocation.lng],
-            page: page_count,
+            page: 1,
         };
         try {
             if (search_trigger && search_term.length > 0) {
@@ -98,9 +103,41 @@ function Home() {
         }
     };
 
+    const viewMoreStore = async () => {
+        dispatch(setLoader(true));
+        const payload = {
+            coordinates: [currentLocation.lat, currentLocation.lng],
+            page: page_count,
+            category: pagination_category,
+        };
+        try {
+            if (pagination_category.length) {
+                setError('');
+                payload.category = pagination_category;
+
+                const { data } = await fetchWrapper.post(
+                    `/store/nearme`,
+                    payload
+                );
+
+                setStoreData(data);
+            }
+        } catch (error) {
+            setError(error.response.data.message);
+        } finally {
+            dispatch(setSearchCategory(false));
+            setLoading(false);
+            dispatch(setLoader(false));
+        }
+    };
+
     useEffect(() => {
         getNearByStores();
     }, [currentLocation]);
+
+    useEffect(() => {
+        viewMoreStore();
+    }, [page_count]);
 
     useEffect(() => {
         searchByType();
