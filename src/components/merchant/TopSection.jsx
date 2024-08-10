@@ -33,17 +33,13 @@ function TopSection() {
     };
 
     if (isError) {
-        console.log('🚀  ~ error:', error);
         swalError(error?.data?.message);
     }
 
     if (loadingStore) return <Loading />;
 
     const showInMapClicked = () => {
-        window.open(
-            'https://maps.google.com?q=' +
-                store?.address.street
-        );
+        window.open('https://maps.google.com?q=' + store?.address.street);
     };
 
     return (
