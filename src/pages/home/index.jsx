@@ -10,6 +10,7 @@ import { selectCurrentLatLng } from '@/store/api/GeoLocation/geoLocationSlice';
 import {
     setLoader,
     setSearchCategory,
+    setSearchTerm,
     setSearchTrigger,
 } from '@/store/api/storeSearch/storeSearchSlice';
 import fetchWrapper from '@/util/fetchWrapper';
@@ -99,6 +100,7 @@ function Home() {
             setError(error.response.data.message);
         } finally {
             dispatch(setSearchTrigger(false));
+            dispatch(setSearchTerm(''));
             setLoading(false);
         }
     };

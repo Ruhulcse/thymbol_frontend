@@ -95,7 +95,8 @@ function TopSection() {
                         <span className="inline-flex ">
                             <Icon
                                 icon="heroicons:map-pin"
-                                className="text-orange-500 mx-auto text-lg  mr-2"
+                                className="text-orange-500 mx-auto text-lg  mr-2 cursor-pointer"
+                                onClick={showInMapClicked}
                             />
                         </span>
                         Location{' '}

@@ -1,11 +1,9 @@
 import { cover, morocco, soudia, topBarImage, uae } from '@/assets/images/home';
-import {
-    setSearchTerm,
-    setSearchTrigger,
-} from '@/store/api/storeSearch/storeSearchSlice';
+import { setSearchTrigger } from '@/store/api/storeSearch/storeSearchSlice';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import PlacesAutocompleteSearch from '../placeAutoComplete/PlacesAutocompleteSearch';
 
 const data = [
     {
@@ -25,13 +23,16 @@ const data = [
 function Header() {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const { search_term } = useSelector((state) => state.searchStore);
 
-    const handleChange = (event) => {
-        dispatch(setSearchTerm(event.target.value));
-    };
+    // const handleChange = (event) => {
+    //     dispatch(setSearchTerm(event.target.value));
+    // };
 
-    const handleTriggerSearch = (event) => {
-        dispatch(setSearchTrigger(true));
+    const handleTriggerSearch = () => {
+        if (search_term.length) {
+            dispatch(setSearchTrigger(true));
+        }
     };
     return (
         <>
@@ -58,21 +59,22 @@ function Header() {
                             ))}
                         </span>
                         <div className="sm:mt-10 flex space-x-4 font-normal mt-[-81px] sm:justify-start justify-center ">
-                            <div className="flex relative w-[60%] ">
-                                <input
+                            <div className="flex  w-full ">
+                                <PlacesAutocompleteSearch />
+                                {/* <input
                                     type="text"
                                     placeholder={t('Search Location')}
                                     className="w-full sm:h-16 h-12 shadow-lg px-4 rounded-lg z-[50]  focus:outline-none"
-                                    onChange={handleChange}
-                                />
-                                <div className="absolute  top-[50%] -translate-y-[50%] right-0 font-bold pr-2 text-xl text-blue-500 z-[60]">
+                                    // onChange={handleChange}
+                                /> */}
+                                {/* <div className="absolute  top-[50%] -translate-y-[50%] right-0 font-bold pr-2 text-xl text-blue-500 z-[60]">
                                     <Icon
                                         className=""
                                         icon={
                                             'heroicons:adjustments-horizontal'
                                         }
                                     />
-                                </div>
+                                </div> */}
                             </div>
                             <div
                                 className="bg-white shadow-lg h-12 w-12 sm:h-16 sm:w-16 flex items-center justify-center text-2xl text-blue-500 rounded-lg z-[60] cursor-pointer"

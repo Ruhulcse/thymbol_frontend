@@ -6,11 +6,16 @@ function SalonsCard({ item }) {
         <div className="bg-white rounded-lg shadow-md p-4 md:p-6 w-full h-auto">
             <div className="flex justify-center mb-4">
                 <div className="h-20 w-20 md:h-32 md:w-32 rounded-full overflow-hidden">
-                    <img
-                        src={item?.logo?.filePath || 'https://cdn-icons-png.flaticon.com/512/2474/2474161.png'}
-                        alt={`${item?.store_name} logo`}
-                        className="h-full w-full object-cover rounded-full"
-                    />
+                    <Link to={`/store/${item._id}`}>
+                        <img
+                            src={
+                                item?.logo?.filePath ||
+                                'https://cdn-icons-png.flaticon.com/512/2474/2474161.png'
+                            }
+                            alt={`${item?.store_name} logo`}
+                            className="h-full w-full object-cover rounded-full"
+                        />
+                    </Link>
                 </div>
             </div>
             <div className="text-center">
