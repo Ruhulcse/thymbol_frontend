@@ -174,6 +174,10 @@ function TopSection() {
                         <div
                             className="h-8 w-11 bg-blue-600 rounded-2xl flex justify-center items-center font-bold"
                             key={i}
+                            onClick={
+                                item.icon === 'heroicons:map-pin' &&
+                                showInMapClicked
+                            }
                         >
                             <Icon className="text-white " icon={item.icon} />
                         </div>
