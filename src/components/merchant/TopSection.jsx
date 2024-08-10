@@ -42,9 +42,7 @@ function TopSection() {
     const showInMapClicked = () => {
         window.open(
             'https://maps.google.com?q=' +
-                store?.location.coordinates[1] +
-                ',' +
-                store?.location.coordinates[0]
+                store?.address.street
         );
     };
 
