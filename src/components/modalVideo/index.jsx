@@ -1,5 +1,4 @@
 import crown from '@/assets/images/icon/crown.svg';
-import img from '@/assets/images/merchant/thumbnail_video.png';
 import Button from '@/components/button/Button';
 import RecordVideo from '@/components/ui/RecordVideo';
 import useCurrentWidth from '@/hooks/useCurrentWidth';
@@ -68,11 +67,15 @@ function ModalsVideo() {
                             className="flex items-center  gap-3 justify-center "
                         >
                             <div className="relative h-full max-w-32 sm:h-full sm:max-w-48 md:h-full md:max-w-96 lg:h-[536px] lg:w-[446px] mx-2">
-                                <img
-                                    src={img}
-                                    alt=""
-                                    className="h-full w-full"
-                                />
+                                <div className="h-full w-full flex items-center justify-center">
+                                    <video
+                                        width="100%"
+                                        height="100%"
+                                        
+                                    >
+                                        <source src={item.videoUrl} />
+                                    </video>
+                                </div>
                                 <div
                                     className="absolute z-50 inset-0 flex items-center justify-center cursor-pointer"
                                     onClick={() => openModal(item.videoUrl)}
