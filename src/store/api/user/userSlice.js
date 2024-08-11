@@ -42,4 +42,3 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const selectSubscriptionType = (state) => state.user.user.SubscriptionType;

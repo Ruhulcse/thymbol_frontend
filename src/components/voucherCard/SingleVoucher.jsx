@@ -1,4 +1,4 @@
-import { selectSubscriptionType } from '@/store/api/user/userSlice';
+import { selectSubscriptionType } from '@/store/api/auth/authSlice';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';

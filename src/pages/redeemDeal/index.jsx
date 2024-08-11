@@ -51,10 +51,14 @@ function RedeemDeal() {
                 clipped_vouchers: [voucherId],
             };
 
-            await createClippedVoucher({ data: payload }).unwrap();
+            if (userId) {
+                await createClippedVoucher({ data: payload }).unwrap();
 
-            navigate('/clipped-deals');
-            toast.success('Voucher added to your Clipped Deals');
+                navigate('/clipped-deals');
+                toast.success('Voucher added to your Clipped Deals');
+            } else {
+                navigate('/login');
+            }
         } catch (error) {
             swalError(error?.data?.message || 'Something went wrong');
         }

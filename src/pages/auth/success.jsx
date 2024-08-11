@@ -17,6 +17,7 @@ const AuthSuccess = () => {
                     token: user?.token,
                     user_id: user?._id,
                     userType: user?.userType,
+                    SubscriptionType: auth.SubscriptionType
                 })
             );
             dispatch(getUser({ user_id: user?._id }));

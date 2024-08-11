@@ -51,6 +51,7 @@ const LoginForm = () => {
                     token: response.data.data?.token,
                     user_id: response.data.data?._id,
                     userType: response.data.data?.userType,
+                    SubscriptionType: response.data.data?.SubscriptionType
                 })
             );
             dispatch(getUser({ user_id: response.data.data?._id }));
@@ -60,6 +61,7 @@ const LoginForm = () => {
                     accessToken: response.data.data?.token,
                     user_id: response.data.data?._id,
                     userType: response.data.data?.userType,
+                    SubscriptionType: response.data.data?.SubscriptionType
                 })
             );
             // if(response.data.data?.userType === 'consumer') {

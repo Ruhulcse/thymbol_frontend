@@ -10,6 +10,7 @@ export const authSlice = createSlice({
         isLoggedIn: storedUser?.accessToken ? true : false,
         user_id: storedUser?.user_id ? storedUser?.user_id : null,
         userType: storedUser?.userType ? storedUser?.userType : null,
+        SubscriptionType: storedUser?.SubscriptionType ? storedUser?.SubscriptionType : null,
     },
     reducers: {
         setUser: (state, action) => {
@@ -17,12 +18,14 @@ export const authSlice = createSlice({
             state.isLoggedIn = true;
             state.user_id = action.payload.user_id;
             state.userType = action.payload.userType;
+            state.SubscriptionType = action.payload.SubscriptionType;
         },
         logOut: (state, action) => {
             state.token = null;
             state.isLoggedIn = false;
             state.user_id = null;
             state.userType = null;
+            state.SubscriptionType = null;
             localStorage.removeItem('auth');
         },
     },
@@ -34,3 +37,4 @@ export default authSlice.reducer;
 export const selectCurrentUser = (state) => state.auth.user_id;
 export const selectCurrentToken = (state) => state.auth.token;
 export const selectCurrentUserRole = (state) => state.auth.userType;
+export const selectSubscriptionType = (state) => state.auth.SubscriptionType;

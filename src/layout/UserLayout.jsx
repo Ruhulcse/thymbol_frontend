@@ -39,6 +39,7 @@ function UserLayout() {
                         user_id: auth.user_id,
                         isLoggedIn: true,
                         userType: auth.userType,
+                        SubscriptionType: auth.SubscriptionType
                     })
                 );
                 dispatch(getUser({ user_id: auth.user_id }));
