@@ -54,41 +54,43 @@ function ModalsVideo() {
     return (
         <div className="flex w-full h-full mt-24 py-10 flex-col md:flex-row items-center">
             <div className="relative md:w-[50%] w-full gap-5 flex">
-                <Swiper
-                    spaceBetween={space}
-                    slidesPerView={slider}
-                    navigation={true}
-                    loop={true}
-                    modules={[Navigation]}
-                >
-                    {videos?.map((item, index) => (
-                        <SwiperSlide
-                            key={index}
-                            className="flex items-center  gap-3 justify-center "
-                        >
-                            <div className="relative h-full max-w-32 sm:h-full sm:max-w-48 md:h-full md:max-w-96 lg:h-[536px] lg:w-[446px] mx-2">
-                                <div className="h-full w-full flex items-center justify-center">
-                                    <video
-                                        width="100%"
-                                        height="100%"
-                                        
+                {videos?.length ? (
+                    <Swiper
+                        spaceBetween={space}
+                        slidesPerView={slider}
+                        navigation={true}
+                        loop={true}
+                        modules={[Navigation]}
+                    >
+                        {videos?.map((item, index) => (
+                            <SwiperSlide
+                                key={index}
+                                className="flex items-center  gap-3 justify-center "
+                            >
+                                <div className="relative h-full max-w-32 sm:h-full sm:max-w-48 md:h-full md:max-w-96 lg:h-[536px] lg:w-[446px] mx-2">
+                                    <div className="h-full w-full flex items-center justify-center">
+                                        <video width="100%" height="100%">
+                                            <source src={item.videoUrl} />
+                                        </video>
+                                    </div>
+                                    <div
+                                        className="absolute z-50 inset-0 flex items-center justify-center cursor-pointer"
+                                        onClick={() => openModal(item.videoUrl)}
                                     >
-                                        <source src={item.videoUrl} />
-                                    </video>
+                                        <Icon
+                                            className="text-white text-5xl"
+                                            icon="heroicons:play-circle"
+                                        />
+                                    </div>
                                 </div>
-                                <div
-                                    className="absolute z-50 inset-0 flex items-center justify-center cursor-pointer"
-                                    onClick={() => openModal(item.videoUrl)}
-                                >
-                                    <Icon
-                                        className="text-white text-5xl"
-                                        icon="heroicons:play-circle"
-                                    />
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                ) : (
+                    <div className="h-full w-full flex items-center justify-center">
+                        No reviews yet
+                    </div>
+                )}
                 {/* <ModalVideo
                     channel="custom"
                     custom={{ mute: 1, autoplay: 1 }}
@@ -138,7 +140,7 @@ function ModalsVideo() {
                             <div>
                                 <Button
                                     icon="video-camera"
-                                    className="text-[14px] bg-customBlue mx-4 p-3 max-w-[250px] "
+                                    className="text-[14px] bg-customBlue p-3 max-w-[250px] "
                                     onClick={() => setShowVideoCapture(true)}
                                 >
                                     Add Video Review

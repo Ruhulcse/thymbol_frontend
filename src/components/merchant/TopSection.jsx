@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import BusinessHoursClient from './BusinessHoursClient';
+
 function TopSection() {
     const { id: store_id } = useParams();
     const { data: store, isLoading: loadingStore } = useGetStoreQuery(store_id);
@@ -43,9 +44,9 @@ function TopSection() {
     };
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-3 items-center md:h-96 h-40 w-full justify-center relative">
+        <div className="grid grid-cols-1 sm:grid-cols-3 items-center w-full justify-center relative gap-4 md:gap-8 md:h-96 h-auto px-4 sm:px-8 py-10">
             {/* Centered image */}
-            <div className="lg:h-60 lg:w-60 h-28 w-28 rounded-full mx-auto flex items-center justify-center overflow-hidden absolute sm:relative sm:top-0 sm:translate-x-0 sm:transform-none top-0 left-1/2 transform -translate-x-1/2 -translate-y-[100%] sm:left-0 md:h-44 md:w-44 sm:justify-end">
+            <div className="lg:h-60 lg:w-60 h-28 w-28 rounded-full mx-auto flex items-center justify-center overflow-hidden relative sm:relative sm:top-0 sm:translate-x-0 sm:transform-none sm:left-0 md:h-44 md:w-44 sm:justify-end">
                 <img
                     src={
                         store?.logo?.filePath ||
@@ -55,41 +56,41 @@ function TopSection() {
                     className="h-full w-full p-2 object-cover border-2 border-customBlue rounded-full"
                 />
             </div>
-            <div className="col-span-2 sm:text-start space-y-5">
+            <div className="col-span-2 space-y-5 text-center sm:text-start">
+                <div className="font-bold sm:hidden text-lg">
+                    {store?.store_name?.toUpperCase() || 'N/A'}
+                </div>
                 <div className="font-bold hidden sm:block md:text-2xl">
                     {store?.store_name?.toUpperCase() || 'N/A'}
                 </div>
-                {/* <div className="text-sm text-center sm:text-start md:text-lg">
-                    {' '}
-                    Lorem Ipsum is simply dummy text
-                </div> */}
-                <div className="text-center sm:text-start sm:justify-start flex justify-center gap-10 text-xs md:text-[14px]">
-                    <div className=" flex items-center gap-3">
-                        Make Us Your Favorite{' '}
+                <div className="text-center sm:text-start flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-4 sm:gap-10 text-xs md:text-[14px]">
+                    <div className="flex items-center gap-2">
+                        <span>Make Us Your Favorite</span>
                         <span
                             className="inline-flex cursor-pointer"
                             onClick={handleAddToFavoriteStore}
                         >
                             <Icon
                                 icon="heroicons:heart"
-                                className="text-blue-600 mx-auto text-base"
+                                className="text-blue-600 text-base"
                             />
                         </span>
                     </div>
-                    <div className="">
-                        Favorited by{' '}
+                    <div className="flex items-center gap-2">
+                        <span>Favorited by</span>
                         <span className="text-blue-400 font-bold">
-                            {store?.favouriteStoreCount}{' '}
+                            {store?.favouriteStoreCount}
                         </span>
-                        Users{' '}
+                        <span>Users</span>
                     </div>
                 </div>
-                <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
+
+                <div className="hidden sm:flex gap-4 text-xs md:text-[14px]">
                     <div className="flex items-center">
                         <span className="inline-flex ">
                             <Icon
                                 icon="heroicons:map-pin"
-                                className="text-orange-500 mx-auto text-lg  mr-2 cursor-pointer"
+                                className="text-orange-500 mx-auto text-lg mr-2 cursor-pointer"
                                 onClick={showInMapClicked}
                             />
                         </span>
@@ -111,12 +112,12 @@ function TopSection() {
                         <span className="ms-2">{'N/A'}</span>
                     </div>
                 </div>
-                <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
+                <div className="hidden sm:flex gap-4 text-xs md:text-[14px]">
                     <div className="flex items-center">
                         <span className="inline-flex ">
                             <Icon
                                 icon="heroicons:globe-asia-australia"
-                                className="text-blue-400 mx-auto text-lg  mr-2"
+                                className="text-blue-400 mx-auto text-lg mr-2"
                             />
                         </span>
                         {store?.website_link ? (
@@ -151,7 +152,7 @@ function TopSection() {
                         )}
                     </div>
                 </div>
-                <div className="sm:flex hidden gap-4 text-xs md:text-[14px]">
+                <div className="hidden sm:flex gap-4 text-xs md:text-[14px]">
                     <div className="flex items-center">
                         <span className="inline-flex ">
                             <Icon

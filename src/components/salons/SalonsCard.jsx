@@ -20,7 +20,7 @@ function SalonsCard({ item }) {
             </div>
             <div className="text-center">
                 <Link to={`/store/${item._id}`}>
-                    <div className="font-bold text-[12px] md:text-base text-left">
+                    <div className="font-bold text-[12px] md:text-base text-left capitalize">
                         {item?.store_name}
                     </div>
                 </Link>

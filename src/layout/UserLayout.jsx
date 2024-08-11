@@ -57,7 +57,7 @@ function UserLayout() {
                         }`}
                     />
                 </span>
-                <nav className="px-6 md:px-12 mx-auto flex items-center justify-between md:h-24 h-44">
+                <nav className="px-6 md:px-12 mx-auto flex items-center justify-between md:h-24 ">
                     <div className="flex-1 flex justify-center md:justify-start mx-auto md:mx-0">
                         <Link to="/home">
                             <div className="h-16 w-24 cursor-pointer">
