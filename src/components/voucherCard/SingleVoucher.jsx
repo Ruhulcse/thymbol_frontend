@@ -1,10 +1,16 @@
-import { swalError } from '@/util/helpers';
+import { selectSubscriptionType } from '@/store/api/user/userSlice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import UpgradeModal from '../upgradeModal';
 import logo from './../../assets/images/home/Group 1000005441.png';
 function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
+    const [activeModal, setActiveModal] = useState(false);
     const redeemValidation = () => {
-        swalError('Please upgrade your package!');
+        setActiveModal(true);
     };
+    const subscriptionType = useSelector(selectSubscriptionType);
+
     return (
         <div className="lg:h-44 lg:w-[490px] h-[110px] w-[220px] bg-white shadow-lg sm:w-[270px] sm:h-[120px] md:h-[150px] md:w-[330px]">
             <div className="w-full h-full relative">
@@ -15,7 +21,8 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
                 <div className="flex flex-1 items-center px-4 h-full">
                     <div className=" p-4 border-r-4 w-full border border-t-0 border-l-0 border-b-0 border-dotted mr-4">
                         <div className="font-bold text-xs lg:text-sm cursor-pointer">
-                            {canRedeem > 25 ? (
+                            {canRedeem > 25 &&
+                            subscriptionType?.toLowerCase() === 'free' ? (
                                 <div onClick={redeemValidation}>
                                     {item?.storeName}
                                 </div>
@@ -37,7 +44,8 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
                                 )}
                             </div>
                             <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center  rounded-full lg:h-10 lg:w-10">
-                                {canRedeem > 25 ? (
+                                {canRedeem > 25 &&
+                                subscriptionType?.toLowerCase() === 'free' ? (
                                     <img
                                         src={logo}
                                         className="h-full w-full rounded-full cursor-pointer"
@@ -81,6 +89,10 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
                     </div>
                 </div>
             </div>
+            <UpgradeModal
+                activeModal={activeModal}
+                setActiveModal={setActiveModal}
+            />
         </div>
     );
 }

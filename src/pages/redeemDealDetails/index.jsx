@@ -16,7 +16,6 @@ function RedeemDealDetails() {
 
     const { data: voucherData, isLoading: loadingVoucher } =
         useGetVoucherQuery(voucherId);
-    console.log('🚀  ~ voucherData:', voucherData);
 
     if (loadingVoucher) return <Loading />;
 
@@ -53,9 +52,9 @@ function RedeemDealDetails() {
                                     canRedeem={voucherData.discount}
                                 />
                                 <div className="flex justify-between py-10 md:text-sm text-xs  font-semibold">
-                                    <div className="bg-white px-3  w-44 py-2">
+                                    {/* <div className="bg-white px-3  w-44 py-2">
                                         Redeem Date: {'N/A'}
-                                    </div>
+                                    </div> */}
                                     <div className="bg-white px-3  w-44 py-2">
                                         Valid Till:{' '}
                                         {humanDate(voucherData?.endDate)}
@@ -112,7 +111,9 @@ function RedeemDealDetails() {
                         </div> */}
                         {showVideoCapture ? (
                             <div className="xl:w-[520px]  bg-white xl:h-364px  min-w-[300px] min-h-[250px]  flex flex-col text-center justify-center items-center space-y-4">
-                                <RecordVideo setShowVideoCapture={setShowVideoCapture}/>
+                                <RecordVideo
+                                    setShowVideoCapture={setShowVideoCapture}
+                                />
                             </div>
                         ) : (
                             <div className="xl:w-[520px]  bg-white xl:h-364px  min-w-[300px] min-h-[250px]  flex flex-col text-center justify-center items-center space-y-4">
