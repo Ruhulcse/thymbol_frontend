@@ -41,9 +41,7 @@ const VerificationVideo = lazy(() => import('./components/verificationVideo'));
 const VideoReviewPage = lazy(() => import('./pages/videoReview'));
 const LoginConsumer = lazy(() => import('./pages/auth/login-consumer'));
 const ConsumerPaymentPage = lazy(() => import('./pages/consumer-payment'));
-const NotificationPage = lazy(() =>
-    import('./pages/notification')
-);
+const NotificationPage = lazy(() => import('./pages/notification'));
 const ConsumerSubscriptionPage = lazy(() =>
     import('./pages/consumerSubscription')
 );
@@ -82,7 +80,7 @@ function App() {
                         user_id: auth.user_id,
                         isLoggedIn: true,
                         userType: auth.userType,
-                        SubscriptionType: auth.SubscriptionType
+                        SubscriptionType: auth.SubscriptionType,
                     })
                 );
                 dispatch(getUser({ user_id: auth.user_id }));
@@ -97,7 +95,6 @@ function App() {
             dispatch(handleRtl(false));
         }
         i18n.changeLanguage(savedLanguage);
-        console.log('🚀  ~ savedLanguage:', savedLanguage);
     }, [savedLanguage, dispatch]);
 
     return (
