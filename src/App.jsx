@@ -157,7 +157,7 @@ function App() {
                             element={<ConsumerSubscriptionPage />}
                         />
                         <Route
-                            path="/consumer-payment"
+                            path="/consumer-payment/:type"
                             element={<ConsumerPaymentPage />}
                         />
                         <Route

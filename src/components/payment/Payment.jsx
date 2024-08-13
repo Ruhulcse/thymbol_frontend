@@ -6,7 +6,7 @@ import Loading from '../Loading';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
 
-const Payment = () => {
+const Payment = ({price_id}) => {
     const { email } = useSelector((state) => state.user.user);
     const [loading, setLoading] = useState(false);
     const buttons = [
@@ -40,7 +40,7 @@ const Payment = () => {
                 headers: { 'Content-Type': 'Application/JSON' },
                 body: JSON.stringify({
                     email,
-                    priceId: 'price_1PMxvnJggWefJ04AdCGPfWQe',
+                    priceId: price_id,
                 }),
             }
         );

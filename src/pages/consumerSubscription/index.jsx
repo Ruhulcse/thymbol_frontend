@@ -18,7 +18,7 @@ const ConsumerSubscriptionPage = () => {
                 paymentMethod="$2"
                 // paymentAmount={'$33/month'}
                 // saveCost={'SAVE 33%'}
-                onClick={() => navigate('/consumer-payment')}
+                onClick={() => navigate('/consumer-payment/monthly')}
             >
                 {premiumMonthlyPricingConsumer.map((item, i) => (
                     <div
@@ -41,7 +41,7 @@ const ConsumerSubscriptionPage = () => {
                 paymentMethod="$18"
                 // paymentAmount={'$33/month'}
                 // saveCost={'SAVE 33%'}
-                onClick={() => navigate('/consumer-payment')}
+                onClick={() => navigate('/consumer-payment/annual')}
             >
                 {premiumAnnualPricingConsumer.map((item, i) => (
                     <div
