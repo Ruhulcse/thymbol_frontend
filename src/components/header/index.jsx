@@ -24,10 +24,11 @@ function Header() {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const { search_term } = useSelector((state) => state.searchStore);
+    const translatedText = t('Thymbol Your World of Deals!');
 
-    // const handleChange = (event) => {
-    //     dispatch(setSearchTerm(event.target.value));
-    // };
+    const index = translatedText.indexOf(' ');
+    const highlighted = translatedText.slice(0, index);
+    const rest = translatedText.slice(index + 1);
 
     const handleTriggerSearch = () => {
         if (search_term.length) {
@@ -40,8 +41,10 @@ function Header() {
                 <div className="  md:flex justify-between ">
                     <div className="max-w-lg sm:h-80 font-bold ">
                         <div className=" text-2xl hidden sm:block mb-2">
-                            <span className="text-customBlue">Thymbol </span>{' '}
-                            <span>Your World of Deals!</span>
+                            <span className="text-customBlue">
+                                {highlighted}
+                            </span>{' '}
+                            {rest}
                         </div>
                         {/* <p className="hidden sm:block py-4">
                             
