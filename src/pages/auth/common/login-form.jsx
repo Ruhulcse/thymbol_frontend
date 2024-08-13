@@ -88,9 +88,7 @@ const LoginForm = () => {
           setValue("email", e.target.value);
         }}
       />
-      <div className="flex justify-center items-center px-5">
-        <h3 className="text-xl text-center border-b-2 border-sky-800">Or</h3>
-      </div>
+
       {/* <Textinput
         name="phone"
         label={t("phone")}
