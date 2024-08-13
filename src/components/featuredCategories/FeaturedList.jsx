@@ -19,7 +19,7 @@ const FeaturedList = () => {
     );
   } else if (isLoading) <Loading />;
   return (
-    <div className="grid grid-cols-3  lg:grid-cols-5  gap-4 mt-12  ">
+    <div className="grid grid-cols-3  lg:grid-cols-5  gap-6 mt-12  ">
       {categoryData?.data?.map((item) => (
         <SingleFeatured item={item} key={item.value} />
       ))}
