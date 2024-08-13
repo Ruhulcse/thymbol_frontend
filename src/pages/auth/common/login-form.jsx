@@ -11,12 +11,28 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+
+const phoneRegExp = /^(\+?\d{1,4}?[\s.-]?)?(\(?\d{1,3}?\)?[\s.-]?)?[\d\s.-]{7,}$/;
+
 const schema = yup
   .object({
     email: yup
       .string()
-      .email("Invalid email")
-      .required(`${t("Email")} is Required`),
+      .test(
+        "email-or-phone",
+        (value) => {
+          if (!value) {
+            return `${t("Email or Phone number")} is Required`;
+          }
+          return `${t("Invalid email or phone number")}`;
+        },
+        (value) => {
+          const isEmail = yup.string().email().isValidSync(value);
+          const isPhone = yup.string().matches(phoneRegExp).isValidSync(value);
+          return isEmail || isPhone;
+        }
+      )
+      .required(`${t("Email or Phone number")} is Required`),
     password: yup.string().required(`${t("Password")} is Required`),
   })
   .required();
@@ -78,12 +94,12 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
       <Textinput
         name="email"
-        label={t("Email")}
+        label='Email or Phone number'
         type="text"
         register={register}
         error={errors.email}
         className="h-[48px]"
-        placeholder={t("Email")}
+        placeholder='Email or Phone number'
         onChange={(e) => {
           setValue("email", e.target.value);
         }}
