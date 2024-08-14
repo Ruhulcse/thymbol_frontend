@@ -1,14 +1,25 @@
 import cashPlus from '@/assets/images/payment/cash_plus.svg';
 import { loadStripe } from '@stripe/stripe-js';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import Loading from '../Loading';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
 
-const Payment = ({price_id}) => {
+const Payment = ({ price_id }) => {
     const { email } = useSelector((state) => state.user.user);
     const [loading, setLoading] = useState(false);
+    const payment_key = useMemo(() => uuidv4(), []);
+
+    localStorage.setItem(
+        'payment_process',
+        JSON.stringify({
+            payment_key,
+            price_id,
+        })
+    );
+
     const buttons = [
         {
             text: 'Credit/Debit Card',
@@ -41,6 +52,7 @@ const Payment = ({price_id}) => {
                 body: JSON.stringify({
                     email,
                     priceId: price_id,
+                    key: payment_key,
                 }),
             }
         );
