@@ -124,6 +124,7 @@ function App() {
                         path="/redeem-deal-details/:id"
                         element={<RedeemDealDetails />}
                     />
+                    <Route path="success" element={<SuccessPage />} />
 
                     <Route
                         element={
