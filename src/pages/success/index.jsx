@@ -1,27 +1,30 @@
 import Loading from '@/components/Loading';
-import { selectCurrentUserRole } from '@/store/api/auth/authSlice';
+import {
+    selectCurrentUser,
+    selectCurrentUserRole,
+} from '@/store/api/auth/authSlice';
+import { getUser } from '@/store/api/user/userSlice';
 import fetchWrapper from '@/util/fetchWrapper';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 const SuccessPage = () => {
     const [loading, setLoading] = useState(false);
+    const user_id = useSelector(selectCurrentUser);
     const { email } = useSelector((state) => state.user.user);
+    console.log('🚀  ~ email:', email);
     const [searchParams] = useSearchParams();
     const payment_key = searchParams.get('key');
+    const dispatch = useDispatch();
 
     const savedPaymentProcessInfo = localStorage.getItem('payment_process');
     const parsedSavedPaymentProcessInfo = JSON.parse(savedPaymentProcessInfo);
     const user_type = useSelector(selectCurrentUserRole);
 
-    const updatePaymentStatus = async () => {
+    const updatePaymentStatus = async (payload) => {
         setLoading(true);
-        const payload = {
-            email,
-            price_id: parsedSavedPaymentProcessInfo.price_id,
-            type: 'premium',
-        };
+
         try {
             const response = await fetchWrapper.post(
                 'payment_success',
@@ -29,6 +32,7 @@ const SuccessPage = () => {
             );
             if (response.status === 200) {
                 localStorage.removeItem('payment_process');
+                dispatch(getUser({ user_id }));
             }
         } catch (error) {
         } finally {
@@ -37,10 +41,19 @@ const SuccessPage = () => {
     };
 
     useEffect(() => {
-        if (parsedSavedPaymentProcessInfo.payment_key === payment_key) {
-            updatePaymentStatus();
+        const payload = {
+            email,
+            type: 'premium',
+        };
+        if (payment_key) {
+            if (parsedSavedPaymentProcessInfo?.payment_key === payment_key) {
+                payload.price_id = parsedSavedPaymentProcessInfo.price_id;
+                updatePaymentStatus(payload);
+            }
+        } else if (email) {
+            updatePaymentStatus(payload);
         }
-    }, [payment_key]);
+    }, [payment_key, email]);
 
     if (loading) {
         return (
