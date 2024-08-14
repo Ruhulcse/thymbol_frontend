@@ -58,7 +58,7 @@ import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
 import { getUser } from './store/api/user/userSlice';
 import { handleRtl } from './store/layout';
 
-//import Home from '@/pages/home/Home';
+// just a testing import Home from '@/pages/home/Home';
 
 function App() {
     const { i18n } = useTranslation();
