@@ -11,12 +11,12 @@ const SingleFeatured = ({ item }) => {
     };
 
     return (
-        <div className=" bg-white md:w-[209px] md:h-[224px] w-24 h-32 flex flex-col items-center justify-center rounded-xl md:rounded-none hover:shadow-lg transition-shadow delay-100">
+        <div className=" md:bg-white md:w-[209px] md:h-[224px] w-24 h-32 flex flex-col items-center justify-center rounded-xl md:rounded-none hover:shadow-lg transition-shadow delay-100">
             <div className="flex items-center  justify-center flex-col p-2 ">
                 <img
                     src={item.image}
                     alt=""
-                    className="rounded-full max-w-[120px] min-w-[120px] w-full max-h-[120px] min-h-[120px] h-full object-cover object-bottom cursor-pointer"
+                    className="rounded-full max-w-[90px] min-w-[90px] w-full max-h-[90px] min-h-[90px] h-full object-cover object-bottom cursor-pointer md:max-w-[120px] md:min-w-[120px]  md:max-h-[120px] md:min-h-[120px]"
                     onClick={handleSelectCategory}
                 />
             </div>

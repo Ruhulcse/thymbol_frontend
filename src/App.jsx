@@ -41,9 +41,7 @@ const VerificationVideo = lazy(() => import('./components/verificationVideo'));
 const VideoReviewPage = lazy(() => import('./pages/videoReview'));
 const LoginConsumer = lazy(() => import('./pages/auth/login-consumer'));
 const ConsumerPaymentPage = lazy(() => import('./pages/consumer-payment'));
-const NotificationPage = lazy(() =>
-    import('./pages/notification')
-);
+const NotificationPage = lazy(() => import('./pages/notification'));
 const ConsumerSubscriptionPage = lazy(() =>
     import('./pages/consumerSubscription')
 );
@@ -60,7 +58,7 @@ import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
 import { getUser } from './store/api/user/userSlice';
 import { handleRtl } from './store/layout';
 
-//import Home from '@/pages/home/Home';
+// just a testing import Home from '@/pages/home/Home';
 
 function App() {
     const { i18n } = useTranslation();
@@ -82,7 +80,7 @@ function App() {
                         user_id: auth.user_id,
                         isLoggedIn: true,
                         userType: auth.userType,
-                        SubscriptionType: auth.SubscriptionType
+                        SubscriptionType: auth.SubscriptionType,
                     })
                 );
                 dispatch(getUser({ user_id: auth.user_id }));
@@ -97,7 +95,6 @@ function App() {
             dispatch(handleRtl(false));
         }
         i18n.changeLanguage(savedLanguage);
-        console.log('🚀  ~ savedLanguage:', savedLanguage);
     }, [savedLanguage, dispatch]);
 
     return (
@@ -127,6 +124,7 @@ function App() {
                         path="/redeem-deal-details/:id"
                         element={<RedeemDealDetails />}
                     />
+                    <Route path="success" element={<SuccessPage />} />
 
                     <Route
                         element={
@@ -157,7 +155,7 @@ function App() {
                             element={<ConsumerSubscriptionPage />}
                         />
                         <Route
-                            path="/consumer-payment"
+                            path="/consumer-payment/:type"
                             element={<ConsumerPaymentPage />}
                         />
                         <Route
