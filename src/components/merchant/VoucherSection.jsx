@@ -1,13 +1,13 @@
-import Title from '@/components/title';
-import VoucherList from '@/components/voucherCard/VoucherList';
+import Title from "@/components/title";
+import VoucherList from "@/components/voucherCard/VoucherList";
 
 function VoucherSection() {
-    return (
-        <div>
-            <Title>Our Latest Coupons</Title>
-            <VoucherList />
-        </div>
-    );
+  return (
+    <div>
+      <Title></Title>
+      <VoucherList />
+    </div>
+  );
 }
 
 export default VoucherSection;
