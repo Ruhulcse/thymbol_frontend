@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { t } from "i18next";
 import { Link } from "react-router-dom";
 
 function SalonsCard({ item }) {
@@ -31,12 +31,12 @@ function SalonsCard({ item }) {
           {item?.Discount}% off
         </div>
         <Link to={`/store/${item._id}`}>
-          <div className="h-6 w-6 md:h-8 md:w-8 bg-customOrange rounded-full flex items-center justify-center">
-            <Icon
-              icon="heroicons:arrow-right"
-              className="text-white font-bold"
-            />
-          </div>
+          <button
+            type="button"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ml-6"
+          >
+            {t("Redeem")}
+          </button>
         </Link>
       </div>
     </div>
