@@ -2,6 +2,7 @@ import Loading from '@/components/Loading';
 import {
     selectCurrentUser,
     selectCurrentUserRole,
+    setUser,
 } from '@/store/api/auth/authSlice';
 import { getUser } from '@/store/api/user/userSlice';
 import fetchWrapper from '@/util/fetchWrapper';
@@ -33,6 +34,12 @@ const SuccessPage = () => {
             if (response.status === 200) {
                 localStorage.removeItem('payment_process');
                 dispatch(getUser({ user_id }));
+                dispatch(setUser({ SubscriptionType: 'premium' }));
+                const authData = {
+                    ...JSON.parse(localStorage.getItem('auth')),
+                    SubscriptionType: 'premium',
+                };
+                localStorage.setItem('auth', JSON.stringify(authData));
             }
         } catch (error) {
         } finally {
