@@ -134,9 +134,9 @@ export const infoIcon = [
     {
         icon: 'heroicons:map-pin'
     },
-    {
-        icon: 'heroicons:phone'
-    },
+    // {
+    //     icon: 'heroicons:phone'
+    // },
     {
         icon: 'heroicons:share'
     },

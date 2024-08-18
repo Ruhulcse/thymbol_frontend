@@ -1,5 +1,5 @@
-import react from "@vitejs/plugin-react";
 import rollupReplace from "@rollup/plugin-replace";
+import react from "@vitejs/plugin-react";
 // import reactRefresh from "@vitejs/plugin-react-refresh";
 import path from "path";
 import { defineConfig, splitVendorChunkPlugin } from "vite";

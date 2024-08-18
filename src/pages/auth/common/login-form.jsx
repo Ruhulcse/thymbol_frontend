@@ -12,7 +12,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-const phoneRegExp = /^(\+?\d{1,4}?[\s.-]?)?(\(?\d{1,3}?\)?[\s.-]?)?[\d\s.-]{7,}$/;
+const phoneRegExp =
+  /^(\+?\d{1,4}?[\s.-]?)?(\(?\d{1,3}?\)?[\s.-]?)?[\d\s.-]{7,}$/;
 
 const schema = yup
   .object({
@@ -94,12 +95,12 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
       <Textinput
         name="email"
-        label='Email or Phone number'
+        label={t("Email or Phone number")}
         type="text"
         register={register}
         error={errors.email}
         className="h-[48px]"
-        placeholder='Email or Phone number'
+        placeholder={t("Email or Phone number")}
         onChange={(e) => {
           setValue("email", e.target.value);
         }}
