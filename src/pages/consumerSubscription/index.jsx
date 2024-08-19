@@ -16,7 +16,7 @@ const ConsumerSubscriptionPage = () => {
         title={t("Monthly Premium")}
         headerClass="bg-customBlue"
         titleClass="text-white"
-        paymentMethod="$2"
+        paymentMethod={t("$2")}
         // paymentAmount={'$33/month'}
         // saveCost={'SAVE 33%'}
         onClick={() => navigate("/consumer-payment/monthly")}
@@ -36,7 +36,7 @@ const ConsumerSubscriptionPage = () => {
         title={t("Annual Premium")}
         headerClass="bg-customBlue"
         titleClass="text-white"
-        paymentMethod="$18"
+        paymentMethod={t("$5")}
         // paymentAmount={'$33/month'}
         // saveCost={'SAVE 33%'}
         onClick={() => navigate("/consumer-payment/annual")}

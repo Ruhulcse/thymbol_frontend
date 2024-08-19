@@ -3,6 +3,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import UpdatedButton2 from "../button/UpdatedButton2";
 import UpgradeModal from "../upgradeModal";
 function SingleVoucher({ item, link = "redeem-deal-details", canRedeem = 25 }) {
   const [activeModal, setActiveModal] = useState(false);
@@ -30,11 +31,11 @@ function SingleVoucher({ item, link = "redeem-deal-details", canRedeem = 25 }) {
             <div className="text-[8px] sm:text-[10px] md:text-xs lg:text-[14px]">
               {item?.condition}
             </div>
-            <div className="flex justify-between px-0 md:px-0 md:mt-4 mt-2 items-center">
+            <div className="flex justify-between  px-0 md:px-0 md:mt-4 mt-2 items-center pr-2">
               <div className="md:text-sm text-[9px] sm:text-[11px] font-semibold text-orange-600 lg:text-[16px]">
                 {item?.discount ? <>{item?.discount}% off</> : item.offer}
               </div>
-              <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center lg:h-10 lg:w-20 ">
+              <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center lg:h-10 lg:w-20  ">
                 {canRedeem > 25 &&
                 subscriptionType?.toLowerCase() === "free" ? (
                   //   <img
@@ -42,22 +43,16 @@ function SingleVoucher({ item, link = "redeem-deal-details", canRedeem = 25 }) {
                   //     className="h-full w-full rounded-full cursor-pointer"
                   //     onClick={redeemValidation}
                   //   />
-                  <button
+
+                  <UpdatedButton2
                     onClick={redeemValidation}
-                    type="button"
-                    class="focus:outline-none w-16 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-normal rounded-lg text-xs px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 pr-6"
-                  >
-                    {t("Redeem")}
-                  </button>
+                    ButtonName={t("Redeem")}
+                  />
                 ) : (
                   <Link to={`/${link}/${item?._id}`}>
                     {/* <img src={logo} className="h-full w-full rounded-full" /> */}
-                    <button
-                      type="button"
-                      class="focus:outline-none w-16 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-normal rounded-lg text-xs px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 pr-6"
-                    >
-                      {t("Redeem")}
-                    </button>
+
+                    <UpdatedButton2 ButtonName={t("Redeem")} />
                   </Link>
                 )}
               </div>

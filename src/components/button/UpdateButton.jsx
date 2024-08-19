@@ -4,7 +4,7 @@ const UpdateButton = ({ ButtonName, onClick }) => {
       <button
         onClick={onClick}
         type="button"
-        class="focus:outline-none w-16 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-normal rounded-lg text-xs px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        class=" bg-green-800 hover:bg-green-900 font-normal text-xs py-2 md:px-2 px-3 rounded-lg text-white mr-4 md:mr-1"
       >
         {ButtonName}
       </button>
