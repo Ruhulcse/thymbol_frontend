@@ -17,10 +17,8 @@ const Language = () => {
   const { i18n } = useTranslation();
   const savedLanguage = useSelector((state) => state.layout.language);
   const dispatch = useDispatch();
-  console.log("saved language ", savedLanguage);
   const initialSelected =
     languages.find((lang) => lang.code === savedLanguage) || languages[0];
-  console.log("initial selected ", initialSelected);
   const [selected, setSelected] = useState(initialSelected);
 
   const changeLanguage = (selectedLang) => {

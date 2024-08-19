@@ -129,7 +129,7 @@
   "RESTAURANTS NEAR ME": "المطاعم القريبة مني",
   "Thymbol Your World of Deals!": "Thymbol عالمك من التخفيضات!",
   "NEAR ME": "بالقرب مني",
-  "RETAIL STORE ": "متجر بيع بالتجزئة",
+  "RETAIL STORE": "متجر بيع بالتجزئة",
   "SALONS": "صالونات",
   "BARBERSHOPS": "محلات الحلاقة",
   "FITNESS": "لياقة بدنية",
@@ -182,5 +182,10 @@
   "Business Name": "اسم العمل",
   "Enter your Business Name": "أدخل اسم عملك",
   "$5": "50 MAD",
-  "$2": "20 MAD"
+  "$2": "20 MAD",
+  "RETAIL STORE NEAR ME": "متجر بيع بالتجزئة بالقرب مني",
+  "RESTAURANTS": "المطاعم",
+  "SALONS NEAR ME": "صالونات قريبة مني",
+  "FITNESS NEAR ME": "صالات رياضية بالقرب مني",
+  "BARBERSHOPS NEAR ME": "محلات الحلاقة القريبة مني"
 }

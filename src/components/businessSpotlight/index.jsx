@@ -1,8 +1,10 @@
+import { t } from "i18next";
+
 function BusinessSpotlight({ data }) {
   return (
     <div className="container mx-auto mt-24">
       <div className="text-center font-bold md:text-2xl lg:text-3xl text-black-500 text-xl">
-        Business Spotlight!
+        {t("Business Spotlight!")}
       </div>
       <div className="flex justify-around mt-12 gap-6">
         {data.map((item, i) => (

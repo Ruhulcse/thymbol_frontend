@@ -182,5 +182,10 @@
   "Business Name": "Business Name",
   "Enter your Business Name": "Enter your Business Name",
   "$5": "$5",
-  "$2": "$2"
+  "$2": "$2",
+  "RETAIL STORE NEAR ME": "RETAIL STORE NEAR ME",
+  "RESTAURANTS": "RESTAURANTS",
+  "SALONS NEAR ME": "SALONS NEAR ME",
+  "FITNESS NEAR ME": "FITNESS NEAR ME",
+  "BARBERSHOPS NEAR ME": "BARBERSHOPS NEAR ME"
 }
