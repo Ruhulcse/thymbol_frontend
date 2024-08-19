@@ -57,7 +57,7 @@ import { setUser } from './store/api/auth/authSlice';
 import { getUserGeoLocation } from './store/api/GeoLocation/geoLocationSlice';
 import { getUser } from './store/api/user/userSlice';
 import { handleRtl } from './store/layout';
-
+import { initializeMetaPixel } from './metaPixel';
 // just a testing import Home from '@/pages/home/Home';
 
 function App() {
@@ -68,6 +68,10 @@ function App() {
     useEffect(() => {
         dispatch(getUserGeoLocation());
     }, [dispatch]);
+
+    useEffect(() => {
+        initializeMetaPixel();
+      }, []);
 
     useEffect(() => {
         const localAuth = localStorage?.getItem('auth');
