@@ -62,6 +62,7 @@ import { initializeMetaPixel } from './metaPixel';
 
 function App() {
     const { i18n } = useTranslation();
+    document.body.dir = i18n.dir();
     const dispatch = useDispatch();
     const savedLanguage = useSelector((state) => state.layout.language);
 
