@@ -1,17 +1,15 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { useSelector } from 'react-redux';
 
-const LocationMap = () => {
-    const { geoLocationData } = useSelector((state) => state.geoLocation);
-    const position = [geoLocationData.lat, geoLocationData.lng];
+const LocationMap = ({ location, address }) => {
+    const position = [location[1], location[0]];
     return (
         <div className="w-full h-[300px]">
             <MapContainer
                 center={position}
-                zoom={8}
+                zoom={16}
                 maxZoom={18}
                 minZoom={3}
-                scrollWheelZoom={false}
+                scrollWheelZoom={true}
                 style={{ height: '100%', width: '100%' }}
             >
                 <TileLayer
@@ -20,9 +18,14 @@ const LocationMap = () => {
                 />
                 <Marker position={position}>
                     <Popup>
-                        <div className="">
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                        </div>
+                        <div className="">{address}</div>
+                        <br />
+                        <a
+                            href={'https://maps.google.com?q=' + address}
+                            target="_blank"
+                        >
+                            Open address in google map
+                        </a>
                     </Popup>
                 </Marker>
             </MapContainer>

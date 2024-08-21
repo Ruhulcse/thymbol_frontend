@@ -1,11 +1,11 @@
 const themeConfig = {
     app: {
-        name: 'THYMBOL React',
+        name: 'THYMBOL',
     },
     // layout
     layout: {
-        isRTL: false,
-        language: 'en',
+        isRTL: true,
+        language: 'ar',
         darkMode: false,
         semiDarkMode: false,
         skin: 'default',
