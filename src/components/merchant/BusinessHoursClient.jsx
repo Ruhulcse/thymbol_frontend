@@ -47,7 +47,7 @@ const BusinessHoursClient = ({ business_hours }) => {
   };
 
   return (
-    <div className="sm:flex hidden text-xs md:text-[14px]">
+    <div className="sm:flex  text-xs md:text-[14px]">
       <div className="flex items-center">
         <span className="inline-flex"></span>
       </div>

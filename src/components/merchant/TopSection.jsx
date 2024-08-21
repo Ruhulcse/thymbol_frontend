@@ -86,9 +86,9 @@ function TopSection() {
           </div>
         </div>
 
-        <div className="hidden sm:flex gap-4 text-xs md:text-[14px]">
-          <div className="flex items-center">
-            <span className="inline-flex ">
+        <div className=" sm:flex gap-2 md:gap-4 text-xs md:text-[14px]">
+          <div className="flex md:items-center ">
+            <span className="inline-flex  ">
               <Icon
                 icon="heroicons:map-pin"
                 className="text-orange-500 mx-auto text-lg mr-2 cursor-pointer"
@@ -98,7 +98,7 @@ function TopSection() {
             {t("Location")}
             <span
               onClick={showInMapClicked}
-              className="cursor-pointer text-blue-400"
+              className="cursor-pointer text-blue-400 "
             >
               ({store?.address?.street ?? "N/A"})
             </span>
@@ -113,7 +113,7 @@ function TopSection() {
             <span className="ms-2">{"N/A"}</span>
           </div>
         </div>
-        <div className="hidden sm:flex gap-4 text-xs md:text-[14px]">
+        <div className=" sm:flex  gap-4 text-xs md:text-[14px]">
           <div className="flex items-center">
             <span className="inline-flex ">
               <Icon
@@ -133,8 +133,8 @@ function TopSection() {
               <span>N/A</span>
             )}
           </div>
-          <div className="flex items-center">
-            <span className="inline-flex">
+          <div className="flex items-center ">
+            <span className="inline-flex ">
               <Icon
                 icon="eva:facebook-fill"
                 className="text-blue-400 mx-auto text-lg "
@@ -153,7 +153,7 @@ function TopSection() {
             )}
           </div>
         </div>
-        <div className="hidden sm:flex gap-4 text-xs md:text-[14px]">
+        <div className=" sm:flex gap-4 text-xs md:text-[14px]">
           <div className="flex items-center">
             <span className="inline-flex ">
               <Icon
@@ -165,7 +165,7 @@ function TopSection() {
           </div>
         </div>
         <BusinessHoursClient business_hours={store?.business_hours} />
-        <div className="flex justify-center gap-7 mt-2 sm:hidden">
+        <div className="flex justify-center gap-7 mt-2 ">
           {infoIcon.map((item, i) => (
             <div
               className="h-8 w-11 bg-blue-600 rounded-2xl flex justify-center items-center font-bold"

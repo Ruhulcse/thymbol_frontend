@@ -1,6 +1,9 @@
+import { infoIcon } from "@/constant/data";
+import { Icon } from "@iconify/react";
 import { t } from "i18next";
 import { Link } from "react-router-dom";
 import UpdateButton from "../button/UpdateButton";
+const [firstIcon] = infoIcon;
 
 function SalonsCard({ item }) {
   return (
@@ -27,9 +30,19 @@ function SalonsCard({ item }) {
         </Link>
         <div className="text-[9px] md:text-sm mt-2">{item.body}</div>
       </div>
+      <div className="flex items-center justify-between">
+        <div className="h-8 w-11 bg-blue-600 rounded-2xl flex justify-center items-center font-bold">
+          <Icon className="text-white " icon={firstIcon.icon} />
+        </div>
+        <p className="text-black-500">{Math.floor(item.distance) / 1000} KM</p>
+      </div>
       <div className="flex justify-between items-center mt-4">
         <div className="text-[13px] md:text-base font-semibold text-orange-600">
           {item?.Discount}% off
+        </div>
+        <div>
+          {" "}
+          <p></p>
         </div>
         <Link to={`/store/${item._id}`}>
           <UpdateButton ButtonName={t("Redeem")} />
