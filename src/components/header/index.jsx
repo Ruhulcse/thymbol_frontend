@@ -61,7 +61,7 @@ function Header() {
                                 </span>
                             ))}
                         </span>
-                        <div className="sm:mt-10 flex space-x-4 font-normal mt-[-81px] sm:justify-start justify-center ">
+                        <div className="sm:mt-10 flex space-x-4 rtl:space-x-reverse font-normal mt-[-81px] sm:justify-start justify-center ">
                             <div className="flex  w-full ">
                                 <PlacesAutocompleteSearch />
                                 {/* <input
