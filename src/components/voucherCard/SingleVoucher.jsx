@@ -31,11 +31,11 @@ function SingleVoucher({ item, link = "redeem-deal-details", canRedeem = 25 }) {
             <div className="text-[8px] sm:text-[10px] md:text-xs lg:text-[14px]">
               {item?.condition}
             </div>
-            <div className="flex justify-between  px-0 md:px-0 md:mt-4 mt-2 items-center pr-2">
-              <div className="md:text-sm text-[9px] sm:text-[11px] font-semibold text-orange-600 lg:text-[16px]">
+            <div className="flex justify-between px-0 md:px-0 md:mt-4 mt-2 items-center pr-2 rtl:pr-0 w-[100%]">
+              <div className="md:text-sm text-[9px] sm:text-[9px] font-semibold text-orange-600 lg:text-[16px]">
                 {item?.discount ? <>{item?.discount}% off</> : item.offer}
               </div>
-              <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center lg:h-10 lg:w-20  ">
+              <div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center lg:h-10 lg:w-20 rtl:z-10 rtl:ml-6">
                 {canRedeem > 25 &&
                 subscriptionType?.toLowerCase() === "free" ? (
                   //   <img
