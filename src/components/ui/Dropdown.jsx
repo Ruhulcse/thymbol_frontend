@@ -2,6 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Icon from "@/components/ui/Icon";
+import useRtl from "@/hooks/useRtl";
 
 const Dropdown = ({
   label = "Dropdown",
@@ -26,6 +27,7 @@ const Dropdown = ({
   classItem = "px-4 py-2",
   className = "",
 }) => {
+  const [isRtl] = useRtl();
   return (
     <div className={`relative ${wrapperClass}`}>
       <Menu as="div" className={`block w-full ${className}`}>
