@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux';
 import Card from '../ui/Card';
 import VerifyScanQR from '../verifyScanQR';
 
+//QR code Scan
+
 const ScanQRCode = () => {
     const { user } = useSelector((state) => state.user);
     return (
