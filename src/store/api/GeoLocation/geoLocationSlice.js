@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -13,8 +13,12 @@ const initialState = {
 
 export const getUserGeoLocation = createAsyncThunk('geoLocation/location', async () => {
 	try {
-		const response = await axios.get(`https://ipinfo.io?token=${import.meta.env.VITE_IPINFO_TOKEN}`);
-		 return response.data;
+		// const response = await axios.get(`https://ipinfo.io?token=${import.meta.env.VITE_IPINFO_TOKEN}`);
+		const response = await axios.get(`${import.meta.env.VITE_API_APP_URL}/get-ip`);
+		console.log(response)
+		// console.log(response.data.data);
+
+		return response.data.data;
 		//return true;
 	} catch (error) {
 		throw error.response ? error.response.data : error.message;
@@ -31,10 +35,14 @@ const geoLocationSlice = createSlice({
 				state.loading = true;
 			})
 			.addCase(getUserGeoLocation.fulfilled, (state, action) => {
+
+
 				state.loading = false;
 				state.success = true;
 				const lat = action.payload?.loc?.split(',')[0]
+				console.log("🚀 ~ .addCase ~ lat:", lat)
 				const lng = action.payload?.loc?.split(',')[1]
+				console.log("🚀 ~ .addCase ~ lng:", lng)
 				// const lat = 24.7460;
 				// const lng = 90.4179;
 				state.geoLocationData.lat = lat;

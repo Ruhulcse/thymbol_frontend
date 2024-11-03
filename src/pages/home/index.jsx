@@ -6,6 +6,7 @@ import Loading from '@/components/Loading';
 import Restaurants from '@/components/restaurants';
 import { spotlight } from '@/data/BusinessSpotlight!';
 import { featured } from '@/data/featuredData';
+import { selectCurrentLatLng } from '@/store/api/GeoLocation/geoLocationSlice';
 import {
 	setLoader,
 	setSearchCategory,
@@ -22,6 +23,7 @@ function Home() {
 	// 	lng: '90.35850',
 	// };
 	const currentLocation = useSelector(selectCurrentLatLng);
+	console.log(currentLocation);
 	const [storeData, setStoreData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
@@ -127,6 +129,7 @@ function Home() {
 	useEffect(() => {
 		getNearByStores();
 	}, [currentLocation]);
+	// }, []);
 
 	useEffect(() => {
 		viewMoreStore();
