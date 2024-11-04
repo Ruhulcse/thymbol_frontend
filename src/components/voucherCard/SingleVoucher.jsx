@@ -20,7 +20,7 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
 	const onCloseModal = () => setOpen(false);
 
 	return (
-		<div className="lg:h-44 lg:w-[490px] h-[110px] w-[220px] bg-white shadow-lg sm:w-[270px] sm:h-[120px] md:h-[150px] md:w-[330px]">
+		<div className="lg:h-44 lg:w-[490px] h-[110px] bg-white shadow-lg sm:w-[270px] sm:h-[120px] md:h-[150px] md:w-[330px] flex flex-col justify-center">
 			<div className="w-full relative">
 				{/* Right side circle */}
 				<div className="lg:h-8 h-3 lg:w-8 w-3 rounded-full bg-[#f9f9f9]  absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 overflow-hidden "></div>
@@ -33,7 +33,9 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
 								<div onClick={redeemValidation}>{item?.storeName}</div>
 							) : (
 								// <Link to={`/${link}/${item?._id}`}>{item?.storeName}</Link>
-								<Link onClick={onOpenModal}>{item?.storeName}</Link>
+								<Link onClick={onOpenModal} className="capitalize">
+									{item?.storeName}
+								</Link>
 							)}
 						</div>
 						<div className="text-[8px] sm:text-[10px] md:text-xs lg:text-[14px]">
@@ -43,7 +45,7 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
 							<div className="md:text-sm text-[9px] sm:text-[9px] font-semibold text-orange-600 lg:text-[16px]">
 								{item?.discount ? <>{item?.discount}% off</> : item.offer}
 							</div>
-							<div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center lg:h-10 lg:w-20 rtl:z-10 rtl:ml-6">
+							<div className="md:h-8 md:w-8 sm:h-5 sm:w-5 h-4 w-4 flex items-center lg:h-10 lg:w-20 rtl:z-10 rtl:ml-6 mr-4">
 								{canRedeem > 25 &&
 								subscriptionType?.toLowerCase() === 'free' ? (
 									//   <img
@@ -64,7 +66,7 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
 										{/* <img src={logo} className="h-full w-full rounded-full" /> */}
 
 										{/* <UpdatedButton2 ButtonName={t('Redeem')} /> */}
-										<button className="bg-blue-500 font-bold uppercase text-[10px] py-1 md:py-2 md:px-2 px-1 md:rounded-lg rounded-md text-white mr-6 md:mr-4">
+										<button className="bg-blue-500 font-bold text-[10px] py-1 md:py-2 md:px-2 px-1 md:rounded-lg rounded-md text-white mr-6 md:mr-4">
 											{t('Redeem')}
 										</button>
 									</Link>

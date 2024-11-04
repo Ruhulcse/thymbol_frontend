@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const [firstIcon] = infoIcon;
 
 function SalonsCard({ item }) {
-	// console.log({ item });
+	console.log({ item });
 
 	return (
 		<Link
