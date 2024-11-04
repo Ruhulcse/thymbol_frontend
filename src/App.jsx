@@ -65,6 +65,9 @@ import { handleRtl } from './store/layout';
 // just a testing import Home from '@/pages/home/Home';
 
 import 'react-responsive-modal/styles.css';
+import About from './pages/about/About';
+import Faq from './pages/faq/Faq';
+import Privacy from './pages/PrivacyPolicy/Privacy';
 
 function App() {
 	const { i18n } = useTranslation();
@@ -125,6 +128,9 @@ function App() {
 				{/* consumer layout */}
 				<Route path="/" element={<UserLayout />}>
 					<Route path="/home" element={<Home />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/faq" element={<Faq />} />
+					<Route path="/privacy-policy" element={<Privacy />} />
 					<Route path="/store/:id" element={<Merchant />} />
 
 					<Route path="/redeem-deal/:id" element={<RedeemDeal />} />

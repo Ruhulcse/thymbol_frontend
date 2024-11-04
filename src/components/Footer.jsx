@@ -41,26 +41,30 @@ const Footer = () => {
 						<div className="flex flex-col">
 							<h6 className="mb-4 text-blue-500 font-bold">Company</h6>
 							<Link to={'/'}>Home</Link>
-							<Link to={'/'}>About</Link>
+							<Link to={'/about'}>About</Link>
 							<Link to={'/'}>Team</Link>
-							<Link to={'/'}>Login as Consumer</Link>
-							<Link to={'/'}>Login as Business</Link>
-							<Link to={'/'}>Deals</Link>
+							<Link to={'/login-consumer'}>Login as Consumer</Link>
+							<Link to={'/login'}>Login as Business</Link>
+							<Link to={'/clipped-deals'}>Deals</Link>
 							<Link to={'/'}>Categories</Link>
 						</div>
 						<div className="flex flex-col">
 							<h6 className="mb-4 text-blue-500 font-bold">Documentation</h6>
 							<Link to={'/'}>Help Center</Link>
 							<Link to={'/'}>Contact</Link>
-							<Link to={'/'}>FAQ</Link>
-							<Link to={'/'}>Privacy Policy</Link>
+							<Link to={'/faq'}>FAQ</Link>
+							<Link to={'/privacy-policy'}>Privacy Policy</Link>
 						</div>
 						<div className="flex flex-col">
 							<h6 className="mb-4 text-blue-500 font-bold">Socials</h6>
-							<Link to={'https://facebook.com/'}>Facebook</Link>
-							<Link to={'https://instagram.com/'}>Instagram</Link>
-							<Link to={'https://youtube.com/'}>Youtube</Link>
-							<Link to={'https://twitter.com/'}>Twitter</Link>
+							<Link to={'https://www.facebook.com/Thymbol'}>Facebook</Link>
+							<Link
+								to={'https://www.instagram.com/thymbolmorocco/profilecard/'}
+							>
+								Instagram
+							</Link>
+							<Link to={'https://www.youtube.com/@thymbol'}>Youtube</Link>
+							{/* <Link to={'https://twitter.com/'}>Twitter</Link> */}
 						</div>
 					</div>
 				</section>
