@@ -1,4 +1,5 @@
 import { infoIcon } from '@/constant/data';
+import { t } from 'i18next';
 import { Link } from 'react-router-dom';
 const [firstIcon] = infoIcon;
 
@@ -39,12 +40,12 @@ function SalonsCard({ item }) {
 						{item?.Discount}% off
 					</p>
 				</div>
-				<div className="review flex-1 ">
+				<div className="review flex-1 flex items-center justify-between">
 					<p className="font-semibold text-gray-500 block max-sm:hidden">
 						10 reviews
 					</p>
-					<button className="bg-blue-500 text-white hidden max-sm:block px-4 py-1">
-						Claim Now
+					<button className="bg-blue-500 text-white max-sm:block px-4 py-1">
+						{t('Claim Now')}
 					</button>
 				</div>
 			</div>

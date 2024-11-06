@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -9,12 +10,14 @@ const Footer = () => {
 						<h6 className="mb-4 text-blue-500 font-bold">Thymbol.com</h6>
 
 						<div>
-							<p className="mb-2">Sign up for the best deals near you!</p>
+							<p className="mb-2">
+								{t('Sign up for the best deals near you!')}
+							</p>
 							<div className="mb-4 border border-black-500 w-fit max-sm:w-full max-sm:relative py-2 px-3 rounded-full">
 								<input
 									className="outline-none border-none max-sm:w-full"
 									type="email"
-									placeholder="Enter your email"
+									placeholder={t('Enter your email')}
 								/>
 								<button className="bg-blue-500 text-white px-2 py-1 rounded-full max-sm:absolute max-sm:right-2 bottom-[5px]">
 									→
@@ -23,12 +26,12 @@ const Footer = () => {
 						</div>
 
 						<div>
-							<p className="mb-2">Grow your business with us!</p>
+							<p className="mb-2">{t('Grow your business with us!')}</p>
 							<div className="mb-4 border border-black-500 w-fit max-sm:w-full max-sm:relative py-2 px-3 rounded-full">
 								<input
 									className="outline-none border-none max-sm:w-full"
 									type="email"
-									placeholder="Enter your email"
+									placeholder={t('Enter your email')}
 								/>
 								<button className="bg-blue-500 text-white px-2 py-1 rounded-full max-sm:absolute right-2 bottom-[5px]">
 									→
@@ -40,30 +43,34 @@ const Footer = () => {
 					<div className="right flex-1 flex justify-between max-md:flex-col max-md:gap-4">
 						<div className="flex flex-col">
 							<h6 className="mb-4 text-blue-500 font-bold">Company</h6>
-							<Link to={'/'}>Home</Link>
-							<Link to={'/about'}>About</Link>
-							<Link to={'/'}>Team</Link>
-							<Link to={'/login-consumer'}>Login as Consumer</Link>
-							<Link to={'/login'}>Login as Business</Link>
-							<Link to={'/clipped-deals'}>Deals</Link>
-							<Link to={'/'}>Categories</Link>
+							<Link to={'/'}>{t('Home')}</Link>
+							<Link to={'/about'}>{t('About')}</Link>
+							<Link to={'/'}>{t('Team')}</Link>
+							<Link to={'/login-consumer'}>{t('Login as Consumer')}</Link>
+							<Link to={'/login'}>{'Login as Business'}</Link>
+							<Link to={'/clipped-deals'}>{'Deals'}</Link>
+							<Link to={'/'}>{'Categories'}</Link>
 						</div>
 						<div className="flex flex-col">
 							<h6 className="mb-4 text-blue-500 font-bold">Documentation</h6>
-							<Link to={'/'}>Help Center</Link>
-							<Link to={'/'}>Contact</Link>
-							<Link to={'/faq'}>FAQ</Link>
-							<Link to={'/privacy-policy'}>Privacy Policy</Link>
+							<Link to={'/'}>{t('Help Center')}</Link>
+							<Link to={'/'}>{t('Contact')}</Link>
+							<Link to={'/faq'}>{t('FAQ')}</Link>
+							<Link to={'/privacy-policy'}>{t('Privacy Policy')}</Link>
 						</div>
 						<div className="flex flex-col">
-							<h6 className="mb-4 text-blue-500 font-bold">Socials</h6>
-							<Link to={'https://www.facebook.com/Thymbol'}>Facebook</Link>
+							<h6 className="mb-4 text-blue-500 font-bold">{t('Socials')}</h6>
+							<Link to={'https://www.facebook.com/Thymbol'}>
+								{t('Facebook')}
+							</Link>
 							<Link
 								to={'https://www.instagram.com/thymbolmorocco/profilecard/'}
 							>
-								Instagram
+								{t('Instagram')}
 							</Link>
-							<Link to={'https://www.youtube.com/@thymbol'}>Youtube</Link>
+							<Link to={'https://www.youtube.com/@thymbol'}>
+								{t('Youtube')}
+							</Link>
 							{/* <Link to={'https://twitter.com/'}>Twitter</Link> */}
 						</div>
 					</div>
