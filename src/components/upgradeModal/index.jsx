@@ -1,49 +1,48 @@
-import offerUpgrade from "@/assets/images/background/upgrade_sub_bg.jpg";
-import { t } from "i18next";
-import Button from "../ui/Button";
-import Modal from "../ui/Modal";
+import { t } from 'i18next';
+import { Link } from 'react-router-dom';
+import Modal from '../ui/Modal';
 const UpgradeModal = ({ activeModal, setActiveModal }) => {
-  const onClose = () => {
-    setActiveModal(false);
-  };
-  return (
-    <Modal
-      onClose={onClose}
-      activeModal={activeModal}
-      themeClass="bg-[#FECB3E]"
-      className={`bg-[#FECB3E] w-[680px]`}
-      title=""
-      centered
-    >
-      <div
-        style={{
-          backgroundImage: `url('${offerUpgrade}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          height: "300px",
-          width: "100%",
-          zIndex: 99999,
-        }}
-      >
-        <div className="w-full grid grid-cols-2 items-end">
-          <div></div>
-          <div>
-            {" "}
-            <p className="mb-3 text-left text-black text-base font-medium">
-              {t("Want to access the best Deals in Town?")}
-            </p>
-            <p className="text-left text-black text-base font-medium">
-              {t("Upgrade to Premium to subscribe")}
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="flex w-full items-center justify-center mt-4">
-        <Button link={"/consumer-subscription"} text={t("Upgrade Now")} />
-      </div>
-    </Modal>
-  );
+	const onClose = () => {
+		setActiveModal(false);
+	};
+	return (
+		<Modal
+			onClose={onClose}
+			activeModal={activeModal}
+			themeClass="bg-[#38b6ff]"
+			className={`bg-[#38b6ff] w-[680px] rounded-[15px]  max-w-xl`}
+			title=""
+			centered
+		>
+			<div className="bg-[#38b6ff]">
+				<div className="w-full ">
+					<div></div>
+					<div className="text-center flex flex-col items-center justify-center space-y-2 text-white">
+						{''}
+						<div className="relative w-fit">
+							<p className="text-center font-bold text-4xl text-white ">
+								{t('subscription title')}
+							</p>
+							<img
+								className="absolute bottom-8 w-10"
+								src="/crown.png"
+								alt="crown"
+							/>
+						</div>
+						<p className="text-base">{t('subscription details')}</p>
+					</div>
+				</div>
+			</div>
+			<div className="flex w-full items-center justify-center mt-4">
+				<Link
+					className="bg-[#004bad] text-white font-semibold text-xl py-2 px-4 rounded-xl"
+					to="/consumer-subscription"
+				>
+					{t('subscription btn')}
+				</Link>
+			</div>
+		</Modal>
+	);
 };
 
 export default UpgradeModal;

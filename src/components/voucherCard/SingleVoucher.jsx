@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import UpgradeModal from '../upgradeModal';
 
 function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
+	// console.log({ canRedeem });
+
 	const [activeModal, setActiveModal] = useState(false);
 	const redeemValidation = () => {
 		setActiveModal(true);
@@ -29,7 +31,7 @@ function SingleVoucher({ item, link = 'redeem-deal-details', canRedeem = 25 }) {
 				<div className="flex flex-1 items-center px-4 h-full">
 					<div className=" p-4 border-r-4 w-full border border-t-0 border-l-0 border-b-0 border-dotted mr-4">
 						<div className="font-bold text-xs lg:text-sm cursor-pointer">
-							{canRedeem > 25 && subscriptionType?.toLowerCase() === 'free' ? (
+							{canRedeem > 24 && subscriptionType?.toLowerCase() === 'free' ? (
 								<div onClick={redeemValidation}>{item?.storeName}</div>
 							) : (
 								// <Link to={`/${link}/${item?._id}`}>{item?.storeName}</Link>

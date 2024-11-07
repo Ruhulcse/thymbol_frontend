@@ -35,7 +35,9 @@ function SalonsCard({ item }) {
 
 			<div className="flex justify-between items-center gap-4 mt-3">
 				<div className="ratting w-[101px] font-semibold text-black-900">
-					<p className="text-orange-600 block max-sm:hidden">⭐ 5</p>
+					<p className="text-orange-600 block max-sm:hidden">
+						{item?.Discount}% off
+					</p>
 					<p className="text-orange-600 hidden max-sm:block">
 						{item?.Discount}% off
 					</p>
