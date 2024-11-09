@@ -29,7 +29,7 @@ const AuthSuccess = () => {
 					userType: user?.userType,
 				})
 			);
-			navigate('/dashboard');
+			navigate('/home');
 		} else {
 			navigate('/login');
 		}
