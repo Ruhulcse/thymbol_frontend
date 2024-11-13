@@ -1,6 +1,7 @@
 import { t } from "i18next";
 import { Link } from "react-router-dom";
 import Modal from "../ui/Modal";
+
 const UpgradeModal = ({ activeModal, setActiveModal }) => {
   const onClose = () => {
     setActiveModal(false);
@@ -10,7 +11,8 @@ const UpgradeModal = ({ activeModal, setActiveModal }) => {
       onClose={onClose}
       activeModal={activeModal}
       themeClass="bg-[#38b6ff]"
-      className={`bg-[#38b6ff] w-[90%] rounded-[15px]  max-w-xl`}
+      className={`bg-[#38b6ff] w-[90%]  rounded-[15px]  max-w-xl`}
+      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
       title=""
       centered
     >
