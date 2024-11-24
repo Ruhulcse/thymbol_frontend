@@ -27,6 +27,7 @@ const AuthSuccess = () => {
 					accessToken: user?.token,
 					user_id: user?._id,
 					userType: user?.userType,
+					SubscriptionType: user?.SubscriptionType,
 				})
 			);
 			navigate('/home');
